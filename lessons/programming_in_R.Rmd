@@ -1,0 +1,28 @@
+---
+title: "Programming in R"
+author: "Andreu Casas"
+output: html_document
+---
+
+```{r init,results='hide',echo=FALSE}
+source("init.R")
+```
+
+### Learning Objectives
+- Learn some basic R programming to make our code less redundant, more efficient, and to speed up the coding process
+- Functions
+- `for` loops
+- `if` and `else` statements
+
+### `Functions`
+Why should we use functions? Well, don't take it from me, take it from [Grolemund & Wickham (2016)](http://r4ds.had.co.nz/functions.html):
+
+*Writing a function has three big advantages over using copy-and-paste:*
+
+  1. *You drastically reduce the chances of making incidental mistakes when you copy and paste.*
+  2. *As requirements change, you only need to update code in one place, instead of many.*
+  3. *You can give a function an evocative name that makes your code easier to understand.*
+
+
+
+
