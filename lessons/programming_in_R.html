@@ -75,8 +75,15 @@ img {
 <li><code>if</code> and <code>else</code> statements</li>
 </ul>
 </div>
+<div id="required-packages-and-datasets" class="section level3">
+<h3>Required Packages and Datasets</h3>
+<p>Make sure you can load all these packages and dataset before starting the module</p>
+<pre class="r"><code>library(dplyr)
+library(uwpols501)
+data(turnout)</code></pre>
+</div>
 <div id="functions" class="section level3">
-<h3><code>Functions</code></h3>
+<h3>Functions</h3>
 <p>Why should we use functions? Well, don’t take it from me, take it from <a href="http://r4ds.had.co.nz/functions.html">Grolemund &amp; Wickham (2016)</a>:</p>
 <p><em>Writing a function has three big advantages over using copy-and-paste:</em></p>
 <ol style="list-style-type: decimal">
@@ -84,6 +91,28 @@ img {
 <li><em>As requirements change, you only need to update code in one place, instead of many.</em></li>
 <li><em>You can give a function an evocative name that makes your code easier to understand.</em></li>
 </ol>
+<p>Writing a function step by step:</p>
+<ol style="list-style-type: decimal">
+<li>Specify a function name</li>
+<li>Use the <code>function()</code> command</li>
+<li>Specify inside the <code>function()</code> command the arguments that the functions takes</li>
+<li>Write what the function does between the curly brackets <code>{ }</code> (Function names should be verbs, and arguments should be nouns)</li>
+</ol>
+<pre class="r"><code>say_hi &lt;- function(name) {
+  print(paste0(&quot;Hi! My name is &quot;, name))
+}
+say_hi(&quot;Andreu&quot;)</code></pre>
+<pre><code>## [1] &quot;Hi! My name is Andreu&quot;</code></pre>
+<p>A real example. For her final project, one of your classmates needed to extract the first digit of several numeric variables. Let’s write a function to do this.</p>
+<pre class="r"><code>get_first_digit &lt;- function(variable) {
+  var_string &lt;- as.character(variable)
+  var_first_char &lt;- substr(var_string, start = 1, stop = 1)
+  var_first_num &lt;- as.numeric(var_first_char)
+  return(var_first_num)
+}</code></pre>
+<p>Now apply the function <code>get_first_digit()</code> that we just created to the variables <code>age</code> of the <code>turnout</code> dataset.</p>
+<pre class="r"><code>head(get_first_digit(turnout$age))</code></pre>
+<pre><code>## [1] 6 5 2 3 2 6</code></pre>
 </div>
 
 

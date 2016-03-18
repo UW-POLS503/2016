@@ -14,7 +14,16 @@ source("init.R")
 - `for` loops
 - `if` and `else` statements
 
-### `Functions`
+### Required Packages and Datasets
+Make sure you can load all these packages and dataset before starting the module
+```{r, message = FALSE}
+library(dplyr)
+library(uwpols501)
+data(turnout)
+```
+
+
+### Functions
 Why should we use functions? Well, don't take it from me, take it from [Grolemund & Wickham (2016)](http://r4ds.had.co.nz/functions.html):
 
 *Writing a function has three big advantages over using copy-and-paste:*
@@ -23,6 +32,37 @@ Why should we use functions? Well, don't take it from me, take it from [Grolemun
   2. *As requirements change, you only need to update code in one place, instead of many.*
   3. *You can give a function an evocative name that makes your code easier to understand.*
 
+Writing a function step by step:
+
+1. Specify a function name 
+2. Use the `function()` command
+3. Specify inside the `function()` command the arguments that the functions takes
+4. Write what the function does between the curly brackets `{ }`
+(Function names should be verbs, and arguments should be nouns)
+
+```{r}
+say_hi <- function(name) {
+  print(paste0("Hi! My name is ", name))
+}
+say_hi("Andreu")
+```
+
+A real example. For her final project, one of your classmates needed to extract the first digit of several numeric variables. Let's write a function to do this.
+
+```{r}
+get_first_digit <- function(variable) {
+  var_string <- as.character(variable)
+  var_first_char <- substr(var_string, start = 1, stop = 1)
+  var_first_num <- as.numeric(var_first_char)
+  return(var_first_num)
+}
+```
+
+Now apply the function `get_first_digit()` that we just created to the variables `age` of the `turnout` dataset. 
+
+```{r}
+head(get_first_digit(turnout$age))
+```
 
 
 
