@@ -22,3 +22,5 @@ Science Association, pp. 69-93.
 Methodology,” in Political Science: The State of the Discipline 11, ed.
 A Finifter, Washington, DC: American Political Science Association,
 - Lee Sigelman. 2006. The Coevolution of American Political Science and the "American Political Science Review" *APSR* http://www.jstor.org/stable/27644372
+- Schrodt. Seven Deadly Sins.
+- Achen. A Rule of Three.
