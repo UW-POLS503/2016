@@ -96,7 +96,6 @@ The quantitative analysis should be conducted in R and reproducible.
 Students may work in pairs on the final paper with instructor permission.
 
 
-
 ## Email & Canvas:
 
 The teaching team will send announcements regularly by email.
@@ -121,3 +120,4 @@ There are a couple places on campus that you can go to get additional statistica
 ### Required
 
 - Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. *Mostly Harmless Econometrics: An Empiricist’s Companion*. 1st edition. Princeton: Princeton University Press. (UW library eBook available)
+- Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. 
