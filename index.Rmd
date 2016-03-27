@@ -20,8 +20,7 @@ output:
 <div class="jumbotron">
 <h1 class="title">POLS/CS&amp;SS 503</h1>
 <h2 class="subtitle">Advanced Quantitative Political Methodology</h2>
-<p>University of Washington</p>
-<p>Spring, 2016</p>
+<p>University of Washington, Spring, 2016</p>
 </div>
 </div>
 
@@ -46,13 +45,13 @@ output:
 <td>Class </td>
 <td>Tues, Thurs</td>
 <td>4:30-5:50 pm </td>
-<td>MGH 284</td>
+<td><a href="uw.edu/maps/?mgh">Mary Gates Hall 284</a></td>
 </tr>
 <tr>
 <td>Lab </td>
 <td>Fri </td>
 <td>1:30-3:20 pm </td>
-<td>SAV 121</td>
+<td><a href="uw.edu/maps/?sav">Savery 121</a></td>
 </tr>
 </table>
 
@@ -61,13 +60,13 @@ output:
 <table class = "table table-striped table-hover">
 <tr>
 <td>Jeffrey Arnold</td>
-<td>Th 3:00--5:00 pm</td>
-<td>Smith 221B</td>
+<td></td>
+<td><a href="uw.edu/maps/?smi">Smith 221B</a></td>
 </tr>
 <tr>
 <td>Andreu Casas Salleras</td>
 <td></td>
-<td>Smith 221E</td>
+<td><a href="uw.edu/maps/?smi">Smith 221E</a></td>
 </tr>
 </table>
 
