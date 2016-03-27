@@ -134,32 +134,22 @@ Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) f
 
 ## Assessment and Evaluation
 
-### Problem Sets
+- Reading assignments
+- Weekly assignments
+- Final paper
 
-Problem sets assigned weekly or bi-weekly. These problem sets will include programming problems with an emphasis on writing understandable, reproducible code.
+# Communication
 
-The assignments and due dates will be distributed during the quarter.
-<!-- These assignments may involve peer review / grading. -->
+For questions about the course that would be of general interest to all students in the course, email the course mailing list, rather than the individual instructors.
+Please reserve emails to individual instructors for individual concerns, such as your data analysis project or personal matters.
 
-Assignments will be *both* submitted digitally through Canvas at the due date and a paper copy to the TA at the next lab section.
+# Resources
 
+Beyond what the teaching team can providing, there are several resources on campus that you can go for assistance with data, computing, and statistical problems:
 
-### Final Paper
-
-A 20 page original report on an original quantitative analysis or replication-and-extension of a published article. The quantitative analysis should be conducted in R and reproducible.
-Students may work in pairs on the final paper with instructor permission.
-
-
-### Email & Canvas:
-
-The teaching team will send announcements regularly by email.
-
-Any non-personal questions related to the material in the course should be posted as a Canvas discussion.
-Reserve email for personal or administrative matters.
-Before posting, check that the question has not been asked and answered already.
-
-It is often more efficient to answer questions in person, so try to ask them attend office hours.
-
+-  Center for Social Science Computing and Research ([CSSCR](http://julius.csscr.washington.edu/about/consulting.html)) has a drop-in statistical consulting center in Savery 119. They provide consulting on statistical software, e.g. R. Go there for software or data related questions.
+- [CSSS Statistical Consulting](https://www.csss.washington.edu/consulting) provides general statistical consulting. Go there for questions about statistical methods.
+- [eScience Data Science Office Hours](http://escience.washington.edu/office-hours/)
 
 ## Inspirations
 
@@ -175,5 +165,10 @@ This course was inspired by and makes
 
 ## References and Copyright
 
+<a rel="license" href="httpso://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a>
+
+Parts of the course materials are derived from
 
 - Matthew Salgnik [Sociology 504: Advanced data analysis for the social sciences](http://www.princeton.edu/~mjs3/soc504_s2015/) under a [CC-BY](Creative Commons Attribution 4.0 International License). I use several of the learning objectives.
+
+The source for the materials of this course is on GitHub at <https://github.com/UW-POLS503/pols_503_sp16>.
