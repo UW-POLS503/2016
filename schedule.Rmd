@@ -1,0 +1,94 @@
+---
+title: "Schedule"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+## Week 1
+
+### <time datetime="2016-03-29">Tuesday, March 29</time>
+
+### <time datetime="2016-03-31">Thursday, March 31</time>
+
+### <time datetime="2016-04-01">Friday, April 1</time>
+
+## Week 2
+
+### <time datetime="2016-04-05">Tuesday, April 5</time>
+
+### <time datetime="2016-04-07">Thursday, April 7</time>
+
+### <time datetime="2016-04-08">Friday, April 8</time>
+
+**NO CLASS** due to MPSA
+
+## Week 3
+
+### <time datetime="2016-04-12">Tuesday, April 12</time>
+
+### <time datetime="2016-04-14">Thursday, April 14</time>
+
+### <time datetime="2016-04-15">Friday, April 15</time>
+
+## Week 4
+
+### <time datetime="2016-04-14">Tuesday, April 19</time>
+
+### <time datetime="2016-04-21">Thursday, April 21</time>
+
+### <time datetime="2016-04-22">Friday, April 22</time>
+
+## Week 5
+
+### <time datetime="2016-04-26">Tuesday, April 26</time>
+
+### <time datetime="2016-04-28">Thursday, April 28</time>
+
+### <time datetime="2016-04-29">Friday, April 29</time>
+
+
+## Week 6
+
+### <time datetime="2016-05-03">Tuesday, May 3</time>
+
+### <time datetime="2016-05-05">Thursday, May 5</time>
+
+### <time datetime="2016-05-06">Friday, May 6</time>
+
+## Week 7
+
+### <time datetime="2016-05-10">Tuesday, May 10</time>
+
+### <time datetime="2016-05-12">Thursday, May 12</time>
+
+### <time datetime="2016-05-13">Friday, May 13</time>
+
+## Week 8
+
+### <time datetime="2016-05-17">Tuesday, May 17</time>
+
+### <time datetime="2016-05-19">Thursday, May 19</time>
+
+### <time datetime="2016-05-20">Friday, May 20</time>
+
+## Week 9
+
+### <time datetime="2016-05-24">Tuesday, May 24</time>
+
+### <time datetime="2016-05-26">Thursday, May 26</time>
+
+### <time datetime="2016-05-27">Friday, May 27</time>
+
+## Week 10
+
+### <time datetime="2016-05-31">Tuesday, May 31</time>
+
+### <time datetime="2016-06-02">Thursday, June 2</time>
+
+### <time datetime="2016-06-03">Friday, June 3</time>
+
+## Finals Period
+
+<span id="final-paper-due"><strong>Final paper due on <time datetime="2016-06-08 23:59:00 PDT">June 8, 11:59 pm </time></strong></span>
