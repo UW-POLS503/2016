@@ -12,7 +12,7 @@ source("init.R")
 - Learn some basic R programming to make our code less redundant, more efficient, and to speed up the coding process
 - Functions
 - `for` loops
-- `if` and `else` statements
+- Conditional Execution: `if` and `else` statements
 
 ### Required Packages and Datasets
 Make sure you can load all these packages and dataset before starting the module
@@ -40,28 +40,167 @@ Writing a function step by step:
 4. Write what the function does between the curly brackets `{ }`
 (Function names should be verbs, and arguments should be nouns)
 
-```{r}
-say_hi <- function(name) {
-  print(paste0("Hi! My name is ", name))
+A function has the following skeleton:
+```{r, eval = FALSE}
+function_name <- function(argument1, argument2, ...) {
+  # do_something with the arguments
+  output <- argument1 + argument2
+  return(output)
 }
-say_hi("Andreu")
 ```
 
-A real example. For her final project, one of your classmates needed to extract the first digit of several numeric variables. Let's write a function to do this.
+A short/silly example:
+```{r}
+say_hi <- function(name) {
+  full_statement <- paste0("Hi! My name is ", name)
+  return(full_statement)
+}
+full_statement <- say_hi("Andreu")
+full_statement
+```
 
+A real example:
+
+For the final project last quarter, one of your classmates needed to retrieve the first digit of all numbers for several numeric variables. So the person had to write the same code multiple times. Let's now write a function that would simplify that code.
 ```{r}
 get_first_digit <- function(variable) {
-  var_string <- as.character(variable)
-  var_first_char <- substr(var_string, start = 1, stop = 1)
-  var_first_num <- as.numeric(var_first_char)
+  num_digits <- nchar(variable)
+  var_first_num <- variable %/% (10 ^ (nchar(variable) - 1))
   return(var_first_num)
 }
 ```
 
-Now apply the function `get_first_digit()` that we just created to the variables `age` of the `turnout` dataset. 
+Now apply the function `get_first_digit()` that we just created to the variables `age` and `educate` of the `turnout` dataset. 
 
 ```{r}
-head(get_first_digit(turnout$age))
+turnout$age_new <- get_first_digit(turnout$age)
+turnout$educate_new <- get_first_digit(turnout$educate)
+```
+
+`r challenge_start()`
+Look through some of your previous code from other classes and projects, and write a function to reduce redundancy (10 min.)
+`r challenge_end()`
+
+### For Loops
+We use `for` loops to iterate through multiple elements of a list, variable, etc., and do **something** with those elements. 
+
+A `for` loop has the following skeleton:
+```{r, eval = FALSE}
+for (each_element in here) { # Try to use meaningful names for the 
+  # do something             #   "each_element" object
+  print(each_element + 1)
+}
+```
+
+
+A short/silly example:
+```{r}
+list_numbers <- sample(x = 1:100, size = 10, replace = FALSE) # sample() function
+for (number in list_numbers) {
+  print(paste0("2 times ", number, " is ", number * 2))
+}
+```
+
+A real example:
+
+Going back to the `turnout` dataset. Imagine that we want to estimate the same linear model for different groups of people based on their age: if they're in their 20s, 30s, etc. We can do that using a `for` loop and the `age_new` variable we just created. We want to estimate the following linear model:
+```{r}
+model_formula <- vote ~  educate + income
+```
+
+We first create an empty `results` dataset that we'll fill with the coefficients and SEs
+of each model run. 
+```{r}
+groups <- sort(unique(turnout$age_new))
+results <- data.frame(age_new = groups,
+                      edu_coef = rep(NA, length(groups)),
+                      edu_se = rep(NA, length(groups)),
+                      inc_coef = rep(NA, length(groups)),
+                      inc_se = rep(NA, length(groups)))
+```
+
+Now we estimate the model for each age group and we store the coefficients and SEs for each covariate in the `results` dataset. 
+```{r}
+for (i in 1:length(groups)) {
+  gr <- groups[i]
+  sub_data <- filter(turnout, age_new == gr)
+  gr_model <- lm(model_formula, data = sub_data)
+  results$edu_coef[i] <- coef(gr_model)[2]
+  results$edu_se[i] <- sqrt(diag(vcov(gr_model)))[2]
+  results$inc_coef[i] <- coef(gr_model)[3]
+  results$inc_se[i] <- sqrt(diag(vcov(gr_model)))[3]
+}
+results
+```
+
+`r challenge_start()`
+Take a look at the `results` dataset. Is there something wrong? Why? What happened? Talk to your classmates and try to figure it out (5 min.).
+`r challenge_end()`
+
+### Conditional Execution: if and else statements
+Sometimes we only want to execute certain code if the data fulfills some conditions. To do that we use `if` and `else` statements.
+
+How `if` and `else` statements look like:
+```{r}
+if (this) {
+  # do that
+} else if (that) {
+  # do something else
+} else {
+  # 
+}
+```
+
+**This** and **that** in the previous chunk of code are boolean tests: code that returns TRUE/FALSE when the computer executes it. Some examples of boolean tests:
+```{r}
+10 == 2
+10 %in% c(2, 5, 13, 20, 10)
+10 == 2 & 10 %in% c(2, 5, 13, 20, 10)
+10 == 2 | 10 %in% c(2, 5, 13, 20, 10)
+```
+
+A short/silly example:
+```{r}
+some_numbers <- c(1, 4, 6, 10,12, 16, 45, 88, 102)
+for (number in some_numbers) {
+  if (number < 10) {
+    print(paste0(number, " is smaller than 10"))
+  } else if (number < 50) {
+    print(paste0(number, " is smaller than 50 but greater or equal to 10"))
+  } else {
+    print(paste0(number, " is greater than 50"))
+  }
+}
+```
+
+Real example:
+
+In the previous code where we estimated the same model for different groups of age we run into an issue with the last group: people in their 90s.
+```{r}
+table(turnout$age_new)
+```
+
+Since there are only 3 people who are in their 90s we run out of degrees of freedom. Remember that df = #observations - 1 - #variables_in_the_model. Let's adapt that code so that we only estimate the model in those cases we have enough degrees of freedom and prints a messages when that's not the case.
+```{r}
+results2 <- data.frame(age_new = groups,
+                      edu_coef = rep(NA, length(groups)),
+                      edu_se = rep(NA, length(groups)),
+                      inc_coef = rep(NA, length(groups)),
+                      inc_se = rep(NA, length(groups)))
+for (i in 1:length(groups)) {
+  gr <- groups[i]
+  sub_data <- filter(turnout, age_new == gr)
+  gr_model <- lm(model_formula, data = sub_data)
+  if (gr_model$df > 1) {
+    results2$edu_coef[i] <- coef(gr_model)[2]
+    results2$edu_se[i] <- sqrt(diag(vcov(gr_model)))[2]
+    results2$inc_coef[i] <- coef(gr_model)[3]
+    results2$inc_se[i] <- sqrt(diag(vcov(gr_model)))[3]
+  } else {
+    print(paste0("Not enough obs. to estimate the model for gr == ", gr))
+  }
+}
+results2
 ```
 
 
