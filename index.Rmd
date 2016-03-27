@@ -138,12 +138,12 @@ Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) f
 - Weekly assignments
 - Final paper
 
-# Communication
+## Communication
 
 For questions about the course that would be of general interest to all students in the course, email the course mailing list, rather than the individual instructors.
 Please reserve emails to individual instructors for individual concerns, such as your data analysis project or personal matters.
 
-# Resources
+## Resources
 
 Beyond what the teaching team can providing, there are several resources on campus that you can go for assistance with data, computing, and statistical problems:
 
