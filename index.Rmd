@@ -1,17 +1,29 @@
 ---
-title: "POLS 503"
-subtitle: "Advanced Quantitative Political Methodology"
 output:
   html_document:
     toc: true
     toc_depth: 3
 ---
-
 <style type="text/css">
+.navbar {
+   margin-bottom: 20px;
+}
+.jumbotron{
+  margin-top: 20px;
+}
 .title {
-  display: visible;
+  diplay: visible;
 }
 </style>
+
+<div class="container">
+<div class="jumbotron">
+<h1 class="title">POLS/CS&amp;SS 503</h1>
+<h2 class="subtitle">Advanced Quantitative Political Methodology</h2>
+<p>University of Washington</p>
+<p>Spring, 2016</p>
+</div>
+</div>
 
 ## Teaching Team {}
 
