@@ -6,13 +6,29 @@ output:
     toc_depth: 3
 ---
 
+<style>
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+h3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+</style>
+
+
 ## Week 1
 
 ### <time datetime="2016-03-29">Tuesday, March 29</time>
 
+- Introduction
+- Install software and set up GitHub accounts
+
 ### <time datetime="2016-03-31">Thursday, March 31</time>
 
 ### <time datetime="2016-04-01">Friday, April 1</time>
+
 
 ## Week 2
 
@@ -22,7 +38,7 @@ output:
 
 ### <time datetime="2016-04-08">Friday, April 8</time>
 
-**NO CLASS** due to MPSA
+NO CLASS due to MPSA
 
 ## Week 3
 
