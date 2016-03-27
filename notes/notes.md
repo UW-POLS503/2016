@@ -77,3 +77,6 @@ January 2016. [Good Enough Practices for Scientific Computing](https://github.co
 - PolMeth Awards. Best paper in *Political Analysis* http://polmeth.wustl.edu/about/2015-awards
 - *Journal of Peace Research* Article of the year https://www.prio.org/JPR/ArticleOfTheYear/ and Best Visualizaiton https://www.prio.org/JPR/VisualizationAward/.
 - IPES best paper at the conference http://ncgg.princeton.edu/IPES/drupal/awards
+
+
+# Courses

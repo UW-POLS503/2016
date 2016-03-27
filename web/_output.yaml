@@ -1,0 +1,13 @@
+html_document:
+  self_contained: false
+  theme: flatly
+  highlight: textmate
+  mathjax: "default"
+  toc_depth: 3
+  toc_float:
+    collapsed: false
+  lib_dir: libs
+  includes:
+    in_header: include/in_header.html
+    after_body: include/after_body.html
+    before_body: include/before_body.html
