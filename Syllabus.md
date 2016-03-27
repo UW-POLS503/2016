@@ -55,26 +55,65 @@ University of Washington, Spring 2016
 </tr>
 </table>
 
+
 # Overview and Class Goals
 
-<!-- Begin from Chris Adolph syllabus -->
+This course continues the graduate sequence in quantitative political methodology from POLS 501.
+In this course, students will learn the Statistical and computational principles necessary to perform modern, flexible, and creative analysis of quantitative social data.
+This course is focused particularly on fitting, interpreting, and refining the linear regression model.
+Emphasis is placed on modern interpretations of linear regression as causal inference, as well as an introduction to several modern computational tools (bootstrapping, cross-validation, regularization).
 
-This course continues the graduate sequence in quantitative political methodology, focused particularly on fitting, interpreting, and refining the linear regression model.
 
-Our agenda includes gaining familiarity with statistical programming via the popular R environment, developing clear and informative graphical representations of regression results, and understanding regression models in matrix form.
+# Learning Objectives
 
-<!-- End from Chris Adolph syllabus -->
+By the end of the semester, you will be able to:
+
+- Conduct, interpret, and communicate results from analysis using multiple regression (including dummy variables and interactions).
+- Explain the limitations of observational data for making causal claims, and begin to use existing strategies for attempting to make causal claims from observational data.
+- Write clean, reusable, and reliable R code.
+- Build a solid, reproducible research pipeline to go from raw data to final paper.
+- Feel empowered working with data.
+
+Further, because we cannot possibly cover everything that you will need to know during your career as a researcher, there are two final long-term goals.
+After this course is over, you will be able to:
+
+- Learn new statistics
+- Learn new programing
+
 
 # Prerequisites
 
-Although POLS 501 is not a formal prerequisite for this course, students are expected to be familiar
-with the material covered in that course.
-See the syllabus HERE.
+This course is designed to be a continuation of POLS/CS&SS 501.
+Although that is not a formal prerequisite for this course, I will assume that students have a basic understanding of the material covered in that course.
+In particular, students should have had a course in hypothesis testing, univariate statistical tests, and linear regression.
+I also assume that students have proficiency in R *prior* to starting the course.
 
-- Introductory statistics course covering hypothesis testing, confidence intervals.
-- Proficiency in R.
-It is desirable for students to have taken the introductory course in the
-sequence (Political Science 501), but any prior course on basic social statistics and linear regression should suffice.
+
+# Materials
+
+
+## Reading
+
+There are two required and one optional texts for this course.
+
+- Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. *Mostly Harmless Econometrics: An Empiricist’s Companion*.
+- Wooldrige, Jeffrey M. *Introductory Econometrics*. 5th edition or earlier.
+Optional
+
+- Angrist, Joshua D., and Jörn-Steffen Pischke. 2014. *Mastering 'Metrics: The Path from Cause to Effect.* This covers most of the same material as *Mostly Harmless* but at a less technical level.
+
+Other reading will come from articles or chapters, which if not open, will be available through either the UW library, or posted on Canvas.
+
+Finally, much of the material and reading for this course will be available in the course notes.
+
+
+# Software
+
+This course takes an applied and computational approach to learning statistics.
+As such a programming language is essential.
+This course uses [R]() as its statistical programming language, and the [RStudio] IDE as an interface to R.
+We will make use of several R packages, with extensive use of the [Hadleyverse](http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/) packages ([ggplot2](https://cran.r-project.org/package=ggplot2), [dplyr](https://cran.r-project.org/package=dplyr), [tidyr](https://cran.r-project.org/package=tidyr), ...).
+Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) for writing reproducible research reports with R and [git](https://git-scm.com/) and [GitHub](https://github.com/) for version control, collaboration, and distribution of code and research.
 
 
 # Assessment and Evaluation
@@ -88,11 +127,10 @@ The assignments and due dates will be distributed during the quarter.
 
 Assignments will be *both* submitted digitally through Canvas at the due date and a paper copy to the TA at the next lab section.
 
+
 ## Final Paper
 
-A 15 page original report on an original quantitative analysis or replication-and-extension of a published article.
-
-The quantitative analysis should be conducted in R and reproducible.
+A 20 page original report on an original quantitative analysis or replication-and-extension of a published article. The quantitative analysis should be conducted in R and reproducible.
 Students may work in pairs on the final paper with instructor permission.
 
 
@@ -106,18 +144,20 @@ Before posting, check that the question has not been asked and answered already.
 
 It is often more efficient to answer questions in person, so try to ask them attend office hours.
 
-## Resources
 
-There are a couple places on campus that you can go to get additional statistical conulting
+# Inspirations
 
-- CSSCR has a drop-in statistical consulting center in Savery 119. They provide consulting on statistical software, e.g. R. http://csscr.washington.edu/consulting.html
-- CSSS Statistical Consulting provides general statistical consulting (questions about your research project).
-  You can find their hours and locations on thier [site](https://www.csss.washington.edu/Consulting/).
+This course was inspired by and makes
+
+- Christopher Adolph, [POLS 503](http://faculty.washington.edu/cadolph/?page=20). The previous instructor for this course.
+- Jenny Bryan, [Stat 545: Data wrangling, exploration, and analysis with R]( http://stat545-ubc.github.io/)
+- [Software Carpentry](https://software-carpentry.org/)
+- Brenton Kenkel [PSCI 8357: Statistics for Political Research II](http://bkenkel.com/psci8357/)
+- Matthew Blackwell, [Gov 2002: Causal Inference](http://www.mattblackwell.org/files/teaching/gov2002-15f-syllabus.pdf) and [GOV 1000/2000/2000e/Stat E-190: Quantitative Research Methodology](http://www.mattblackwell.org/files/teaching/gov2000-15f-syllabus.pdf).
+- Matthew Salganik, [SOC 504: Sociology 504: Advanced data analysis for the social sciences](http://www.princeton.edu/~mjs3/soc504_s2015/)
+- MOOCS: Mine Çetinkaya-Rundel [Sta 101](https://www2.stat.duke.edu/courses/Spring16/sta101.001/) and the [John Hopkins Data Science Sequence](https://www.coursera.org/specializations/jhu-data-science).
+
+# References and Copyright
 
 
-# Texts
-
-### Required
-
-- Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. *Mostly Harmless Econometrics: An Empiricist’s Companion*. 1st edition. Princeton: Princeton University Press. (UW library eBook available)
-- Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. 
+- Matthew Salgnik [Sociology 504: Advanced data analysis for the social sciences](http://www.princeton.edu/~mjs3/soc504_s2015/) under a [CC-BY](Creative Commons Attribution 4.0 International License). I use several of the learning objectives.
