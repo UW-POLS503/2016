@@ -18,8 +18,8 @@ h3 {
 </style>
 
 
-You should expect this schedule to be a dynamic document. 
-Although the the objectives for this course are fixed, the details of how to accomplish those objectives will depend on the interaction between the instructors and students in the course. 
+You should expect this schedule to be a dynamic document.
+Although the the objectives for this course are fixed, the details of how to accomplish those objectives will depend on the interaction between the instructors and students in the course.
 
 When I make changes, these changes will be recorded in the [history](https://github.com/UW-POLS503/pols_503_sp16/commits/gh-pages/schedule.html) of this page on GitHub so that you can track what has changed.
 I will notify you of changes in class or via email.
@@ -36,10 +36,34 @@ I will make adjustments based on this feedback.
 - Introduction
 - Install software and set up GitHub accounts
 
+Reading
+
+- Jenny Bryan, Karen Cranston, Justin Kitzez, Lex Nederbragt, Tracy Teal, and Greg Wilson. [Good Enough Practices for Scientific Computing](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/).
+- Matthew Gentzkow and Jesse M. Shapiro. [Code and Data for the Social Sciences: A Practitioner's Guide](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/). March, 2014. Especially Chapter 3: Version Control. The principles of this are good though I don't follow all their exact prescriptions. Thr practices adopted for this class are closer to "Good Enough Practices."
+- Zachary M. Jones. [Git/Github, Transparency, and Legitimacy in Quantitative Research](http://thepoliticalmethodologist.com/2013/11/18/gitgithub-transparency-and-legitimacy-in-quantitative-research/) *Political Methodologist*
+- Carlisle Rainey [Git for Political Science](https://github.com/carlislerainey/git-for-political-science). Combined with Zach Jones' article, provides a discussion on Git and GitHub from a political scientist's point of view.
+- Roger Peng. [Report Writing for Data Science in R](https://leanpub.com/reportwriting) for some more discussion of reproducible research (some of which is more relevant to biostats than political science) and discussion of R markdown in particular.
+- Roger Peng. 2011. [Reproducible Research in Computational Science](http://science.sciencemag.org/content/334/6060/1226.full) *Science*
+- Roger Peng. 2013. [Treading a New Path for Reproducible Research]( http://simplystatistics.org/2013/08/21/treading-a-new-path-for-reproducible-research-part-1/). [Simply Statistics](http://simplystatistics.org/). website.
+- Roger Peng. 2014. [The Real Reason Reproducible Research is Important
+](http://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/). [Simply Statistics](http://simplystatistics.org/). website. June 6, 2014.
+- Thomas Leeper. 2015. [What's In a Name? The Concepts and Language of Replication and Reproducibility](http://thomasleeper.com/2015/05/open-science-language/). blog post. May 12, 2015.
+
 ### <time datetime="2016-03-31">Thursday, March 31</time>
+
 
 ### <time datetime="2016-04-01">Friday, April 1</time>
 
+For loops and functions
+
+- Hadley Wickham [R for Data Science](http://r4ds.had.co.nz/), Chapters [14](http://r4ds.had.co.nz/programming.html), [15](http://r4ds.had.co.nz/pipes.html), [16](http://r4ds.had.co.nz/functions.html), [17](http://r4ds.had.co.nz/data-structures.html), [18](http://r4ds.had.co.nz/iteration.html#for-loops) on For loops.
+- Roger Peng. [R Programming for Data Science](https://leanpub.com/rprogramming), Chapter 14: Control Structures, and Chapter 15: Functions.
+- Data Camp course [Intermediate R](https://www.datacamp.com/courses/intermediate-r) will help if you need more practice.
+
+R markdown
+
+- [Rstudio Markdown website](http://rmarkdown.rstudio.com/)
+- 
 
 ## Week 2
 
