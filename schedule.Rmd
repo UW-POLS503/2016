@@ -36,18 +36,21 @@ I will make adjustments based on this feedback.
 - Introduction
 - Install software and set up GitHub accounts
 
-Reading
+Reading (skim after class, I will discuss ideas inspired by these sources)
 
 - Jenny Bryan, Karen Cranston, Justin Kitzez, Lex Nederbragt, Tracy Teal, and Greg Wilson. [Good Enough Practices for Scientific Computing](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/).
 - Matthew Gentzkow and Jesse M. Shapiro. [Code and Data for the Social Sciences: A Practitioner's Guide](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/). March, 2014. Especially Chapter 3: Version Control. The principles of this are good though I don't follow all their exact prescriptions. Thr practices adopted for this class are closer to "Good Enough Practices."
 - Zachary M. Jones. [Git/Github, Transparency, and Legitimacy in Quantitative Research](http://thepoliticalmethodologist.com/2013/11/18/gitgithub-transparency-and-legitimacy-in-quantitative-research/) *Political Methodologist*
 - Carlisle Rainey [Git for Political Science](https://github.com/carlislerainey/git-for-political-science). Combined with Zach Jones' article, provides a discussion on Git and GitHub from a political scientist's point of view.
-- Roger Peng. [Report Writing for Data Science in R](https://leanpub.com/reportwriting) for some more discussion of reproducible research (some of which is more relevant to biostats than political science) and discussion of R markdown in particular.
 - Roger Peng. 2011. [Reproducible Research in Computational Science](http://science.sciencemag.org/content/334/6060/1226.full) *Science*
-- Roger Peng. 2013. [Treading a New Path for Reproducible Research]( http://simplystatistics.org/2013/08/21/treading-a-new-path-for-reproducible-research-part-1/). [Simply Statistics](http://simplystatistics.org/). website.
-- Roger Peng. 2014. [The Real Reason Reproducible Research is Important
-](http://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/). [Simply Statistics](http://simplystatistics.org/). website. June 6, 2014.
+- Roger Peng. [Treading a New Path for Reproducible Research]( http://simplystatistics.org/2013/08/21/treading-a-new-path-for-reproducible-research-part-1/) [The Real Reason Reproducible Research is Important
+](http://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/).
 - Thomas Leeper. 2015. [What's In a Name? The Concepts and Language of Replication and Reproducibility](http://thomasleeper.com/2015/05/open-science-language/). blog post. May 12, 2015.
+- Symposium on Openness in Political Science: Data Access and Research Transparency
+- Recent [2012 DA-RT Ethics Guide Changes](http://www.dartstatement.org/#!2012-apsa-ethics-guide-changes/c13ay) and the [2014 Journal Editors' Transparency Statement](http://www.dartstatement.org/), and the [Center for Open Science Transparency and Openness Promotion Guidelines](https://cos.io/top/). See the [DA-RT](http://www.dartstatement.org/) website for more information.
+-  [APSR Submission Guidelines](http://www.apsanet.org/PUBLICATIONS/Journals/APSR-Submission-Guidelines-2016-in-Brief) sectino on "Data Access, Production Transparency and Analytic Transparency." and *AJPS* [Guidelines for Preparing Replication Materials](http://media.wix.com/ugd/fa8393_d2b63b1d72ee40599ae27ec28bb3291d.pdf).
+- *PS: Policial Science and Politics* Symposium on [Openness in Political
+Science: Data Access and Research Transparency](http://media.wix.com/ugd/fa8393_d55bef088ac44830bd194b5f80190479.pdf). January 2014.
 
 ### <time datetime="2016-03-31">Thursday, March 31</time>
 
@@ -63,7 +66,8 @@ For loops and functions
 R markdown
 
 - [Rstudio Markdown website](http://rmarkdown.rstudio.com/)
-- 
+- Roger Peng. [Report Writing for Data Science in R](https://leanpub.com/reportwriting) for some more discussion of reproducible research (some of which is more relevant to biostats than political science) and discussion of R markdown in particular
+- Data Camp course [Reporting with R Markdown](https://www.datacamp.com/courses/reporting-with-r-markdown) for more practice if you need it.
 
 ## Week 2
 
