@@ -18,6 +18,17 @@ h3 {
 </style>
 
 
+You should expect this schedule to be a dynamic document. 
+Although the the objectives for this course are fixed, the details of how to accomplish those objectives will depend on the interaction between the instructors and students in the course. 
+
+When I make changes, these changes will be recorded in the [history](https://github.com/UW-POLS503/pols_503_sp16/commits/gh-pages/schedule.html) of this page on GitHub so that you can track what has changed.
+I will notify you of changes in class or via email.
+
+I will ask the class for feedback frequently---both in class and anonymously via surveys.
+Please let me know what is working and what can be improved.
+I will make adjustments based on this feedback.
+
+
 ## Week 1
 
 ### <time datetime="2016-03-29">Tuesday, March 29</time>
