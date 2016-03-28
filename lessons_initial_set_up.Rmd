@@ -1,0 +1,30 @@
+---
+title: "Initial Set Up"
+author: "Andreu Casas"
+---
+
+## Learning Objectives
+
+- You will make sure you have the latest version of R
+- You will create a GitHub account
+- You will learn how to use GitHub in RStudio
+- You will learn how to use the function `install_github()` from the `devtools` pakcages to download R packages from GitHub
+
+## Latest R version
+
+Some of the packages we will use during this course require the latest R version. So let's now take the moment to be sure that everybody has it. Type `version` in the R console to check what version you have. The latest one is verison 3.2.4 (2016-03-10). If you don't have it, follow the next steps to update it:
+
+- Go to the [R Project](https://cran.fhcrc.org/) website
+- Choose the link to `Download R for` your operation system (Linux, Mac, or Windows)
+    - Mac users: Download `R-3.2.4.pkg`
+    - Windows users: First click on `base` and then on `Download R 3.2.4 for Windows`
+- Restart RStudio
+
+## Creating a GitHub account
+
+In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools and a large number of R packages are hosted in and can be downloaded from GitHub. 
+
+To start using GitHub, you first need to have an account. If you don't have one,  go to this [link](https://github.com/join?source=header-home) to sign up. 
+
+## 
+

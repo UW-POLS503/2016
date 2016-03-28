@@ -1,13 +1,14 @@
 ---
 title: "Programming in R"
+author: "Andreu Casas"
 ---
 
 ## Learning Objectives
 
-- Learn some basic R programming to make our code less redundant, more efficient, and to speed up the coding process
-- Functions
-- `for` loops
-- Conditional Execution: `if` and `else` statements
+- You will learn some basic R programming to make code less redundant and more efficient
+- You will learn how to write and use R functions
+- You will learn how to write and use `for` loops
+- You will learn how to write and use conditional execution (`if`-`else` statements)
 
 ## Required Packages and Datasets
 
