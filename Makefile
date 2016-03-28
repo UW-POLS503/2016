@@ -7,11 +7,11 @@ all: html
 html: $(HTML_FILES)
 
 %.html: %.Rmd $(HTML_FILES_DEPENDS)
-	R --slave -e "rmarkdown::render('$<')"
+	R --slave -e "rmarkdown::render('$<',encoding='UTF-8')"
 
 watch:
 	watchman watch "$(shell pwd)"
-	watchman -- trigger "$(shell pwd)" remake '*.Rmd' $(HTML_FILES_DEPENDS) -- make html
+	watchman -- trigger "$(shell pwd)" remake '*.Rmd' $(HTML_FILES_DEPENDS) Makefile -- make html
 
 unwatch:
 	watchman watch-del "$(shell pwd)"
