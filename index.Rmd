@@ -136,8 +136,6 @@ Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) f
 - Weekly assignments
 - Final paper
 
-FOOLS
-
 ## Topics
 
 Below is a list of some of the topics that this course may cover.
