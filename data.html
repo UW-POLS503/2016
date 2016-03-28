@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+          <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_programming_in_R.html">Programming in R</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+</div>
+
+
+<!--
+.. title: List of Data
+-->
+<p>Here are links to some datasets potentially of interest to political scientists. However, the data collection process in academia is disaggregated, with many data sets collected by researchers for specific purposes and distributed by the researcher with their paper. See also the Washington Library <a href="http://guides.lib.uw.edu/c.php?g=341607&amp;p=2299327">Data Research Guide</a></p>
+<div id="repositories" class="section level1">
+<h1>Repositories</h1>
+<ul>
+<li><a href="https://dataverse.harvard.edu/">Harvard Dataverse</a> Contains replication data for many political science articles (among other data). The R package <a href="https://cran.r-project.org/web/packages/dvn/index.html">dvn</a> allows for direct download and upload of data to and from the Dataverse.</li>
+<li><p><a href="http://www.icpsr.umich.edu/icpsrweb/landing.jsp">ICPSR</a> Collection of many political science and economics datasets.</p></li>
+<li><a href="https://www.quandl.com/">Quandl</a> A collection of financial and economic data. The R package <a href="https://www.quandl.com/tools/r">Quandl</a> allows for easy access to Quandl data within R.</li>
+<li><p><a href="http://www3.norc.org/GSS+Website/">General Social Survey(GSS)</a></p></li>
+</ul>
+</div>
+<div id="economics" class="section level1">
+<h1>Economics</h1>
+<ul>
+<li><a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators (WDI)</a>. The R package <a href="https://cran.r-project.org/web/packages/WDI/index.html">WDI</a> allows for downloading data.</li>
+<li><a href="http://cid.econ.ucdavis.edu/pwt.html">Penn World Table</a></li>
+</ul>
+</div>
+<div id="american-politics" class="section level1">
+<h1>American Politics</h1>
+<ul>
+<li><a href="https://research.stlouisfed.org/fred2/">FRED</a> Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.</li>
+<li><a href="https://cran.r-project.org/web/views/WebTechnologies.html">data.gov</a> U.S. government open data</li>
+<li><a href="http://www.census.gov/">U.S. Census Bureau</a></li>
+<li><a href="http://voteview.com/">NOMINATE Ideal Points of U.S. Congress</a></li>
+</ul>
+</div>
+<div id="comparative-politics" class="section level1">
+<h1>Comparative Politics</h1>
+<ul>
+<li>Policy Agendas Project <a href="http://www.policyagendas.org/page/datasets-codebooks" class="uri">http://www.policyagendas.org/page/datasets-codebooks</a></li>
+<li>Varieties of Democracy (VDEM) project <a href="http://kellogg.nd.edu/projects/vdem/" class="uri">http://kellogg.nd.edu/projects/vdem/</a></li>
+<li><a href="http://www.systemicpeace.org/polity/polity4.htm">Polity Project data</a> Political regime characteristics</li>
+<li><a href="http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20649465~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html">Database of Political Institutions</a></li>
+</ul>
+</div>
+<div id="international-relations" class="section level1">
+<h1>International Relations</h1>
+<ul>
+<li>Paul Hensel maintains a list of Political Science Datasets <a href="http://www.paulhensel.org/data.html" class="uri">http://www.paulhensel.org/data.html</a></li>
+<li><a href="http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/">UCDP/PRIO Armed Conflict</a> Datasets on armed conflict</li>
+<li><a href="http://www.acleddata.com/data/">ACLED (Armed Conflict Location and Event Data Project)</a> Real-time data on political violence in African and Asian states</li>
+<li><a href="http://openeventdata.org/datasets/OEDA.datasets.php">OpenEvent Data/Phoenix Data Project</a></li>
+<li>Data version of the CIA World Factbook: <a href="http://jmatchparser.sourceforge.net/factbook/" class="uri">http://jmatchparser.sourceforge.net/factbook/</a></li>
+<li><a href="http://www.paulhensel.org/data.html">Paul Hensel’s List of International Relations Data</a></li>
+<li><a href="http://www.paulhensel.org/icow.html">Issue Correlates of War (ICOW)</a></li>
+</ul>
+</div>
+<div id="open-data-open-government-datasets" class="section level1">
+<h1>Open Data / Open Government Datasets</h1>
+<ul>
+<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Provides open data on the U.S. government. Data on Congress, state legislatures, campaign finance, contributions, dockets.</li>
+<li><a href="https://ropengov.github.io/">ROpenGov</a> has R packages to access various government related data. For packages to access data on the web from within R see the <a href="https://cran.r-project.org/web/views/WebTechnologies.html">Web Technologies and Services</a> CRAN Task View.</li>
+<li><a href="https://github.com/caesar0301/awesome-public-datasets">Awesome Public Datasets</a> by <a href="https://github.com/caesar0301">caesar0301</a></li>
+<li><a href="http://www.vox.com/">Vox</a> stories on <a href="https://github.com/voxmedia/data-projects">github</a></li>
+<li>NY Times <a href="http://www.nytimes.com/upshot/">Upshot</a> on <a href="https://github.com/TheUpshot">github</a></li>
+<li>Guardian Data Blog <a href="http://www.theguardian.com/news/datablog/interactive/2013/jan/14/all-our-datasets-index">here</a></li>
+<li><a href="http://fivethirtyeight.com">Fivethirtyeight</a> data on <a href="https://github.com/fivethirtyeight/data">github</a></li>
+<li>Catalog of open government data around the world at <a href="http://dataportals.org">DataPortals.org</a></li>
+<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Datasets focusing on US government transparency</li>
+<li><a href="https://www.propublica.org/data/">ProPublica</a></li>
+<li><a href="http://developer.nytimes.com/docs/campaign_finance_api/">NYTimes Campaign Finance API</a></li>
+<li><a href="http://archive.ics.uci.edu/ml/">UCI Machine Learning Repository</a> : repository of machine learning datasets</li>
+<li><a href="https://github.com/showcases/open-data">Open Data on Github</a></li>
+</ul>
+</div>
+<div id="cleaning-data-guide" class="section level1">
+<h1>Cleaning data guide</h1>
+<ul>
+<li><a href="https://github.com/Quartz/bad-data-guide">The Quartz guide to bad data</a></li>
+</ul>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
