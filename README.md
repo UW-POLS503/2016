@@ -7,9 +7,28 @@ Repository containing materials for POLS 503: Advanced Quantitative Political Me
 ## Build
 
 The website is generated from `.Rmd` files and a Makefile, as described in [here](http://rmarkdown.rstudio.com/html_document_format.html#creating_a_website).
-To build the website,
+To build the website run
 ```console
-$ make
+$ make html
+```
+To cleanup all the html files
+```console
+$ make clean
+```
+
+To build whenever a file changes, install [watchman](https://facebook.github.io/watchman/) and run
+```console
+$ make watch
+```
+To stop watching for file changes
+```console
+$ make unwatch
+```
+
+To preview the site while working on it, any simple server will work.
+The simple web server included in the `http.server` module in Python 3 is one example:
+```console
+python -m http.server 8000
 ```
 
 ## Configuration
