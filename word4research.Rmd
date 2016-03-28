@@ -1,0 +1,4 @@
+
+
+- [Happy collaboration with Rmd to docx](http://rmarkdown.rstudio.com/articles_docx.html
+- [Create Word documents from R](http://davidgohel.github.io/ReporteRs/word.html)
