@@ -34,7 +34,7 @@ output:
 </tr>
 <tr>
 <td>TA</td>
-<td><a href="http://andreucasas.com//">Andreu Casas</a> </td>
+<td><a href="http://andreucasas.com//">Andreu Casas Salleras</a> </td>
 <td><a href="mailto:acass2@uw.edu">acasas2@uw.edu</a> </td>
 </tr>
 </table>
@@ -65,7 +65,7 @@ output:
 </tr>
 <tr>
 <td>Andreu Casas Salleras</td>
-<td>Tues & Thurs 3:20-4:20 pm</td>
+<td></td>
 <td><a href="uw.edu/maps/?smi">Smith 221E</a></td>
 </tr>
 </table>
