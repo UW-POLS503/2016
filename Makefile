@@ -1,15 +1,21 @@
-HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd))
+RMD_FILES = $(wildcard *.Rmd)
+HTML_FILES = $(RMD_FILES:%.Rmd=%.html)
+HTML_FILES_DEPENDS = $(wildcard include/*) _navbar.html _output.yaml .Rprofile
 
-all: clean html
+all: html
 
 html: $(HTML_FILES)
 
-%.html: %.Rmd
-	R --slave -e "set.seed(100);rmarkdown::render('$<')"
+%.html: %.Rmd $(HTML_FILES_DEPENDS)
+	R --slave -e "rmarkdown::render('$<')"
 
-%.html: %.md
-	R --slave -e "set.seed(100);rmarkdown::render('$<')"
+watch:
+	watchman watch "$(shell pwd)"
+	watchman -- trigger "$(shell pwd)" remake '*.Rmd' $(HTML_FILES_DEPENDS) -- make html
+
+unwatch:
+	watchman watch-del "$(shell pwd)"
 
 .PHONY: clean
 clean:
-	$(RM) $(HTML_FILES)
+	-rm -rf $(HTML_FILES)
