@@ -136,6 +136,8 @@ Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) f
 - Weekly assignments
 - Final paper
 
+FOOLS
+
 ## Topics
 
 Below is a list of some of the topics that this course may cover.
@@ -201,6 +203,7 @@ This course was inspired by and makes use of some material from:
 - Matthew Blackwell, [Gov 2002: Causal Inference](http://www.mattblackwell.org/files/teaching/gov2002-15f-syllabus.pdf) and [GOV 1000/2000/2000e/Stat E-190: Quantitative Research Methodology](http://www.mattblackwell.org/files/teaching/gov2000-15f-syllabus.pdf).
 - Matthew Salganik, [SOC 504: Sociology 504: Advanced data analysis for the social sciences](http://www.princeton.edu/~mjs3/soc504_s2015/)
 - MOOCS: Mine Çetinkaya-Rundel [Sta 101](https://www2.stat.duke.edu/courses/Spring16/sta101.001/) and the [John Hopkins Data Science Sequence](https://www.coursera.org/specializations/jhu-data-science).
+
 
 ## References and Copyright
 
