@@ -1,5 +1,7 @@
 # POLS 503 (Spring 2016)
 
+[![Join the chat at https://gitter.im/UW-POLS503/pols_503_sp16](https://badges.gitter.im/UW-POLS503/pols_503_sp16.svg)](https://gitter.im/UW-POLS503/pols_503_sp16?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Repository containing materials for POLS 503: Advanced Quantitative Political Methodology (University of Washington, Spring 2016).
 
 ## Build
