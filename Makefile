@@ -18,4 +18,8 @@ unwatch:
 
 .PHONY: clean
 clean:
+	-rm -rf *_cache *_files
+
+.PHONY: clean-all
+clean-all: clean
 	-rm -rf $(HTML_FILES)
