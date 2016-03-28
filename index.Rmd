@@ -147,7 +147,7 @@ For this course, grades on the 4.0 scale have the following interpretation:
 <tr><td>3.8</td><td>Meeting expectations</td></tr>
 <tr><td>3.7</td><td>Somewhat below average</td></tr>
 <tr><td>3.6</td><td>Not up to expectations</td></tr>
-<tr><td>3.5</td><td>Way below expectations</td></tr>
+<tr><td>&le; 3.5</td><td>Way below expectations</td></tr>
 </table>
 
 
