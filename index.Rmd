@@ -106,7 +106,6 @@ I also assume that students have proficiency in R *prior* to starting the course
 
 ## Materials
 
-
 ### Reading
 
 There are two required texts for this course,
@@ -131,12 +130,52 @@ This course uses [R]() as its statistical programming language, and the [RStudio
 We will make use of several R packages, with extensive use of the [Hadleyverse](http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/) packages ([ggplot2](https://cran.r-project.org/package=ggplot2), [dplyr](https://cran.r-project.org/package=dplyr), [tidyr](https://cran.r-project.org/package=tidyr), ...).
 Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) for writing reproducible research reports with R and [git](https://git-scm.com/) and [GitHub](https://github.com/) for version control, collaboration, and distribution of code and research.
 
-
 ## Assessment and Evaluation
 
 - Reading assignments
 - Weekly assignments
 - Final paper
+
+## Topics
+
+Below is a list of some of the topics that this course may cover.
+What is actually covered in course will depend on how the course evolves in practice.
+See the [Schedule](schedule.html) for readings and schedule, though it, too, will change over the course of the quarter.
+
+### Statistical Topics
+
+1. Types of Research Questions: Prediction vs. Casual Inference
+2. Casual Inference and the Potential Outcome Framework
+3. Linear Regression
+
+   - Multiple linear regression in matrix form
+   - The conditional expectation function (CEF)
+   - Functions of regressions: interactions, transformations, polynomials
+   - Inference for Linear Regression
+   - Properties of OLS (BLUE)
+   - Interpretation and Substantive Inference. Marginal effects.
+   - Robust standard errors
+   - Bootstrapped standard errors
+   - Power
+   - Model selection
+   - Prediction. Bias/Variance tradeoff
+   - Regularization. Ridge regression. LASSO.
+   - Cross-validation
+   - Robust and resistant regression
+
+4. Binary outcomes: Linear probability model vs. logit.
+5. Matching estimators
+6. Instrumental variables
+7. Fixed effects
+8. Difference in difference
+9. Regression discontinuity
+
+### Technical topics
+
+1. Reproducible Research
+2. Version control with GitHub
+3. Reproducible documents with R Markdown
+4. Programming with R: control structures, functions, apply.
 
 ## Communication
 
@@ -153,9 +192,9 @@ Beyond what the teaching team can providing, there are several resources on camp
 
 ## Inspirations
 
-This course was inspired by and makes
+This course was inspired by and makes use of some material from:
 
-- Christopher Adolph, [POLS 503](http://faculty.washington.edu/cadolph/?page=20). The previous instructor for this course.
+- Christopher Adolph, [POLS 503](http://faculty.washington.edu/cadolph/?page=20). He was the previous instructor for this course.
 - Jenny Bryan, [Stat 545: Data wrangling, exploration, and analysis with R]( http://stat545-ubc.github.io/)
 - [Software Carpentry](https://software-carpentry.org/)
 - Brenton Kenkel [PSCI 8357: Statistics for Political Research II](http://bkenkel.com/psci8357/)
