@@ -9,6 +9,10 @@ title: Starting with Git
 In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools, and a large number of R packages are hosted and can be downloaded from GitHub.
 
 - [Windows](http://git-scm.com/download/win)
+
+    -
+    - choose defaults for everything
+
 - [Mac](http://git-scm.com/download/mac)
 
 ## Create a GitHub account
@@ -79,6 +83,7 @@ working with GitHub through RStudio.
 - [Software Carpentry](http://swcarpentry.github.io/) has a lesson on [git](http://swcarpentry.github.io/git-novice/).
 - Stat 545 [RStudio, Git, GitHub Hell](https://stat545-ubc.github.io/git66_rstudio-git-github-hell.html)
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- Zach Jones [Git and Github Tutoria](http://zmjones.com/git-github-tutorial/)
 
 Note that although for this course we use git through either the GitHub website or client, or RStudio's interface, git is often used in a shell. If you are unfamiliar with a shell, here are some places to get started:
 

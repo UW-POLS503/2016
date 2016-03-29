@@ -1,0 +1,37 @@
+---
+title: Version Control for Social Scientists
+author: Jeffrey B. Arnold
+---
+* * *
+
+[![Piled Higher and Deeper by Jorge Cham, http://www.phdcomics.com](img/phd101212s.gif)](http://www.phdcomics.com)
+
+* * *
+
+> Before we tell you how, we will start with a fact. (This is, after all, a handbook for empirical
+> researchers.) Not one piece of commercial software you have on your PC, your phone, your tablet,
+> your car, or any other modern computing device was written with the “date and initial” method. (Shapiro and Gentzkow, [Code and Data for the Social Sciences:
+A Practitioner’s Guide](http://www.brown.edu/Research/Shapiro/pdfs/CodeAndData.pdf))
+
+# Why Version Control?
+
+- Version Control
+- Collaboration
+- Reproducible History
+
+# Git and Github
+
+- **Git:** widely used version control software
+- **GitHub:** web-based git repository hosting service
+
+    - Largest host of open source code
+    - Source code of many R packages: [ggplot2](https://github.com/hadley/ggplot2-book), [Ropensci](http://ropensci.org/)
+    - Some political scientists host replication: e.g. [Pablo Barbera](https://github.com/pablobarbera) materials for ["Echo Chambers"](https://github.com/pablobarbera/echo_chambers).
+    - git $\neq$ GitHub
+
+# Git and GitHub class
+
+- Source for website and course notes
+- Submit comment on course notes
+- Distribute and collect assignments
+- Replication materials for
