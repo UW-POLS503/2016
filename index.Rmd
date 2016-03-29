@@ -44,13 +44,13 @@ output:
 <table class = "table table-striped table-hover">
 <td>Class </td>
 <td>Tues, Thurs</td>
-<td>4:30-5:50 pm </td>
+<td>4:30&ndash;5:50 pm </td>
 <td><a href="uw.edu/maps/?mgh">Mary Gates Hall 284</a></td>
 </tr>
 <tr>
 <td>Lab </td>
 <td>Fri </td>
-<td>1:30-3:20 pm </td>
+<td>1:30&ndash;3:20 pm </td>
 <td><a href="uw.edu/maps/?sav">Savery 121</a></td>
 </tr>
 </table>
@@ -60,12 +60,12 @@ output:
 <table class = "table table-striped table-hover">
 <tr>
 <td>Jeffrey Arnold</td>
-<td></td>
+<td>Mon 4&ndash;5pm, Wed 2&ndash;4pm</td>
 <td><a href="uw.edu/maps/?smi">Smith 221B</a></td>
 </tr>
 <tr>
 <td>Andreu Casas</td>
-<td>Tues and Thurs 3:20-4:20 pm</td>
+<td>Tues and Thurs 3:20&ndash;4:20 pm</td>
 <td><a href="uw.edu/maps/?smi">Smith 221E</a></td>
 </tr>
 </table>
@@ -132,12 +132,31 @@ Additionally, this course will use [R Markdown](http://rmarkdown.rstudio.com/) f
 
 ## Assessment and Evaluation
 
-Assignments for this course will consist of
+Assignments for this course comprise:
 
-- Final paper
-- Poster presentation
-- Reading assignments
-- Weekly or bi-weekly computational assignments
+1. Research project: Every student in this class will execute their own statistical data analysis of a research question. The results of this analysis will be presented as a paper due at the end of the course. See the [schedule](/schedule/#finals-period) for the due date.
+
+    The purpose of this paper is for the students to apply the quantitative methods used in this course to the real-world research problems that they will encounter in their research careers.
+    However, due to the limited time in this course, it is not necessary for this paper to address an important research problem or a novel contribution to the literature.
+    While those will not be criteria for the evaluation of this paper, the author is encouraged to pursue those, as they are what leads to publications.
+    The paper will be evaluated on the appropriateness of the statistical methods applied to the data and question, and not the novelty or contribution of the question itself.
+
+    If you developed a research design for POLS 501, you can continue to use it for 503.
+    If you did not take POLS 501, then talk to the instructor to confirm that your project is feasible.
+
+    While the final paper is the ultimate objective of the paper, students will work with their data throughout the course, including the following assignments related to the research project.
+
+    1. Proposal (week 2)
+    2. Several analyses throughout the quarter
+    3. Draft (week 9)
+    4. Poster presentation (week 10)
+
+2. Participation: Students will submit either pull requests or issues that contribute to, or raise questions about the current week's readings.
+3. Weekly or bi-weekly assignments: These assignments will largely focus on applying the concepts to either real or simulated data.
+4. Peer review of assignments/projects: Students will review each others code and analysis and provide
+   feedback.
+
+The exact nature and timing of the assignments will adjust with the exigencies of the course in consulation with the students.
 
 Students will be evaluated on the whole of their work in this course with an emphasis on the final paper.
 For this course, grades on the 4.0 scale have the following interpretation:
@@ -151,6 +170,7 @@ For this course, grades on the 4.0 scale have the following interpretation:
 </table>
 
 
+
 ## Topics
 
 Below is a list of some of the topics that this course may cover.
@@ -160,29 +180,11 @@ See the [Schedule](schedule.html) for readings and schedule, though it, too, wil
 ### Statistical Topics
 
 1. Types of Research Questions: Prediction vs. Casual Inference
-2. Casual Inference and the Potential Outcome Framework
+2. Potential outcomes framework for causal inference
 3. Linear Regression
-
-    - Multiple linear regression in matrix form
-    - The conditional expectation function (CEF)
-    - Functions of regressions: interactions, transformations, polynomials
-    - Inference for Linear Regression
-    - Properties of OLS (BLUE)
-    - Interpretation and Substantive Inference. Marginal effects.
-    - Robust standard errors
-    - Bootstrapped standard errors
-    - Power
-    - Model selection
-    - Prediction. Bias/Variance tradeoff
-    - Regularization. Ridge regression. LASSO.
-    - Cross-validation
-    - Robust and resistant regression
-
-4. Binary outcomes: Linear probability model vs. logit.
 5. Matching estimators
 6. Instrumental variables
-7. Fixed effects
-8. Difference in difference
+7. Fixed effects and Difference-in-difference designs
 9. Regression discontinuity
 
 ### Technical topics
@@ -190,7 +192,7 @@ See the [Schedule](schedule.html) for readings and schedule, though it, too, wil
 1. Reproducible Research
 2. Version control with GitHub
 3. Reproducible documents with R Markdown
-4. Programming with R: control structures, functions, apply.
+4. Programming with R
 
 ## Communication
 
@@ -205,7 +207,9 @@ Beyond what the teaching team can providing, there are several resources on camp
 - [CSSS Statistical Consulting](https://www.csss.washington.edu/consulting) provides general statistical consulting. Go there for questions about statistical methods.
 - [eScience Data Science Office Hours](http://escience.washington.edu/office-hours/)
 
-## Inspirations
+## References
+
+### Inspirations
 
 This course was inspired by and makes use of some material from:
 
@@ -218,7 +222,7 @@ This course was inspired by and makes use of some material from:
 - MOOCS: Mine Çetinkaya-Rundel [Sta 101](https://www2.stat.duke.edu/courses/Spring16/sta101.001/) and the [John Hopkins Data Science Sequence](https://www.coursera.org/specializations/jhu-data-science).
 
 
-## References and Copyright
+### Copyright
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
