@@ -140,24 +140,16 @@ Assignments for this course will consist of
 - Weekly or bi-weekly computational assignments
 
 Students will be evaluated on the whole of their work in this course with an emphasis on the final paper.
-The meaning of grades on the UW 4.0 scale is:
-
-<!--
+For this course, grades on the 4.0 scale have the following interpretation:
 <table class = "table table-striped">
-<tr>
-<td>$3.9-4.0$</td>
-<td>Exceptional. Above expectations.</td>
-</tr>
-<tr>
-<td>$3.6-3.8$</td>
-<td>At expectations for a PhD student.</td>
-</tr>
-<tr>
-<td>$\leq 3.5$</td>
-<td>Below expectations for a PhD Student</td>
-</tr>
+<tr><td>4.0</td><td>Exceptional</td></tr>
+<tr><td>3.9</td><td>Very good</td></tr>
+<tr><td>3.8</td><td>Meeting expectations</td></tr>
+<tr><td>3.7</td><td>Somewhat below average</td></tr>
+<tr><td>3.6</td><td>Not up to expectations</td></tr>
+<tr><td>&le; 3.5</td><td>Way below expectations</td></tr>
 </table>
--->
+
 
 ## Topics
 
