@@ -1,7 +1,5 @@
 ---
 title: "Programming in R"
-author: "Andreu Casas"
-date: "March 24, 2016"
 ---
 
 ## Learning Objectives

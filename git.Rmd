@@ -19,53 +19,51 @@ In this course we will use Git, a version control system that allows you to trac
 
 [Here](https://github.com/join?source=header-home)
 
-### Submitting assignments (1): Fork a repository.
+    - Choose available Username (keep it professional)
+    - Choose the free plan
 
-For each assignment we will create a new repository in https://github.com/UW-POLS503. First you need to make a copy of that repository to you GitHub account. We call that to create a "fork". You need to go to the repository and click the `Fork` botton in the header (right-side) of the repository. Let's practice with a sample repository I created: `Assignment 0`: go to https://github.com/UW-POLS503, find the repo, and create a fork.
+Now let us know your GitHub account name is. Go [here](https://github.com/UW-POLS503/pols_503_sp16/issues), click on "New Issue", make the title "Add me to the organization", and click on "Sumbit new issue".
 
-### Submitting assignments (2): Clone your fork.
+## Submitting assignments 
 
-In step 1 you created a copy of the assignment repository in you GitHub online account. Now you need make a copy of it in your local machine. We call that to "clone" a repository. I suggest you create first a directory to store all future assignment repositories. Ideally this would be within your directory for the course.
+### Fork the repository.
 
-- Go to GitHub Desktop
-- Click the plus icon on the right top corner
-- Select "Clone"
-- Insert the name of the repository to the "Filter" box or scroll down until you find it, and click it
+For each assignment we will create a new repository in https://github.com/UW-POLS503. First you need to make a copy of that repository to your GitHub account. We call that to create a "fork". 
 
-### Submitting assignments (3): Save your assignment in the repository.
+1. Go to https://github.com/UW-POLS503/Assignment_00
+2. Click on "Fork". <i class="fa fa-code-fork"></i>
+   Now you will see: `https://Github.com/<your_account>/Assignment_00`. 
 
-Navigate to the repository and create a new directory for your assignment. Use the following naming convention: `acasas-assignment-0` (replace `acasas` with you `netid`). Then:
+### Clone your new repository
 
-- Create a new `R Project` in that directory
-- Open the new `R Project` and create the assignment (`R Markdown`, `R Script`, etc.)
-- Save the assignment
+You created a copy of the assignment repository in your GitHub online account. Now you need make a copy of it in your local machine. We call that to "clone" a repository.
 
-### Submitting assignments (4): Git pane in RStudio.
+1. Open up RStudio
+2. Go to `File > New Project > Version Control > Git`
+3. Enter the URL of your repository: `https://Github.com/<your_account>/Assignment_00`. If you don't give it a "Project directory name", it will create a directory named "Assignment_00" that will have the original files in the repository plus an `.Rproj` and `.gitingore` file.
+4. Select the directory you want to have the repository in. We suggest you create a directory to store all future assignment repositories. Ideally this would be within your directory for the class. 
 
-When opening the `R Project` in the assignment directory, in RStudio you should see the Git pane by the Environment pane. If it's not there:
+### Edit the README.md file
 
-- In RStudio go to Tools > Global Options
-- Select Git/SVN in the left menu
-- Click "Enable version control interface for RStudio projects"
-- Restart RStudio
+1. Open the README.md file and edit it: add your name.
 
-Once you have the Git pane in RSutdio and you're done with the assignment:
+### Commit and Push you changes
 
-- `Commit` the assignment:
+1. Use the Git pane to commit the changes:
+    - Select the files you changed
+    - Click on "Commit"
+    - Add a commit message and commit
+    
+2. Push your changes to the repository 
 
-    - Click the `Commit` botton in the Git pane
-    - Select the files you want to `commit` (the assignment files)
-    - Add a `commit` message in the top-left box: e.g. `adding acasas assignment0`
-    - Click the `Commit` botton under the commit-message box
+### Pull Request
 
-- `Push` the changes you made in the local version of the repository to the online version
+Now that you pushed your assignment to your online fork of the repository, the last step is to send a `pull request` to add your changes to the main repository.
 
-    - Click the green arrow in the Git pane
-
-### Submitting assignments (5): Pull request
-
-Now that you pushed your assignment to your online fork of the repository, the last step is to send a `pull request` to add your changes to the main repository. Go to the GitHub site for your online fork (e.g. `https://github.com/<your_github_username>/Assignment0`) and click the green botton "New pull request"
-
+1. Go to your online version of the repository: `https://Github.com/<your_account>/Assignment_00`
+2. Click on "New Pull Request"
+3. Click on "Create new pull request"
+4. The instructors will be informed that you are done with the assignment. 
 
 ### Install Github Desktop (optional)
 
