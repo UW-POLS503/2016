@@ -1,0 +1,93 @@
+---
+title: Starting with Git
+---
+
+## Git and GitHub
+
+### Install Git
+
+In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools, and a large number of R packages are hosted and can be downloaded from GitHub.
+
+- [Windows](http://git-scm.com/download/win)
+- [Mac](http://git-scm.com/download/mac)
+
+## Create a GitHub account
+
+[Here](https://github.com/join?source=header-home)
+
+### Submitting assignments (1): Fork a repository.
+
+For each assignment we will create a new repository in https://github.com/UW-POLS503. First you need to make a copy of that repository to you GitHub account. We call that to create a "fork". You need to go to the repository and click the `Fork` botton in the header (right-side) of the repository. Let's practice with a sample repository I created: `Assignment 0`: go to https://github.com/UW-POLS503, find the repo, and create a fork.
+
+### Submitting assignments (2): Clone your fork.
+
+In step 1 you created a copy of the assignment repository in you GitHub online account. Now you need make a copy of it in your local machine. We call that to "clone" a repository. I suggest you create first a directory to store all future assignment repositories. Ideally this would be within your directory for the course.
+
+- Go to GitHub Desktop
+- Click the plus icon on the right top corner
+- Select "Clone"
+- Insert the name of the repository to the "Filter" box or scroll down until you find it, and click it
+
+### Submitting assignments (3): Save your assignment in the repository.
+
+Navigate to the repository and create a new directory for your assignment. Use the following naming convention: `acasas-assignment-0` (replace `acasas` with you `netid`). Then:
+
+- Create a new `R Project` in that directory
+- Open the new `R Project` and create the assignment (`R Markdown`, `R Script`, etc.)
+- Save the assignment
+
+### Submitting assignments (4): Git pane in RStudio.
+
+When opening the `R Project` in the assignment directory, in RStudio you should see the Git pane by the Environment pane. If it's not there:
+
+- In RStudio go to Tools > Global Options
+- Select Git/SVN in the left menu
+- Click "Enable version control interface for RStudio projects"
+- Restart RStudio
+
+Once you have the Git pane in RSutdio and you're done with the assignment:
+
+- `Commit` the assignment:
+
+    - Click the `Commit` botton in the Git pane
+    - Select the files you want to `commit` (the assignment files)
+    - Add a `commit` message in the top-left box: e.g. `adding acasas assignment0`
+    - Click the `Commit` botton under the commit-message box
+
+- `Push` the changes you made in the local version of the repository to the online version
+
+    - Click the green arrow in the Git pane
+
+### Submitting assignments (5): Pull request
+
+Now that you pushed your assignment to your online fork of the repository, the last step is to send a `pull request` to add your changes to the main repository. Go to the GitHub site for your online fork (e.g. `https://github.com/<your_github_username>/Assignment0`) and click the green botton "New pull request"
+
+
+### Install Github Desktop (optional)
+
+Another graphical interface for Git and GitHub, not directly tied to RStudio, is [GitHub Desktop](https://desktop.github.com/). You may want to install that as an alternative to
+working with GitHub through RStudio.
+
+
+## References
+
+- [GitHub training material](https://training.github.com/kit/)
+- GitHub's list of [Good Resources for Learning Git and GitHub](https://help.github.com/articles/good-resources-for-learning-git-and-github/)
+- Rstudio [Version Control with Rstudio](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
+- Chapter on [Git and GitHub](http://r-pkgs.had.co.nz/git.html) in Hadley Wickham, *R packages*. Even though the book is about R packages, it is useful.
+- [trygit](https://try.github.io/levels/1/challenges/1) is an interactive introduction to git.
+- [Software Carpentry](http://swcarpentry.github.io/) has a lesson on [git](http://swcarpentry.github.io/git-novice/).
+- Stat 545 [RStudio, Git, GitHub Hell](https://stat545-ubc.github.io/git66_rstudio-git-github-hell.html)
+- [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+
+Note that although for this course we use git through either the GitHub website or client, or RStudio's interface, git is often used in a shell. If you are unfamiliar with a shell, here are some places to get started:
+
+- [Stat 545](https://stat545-ubc.github.io/git09_shell.html) intro to the shell
+- [Terminus](http://web.mit.edu/mprat/Public/web/Terminus/Web/main.html) an interactive way to learn shell
+- Philip Guo's [Basic Unix-like command line videos](http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html)
+- <http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html>
+- [userland](https://p1k3.com/userland-book/)
+- Software Carpentry lesson [The Unix Shell](http://swcarpentry.github.io/shell-novice/)
+- Jeroen Janssens, [Data Science at the Command Line](http://datascienceatthecommandline.com/)
+
+Parts of this module are abstracts from Hadley Wickham’s module on [Git and GitHub](http://r-pkgs.had.co.nz/git.html)
