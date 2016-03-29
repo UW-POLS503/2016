@@ -12,17 +12,7 @@ Make sure you can load all these packages and dataset before starting the module
 ```{r, message = FALSE}
 library(dplyr)
 library(uwpols501)
-data(turnout)
-```
-
-```{r}
-get_first_digit <- function(variable) {
-  num_digits <- nchar(variable)
-  var_first_num <- variable %/% (10 ^ (nchar(variable) - 1))
-  return(var_first_num)
-}
-turnout$age_new <- get_first_digit(turnout$age)
-turnout$educate_new <- get_first_digit(turnout$educate)
+data(iver)
 ```
 
 ## For Loops
@@ -33,7 +23,7 @@ A `for` loop has the following skeleton:
 ```{r, eval = FALSE}
 for (each_element in here) { # Try to use meaningful names for the
   # do something             #   "each_element" object
-  print(each_element + 1)
+  print(each_element)
 }
 ```
 
@@ -48,40 +38,17 @@ for (number in list_numbers) {
 
 A real example:
 
-Going back to the `turnout` dataset. Imagine that we want to estimate the same linear model for different groups of people based on their age: if they're in their 20s, 30s, etc. We can do that using a `for` loop and the `age_new` variable we just created. We want to estimate the following linear model:
-```{r}
-model_formula <- vote ~  educate + income
-```
+Imagine that we want to calculate the $log$ of the variables `povred` and `enp` of the `iver` dataset. We can create a list with these two variable names and then, for each of them, find them in `iver`, calculate the $log$, and add the result as a new variable to the dataset.
 
-We first create an empty `results` dataset that we'll fill with the coefficients and SEs
-of each model run.
 ```{r}
-library(uwpols501)
-groups <- sort(unique(turnout$age_new))
-results <- data.frame(age_new = groups,
-                      edu_coef = rep(NA, length(groups)),
-                      edu_se = rep(NA, length(groups)),
-                      inc_coef = rep(NA, length(groups)),
-                      inc_se = rep(NA, length(groups)))
-```
-
-Now we estimate the model for each age group and we store the coefficients and SEs for each covariate in the `results` dataset.
-```{r}
-for (i in 1:length(groups)) {
-  gr <- groups[i]
-  sub_data <- filter(turnout, age_new == gr)
-  gr_model <- lm(model_formula, data = sub_data)
-  results$edu_coef[i] <- coef(gr_model)[2]
-  results$edu_se[i] <- sqrt(diag(vcov(gr_model)))[2]
-  results$inc_coef[i] <- coef(gr_model)[3]
-  results$inc_se[i] <- sqrt(diag(vcov(gr_model)))[3]
+numeric_vars <- c("povred", "enp")
+for (variable in numeric_vars) {
+  y <- iver[,variable]
+  log_y <- log(y)
+  name_new_var <- paste0(variable, "_log")
+  iver[,name_new_var] <- log_y
 }
-results
 ```
-
-`r challenge_start()`
-Take a look at the `results` dataset. Is there something wrong? Why? What happened? Talk to your classmates and try to figure it out (5 min.).
-`r challenge_end()`
 
 ## Conditional Execution: if and else statements
 
@@ -122,30 +89,22 @@ for (number in some_numbers) {
 
 Real example:
 
-In the previous code where we estimated the same model for different groups of age we run into an issue with the last group: people in their 90s.
-```{r}
-table(turnout$age_new)
-```
+We previously calculated the $log$ and added it to the dataset for the numeric variables in `iver`. To do that we first created a list with the numeric variables. This time we won’t create that list. Instead, we’ll use conditional execution to indicate that we only want to take the $log$ of numeric variables.
 
-Since there are only 3 people who are in their 90s we run out of degrees of freedom. Remember that df = #observations - 1 - #variables_in_the_model. Let's adapt that code so that we only estimate the model in those cases we have enough degrees of freedom and prints a messages when that's not the case.
+ 
 ```{r}
-results2 <- data.frame(age_new = groups,
-                      edu_coef = rep(NA, length(groups)),
-                      edu_se = rep(NA, length(groups)),
-                      inc_coef = rep(NA, length(groups)),
-                      inc_se = rep(NA, length(groups)))
-for (i in 1:length(groups)) {
-  gr <- groups[i]
-  sub_data <- filter(turnout, age_new == gr)
-  gr_model <- lm(model_formula, data = sub_data)
-  if (gr_model$df > 1) {
-    results2$edu_coef[i] <- coef(gr_model)[2]
-    results2$edu_se[i] <- sqrt(diag(vcov(gr_model)))[2]
-    results2$inc_coef[i] <- coef(gr_model)[3]
-    results2$inc_se[i] <- sqrt(diag(vcov(gr_model)))[3]
-  } else {
-    print(paste0("Not enough obs. to estimate the model for gr == ", gr))
+data(iver) # load the data set again
+iver <- as.data.frame(iver)
+for (variable in names(iver)) {
+  y <- iver[,variable]
+  if (is.numeric(y)) {
+    log_y <- log(y)
+    name_new_var <- paste0(variable, "_log")
+    iver[,name_new_var] <- log_y
+  } else{
+    print(paste0(variable, " is not a numeric variable."))
   }
 }
-results2
 ```
+
+

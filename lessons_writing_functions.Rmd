@@ -13,10 +13,10 @@ Make sure you can load all these packages and dataset before starting the module
 library(dplyr)
 library(uwpols501)
 data(turnout)
+data(iver)
 ```
 
-
-## Functions
+## Intro
 
 Why should we use functions? Well, don't take it from me, take it from [Grolemund & Wickham (2016)](http://r4ds.had.co.nz/functions.html):
 
@@ -53,7 +53,7 @@ full_statement <- say_hi("Andreu")
 full_statement
 ```
 
-A real example:
+## Real Example (1)
 
 For the final project last quarter, one of your classmates needed to retrieve the first digit of all numbers for several numeric variables. So the person had to write the same code multiple times. Let's now write a function that would simplify that code.
 ```{r}
@@ -69,6 +69,31 @@ Now apply the function `get_first_digit()` that we just created to the variables
 ```{r}
 turnout$age_new <- get_first_digit(turnout$age)
 turnout$educate_new <- get_first_digit(turnout$educate)
+```
+
+## Real Example (2)
+
+Last quarter some other classmates needed to create a dummy variable indicating if the country or political party for any given row was part of a particular list of country or political party. 
+
+Here we first create a list of countries we are interested in, and then we write a function that takes a `country` variable as an argument, and returns a dummy variable indicating which observations are in the list of countries of interest.
+
+```{r}
+peripherial_countries <- c("Portugal", "Italy", "Ireland", 
+                           "Cyprus", "Greece", "Spain")
+create_per_dummy <- function(country_variable) {
+  country_variable <- as.character(country_variable)
+  dummy_boolean <- country_variable %in% peripherial_countries
+  dummy_numeric <- as.numeric(dummy_boolean)
+  return(dummy_numeric)
+}
+```
+
+Now we apply the function to the `cty` variable of the `iver` dataset from the `uwpols501` package
+
+```{r}
+head(iver, n = 10)
+iver$peripherial_cty <- create_per_dummy(iver$cty)
+head(iver, n = 10)
 ```
 
 `r challenge_start()`

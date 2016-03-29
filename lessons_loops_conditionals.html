@@ -306,14 +306,7 @@ div.tocify {
 <p>Make sure you can load all these packages and dataset before starting the module</p>
 <pre class="r"><code>library(dplyr)
 library(uwpols501)
-data(turnout)</code></pre>
-<pre class="r"><code>get_first_digit &lt;- function(variable) {
-  num_digits &lt;- nchar(variable)
-  var_first_num &lt;- variable %/% (10 ^ (nchar(variable) - 1))
-  return(var_first_num)
-}
-turnout$age_new &lt;- get_first_digit(turnout$age)
-turnout$educate_new &lt;- get_first_digit(turnout$educate)</code></pre>
+data(iver)</code></pre>
 </div>
 <div id="for-loops" class="section level2">
 <h2>For Loops</h2>
@@ -321,7 +314,7 @@ turnout$educate_new &lt;- get_first_digit(turnout$educate)</code></pre>
 <p>A <code>for</code> loop has the following skeleton:</p>
 <pre class="r"><code>for (each_element in here) { # Try to use meaningful names for the
   # do something             #   &quot;each_element&quot; object
-  print(each_element + 1)
+  print(each_element)
 }</code></pre>
 <p>A short/silly example:</p>
 <pre class="r"><code>list_numbers &lt;- sample(x = 1:100, size = 10, replace = FALSE) # sample() function
@@ -339,47 +332,14 @@ for (number in list_numbers) {
 ## [1] &quot;2 times 58 is 116&quot;
 ## [1] &quot;2 times 81 is 162&quot;</code></pre>
 <p>A real example:</p>
-<p>Going back to the <code>turnout</code> dataset. Imagine that we want to estimate the same linear model for different groups of people based on their age: if they’re in their 20s, 30s, etc. We can do that using a <code>for</code> loop and the <code>age_new</code> variable we just created. We want to estimate the following linear model:</p>
-<pre class="r"><code>model_formula &lt;- vote ~  educate + income</code></pre>
-<p>We first create an empty <code>results</code> dataset that we’ll fill with the coefficients and SEs of each model run.</p>
-<pre class="r"><code>library(uwpols501)
-groups &lt;- sort(unique(turnout$age_new))
-results &lt;- data.frame(age_new = groups,
-                      edu_coef = rep(NA, length(groups)),
-                      edu_se = rep(NA, length(groups)),
-                      inc_coef = rep(NA, length(groups)),
-                      inc_se = rep(NA, length(groups)))</code></pre>
-<p>Now we estimate the model for each age group and we store the coefficients and SEs for each covariate in the <code>results</code> dataset.</p>
-<pre class="r"><code>for (i in 1:length(groups)) {
-  gr &lt;- groups[i]
-  sub_data &lt;- filter(turnout, age_new == gr)
-  gr_model &lt;- lm(model_formula, data = sub_data)
-  results$edu_coef[i] &lt;- coef(gr_model)[2]
-  results$edu_se[i] &lt;- sqrt(diag(vcov(gr_model)))[2]
-  results$inc_coef[i] &lt;- coef(gr_model)[3]
-  results$inc_se[i] &lt;- sqrt(diag(vcov(gr_model)))[3]
-}
-results</code></pre>
-<pre><code>##   age_new    edu_coef      edu_se   inc_coef      inc_se
-## 1       1 0.140059313 0.082778700 0.01274892 0.039715750
-## 2       2 0.063378607 0.009439463 0.02507891 0.010440232
-## 3       3 0.021207718 0.007576099 0.02046039 0.008160295
-## 4       4 0.019001688 0.006927712 0.02376950 0.006841288
-## 5       5 0.007035486 0.008418543 0.02497013 0.009194134
-## 6       6 0.031704074 0.007440671 0.01638239 0.010026787
-## 7       7 0.034649523 0.007606808 0.02289379 0.021474441
-## 8       8 0.040120030 0.017361915 0.03912396 0.039786221
-## 9       9 0.000000000         NaN 0.00000000         NaN</code></pre>
-<div id="challenge-1" class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">
-Challenge
-</h3>
-</div>
-<div class="panel-body">
-<p>Take a look at the <code>results</code> dataset. Is there something wrong? Why? What happened? Talk to your classmates and try to figure it out (5 min.).</p>
-</div>
-</div>
+<p>Imagine that we want to calculate the <span class="math inline">\(log\)</span> of the variables <code>povred</code> and <code>enp</code> of the <code>iver</code> dataset. We can create a list with these two variable names and then, for each of them, find them in <code>iver</code>, calculate the <span class="math inline">\(log\)</span>, and add the result as a new variable to the dataset.</p>
+<pre class="r"><code>numeric_vars &lt;- c(&quot;povred&quot;, &quot;enp&quot;)
+for (variable in numeric_vars) {
+  y &lt;- iver[,variable]
+  log_y &lt;- log(y)
+  name_new_var &lt;- paste0(variable, &quot;_log&quot;)
+  iver[,name_new_var] &lt;- log_y
+}</code></pre>
 </div>
 <div id="conditional-execution-if-and-else-statements" class="section level2">
 <h2>Conditional Execution: if and else statements</h2>
@@ -422,42 +382,21 @@ for (number in some_numbers) {
 ## [1] &quot;88 is greater than 50&quot;
 ## [1] &quot;102 is greater than 50&quot;</code></pre>
 <p>Real example:</p>
-<p>In the previous code where we estimated the same model for different groups of age we run into an issue with the last group: people in their 90s.</p>
-<pre class="r"><code>table(turnout$age_new)</code></pre>
-<pre><code>## 
-##   1   2   3   4   5   6   7   8   9 
-##  26 431 433 347 277 256 158  69   3</code></pre>
-<p>Since there are only 3 people who are in their 90s we run out of degrees of freedom. Remember that df = #observations - 1 - #variables_in_the_model. Let’s adapt that code so that we only estimate the model in those cases we have enough degrees of freedom and prints a messages when that’s not the case.</p>
-<pre class="r"><code>results2 &lt;- data.frame(age_new = groups,
-                      edu_coef = rep(NA, length(groups)),
-                      edu_se = rep(NA, length(groups)),
-                      inc_coef = rep(NA, length(groups)),
-                      inc_se = rep(NA, length(groups)))
-for (i in 1:length(groups)) {
-  gr &lt;- groups[i]
-  sub_data &lt;- filter(turnout, age_new == gr)
-  gr_model &lt;- lm(model_formula, data = sub_data)
-  if (gr_model$df &gt; 1) {
-    results2$edu_coef[i] &lt;- coef(gr_model)[2]
-    results2$edu_se[i] &lt;- sqrt(diag(vcov(gr_model)))[2]
-    results2$inc_coef[i] &lt;- coef(gr_model)[3]
-    results2$inc_se[i] &lt;- sqrt(diag(vcov(gr_model)))[3]
-  } else {
-    print(paste0(&quot;Not enough obs. to estimate the model for gr == &quot;, gr))
+<p>We previously calculated the <span class="math inline">\(log\)</span> and added it to the dataset for the numeric variables in <code>iver</code>. To do that we first created a list with the numeric variables. This time we won’t create that list. Instead, we’ll use conditional execution to indicate that we only want to take the <span class="math inline">\(log\)</span> of numeric variables.</p>
+<pre class="r"><code>data(iver) # load the data set again
+iver &lt;- as.data.frame(iver)
+for (variable in names(iver)) {
+  y &lt;- iver[,variable]
+  if (is.numeric(y)) {
+    log_y &lt;- log(y)
+    name_new_var &lt;- paste0(variable, &quot;_log&quot;)
+    iver[,name_new_var] &lt;- log_y
+  } else{
+    print(paste0(variable, &quot; is not a numeric variable.&quot;))
   }
 }</code></pre>
-<pre><code>## [1] &quot;Not enough obs. to estimate the model for gr == 9&quot;</code></pre>
-<pre class="r"><code>results2</code></pre>
-<pre><code>##   age_new    edu_coef      edu_se   inc_coef      inc_se
-## 1       1 0.140059313 0.082778700 0.01274892 0.039715750
-## 2       2 0.063378607 0.009439463 0.02507891 0.010440232
-## 3       3 0.021207718 0.007576099 0.02046039 0.008160295
-## 4       4 0.019001688 0.006927712 0.02376950 0.006841288
-## 5       5 0.007035486 0.008418543 0.02497013 0.009194134
-## 6       6 0.031704074 0.007440671 0.01638239 0.010026787
-## 7       7 0.034649523 0.007606808 0.02289379 0.021474441
-## 8       8 0.040120030 0.017361915 0.03912396 0.039786221
-## 9       9          NA          NA         NA          NA</code></pre>
+<pre><code>## [1] &quot;cty is not a numeric variable.&quot;
+## [1] &quot;elec_sys is not a numeric variable.&quot;</code></pre>
 </div>
 
 <!-- some extra javascript for older browsers -->
