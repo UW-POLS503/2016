@@ -12,6 +12,7 @@ Parts of this module are abstracts from Hadley Wickham’s module on [Git and Gi
 - You will make sure you have the latest version of R
 - You will create a GitHub account
 - You will learn how to use Git + GitHub in RStudio
+- You will learn how to submit your assignments using GitHub
 
 ## Latest R version
 
