@@ -11,7 +11,7 @@
 
 
 
-<title>Programming in R</title>
+<title>Loops and Conditionals</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -289,7 +289,7 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Programming in R</h1>
+<h1 class="title">Loops and Conditionals</h1>
 
 </div>
 
@@ -297,10 +297,8 @@ div.tocify {
 <div id="learning-objectives" class="section level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li>You will learn some basic R programming to make code less redundant and more efficient</li>
-<li>You will learn how to write and use R functions</li>
-<li>You will learn how to write and use <code>for</code> loops</li>
-<li>You will learn how to write and use conditional execution (<code>if</code>-<code>else</code> statements)</li>
+<li>Write and use <code>for</code> loops to apply the same code to multiple objects or elements</li>
+<li>Use <code>if</code>-<code>else</code> statements to conditionally execute code</li>
 </ul>
 </div>
 <div id="required-packages-and-datasets" class="section level2">
@@ -309,57 +307,13 @@ div.tocify {
 <pre class="r"><code>library(dplyr)
 library(uwpols501)
 data(turnout)</code></pre>
-</div>
-<div id="functions" class="section level2">
-<h2>Functions</h2>
-<p>Why should we use functions? Well, don’t take it from me, take it from <a href="http://r4ds.had.co.nz/functions.html">Grolemund &amp; Wickham (2016)</a>:</p>
-<p><em>Writing a function has three big advantages over using copy-and-paste:</em></p>
-<ol style="list-style-type: decimal">
-<li><em>You drastically reduce the chances of making incidental mistakes when you copy and paste.</em></li>
-<li><em>As requirements change, you only need to update code in one place, instead of many.</em></li>
-<li><em>You can give a function an evocative name that makes your code easier to understand.</em></li>
-</ol>
-<p>Writing a function step by step:</p>
-<ol style="list-style-type: decimal">
-<li>Specify a function name</li>
-<li>Use the <code>function()</code> command</li>
-<li>Specify inside the <code>function()</code> command the arguments that the functions takes</li>
-<li>Write what the function does between the curly brackets <code>{ }</code> (Function names should be verbs, and arguments should be nouns)</li>
-</ol>
-<p>A function has the following skeleton:</p>
-<pre class="r"><code>function_name &lt;- function(argument1, argument2, ...) {
-  # do_something with the arguments
-  output &lt;- argument1 + argument2
-  return(output)
-}</code></pre>
-<p>A short/silly example:</p>
-<pre class="r"><code>say_hi &lt;- function(name) {
-  full_statement &lt;- paste0(&quot;Hi! My name is &quot;, name)
-  return(full_statement)
-}
-full_statement &lt;- say_hi(&quot;Andreu&quot;)
-full_statement</code></pre>
-<pre><code>## [1] &quot;Hi! My name is Andreu&quot;</code></pre>
-<p>A real example:</p>
-<p>For the final project last quarter, one of your classmates needed to retrieve the first digit of all numbers for several numeric variables. So the person had to write the same code multiple times. Let’s now write a function that would simplify that code.</p>
 <pre class="r"><code>get_first_digit &lt;- function(variable) {
   num_digits &lt;- nchar(variable)
   var_first_num &lt;- variable %/% (10 ^ (nchar(variable) - 1))
   return(var_first_num)
-}</code></pre>
-<p>Now apply the function <code>get_first_digit()</code> that we just created to the variables <code>age</code> and <code>educate</code> of the <code>turnout</code> dataset.</p>
-<pre class="r"><code>turnout$age_new &lt;- get_first_digit(turnout$age)
+}
+turnout$age_new &lt;- get_first_digit(turnout$age)
 turnout$educate_new &lt;- get_first_digit(turnout$educate)</code></pre>
-<div id="challenge-1" class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">
-Challenge
-</h3>
-</div>
-<div class="panel-body">
-<p>Look through some of your previous code from other classes and projects, and write a function to reduce redundancy (10 min.)</p>
-</div>
-</div>
 </div>
 <div id="for-loops" class="section level2">
 <h2>For Loops</h2>
@@ -374,21 +328,22 @@ Challenge
 for (number in list_numbers) {
   print(paste0(&quot;2 times &quot;, number, &quot; is &quot;, number * 2))
 }</code></pre>
-<pre><code>## [1] &quot;2 times 26 is 52&quot;
-## [1] &quot;2 times 55 is 110&quot;
+<pre><code>## [1] &quot;2 times 56 is 112&quot;
 ## [1] &quot;2 times 6 is 12&quot;
 ## [1] &quot;2 times 46 is 92&quot;
 ## [1] &quot;2 times 47 is 94&quot;
 ## [1] &quot;2 times 78 is 156&quot;
-## [1] &quot;2 times 35 is 70&quot;
-## [1] &quot;2 times 51 is 102&quot;
+## [1] &quot;2 times 36 is 72&quot;
+## [1] &quot;2 times 52 is 104&quot;
 ## [1] &quot;2 times 16 is 32&quot;
-## [1] &quot;2 times 57 is 114&quot;</code></pre>
+## [1] &quot;2 times 58 is 116&quot;
+## [1] &quot;2 times 81 is 162&quot;</code></pre>
 <p>A real example:</p>
 <p>Going back to the <code>turnout</code> dataset. Imagine that we want to estimate the same linear model for different groups of people based on their age: if they’re in their 20s, 30s, etc. We can do that using a <code>for</code> loop and the <code>age_new</code> variable we just created. We want to estimate the following linear model:</p>
 <pre class="r"><code>model_formula &lt;- vote ~  educate + income</code></pre>
 <p>We first create an empty <code>results</code> dataset that we’ll fill with the coefficients and SEs of each model run.</p>
-<pre class="r"><code>groups &lt;- sort(unique(turnout$age_new))
+<pre class="r"><code>library(uwpols501)
+groups &lt;- sort(unique(turnout$age_new))
 results &lt;- data.frame(age_new = groups,
                       edu_coef = rep(NA, length(groups)),
                       edu_se = rep(NA, length(groups)),
@@ -415,7 +370,7 @@ results</code></pre>
 ## 7       7 0.034649523 0.007606808 0.02289379 0.021474441
 ## 8       8 0.040120030 0.017361915 0.03912396 0.039786221
 ## 9       9 0.000000000         NaN 0.00000000         NaN</code></pre>
-<div id="challenge-2" class="panel panel-primary">
+<div id="challenge-1" class="panel panel-primary">
 <div class="panel-heading">
 <h3 class="panel-title">
 Challenge

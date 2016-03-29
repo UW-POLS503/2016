@@ -15,6 +15,16 @@ library(uwpols501)
 data(turnout)
 ```
 
+```{r}
+get_first_digit <- function(variable) {
+  num_digits <- nchar(variable)
+  var_first_num <- variable %/% (10 ^ (nchar(variable) - 1))
+  return(var_first_num)
+}
+turnout$age_new <- get_first_digit(turnout$age)
+turnout$educate_new <- get_first_digit(turnout$educate)
+```
+
 ## For Loops
 
 We use `for` loops to iterate through multiple elements of a list, variable, etc., and do **something** with those elements.
@@ -46,6 +56,7 @@ model_formula <- vote ~  educate + income
 We first create an empty `results` dataset that we'll fill with the coefficients and SEs
 of each model run.
 ```{r}
+library(uwpols501)
 groups <- sort(unique(turnout$age_new))
 results <- data.frame(age_new = groups,
                       edu_coef = rep(NA, length(groups)),
