@@ -1,0 +1,76 @@
+---
+title: "Writing Functions"
+---
+
+## Learning Objectives
+
+- Write R functions to make your code less redundant and more efficient
+
+## Required Packages and Datasets
+
+Make sure you can load all these packages and dataset before starting the module
+```{r, message = FALSE}
+library(dplyr)
+library(uwpols501)
+data(turnout)
+```
+
+
+## Functions
+
+Why should we use functions? Well, don't take it from me, take it from [Grolemund & Wickham (2016)](http://r4ds.had.co.nz/functions.html):
+
+*Writing a function has three big advantages over using copy-and-paste:*
+
+  1. *You drastically reduce the chances of making incidental mistakes when you copy and paste.*
+  2. *As requirements change, you only need to update code in one place, instead of many.*
+  3. *You can give a function an evocative name that makes your code easier to understand.*
+
+Writing a function step by step:
+
+1. Specify a function name
+2. Use the `function()` command
+3. Specify inside the `function()` command the arguments that the functions takes
+4. Write what the function does between the curly brackets `{ }`
+(Function names should be verbs, and arguments should be nouns)
+
+A function has the following skeleton:
+```{r, eval = FALSE}
+function_name <- function(argument1, argument2, ...) {
+  # do_something with the arguments
+  output <- argument1 + argument2
+  return(output)
+}
+```
+
+A short/silly example:
+```{r}
+say_hi <- function(name) {
+  full_statement <- paste0("Hi! My name is ", name)
+  return(full_statement)
+}
+full_statement <- say_hi("Andreu")
+full_statement
+```
+
+A real example:
+
+For the final project last quarter, one of your classmates needed to retrieve the first digit of all numbers for several numeric variables. So the person had to write the same code multiple times. Let's now write a function that would simplify that code.
+```{r}
+get_first_digit <- function(variable) {
+  num_digits <- nchar(variable)
+  var_first_num <- variable %/% (10 ^ (nchar(variable) - 1))
+  return(var_first_num)
+}
+```
+
+Now apply the function `get_first_digit()` that we just created to the variables `age` and `educate` of the `turnout` dataset.
+
+```{r}
+turnout$age_new <- get_first_digit(turnout$age)
+turnout$educate_new <- get_first_digit(turnout$educate)
+```
+
+`r challenge_start()`
+Look through some of your previous code from other classes and projects, and write a function to reduce redundancy (10 min.)
+`r challenge_end()`
