@@ -307,56 +307,57 @@ div.tocify {
 <div id="create-a-github-account" class="section level2">
 <h2>Create a GitHub account</h2>
 <p><a href="https://github.com/join?source=header-home">Here</a></p>
-<div id="submitting-assignments-1-fork-a-repository." class="section level3">
-<h3>Submitting assignments (1): Fork a repository.</h3>
-<p>For each assignment we will create a new repository in <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>. First you need to make a copy of that repository to you GitHub account. We call that to create a “fork”. You need to go to the repository and click the <code>Fork</code> botton in the header (right-side) of the repository. Let’s practice with a sample repository I created: <code>Assignment 0</code>: go to <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>, find the repo, and create a fork.</p>
+<pre><code>- Choose available Username (keep it professional)
+- Choose the free plan</code></pre>
+<p>Now let us know your GitHub account name is. Go <a href="https://github.com/UW-POLS503/pols_503_sp16/issues">here</a>, click on “New Issue”, make the title “Add me to the organization”, and click on “Sumbit new issue”.</p>
 </div>
-<div id="submitting-assignments-2-clone-your-fork." class="section level3">
-<h3>Submitting assignments (2): Clone your fork.</h3>
-<p>In step 1 you created a copy of the assignment repository in you GitHub online account. Now you need make a copy of it in your local machine. We call that to “clone” a repository. I suggest you create first a directory to store all future assignment repositories. Ideally this would be within your directory for the course.</p>
-<ul>
-<li>Go to GitHub Desktop</li>
-<li>Click the plus icon on the right top corner</li>
-<li>Select “Clone”</li>
-<li>Insert the name of the repository to the “Filter” box or scroll down until you find it, and click it</li>
-</ul>
+<div id="submitting-assignments" class="section level2">
+<h2>Submitting assignments</h2>
+<div id="fork-the-repository." class="section level3">
+<h3>Fork the repository.</h3>
+<p>For each assignment we will create a new repository in <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>. First you need to make a copy of that repository to your GitHub account. We call that to create a “fork”.</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://github.com/UW-POLS503/Assignment_00" class="uri">https://github.com/UW-POLS503/Assignment_00</a></li>
+<li>Click on “Fork”. <i class="fa fa-code-fork"></i> Now you will see: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code>.</li>
+</ol>
 </div>
-<div id="submitting-assignments-3-save-your-assignment-in-the-repository." class="section level3">
-<h3>Submitting assignments (3): Save your assignment in the repository.</h3>
-<p>Navigate to the repository and create a new directory for your assignment. Use the following naming convention: <code>acasas-assignment-0</code> (replace <code>acasas</code> with you <code>netid</code>). Then:</p>
-<ul>
-<li>Create a new <code>R Project</code> in that directory</li>
-<li>Open the new <code>R Project</code> and create the assignment (<code>R Markdown</code>, <code>R Script</code>, etc.)</li>
-<li>Save the assignment</li>
-</ul>
+<div id="clone-your-new-repository" class="section level3">
+<h3>Clone your new repository</h3>
+<p>You created a copy of the assignment repository in your GitHub online account. Now you need make a copy of it in your local machine. We call that to “clone” a repository.</p>
+<ol style="list-style-type: decimal">
+<li>Open up RStudio</li>
+<li>Go to <code>File &gt; New Project &gt; Version Control &gt; Git</code></li>
+<li>Enter the URL of your repository: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code>. If you don’t give it a “Project directory name”, it will create a directory named “Assignment_00” that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</li>
+<li>Select the directory you want to have the repository in. We suggest you create a directory to store all future assignment repositories. Ideally this would be within your directory for the class.</li>
+</ol>
 </div>
-<div id="submitting-assignments-4-git-pane-in-rstudio." class="section level3">
-<h3>Submitting assignments (4): Git pane in RStudio.</h3>
-<p>When opening the <code>R Project</code> in the assignment directory, in RStudio you should see the Git pane by the Environment pane. If it’s not there:</p>
+<div id="edit-the-readme.md-file" class="section level3">
+<h3>Edit the README.md file</h3>
+<ol style="list-style-type: decimal">
+<li>Open the README.md file and edit it: add your name.</li>
+</ol>
+</div>
+<div id="commit-and-push-you-changes" class="section level3">
+<h3>Commit and Push you changes</h3>
+<ol style="list-style-type: decimal">
+<li>Use the Git pane to commit the changes:
 <ul>
-<li>In RStudio go to Tools &gt; Global Options</li>
-<li>Select Git/SVN in the left menu</li>
-<li>Click “Enable version control interface for RStudio projects”</li>
-<li>Restart RStudio</li>
-</ul>
-<p>Once you have the Git pane in RSutdio and you’re done with the assignment:</p>
-<ul>
-<li><p><code>Commit</code> the assignment:</p>
-<ul>
-<li>Click the <code>Commit</code> botton in the Git pane</li>
-<li>Select the files you want to <code>commit</code> (the assignment files)</li>
-<li>Add a <code>commit</code> message in the top-left box: e.g. <code>adding acasas assignment0</code></li>
-<li>Click the <code>Commit</code> botton under the commit-message box</li>
+<li>Select the files you changed</li>
+<li>Click on “Commit”</li>
+<li>Add a commit message and commit</li>
 </ul></li>
-<li><p><code>Push</code> the changes you made in the local version of the repository to the online version</p>
-<ul>
-<li>Click the green arrow in the Git pane</li>
-</ul></li>
-</ul>
+<li>Push your changes to the repository</li>
+</ol>
 </div>
-<div id="submitting-assignments-5-pull-request" class="section level3">
-<h3>Submitting assignments (5): Pull request</h3>
-<p>Now that you pushed your assignment to your online fork of the repository, the last step is to send a <code>pull request</code> to add your changes to the main repository. Go to the GitHub site for your online fork (e.g. <code>https://github.com/&lt;your_github_username&gt;/Assignment0</code>) and click the green botton “New pull request”</p>
+<div id="pull-request" class="section level3">
+<h3>Pull Request</h3>
+<p>Now that you pushed your assignment to your online fork of the repository, the last step is to send a <code>pull request</code> to add your changes to the main repository.</p>
+<ol style="list-style-type: decimal">
+<li>Go to your online version of the repository: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code></li>
+<li>Click on “New Pull Request”</li>
+<li>Click on “Create new pull request”</li>
+<li>The instructors will be informed that you are done with the assignment.</li>
+</ol>
 </div>
 <div id="install-github-desktop-optional" class="section level3">
 <h3>Install Github Desktop (optional)</h3>
