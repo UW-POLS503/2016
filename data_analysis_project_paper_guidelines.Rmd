@@ -1,6 +1,10 @@
 # Research Project Paper Guidelines
 
-The research project paper must comply with the following guidelines. To help you meet these guidelines, start with this example [.docx](/files/example-manuscript.docx).
+The research project paper must comply with the following guidelines.
+To help you meet these guidelines start with either this
+
+- Word Document [.docx](/files/example-manuscript.docx)
+- A $\mathrm{\LaTeX}$ template and R Markdown package for pdf (coming soon ....)
 
 The paper should be submitted as either a Microsoft Word (*.docx*) or PDF file.
 
