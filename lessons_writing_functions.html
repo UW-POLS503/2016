@@ -11,7 +11,7 @@
 
 
 
-<title>Starting with Git</title>
+<title>Writing Functions</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -289,110 +289,74 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Starting with Git</h1>
+<h1 class="title">Writing Functions</h1>
 
 </div>
 
 
-<div id="git-and-github" class="section level2">
-<h2>Git and GitHub</h2>
-<div id="install-git" class="section level3">
-<h3>Install Git</h3>
-<p>In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools, and a large number of R packages are hosted and can be downloaded from GitHub.</p>
+<div id="learning-objectives" class="section level2">
+<h2>Learning Objectives</h2>
 <ul>
-<li><p><a href="http://git-scm.com/download/win">Windows</a></p>
-<ul>
-<li></li>
-<li>choose defaults for everything</li>
-</ul></li>
-<li><p><a href="http://git-scm.com/download/mac">Mac</a></p></li>
+<li>Write R functions to make your code less redundant and more efficient</li>
 </ul>
 </div>
+<div id="required-packages-and-datasets" class="section level2">
+<h2>Required Packages and Datasets</h2>
+<p>Make sure you can load all these packages and dataset before starting the module</p>
+<pre class="r"><code>library(dplyr)
+library(uwpols501)
+data(turnout)</code></pre>
 </div>
-<div id="create-a-github-account" class="section level2">
-<h2>Create a GitHub account</h2>
-<p><a href="https://github.com/join?source=header-home">Here</a></p>
-<pre><code>- Choose available Username (keep it professional)
-- Choose the free plan</code></pre>
-<p>Now let us know your GitHub account name is. Go <a href="https://github.com/UW-POLS503/pols_503_sp16/issues">here</a>, click on “New Issue”, make the title “Add me to the organization”, and click on “Sumbit new issue”.</p>
-</div>
-<div id="submitting-assignments" class="section level2">
-<h2>Submitting assignments</h2>
-<div id="fork-the-repository." class="section level3">
-<h3>Fork the repository.</h3>
-<p>For each assignment we will create a new repository in <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>. First you need to make a copy of that repository to your GitHub account. We call that to create a “fork”.</p>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<p>Why should we use functions? Well, don’t take it from me, take it from <a href="http://r4ds.had.co.nz/functions.html">Grolemund &amp; Wickham (2016)</a>:</p>
+<p><em>Writing a function has three big advantages over using copy-and-paste:</em></p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://github.com/UW-POLS503/Assignment_00" class="uri">https://github.com/UW-POLS503/Assignment_00</a></li>
-<li>Click on “Fork”. <i class="fa fa-code-fork"></i> Now you will see: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code>.</li>
+<li><em>You drastically reduce the chances of making incidental mistakes when you copy and paste.</em></li>
+<li><em>As requirements change, you only need to update code in one place, instead of many.</em></li>
+<li><em>You can give a function an evocative name that makes your code easier to understand.</em></li>
 </ol>
-</div>
-<div id="clone-your-new-repository" class="section level3">
-<h3>Clone your new repository</h3>
-<p>You created a copy of the assignment repository in your GitHub online account. Now you need make a copy of it in your local machine. We call that to “clone” a repository.</p>
+<p>Writing a function step by step:</p>
 <ol style="list-style-type: decimal">
-<li>Open up RStudio</li>
-<li>Go to <code>File &gt; New Project &gt; Version Control &gt; Git</code></li>
-<li>Enter the URL of your repository: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code>. If you don’t give it a “Project directory name”, it will create a directory named “Assignment_00” that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</li>
-<li>Select the directory you want to have the repository in. We suggest you create a directory to store all future assignment repositories. Ideally this would be within your directory for the class.</li>
+<li>Specify a function name</li>
+<li>Use the <code>function()</code> command</li>
+<li>Specify inside the <code>function()</code> command the arguments that the functions takes</li>
+<li>Write what the function does between the curly brackets <code>{ }</code> (Function names should be verbs, and arguments should be nouns)</li>
 </ol>
+<p>A function has the following skeleton:</p>
+<pre class="r"><code>function_name &lt;- function(argument1, argument2, ...) {
+  # do_something with the arguments
+  output &lt;- argument1 + argument2
+  return(output)
+}</code></pre>
+<p>A short/silly example:</p>
+<pre class="r"><code>say_hi &lt;- function(name) {
+  full_statement &lt;- paste0(&quot;Hi! My name is &quot;, name)
+  return(full_statement)
+}
+full_statement &lt;- say_hi(&quot;Andreu&quot;)
+full_statement</code></pre>
+<pre><code>## [1] &quot;Hi! My name is Andreu&quot;</code></pre>
+<p>A real example:</p>
+<p>For the final project last quarter, one of your classmates needed to retrieve the first digit of all numbers for several numeric variables. So the person had to write the same code multiple times. Let’s now write a function that would simplify that code.</p>
+<pre class="r"><code>get_first_digit &lt;- function(variable) {
+  num_digits &lt;- nchar(variable)
+  var_first_num &lt;- variable %/% (10 ^ (nchar(variable) - 1))
+  return(var_first_num)
+}</code></pre>
+<p>Now apply the function <code>get_first_digit()</code> that we just created to the variables <code>age</code> and <code>educate</code> of the <code>turnout</code> dataset.</p>
+<pre class="r"><code>turnout$age_new &lt;- get_first_digit(turnout$age)
+turnout$educate_new &lt;- get_first_digit(turnout$educate)</code></pre>
+<div id="challenge-1" class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">
+Challenge
+</h3>
 </div>
-<div id="edit-the-readme.md-file" class="section level3">
-<h3>Edit the README.md file</h3>
-<ol style="list-style-type: decimal">
-<li>Open the README.md file and edit it: add your name.</li>
-</ol>
-</div>
-<div id="commit-and-push-you-changes" class="section level3">
-<h3>Commit and Push you changes</h3>
-<ol style="list-style-type: decimal">
-<li>Use the Git pane to commit the changes:
-<ul>
-<li>Select the files you changed</li>
-<li>Click on “Commit”</li>
-<li>Add a commit message and commit</li>
-</ul></li>
-<li>Push your changes to the repository</li>
-</ol>
-</div>
-<div id="pull-request" class="section level3">
-<h3>Pull Request</h3>
-<p>Now that you pushed your assignment to your online fork of the repository, the last step is to send a <code>pull request</code> to add your changes to the main repository.</p>
-<ol style="list-style-type: decimal">
-<li>Go to your online version of the repository: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code></li>
-<li>Click on “New Pull Request”</li>
-<li>Click on “Create new pull request”</li>
-<li>The instructors will be informed that you are done with the assignment.</li>
-</ol>
-</div>
-<div id="install-github-desktop-optional" class="section level3">
-<h3>Install Github Desktop (optional)</h3>
-<p>Another graphical interface for Git and GitHub, not directly tied to RStudio, is <a href="https://desktop.github.com/">GitHub Desktop</a>. You may want to install that as an alternative to working with GitHub through RStudio.</p>
+<div class="panel-body">
+<p>Look through some of your previous code from other classes and projects, and write a function to reduce redundancy (10 min.)</p>
 </div>
 </div>
-<div id="references" class="section level2">
-<h2>References</h2>
-<ul>
-<li><a href="https://training.github.com/kit/">GitHub training material</a></li>
-<li>GitHub’s list of <a href="https://help.github.com/articles/good-resources-for-learning-git-and-github/">Good Resources for Learning Git and GitHub</a></li>
-<li>Rstudio <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">Version Control with Rstudio</a></li>
-<li>Chapter on <a href="http://r-pkgs.had.co.nz/git.html">Git and GitHub</a> in Hadley Wickham, <em>R packages</em>. Even though the book is about R packages, it is useful.</li>
-<li><a href="https://try.github.io/levels/1/challenges/1">trygit</a> is an interactive introduction to git.</li>
-<li><a href="http://swcarpentry.github.io/">Software Carpentry</a> has a lesson on <a href="http://swcarpentry.github.io/git-novice/">git</a>.</li>
-<li>Stat 545 <a href="https://stat545-ubc.github.io/git66_rstudio-git-github-hell.html">RStudio, Git, GitHub Hell</a></li>
-<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></li>
-<li>Zach Jones <a href="http://zmjones.com/git-github-tutorial/">Git and Github Tutoria</a></li>
-</ul>
-<p>Note that although for this course we use git through either the GitHub website or client, or RStudio’s interface, git is often used in a shell. If you are unfamiliar with a shell, here are some places to get started:</p>
-<ul>
-<li><a href="https://stat545-ubc.github.io/git09_shell.html">Stat 545</a> intro to the shell</li>
-<li><a href="http://web.mit.edu/mprat/Public/web/Terminus/Web/main.html">Terminus</a> an interactive way to learn shell</li>
-<li>Philip Guo’s <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html">Basic Unix-like command line videos</a></li>
-<li><a href="http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html" class="uri">http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html</a></li>
-<li><a href="https://p1k3.com/userland-book/">userland</a></li>
-<li>Software Carpentry lesson <a href="http://swcarpentry.github.io/shell-novice/">The Unix Shell</a></li>
-<li>Jeroen Janssens, <a href="http://datascienceatthecommandline.com/">Data Science at the Command Line</a></li>
-</ul>
-<p>Parts of this module are abstracts from Hadley Wickham’s module on <a href="http://r-pkgs.had.co.nz/git.html">Git and GitHub</a></p>
 </div>
 
 <!-- some extra javascript for older browsers -->
