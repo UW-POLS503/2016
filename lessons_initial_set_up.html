@@ -11,6 +11,7 @@
 
 <meta name="author" content="Andreu Casas" />
 
+<meta name="date" content="2016-03-28" />
 
 <title>Initial Set Up</title>
 
@@ -287,17 +288,22 @@ div.tocify {
 
 <h1 class="title">Initial Set Up</h1>
 <h4 class="author"><em>Andreu Casas</em></h4>
+<h4 class="date"><em>March 28, 2016</em></h4>
 
 </div>
 
 
+<div id="credit" class="section level2">
+<h2>Credit</h2>
+<p>Parts of this module are abstracts from Hadley Wickham’s module on <a href="http://r-pkgs.had.co.nz/git.html">Git and GitHub</a></p>
+</div>
 <div id="learning-objectives" class="section level2">
 <h2>Learning Objectives</h2>
 <ul>
 <li>You will make sure you have the latest version of R</li>
 <li>You will create a GitHub account</li>
-<li>You will learn how to use GitHub in RStudio</li>
-<li>You will learn how to use the function <code>install_github()</code> from the <code>devtools</code> pakcages to download R packages from GitHub</li>
+<li>You will learn how to use Git + GitHub in RStudio</li>
+<li>You will learn how to use the function <code>devtools::install_github()</code> to download R packages from GitHub</li>
 </ul>
 </div>
 <div id="latest-r-version" class="section level2">
@@ -305,21 +311,84 @@ div.tocify {
 <p>Some of the packages we will use during this course require the latest R version. So let’s now take the moment to be sure that everybody has it. Type <code>version</code> in the R console to check what version you have. The latest one is verison 3.2.4 (2016-03-10). If you don’t have it, follow the next steps to update it:</p>
 <ul>
 <li>Go to the <a href="https://cran.fhcrc.org/">R Project</a> website</li>
-<li>Choose the link to <code>Download R for</code> your operation system (Linux, Mac, or Windows)
+<li>Choose the <code>Download R for</code> your operation system:
 <ul>
-<li>Mac users: Download <code>R-3.2.4.pkg</code></li>
-<li>Windows users: First click on <code>base</code> and then on <code>Download R 3.2.4 for Windows</code></li>
+<li>Mac: Download <code>R-3.2.4.pkg</code></li>
+<li>Windows: First click on <code>base</code> and then on <code>Download R 3.2.4 for Windows</code></li>
 </ul></li>
 <li>Restart RStudio</li>
 </ul>
 </div>
-<div id="creating-a-github-account" class="section level2">
-<h2>Creating a GitHub account</h2>
-<p>In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools and a large number of R packages are hosted in and can be downloaded from GitHub.</p>
-<p>To start using GitHub, you first need to have an account. If you don’t have one, go to this <a href="https://github.com/join?source=header-home">link</a> to sign up.</p>
+<div id="git-github-and-github-desktop" class="section level2">
+<h2>Git, GitHub, and GitHub Desktop</h2>
+<p>In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools, and a large number of R packages are hosted and can be downloaded from GitHub.</p>
+<ul>
+<li>Install Git:
+<ul>
+<li><a href="http://git-scm.com/download/win">Windows</a></li>
+<li><a href="http://git-scm.com/download/mac">Mac</a></li>
+</ul></li>
+<li>Create a GitHub account:
+<ul>
+<li><a href="https://github.com/join?source=header-home">Here</a></li>
+</ul></li>
+<li>Install and Set up GitHub Desktop:
+<ul>
+<li>Download it <a href="https://desktop.github.com/">here</a> and install it</li>
+<li>Open GitHub Desktop and set up the inital configuration: GitHub username and Email</li>
+</ul></li>
+</ul>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="submitting-assignments-1-fork-a-repository." class="section level2">
+<h2>Submitting assignments (1): Fork a repository.</h2>
+<p>For each assignment we will create a new repository in <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>. First you need to make a copy of that repository to you GitHub account. We call that to create a “fork”. You need to go to the repository and click the <code>Fork</code> botton in the header (right-side) of the repository. Let’s practice with a sample repository I created: <code>Assignment 0</code>: go to <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>, find the repo, and create a fork.</p>
+</div>
+<div id="submitting-assignments-2-clone-your-fork." class="section level2">
+<h2>Submitting assignments (2): Clone your fork.</h2>
+<p>In step 1 you created a copy of the assignment repository in you GitHub online account. Now you need make a copy of it in your local machine. We call that to “clone” a repository. I suggest you create first a directory to store all future assignment repositories. Ideally this would be within your directory for the course.</p>
+<ul>
+<li>Go to GitHub Desktop</li>
+<li>Click the plus icon on the right top corner</li>
+<li>Select “Clone”</li>
+<li>Insert the name of the repository to the “Filter” box or scroll down until you find it, and click it</li>
+</ul>
+</div>
+<div id="submitting-assignments-3-save-your-assignment-in-the-repository." class="section level2">
+<h2>Submitting assignments (3): Save your assignment in the repository.</h2>
+<p>Navigate to the repository and create a new directory for your assignment. Use the following naming convention: <code>acasas-assignment-0</code> (replace <code>acasas</code> with you <code>netid</code>). Then:</p>
+<ul>
+<li>Create a new <code>R Project</code> in that directory</li>
+<li>Open the new <code>R Project</code> and create the assignment (<code>R Markdown</code>, <code>R Script</code>, etc.)</li>
+<li>Save the assignment</li>
+</ul>
+</div>
+<div id="submitting-assignments-4-git-pane-in-rstudio." class="section level2">
+<h2>Submitting assignments (4): Git pane in RStudio.</h2>
+<p>When opening the <code>R Project</code> in the assignment directory, in RStudio you should see the Git pane by the Environment pane. If it’s not there:</p>
+<ul>
+<li>In RStudio go to Tools &gt; Global Options</li>
+<li>Select Git/SVN in the left menu</li>
+<li>Click “Enable version control interface for RStudio projects”</li>
+<li>Restart RStudio</li>
+</ul>
+<p>Once you have the Git pane in RSutdio and you’re done with the assignment:</p>
+<ul>
+<li><p><code>Commit</code> the assignment:</p>
+<ul>
+<li>Click the <code>Commit</code> botton in the Git pane</li>
+<li>Select the files you want to <code>commit</code> (the assignment files)</li>
+<li>Add a <code>commit</code> message in the top-left box: e.g. <code>adding acasas assignment0</code></li>
+<li>Click the <code>Commit</code> botton under the commit-message box</li>
+</ul></li>
+<li><p><code>Push</code> the changes you made in the local version of the repository to the online version</p>
+<ul>
+<li>Click the green arrow in the Git pane</li>
+</ul></li>
+</ul>
+</div>
+<div id="submitting-assignments-5-pull-request" class="section level2">
+<h2>Submitting assignments (5): Pull request</h2>
+<p>Now that you pushed your assignment to your online fork of the repository, the last step is to send a <code>pull request</code> to add your changes to the main repository. Go to the GitHub site for your online fork (e.g. <code>https://github.com/&lt;your_github_username&gt;/Assignment0</code>) and click the green botton “New pull request”</p>
 </div>
 
 <!-- some extra javascript for older browsers -->
