@@ -1,4 +1,28 @@
+---
+title: Writing Research Paper in Word
+---
 
+While I use LaTeX in my own work, Microsoft Word is powerful piece of software,
+and many of the complaints against Word come down to not being aware of its
+features. There are many tools you can use to build your research paper;
+whatever tool you use, learn how to use it proficiently.
 
-- [Happy collaboration with Rmd to docx](http://rmarkdown.rstudio.com/articles_docx.html
-- [Create Word documents from R](http://davidgohel.github.io/ReporteRs/word.html)
+## General Advice
+
+This guide on using [Microsoft Word for Dissertations](http://guides.lib.umich.edu/c.php?g=283073&p=1886001)
+covers everything and more that I would have. Also see [this](http://www3.nd.edu/~shill2/dtclass/word_2013_word_for_research_projects.pdf)
+
+- [separate presentation and content](https://en.wikipedia.org/wiki/Separation_of_presentation_and_content) using styles
+- Automatically number figures and tables
+- Use a reference manager like [Mendeley](https://www.mendeley.com/), [Zotero](https://www.zotero.org/), [Colwiz](https://www.colwiz.com/app), or [Papers](http://www.papersapp.com/). They have plugins for citations in Word.
+- When exporting figures for Word, if you must use a [raster graphic](https://en.wikipedia.org/wiki/Raster_graphics) use PNG files (not JPEG). For publication, use a high DPI (600) with PNG graphics.
+- Learn to use *Fields*. You can insert figures from files that you can update using `Insert > Field > Links and References > IncludePicture`. This is useful for programmatically generating figures to insert into your document. Likewise,  you can insert text from files that you can update using `Insert > Field > Links and References > IncludeText`.
+
+## Using R with Word
+
+For a dynamic reports you can use [R Markdown](http://rmarkdown.rstudio.com/word_document_format.html) and export to a word document. When doing this, use a reference document to set the the styles that you will use.
+See [Happy collaboration with Rmd to docx](http://rmarkdown.rstudio.com/articles_docx.html) for more advice on using R Markdown with Word.
+
+When using functions from packages such as [xtable](https://cran.r-project.org/package=xtable), [stargazer](ttps://cran.r-project.org/package=stargazer), or [texreg](ttps://cran.r-project.org/package=texreg) output  HTML, which can be copy and pasted into word.
+
+Finally, the [ReporteR][Create Word documents from R](http://davidgohel.github.io/ReporteRs/word.html) package is an alternative method to generate Word Documents from R.

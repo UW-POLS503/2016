@@ -1,8 +1,11 @@
 ---
 title: "Schedule"
 output:
+  word_document:
+    toc: yes
+    toc_depth: '3'
   html_document:
-    toc: true
+    toc: yes
     toc_depth: 3
 ---
 
@@ -27,7 +30,6 @@ I will notify you of changes in class or via email.
 I will ask the class for feedback frequently---both in class and anonymously via surveys.
 Please let me know what is working and what can be improved.
 I will make adjustments based on this feedback.
-
 
 ## Week 1
 
