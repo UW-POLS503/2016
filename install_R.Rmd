@@ -64,7 +64,7 @@ Install or
 
 This requires some extra [programs](http://www.rstudio.com/products/rpackages/devtools/).
 
-- Windows: Install the newest version of [Rtools](http://cran.r-project.org/bin/windows/Rtools/)
+- Windows: Install the newest version of [Rtools](http://cran.r-project.org/bin/windows/Rtools/). Use default settings.
 - Mac: Install Xcode from the Mac App Store.
 
 To check that this is setup correctly, run the following
@@ -72,7 +72,19 @@ To check that this is setup correctly, run the following
 library("devtools")
 has_devel()
 ```
-If everything is correctly set up, it will return `TRUE`. If not, there will be an error.
+If everything is correctly set up, it will return `TRUE`.
+If you do not have Rtools or Xcode installed you will get an error message similar to this:
+```
+> has_devel()
+"C:/PROGRA~1/R/R-32~1.4RE/bin/x64/R"  \
+  --no-site-file --no-environ --no-save  \
+  --no-restore CMD SHLIB foo.c
+
+Warning message:
+running command 'make -f "C:/PROGRA~1/R/R-32~1.4RE/etc/x64/Makeconf" -f "C:/PROGRA~1/R/R-32~1.4RE/share/make/winshlib.mk" SHLIB="foo.dll" WIN=64 TCLBIN=64 OBJECTS="foo.o"' had status 127
+Error: Command failed (1)
+```
+
 
 ## Installing LaTeX
 
@@ -80,6 +92,9 @@ LaTeX is needed to create PDFs from R Markdown files.
 Install the following, depending on your operating system:
 
 - Windows: [MikTex](http://miktex.org/download)
+
+    - When asked choose default paper size of "letter" instead of "A4"
+
 - OSX: [MacTex](https://tug.org/mactex/)
 
 Note, these are very large files.
