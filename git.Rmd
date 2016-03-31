@@ -1,5 +1,5 @@
 ---
-title: Starting with Git
+title: Getting Started with Git and GitHub
 ---
 
 ## Git and GitHub
@@ -24,15 +24,15 @@ In this course we will use Git, a version control system that allows you to trac
 
 Now let us know your GitHub account name is. Go [here](https://github.com/UW-POLS503/pols_503_sp16/issues), click on "New Issue", make the title "Add me to the organization", and click on "Sumbit new issue".
 
-## Submitting assignments 
+## Submitting assignments
 
 ### Fork the repository.
 
-For each assignment we will create a new repository in https://github.com/UW-POLS503. First you need to make a copy of that repository to your GitHub account. We call that to create a "fork". 
+For each assignment we will create a new repository in https://github.com/UW-POLS503. First you need to make a copy of that repository to your GitHub account. We call that to create a "fork".
 
 1. Go to https://github.com/UW-POLS503/Assignment_00
 2. Click on "Fork". <i class="fa fa-code-fork"></i>
-   Now you will see: `https://Github.com/<your_account>/Assignment_00`. 
+   Now you will see: `https://Github.com/<your_account>/Assignment_00`.
 
 ### Clone your new repository
 
@@ -41,7 +41,7 @@ You created a copy of the assignment repository in your GitHub online account. N
 1. Open up RStudio
 2. Go to `File > New Project > Version Control > Git`
 3. Enter the URL of your repository: `https://Github.com/<your_account>/Assignment_00`. If you don't give it a "Project directory name", it will create a directory named "Assignment_00" that will have the original files in the repository plus an `.Rproj` and `.gitingore` file.
-4. Select the directory you want to have the repository in. We suggest you create a directory to store all future assignment repositories. Ideally this would be within your directory for the class. 
+4. Select the directory you want to have the repository in. We suggest you create a directory to store all future assignment repositories. Ideally this would be within your directory for the class.
 
 ### Edit the README.md file
 
@@ -53,8 +53,8 @@ You created a copy of the assignment repository in your GitHub online account. N
     - Select the files you changed
     - Click on "Commit"
     - Add a commit message and commit
-    
-2. Push your changes to the repository 
+
+2. Push your changes to the repository
 
 ### Pull Request
 
@@ -63,7 +63,7 @@ Now that you pushed your assignment to your online fork of the repository, the l
 1. Go to your online version of the repository: `https://Github.com/<your_account>/Assignment_00`
 2. Click on "New Pull Request"
 3. Click on "Create new pull request"
-4. The instructors will be informed that you are done with the assignment. 
+4. The instructors will be informed that you are done with the assignment.
 
 ### Install Github Desktop (optional)
 

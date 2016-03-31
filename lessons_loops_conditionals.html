@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,27 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -321,16 +324,16 @@ data(iver)</code></pre>
 for (number in list_numbers) {
   print(paste0(&quot;2 times &quot;, number, &quot; is &quot;, number * 2))
 }</code></pre>
-<pre><code>## [1] &quot;2 times 56 is 112&quot;
+<pre><code>## [1] &quot;2 times 26 is 52&quot;
+## [1] &quot;2 times 55 is 110&quot;
 ## [1] &quot;2 times 6 is 12&quot;
 ## [1] &quot;2 times 46 is 92&quot;
 ## [1] &quot;2 times 47 is 94&quot;
 ## [1] &quot;2 times 78 is 156&quot;
-## [1] &quot;2 times 36 is 72&quot;
-## [1] &quot;2 times 52 is 104&quot;
+## [1] &quot;2 times 35 is 70&quot;
+## [1] &quot;2 times 51 is 102&quot;
 ## [1] &quot;2 times 16 is 32&quot;
-## [1] &quot;2 times 58 is 116&quot;
-## [1] &quot;2 times 81 is 162&quot;</code></pre>
+## [1] &quot;2 times 57 is 114&quot;</code></pre>
 <p>A real example:</p>
 <p>Imagine that we want to calculate the <span class="math inline">\(log\)</span> of the variables <code>povred</code> and <code>enp</code> of the <code>iver</code> dataset. We can create a list with these two variable names and then, for each of them, find them in <code>iver</code>, calculate the <span class="math inline">\(log\)</span>, and add the result as a new variable to the dataset.</p>
 <pre class="r"><code>numeric_vars &lt;- c(&quot;povred&quot;, &quot;enp&quot;)

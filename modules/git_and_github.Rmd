@@ -1,0 +1,17 @@
+---
+title: Git and GitHub for Research
+---
+
+[![Piled Higher and Deeper by Jorge Cham, http://www.phdcomics.com](img/phd101212s.gif)](http://www.phdcomics.com/comics/archive.php?comicid=1531)
+
+> Before we tell you how [to use version control], we will start with a fact. (This is, after all, a handbook for empirical
+> researchers.) Not one piece of commercial software you have on your PC, your phone, your tablet,
+> your car, or any other modern computing device was written with the “date and initial” method. (Shapiro and Gentzkow, [Code and Data for the Social Sciences:
+A Practitioner’s Guide](http://www.brown.edu/Research/Shapiro/pdfs/CodeAndData.pdf))
+
+## Readings
+
+- Jenny Bryan, Karen Cranston, Justin Kitzez, Lex Nederbragt, Tracy Teal, and Greg Wilson. [Good Enough Practices for Scientific Computing](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/).
+- Matthew Gentzkow and Jesse M. Shapiro. [Code and Data for the Social Sciences: A Practitioner's Guide](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/). March, 2014. Especially Chapter 3: Version Control. The principles of this are good though I don't follow all their exact prescriptions. Thr practices adopted for this class are closer to "Good Enough Practices."
+
+- [http://www.nature.com/naturejobs/science/articles/10.1038/nj7493-523a]

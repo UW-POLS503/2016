@@ -56,6 +56,12 @@ Science: Data Access and Research Transparency](http://media.wix.com/ugd/fa8393_
 
 ### <time datetime="2016-03-31">Thursday, March 31</time>
 
+Class
+
+- Continue set-up of Git and GitHub
+- [Getting Started with Git and GitHub](git.html)
+- [Assignment 0](https://github.com/UW-POLS503/Assignment_00)
+
 
 ### <time datetime="2016-04-01">Friday, April 1</time>
 
@@ -73,7 +79,25 @@ R markdown
 
 ## Week 2
 
+Readings:
+
+- Chapters 1 and 2 of Wooldridge
+- Chapter 1 of *Mostly Harmless Econometrics*
+- Review matrix algebra: you should understand what vectors and matrices are. How to add, subtract, and
+  multiply them. And what a matrix inverse is, what it's properties are. You don't need to worry about how to calculate a matrix inverse, since you'll never do that by hand.
+
+   - Wooldridge appendix
+   - Kahn Academy course [Matrices](https://www.khanacademy.org/math/precalculus/precalc-matrices) lessons:
+     Introduction, Representing linear systems of equations, elementary matrix row operations,
+     adding and subtracting matrices, multiplying matrices by scalars, properties of matrix addition
+     and scalar multiplication, multiplying matrices by matrices, properties of matrix multiplication,
+     introduction to matrix inverses.
+   - Handout: ...
+
+Friday: paragraph proposal due. 
+
 ### <time datetime="2016-04-05">Tuesday, April 5</time>
+
 
 <!--
 - Keele, Luke. 2015. [The Statistics of Causal Inference: A View from Political Methodology](https://dx.doi.org/10.1093/pan/mpv007). *Political Analysis*
