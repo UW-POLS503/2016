@@ -8,6 +8,12 @@ title: "Writing Functions"
 
 ## Required Packages and Datasets
 
+If you dont' have the `uwpols501` package yet, install it first from GitHub.
+```{r, eval = FALSE}
+library(devtools)
+install_github("UW-POLS501/r-uwpols501")
+```
+
 Make sure you can load all these packages and dataset before starting the module
 ```{r, message = FALSE}
 library(dplyr)
@@ -15,6 +21,7 @@ library(uwpols501)
 data(turnout)
 data(iver)
 ```
+
 
 ## Intro
 
