@@ -64,7 +64,7 @@ at the literature. Eventually you should do a thorough literature review, of cou
 think that you will do much better if you work on your idea for a few weeks before doing
 a systematic literature search....
 
-Greg Mankiw. [My Rules of Thumb](http://faculty.som.yale.edu/jameschoi/mankiw_tips.pdf)
+Greg Mankiw, [My Rules of Thumb](http://faculty.som.yale.edu/jameschoi/mankiw_tips.pdf):
 
 > Coming up with ideas is the hardest and least controllable
 > part of the research process. It is somewhat easier if you have
@@ -81,15 +81,14 @@ Gary King has advice on how to turn a replication into a publishable paper:
 
 - Gary King [How to Write a Publishable Paper as a Class Project](http://gking.harvard.edu/papers)
 - Gary King. 2006. "[Publication, Publication.](http://gking.harvard.edu/files/abs/paperspub-abs.shtml)" *PS: Political Science and Politics*.
-- 2015. [Political Science Should Not Stop Young Researchers from Replicating](https://politicalsciencereplication.wordpress.com/2015/06/15/political-science-should-not-stop-young-researchers-from-replicating/). [Political Science Replication](https://politicalsciencereplication.wordpress.com). June 15.
-
+- [Political Science Should Not Stop Young Researchers from Replicating](https://politicalsciencereplication.wordpress.com/2015/06/15/political-science-should-not-stop-young-researchers-from-replicating/) from the [Political Science Replication](https://politicalsciencereplication.wordpress.com) blog.
 
 And see the examples of students replications from his Harvard course at https://politicalsciencereplication.wordpress.com/
 
 Famous replications.
 
 - David Broockman, Joahua Kalla, and Peter Aronow. 2015. [Irregularities in LaCour (2014)](http://stanford.edu/~dbroock/broockman_kalla_aronow_lg_irregularities.pdf).
-- homas Herndon, Michael Ash & Robert Pollin (2013). Does High Public Debt Consistently Stifle Economic Growth? A Critique of Reinhart and Rogoff. Working Paper Series 322. Political Economy Research Institute. [[URL](http://www.peri.umass.edu/236/hash/31e2ff374b6377b2ddec04deaa6388b1/publication/566/)]
+- Homas Herndon, Michael Ash & Robert Pollin (2013). Does High Public Debt Consistently Stifle Economic Growth? A Critique of Reinhart and Rogoff. Working Paper Series 322. Political Economy Research Institute. [[URL](http://www.peri.umass.edu/236/hash/31e2ff374b6377b2ddec04deaa6388b1/publication/566/)]
 
 However, although those replications are famous for finding fraud or obvious errors in the analysis,
 replications can lead to extensions and generate new ideas.
