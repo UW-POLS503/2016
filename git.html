@@ -305,11 +305,27 @@ div.tocify {
 <ul>
 <li><p><a href="http://git-scm.com/download/win">Windows</a></p>
 <ul>
-<li></li>
 <li>choose defaults for everything</li>
 </ul></li>
-<li><p><a href="http://git-scm.com/download/mac">Mac</a></p></li>
+<li><p><a href="http://git-scm.com/download/mac">Mac</a></p>
+<ul>
+<li>You may get an error message that you cannot install this because it is an unidentified developer. Change your settings so you can install it.</li>
+</ul></li>
 </ul>
+</div>
+<div id="check-that-rstudio-knows-git-is-installed" class="section level3">
+<h3>Check that RStudio Knows Git is installed</h3>
+<ol style="list-style-type: decimal">
+<li>Go to <strong>Global Options &gt; Git SVN</strong></li>
+<li>Check that <strong>Git executable</strong> is not empty</li>
+<li>Click <strong>enable version control interface for RStudio projects</strong> if it is not already checked.</li>
+</ol>
+</div>
+<div id="introduce-yourself-to-git" class="section level3">
+<h3>Introduce yourself to Git</h3>
+<p>In a terminal enter the following, but replace the the user name and email with your GitHub username and your own email address. To access a terminal from within RStudio from <strong>Tools &gt; Shell…</strong>.</p>
+<pre class="console"><code>git config --global user.name &#39;jrnold&#39;
+git config --global user.email &#39;jeffrey.arnold@gmail.com&#39;</code></pre>
 </div>
 </div>
 <div id="create-a-github-account" class="section level2">
@@ -375,15 +391,18 @@ div.tocify {
 <div id="references" class="section level2">
 <h2>References</h2>
 <ul>
+<li>Rstudio’s instructions, <a href="https://support.rstudio.com/hc/en-us/articles/200532077?version=0.99.879&amp;mode=desktop">Using Version Control with RStudio</a></li>
 <li><a href="https://training.github.com/kit/">GitHub training material</a></li>
 <li>GitHub’s list of <a href="https://help.github.com/articles/good-resources-for-learning-git-and-github/">Good Resources for Learning Git and GitHub</a></li>
 <li>Rstudio <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">Version Control with Rstudio</a></li>
 <li>Chapter on <a href="http://r-pkgs.had.co.nz/git.html">Git and GitHub</a> in Hadley Wickham, <em>R packages</em>. Even though the book is about R packages, it is useful.</li>
 <li><a href="https://try.github.io/levels/1/challenges/1">trygit</a> is an interactive introduction to git.</li>
 <li><a href="http://swcarpentry.github.io/">Software Carpentry</a> has a lesson on <a href="http://swcarpentry.github.io/git-novice/">git</a>.</li>
-<li>Stat 545 <a href="https://stat545-ubc.github.io/git66_rstudio-git-github-hell.html">RStudio, Git, GitHub Hell</a></li>
+<li>Stat 545 <a href="https://stat545-ubc.github.io/git66_rstudo-git-github-hell.html">RStudio, Git, GitHub Hell</a></li>
 <li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></li>
-<li>Zach Jones <a href="http://zmjones.com/git-github-tutorial/">Git and Github Tutoria</a></li>
+<li>Zach Jones <a href="http://zmjones.com/git-github-tutorial/">Git and Github Tutorial</a></li>
+<li>Stack Overflow <a href="http://stackoverflow.com/questions/1408450/why-should-i-use-version-control">Why Should I use version control</a></li>
+<li>Stack Overflow <a href="http://stackoverflow.com/questions/2712421/r-and-version-control-for-the-solo-data-analyst">R and version control for the solo data analyst</a></li>
 </ul>
 <p>Note that although for this course we use git through either the GitHub website or client, or RStudio’s interface, git is often used in a shell. If you are unfamiliar with a shell, here are some places to get started:</p>
 <ul>
