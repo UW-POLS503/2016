@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Installing R, RStudio, and associated tools</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -316,83 +316,91 @@ div.tocify {
 
 
 
+<h1 class="title">Installing R, RStudio, and associated tools</h1>
 
 </div>
 
 
-<!--
-.. title: List of Data
--->
-<p>Here are links to some datasets potentially of interest to political scientists. However, the data collection process in academia is disaggregated, with many data sets collected by researchers for specific purposes and distributed by the researcher with their paper. See also the Washington Library <a href="http://guides.lib.uw.edu/c.php?g=341607&amp;p=2299327">Data Research Guide</a></p>
-<div id="repositories" class="section level1">
-<h1>Repositories</h1>
+<div id="installing-or-updating-r" class="section level2">
+<h2>Installing or Updating R</h2>
+<div id="install-r" class="section level3">
+<h3>Install R</h3>
+<p>The R website is … special. Since you probably don’t know or care what a mirror is, here are links to the</p>
 <ul>
-<li><a href="https://dataverse.harvard.edu/">Harvard Dataverse</a> Contains replication data for many political science articles (among other data). The R package <a href="https://cran.r-project.org/web/packages/dvn/index.html">dvn</a> allows for direct download and upload of data to and from the Dataverse.</li>
-<li><p><a href="http://www.icpsr.umich.edu/icpsrweb/landing.jsp">ICPSR</a> Collection of many political science and economics datasets.</p></li>
-<li><a href="https://www.quandl.com/">Quandl</a> A collection of financial and economic data. The R package <a href="https://www.quandl.com/tools/r">Quandl</a> allows for easy access to Quandl data within R.</li>
-<li><p><a href="http://www3.norc.org/GSS+Website/">General Social Survey(GSS)</a></p></li>
+<li>Go to the <a href="https://cran.r-project.org/">R Project</a> website</li>
+<li>Choose the <code>Download and install R</code> your operation system:
+<ul>
+<li>Mac: Download <code>R-3.2.4.pkg</code></li>
+<li>Windows: First click on <code>base</code> and then on <code>Download R 3.2.4 for Windows</code></li>
+</ul></li>
 </ul>
 </div>
-<div id="economics" class="section level1">
-<h1>Economics</h1>
-<ul>
-<li><a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators (WDI)</a>. The R package <a href="https://cran.r-project.org/web/packages/WDI/index.html">WDI</a> allows for downloading data.</li>
-<li><a href="http://cid.econ.ucdavis.edu/pwt.html">Penn World Table</a></li>
-</ul>
+<div id="upgrade-r" class="section level3">
+<h3>Upgrade R</h3>
+<p>If you already have R installed, to check that you have the newest version of R, run</p>
+<pre class="r"><code>sessionInfo()</code></pre>
+<p>which will produce output like,</p>
+<pre><code>R version 3.2.4 (2016-03-10)
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+Running under: OS X 10.11.3 (El Capitan)
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] R6_2.1.2
+
+loaded via a namespace (and not attached):
+[1] rsconnect_0.4.2 tools_3.2.4     knitr_1.12.3</code></pre>
+<p>At the start of this course, March 29, 2016, the newest version of R is 3.2.4. Check that your <code>R version</code> is that one.</p>
 </div>
-<div id="american-politics" class="section level1">
-<h1>American Politics</h1>
-<ul>
-<li><a href="https://research.stlouisfed.org/fred2/">FRED</a> Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.</li>
-<li><a href="https://cran.r-project.org/web/views/WebTechnologies.html">data.gov</a> U.S. government open data</li>
-<li><a href="http://www.census.gov/">U.S. Census Bureau</a></li>
-<li><a href="http://voteview.com/">NOMINATE Ideal Points of U.S. Congress</a></li>
-</ul>
+<div id="update-packages" class="section level3">
+<h3>Update packages</h3>
+<p>Now, update all your packages</p>
+<pre class="r"><code>update.packages(ask = FALSE)</code></pre>
+<p>The option <code>ask = FALSE</code> answers “yes to all the questions” as to whether to answer</p>
 </div>
-<div id="comparative-politics" class="section level1">
-<h1>Comparative Politics</h1>
-<ul>
-<li>Policy Agendas Project <a href="http://www.policyagendas.org/page/datasets-codebooks" class="uri">http://www.policyagendas.org/page/datasets-codebooks</a></li>
-<li>Varieties of Democracy (VDEM) project <a href="http://kellogg.nd.edu/projects/vdem/" class="uri">http://kellogg.nd.edu/projects/vdem/</a></li>
-<li><a href="http://www.systemicpeace.org/polity/polity4.htm">Polity Project data</a> Political regime characteristics</li>
-<li><a href="http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20649465~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html">Database of Political Institutions</a></li>
-</ul>
 </div>
-<div id="international-relations" class="section level1">
-<h1>International Relations</h1>
-<ul>
-<li>Paul Hensel maintains a list of Political Science Datasets <a href="http://www.paulhensel.org/data.html" class="uri">http://www.paulhensel.org/data.html</a></li>
-<li><a href="http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/">UCDP/PRIO Armed Conflict</a> Datasets on armed conflict</li>
-<li><a href="http://www.acleddata.com/data/">ACLED (Armed Conflict Location and Event Data Project)</a> Real-time data on political violence in African and Asian states</li>
-<li><a href="http://openeventdata.org/datasets/OEDA.datasets.php">OpenEvent Data/Phoenix Data Project</a></li>
-<li>Data version of the CIA World Factbook: <a href="http://jmatchparser.sourceforge.net/factbook/" class="uri">http://jmatchparser.sourceforge.net/factbook/</a></li>
-<li><a href="http://www.paulhensel.org/data.html">Paul Hensel’s List of International Relations Data</a></li>
-<li><a href="http://www.paulhensel.org/icow.html">Issue Correlates of War (ICOW)</a></li>
-</ul>
+<div id="installing-or-upgrading-r-rstudio" class="section level2">
+<h2>Installing or Upgrading R RStudio</h2>
+<p>If you don’t have RStudio installed, install it from <a href="https://www.rstudio.com/products/RStudio/#Desktop">rstudio.com</a>. You want to download the RStudio <strong>Desktop Open Source Edition</strong> (which is FREE).</p>
+<p>If you already have RStudio installed, go to <code>Help &gt; Check for Updates</code> in the menu and install a new version if the pop-up window indicates that there is a new version available.</p>
 </div>
-<div id="open-data-open-government-datasets" class="section level1">
-<h1>Open Data / Open Government Datasets</h1>
+<div id="installing-tools-to-build-r-packages-from-scratch" class="section level2">
+<h2>Installing Tools to Build R Packages from Scratch</h2>
+<p>Mature R packages are distributed over CRAN and installable in R using <code>install.packages</code> without any other assistance. However, we may use some bleeding-edge R packages that require the packages to be built from source and installed using the <a href="http://www.rstudio.com/products/rpackages/devtools/">devtools</a> package. Install or</p>
+<p>This requires some extra <a href="http://www.rstudio.com/products/rpackages/devtools/">programs</a>.</p>
 <ul>
-<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Provides open data on the U.S. government. Data on Congress, state legislatures, campaign finance, contributions, dockets.</li>
-<li><a href="https://ropengov.github.io/">ROpenGov</a> has R packages to access various government related data. For packages to access data on the web from within R see the <a href="https://cran.r-project.org/web/views/WebTechnologies.html">Web Technologies and Services</a> CRAN Task View.</li>
-<li><a href="https://github.com/caesar0301/awesome-public-datasets">Awesome Public Datasets</a> by <a href="https://github.com/caesar0301">caesar0301</a></li>
-<li><a href="http://www.vox.com/">Vox</a> stories on <a href="https://github.com/voxmedia/data-projects">github</a></li>
-<li>NY Times <a href="http://www.nytimes.com/upshot/">Upshot</a> on <a href="https://github.com/TheUpshot">github</a></li>
-<li>Guardian Data Blog <a href="http://www.theguardian.com/news/datablog/interactive/2013/jan/14/all-our-datasets-index">here</a></li>
-<li><a href="http://fivethirtyeight.com">Fivethirtyeight</a> data on <a href="https://github.com/fivethirtyeight/data">github</a></li>
-<li>Catalog of open government data around the world at <a href="http://dataportals.org">DataPortals.org</a></li>
-<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Datasets focusing on US government transparency</li>
-<li><a href="https://www.propublica.org/data/">ProPublica</a></li>
-<li><a href="http://developer.nytimes.com/docs/campaign_finance_api/">NYTimes Campaign Finance API</a></li>
-<li><a href="http://archive.ics.uci.edu/ml/">UCI Machine Learning Repository</a> : repository of machine learning datasets</li>
-<li><a href="https://github.com/showcases/open-data">Open Data on Github</a></li>
+<li>Windows: Install the newest version of <a href="http://cran.r-project.org/bin/windows/Rtools/">Rtools</a>. Use default settings.</li>
+<li>Mac: Install Xcode from the Mac App Store.</li>
 </ul>
+<p>To check that this is setup correctly, run the following</p>
+<pre class="r"><code>library(&quot;devtools&quot;)
+has_devel()</code></pre>
+<p>If everything is correctly set up, it will return <code>TRUE</code>. If you do not have Rtools or Xcode installed you will get an error message similar to this:</p>
+<pre><code>&gt; has_devel()
+&quot;C:/PROGRA~1/R/R-32~1.4RE/bin/x64/R&quot;  \
+  --no-site-file --no-environ --no-save  \
+  --no-restore CMD SHLIB foo.c
+
+Warning message:
+running command &#39;make -f &quot;C:/PROGRA~1/R/R-32~1.4RE/etc/x64/Makeconf&quot; -f &quot;C:/PROGRA~1/R/R-32~1.4RE/share/make/winshlib.mk&quot; SHLIB=&quot;foo.dll&quot; WIN=64 TCLBIN=64 OBJECTS=&quot;foo.o&quot;&#39; had status 127
+Error: Command failed (1)</code></pre>
 </div>
-<div id="cleaning-data-guide" class="section level1">
-<h1>Cleaning data guide</h1>
+<div id="installing-latex" class="section level2">
+<h2>Installing LaTeX</h2>
+<p>LaTeX is needed to create PDFs from R Markdown files. Install the following, depending on your operating system:</p>
 <ul>
-<li><a href="https://github.com/Quartz/bad-data-guide">The Quartz guide to bad data</a></li>
+<li><p>Windows: <a href="http://miktex.org/download">MikTex</a></p>
+<ul>
+<li>When asked choose default paper size of “letter” instead of “A4”</li>
+</ul></li>
+<li><p>OSX: <a href="https://tug.org/mactex/">MacTex</a></p></li>
 </ul>
+<p>Note, these are very large files.</p>
 </div>
 
 <!-- some extra javascript for older browsers -->

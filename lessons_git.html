@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Getting Started with Git and GitHub</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -316,83 +316,129 @@ div.tocify {
 
 
 
+<h1 class="title">Getting Started with Git and GitHub</h1>
 
 </div>
 
 
-<!--
-.. title: List of Data
--->
-<p>Here are links to some datasets potentially of interest to political scientists. However, the data collection process in academia is disaggregated, with many data sets collected by researchers for specific purposes and distributed by the researcher with their paper. See also the Washington Library <a href="http://guides.lib.uw.edu/c.php?g=341607&amp;p=2299327">Data Research Guide</a></p>
-<div id="repositories" class="section level1">
-<h1>Repositories</h1>
+<div id="git-and-github" class="section level2">
+<h2>Git and GitHub</h2>
+<div id="install-git" class="section level3">
+<h3>Install Git</h3>
+<p>In this course we will use Git, a version control system that allows you to track changes and share your code, and you will submit most of your assignments through GitHub, a website that implements Git and allows you to share code with others. Most software developers use these tools, and a large number of R packages are hosted and can be downloaded from GitHub.</p>
 <ul>
-<li><a href="https://dataverse.harvard.edu/">Harvard Dataverse</a> Contains replication data for many political science articles (among other data). The R package <a href="https://cran.r-project.org/web/packages/dvn/index.html">dvn</a> allows for direct download and upload of data to and from the Dataverse.</li>
-<li><p><a href="http://www.icpsr.umich.edu/icpsrweb/landing.jsp">ICPSR</a> Collection of many political science and economics datasets.</p></li>
-<li><a href="https://www.quandl.com/">Quandl</a> A collection of financial and economic data. The R package <a href="https://www.quandl.com/tools/r">Quandl</a> allows for easy access to Quandl data within R.</li>
-<li><p><a href="http://www3.norc.org/GSS+Website/">General Social Survey(GSS)</a></p></li>
+<li><p><a href="http://git-scm.com/download/win">Windows</a></p>
+<ul>
+<li>choose defaults for everything</li>
+</ul></li>
+<li><p><a href="http://git-scm.com/download/mac">Mac</a></p>
+<ul>
+<li>You may get an error message that you cannot install this because it is an unidentified developer. Change your settings so you can install it.</li>
+</ul></li>
 </ul>
 </div>
-<div id="economics" class="section level1">
-<h1>Economics</h1>
-<ul>
-<li><a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators (WDI)</a>. The R package <a href="https://cran.r-project.org/web/packages/WDI/index.html">WDI</a> allows for downloading data.</li>
-<li><a href="http://cid.econ.ucdavis.edu/pwt.html">Penn World Table</a></li>
-</ul>
+<div id="check-that-rstudio-knows-git-is-installed" class="section level3">
+<h3>Check that RStudio Knows Git is installed</h3>
+<ol style="list-style-type: decimal">
+<li>Go to <strong>Global Options &gt; Git SVN</strong></li>
+<li>Check that <strong>Git executable</strong> is not empty</li>
+<li>Click <strong>enable version control interface for RStudio projects</strong> if it is not already checked.</li>
+</ol>
 </div>
-<div id="american-politics" class="section level1">
-<h1>American Politics</h1>
-<ul>
-<li><a href="https://research.stlouisfed.org/fred2/">FRED</a> Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.</li>
-<li><a href="https://cran.r-project.org/web/views/WebTechnologies.html">data.gov</a> U.S. government open data</li>
-<li><a href="http://www.census.gov/">U.S. Census Bureau</a></li>
-<li><a href="http://voteview.com/">NOMINATE Ideal Points of U.S. Congress</a></li>
-</ul>
+<div id="introduce-yourself-to-git" class="section level3">
+<h3>Introduce yourself to Git</h3>
+<p>In a terminal enter the following, but replace the the user name and email with your GitHub username and your own email address. To access a terminal from within RStudio from <strong>Tools &gt; Shell…</strong>.</p>
+<pre class="console"><code>git config --global user.name &#39;jrnold&#39;
+git config --global user.email &#39;jeffrey.arnold@gmail.com&#39;</code></pre>
 </div>
-<div id="comparative-politics" class="section level1">
-<h1>Comparative Politics</h1>
-<ul>
-<li>Policy Agendas Project <a href="http://www.policyagendas.org/page/datasets-codebooks" class="uri">http://www.policyagendas.org/page/datasets-codebooks</a></li>
-<li>Varieties of Democracy (VDEM) project <a href="http://kellogg.nd.edu/projects/vdem/" class="uri">http://kellogg.nd.edu/projects/vdem/</a></li>
-<li><a href="http://www.systemicpeace.org/polity/polity4.htm">Polity Project data</a> Political regime characteristics</li>
-<li><a href="http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20649465~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html">Database of Political Institutions</a></li>
-</ul>
 </div>
-<div id="international-relations" class="section level1">
-<h1>International Relations</h1>
-<ul>
-<li>Paul Hensel maintains a list of Political Science Datasets <a href="http://www.paulhensel.org/data.html" class="uri">http://www.paulhensel.org/data.html</a></li>
-<li><a href="http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/">UCDP/PRIO Armed Conflict</a> Datasets on armed conflict</li>
-<li><a href="http://www.acleddata.com/data/">ACLED (Armed Conflict Location and Event Data Project)</a> Real-time data on political violence in African and Asian states</li>
-<li><a href="http://openeventdata.org/datasets/OEDA.datasets.php">OpenEvent Data/Phoenix Data Project</a></li>
-<li>Data version of the CIA World Factbook: <a href="http://jmatchparser.sourceforge.net/factbook/" class="uri">http://jmatchparser.sourceforge.net/factbook/</a></li>
-<li><a href="http://www.paulhensel.org/data.html">Paul Hensel’s List of International Relations Data</a></li>
-<li><a href="http://www.paulhensel.org/icow.html">Issue Correlates of War (ICOW)</a></li>
-</ul>
+<div id="create-a-github-account" class="section level2">
+<h2>Create a GitHub account</h2>
+<p><a href="https://github.com/join?source=header-home">Here</a></p>
+<pre><code>- Choose available Username (keep it professional)
+- Choose the free plan</code></pre>
+<p>Now let us know your GitHub account name is. Go <a href="https://github.com/UW-POLS503/pols_503_sp16/issues">here</a>, click on “New Issue”, make the title “Add me to the organization”, and click on “Sumbit new issue”.</p>
 </div>
-<div id="open-data-open-government-datasets" class="section level1">
-<h1>Open Data / Open Government Datasets</h1>
-<ul>
-<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Provides open data on the U.S. government. Data on Congress, state legislatures, campaign finance, contributions, dockets.</li>
-<li><a href="https://ropengov.github.io/">ROpenGov</a> has R packages to access various government related data. For packages to access data on the web from within R see the <a href="https://cran.r-project.org/web/views/WebTechnologies.html">Web Technologies and Services</a> CRAN Task View.</li>
-<li><a href="https://github.com/caesar0301/awesome-public-datasets">Awesome Public Datasets</a> by <a href="https://github.com/caesar0301">caesar0301</a></li>
-<li><a href="http://www.vox.com/">Vox</a> stories on <a href="https://github.com/voxmedia/data-projects">github</a></li>
-<li>NY Times <a href="http://www.nytimes.com/upshot/">Upshot</a> on <a href="https://github.com/TheUpshot">github</a></li>
-<li>Guardian Data Blog <a href="http://www.theguardian.com/news/datablog/interactive/2013/jan/14/all-our-datasets-index">here</a></li>
-<li><a href="http://fivethirtyeight.com">Fivethirtyeight</a> data on <a href="https://github.com/fivethirtyeight/data">github</a></li>
-<li>Catalog of open government data around the world at <a href="http://dataportals.org">DataPortals.org</a></li>
-<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Datasets focusing on US government transparency</li>
-<li><a href="https://www.propublica.org/data/">ProPublica</a></li>
-<li><a href="http://developer.nytimes.com/docs/campaign_finance_api/">NYTimes Campaign Finance API</a></li>
-<li><a href="http://archive.ics.uci.edu/ml/">UCI Machine Learning Repository</a> : repository of machine learning datasets</li>
-<li><a href="https://github.com/showcases/open-data">Open Data on Github</a></li>
-</ul>
+<div id="submitting-assignments" class="section level2">
+<h2>Submitting assignments</h2>
+<div id="fork-the-repository." class="section level3">
+<h3>Fork the repository.</h3>
+<p>For each assignment we will create a new repository in <a href="https://github.com/UW-POLS503" class="uri">https://github.com/UW-POLS503</a>. First you need to make a copy of that repository to your GitHub account. We call that to create a “fork”.</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://github.com/UW-POLS503/Assignment_00" class="uri">https://github.com/UW-POLS503/Assignment_00</a></li>
+<li>Click on “Fork”. <i class="fa fa-code-fork"></i> Now you will see: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code>.</li>
+</ol>
 </div>
-<div id="cleaning-data-guide" class="section level1">
-<h1>Cleaning data guide</h1>
+<div id="clone-your-new-repository" class="section level3">
+<h3>Clone your new repository</h3>
+<p>You created a copy of the assignment repository in your GitHub online account. Now you need make a copy of it in your local machine. We call that to “clone” a repository.</p>
+<ol style="list-style-type: decimal">
+<li>Open up RStudio</li>
+<li>Go to <code>File &gt; New Project &gt; Version Control &gt; Git</code></li>
+<li>Enter the URL of your repository: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code>. If you don’t give it a “Project directory name”, it will create a directory named “Assignment_00” that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</li>
+<li>Select the directory you want to have the repository in. We suggest you create a directory to store all future assignment repositories. Ideally this would be within your directory for the class.</li>
+</ol>
+</div>
+<div id="edit-the-readme.md-file" class="section level3">
+<h3>Edit the README.md file</h3>
+<ol style="list-style-type: decimal">
+<li>Open the README.md file and edit it: add your name.</li>
+</ol>
+</div>
+<div id="commit-and-push-you-changes" class="section level3">
+<h3>Commit and Push you changes</h3>
+<ol style="list-style-type: decimal">
+<li>Use the Git pane to commit the changes:
 <ul>
-<li><a href="https://github.com/Quartz/bad-data-guide">The Quartz guide to bad data</a></li>
+<li>Select the files you changed</li>
+<li>Click on “Commit”</li>
+<li>Add a commit message and commit</li>
+</ul></li>
+<li>Push your changes to the repository</li>
+</ol>
+</div>
+<div id="pull-request" class="section level3">
+<h3>Pull Request</h3>
+<p>Now that you pushed your assignment to your online fork of the repository, the last step is to send a <code>pull request</code> to add your changes to the main repository.</p>
+<ol style="list-style-type: decimal">
+<li>Go to your online version of the repository: <code>https://Github.com/&lt;your_account&gt;/Assignment_00</code></li>
+<li>Click on “New Pull Request”</li>
+<li>Click on “Create new pull request”</li>
+<li>The instructors will be informed that you are done with the assignment.</li>
+</ol>
+</div>
+<div id="install-github-desktop-optional" class="section level3">
+<h3>Install Github Desktop (optional)</h3>
+<p>Another graphical interface for Git and GitHub, not directly tied to RStudio, is <a href="https://desktop.github.com/">GitHub Desktop</a>. You may want to install that as an alternative to working with GitHub through RStudio.</p>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li>Rstudio’s instructions, <a href="https://support.rstudio.com/hc/en-us/articles/200532077?version=0.99.879&amp;mode=desktop">Using Version Control with RStudio</a></li>
+<li><a href="https://training.github.com/kit/">GitHub training material</a></li>
+<li>GitHub’s list of <a href="https://help.github.com/articles/good-resources-for-learning-git-and-github/">Good Resources for Learning Git and GitHub</a></li>
+<li>Rstudio <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">Version Control with Rstudio</a></li>
+<li>Chapter on <a href="http://r-pkgs.had.co.nz/git.html">Git and GitHub</a> in Hadley Wickham, <em>R packages</em>. Even though the book is about R packages, it is useful.</li>
+<li><a href="https://try.github.io/levels/1/challenges/1">trygit</a> is an interactive introduction to git.</li>
+<li><a href="http://swcarpentry.github.io/">Software Carpentry</a> has a lesson on <a href="http://swcarpentry.github.io/git-novice/">git</a>.</li>
+<li>Stat 545 <a href="https://stat545-ubc.github.io/git66_rstudo-git-github-hell.html">RStudio, Git, GitHub Hell</a></li>
+<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></li>
+<li>Zach Jones <a href="http://zmjones.com/git-github-tutorial/">Git and Github Tutorial</a></li>
+<li>Stack Overflow <a href="http://stackoverflow.com/questions/1408450/why-should-i-use-version-control">Why Should I use version control</a></li>
+<li>Stack Overflow <a href="http://stackoverflow.com/questions/2712421/r-and-version-control-for-the-solo-data-analyst">R and version control for the solo data analyst</a></li>
 </ul>
+<p>Note that although for this course we use git through either the GitHub website or client, or RStudio’s interface, git is often used in a shell. If you are unfamiliar with a shell, here are some places to get started:</p>
+<ul>
+<li><a href="https://stat545-ubc.github.io/git09_shell.html">Stat 545</a> intro to the shell</li>
+<li><a href="http://web.mit.edu/mprat/Public/web/Terminus/Web/main.html">Terminus</a> an interactive way to learn shell</li>
+<li>Philip Guo’s <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html">Basic Unix-like command line videos</a></li>
+<li><a href="http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html" class="uri">http://www.ee.surrey.ac.uk/Teaching/Unix/unix1.html</a></li>
+<li><a href="https://p1k3.com/userland-book/">userland</a></li>
+<li>Software Carpentry lesson <a href="http://swcarpentry.github.io/shell-novice/">The Unix Shell</a></li>
+<li>Jeroen Janssens, <a href="http://datascienceatthecommandline.com/">Data Science at the Command Line</a></li>
+</ul>
+<p>Parts of this module are abstracts from Hadley Wickham’s module on <a href="http://r-pkgs.had.co.nz/git.html">Git and GitHub</a></p>
 </div>
 
 <!-- some extra javascript for older browsers -->
