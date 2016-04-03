@@ -1,6 +1,6 @@
-RMD_FILES = $(wildcard *.Rmd) $(wildcard reference/*.Rmd) $(wildcard assignments/*.Rmd)
+RMD_FILES = $(wildcard *.Rmd)
 HTML_FILES = $(RMD_FILES:%.Rmd=%.html)
-HTML_FILES_DEPENDS = $(wildcard include/*) _navbar.html _output.yaml reference/_output.yaml assignments/_output.yaml .Rprofile pols503.css
+HTML_FILES_DEPENDS = $(wildcard include/*) _navbar.html _output.yaml .Rprofile pols503.css
 
 all: html
 
