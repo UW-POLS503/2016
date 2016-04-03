@@ -2,6 +2,8 @@
 title: Writing Advice
 ---
 
+Hello world!
+
 # Writing
 
 - Chris Adolph. [Writing Empirical Papers: 6 Rules & 12 Recommendations](http://faculty.washington.edu/cadolph/503/papers.pdf)

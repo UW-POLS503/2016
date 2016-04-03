@@ -1,4 +1,4 @@
-RMD_FILES = $(wildcard *.Rmd)
+RMD_FILES = $(wildcard *.Rmd) $(wildcard reference/*.Rmd)
 HTML_FILES = $(RMD_FILES:%.Rmd=%.html)
 HTML_FILES_DEPENDS = $(wildcard include/*) _navbar.html _output.yaml .Rprofile pols503.css
 
@@ -11,7 +11,7 @@ html: $(HTML_FILES)
 
 watch:
 	watchman watch "$(shell pwd)"
-	watchman -- trigger "$(shell pwd)" remake '*.Rmd' $(HTML_FILES_DEPENDS) Makefile -- make html
+	watchman -- trigger "$(shell pwd)" remake '*.Rmd' 'reference/*.Rmd' $(HTML_FILES_DEPENDS) Makefile -- make html
 
 unwatch:
 	watchman watch-del "$(shell pwd)"

@@ -2,20 +2,24 @@
 title: LaTeX for Research
 ---
 
-[LaTeX](https://en.wikipedia.org/wiki/LaTeX) is a document markup language (think something like HTML) that is widely used in academia.
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX) is a document markup language (think something like HTML) that is widely used in academia.[^pronunciation]
 Its primary advantages over Word (and word processors) are the separation of content and presentation and its formatting of mathematical equations.
 In addition to papers, it is often used for academic slides; many talk slides are prepared with [beamer](https://en.wikipedia.org/wiki/Beamer_(LaTeX)).
 
+[^pronunciation]: TeX is pronounced as "teck" because the X is a Greek chi. The pronunciation of
+                  of LaTeX is thus lah-teck or lay-teck. It is not pronounced like the rubber compund.
+                  See this [StackExchange](http://tex.stackexchange.com/questions/17502/what-is-the-correct-pronunciation-of-tex-and-latex) question on the pronunciation of LaTeX.
+
 ## Learning LaTeX
 
-Here are some links to get started learning LaTeX
+Here are some links to get started learning LaTeX:
 
-- [Interactive Online Introduction to LaTeX](https://www.overleaf.com/latex/learn/)
-- [LaTeX Tutorial](https://www.latex-tutorial.com/tutorials/)
+- [Overleaf Free & Interactive Online Introduction to LaTeX](https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1)
+- [LaTeX Tutorial](https://www.latex-tutorial.com/tutorials/) has interactive lessons
 - [ShareLaTeX Documentation](https://www.sharelatex.com/learn/)
-- [Overleaf Example Templates](https://www.overleaf.com/latex/templates/)
+- [Overleaf Example Templates](https://www.overleaf.com/latex/templates/) has many different examples of LaTeX documents.
 - [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)
-- [Not So Short Introduction to LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf) is a classic
+- [Not So Short Introduction to LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf) is a classic, but not as as newby friendly as the others.
 
 ## Writing LaTeX
 
@@ -40,9 +44,13 @@ and use `\input{}` to include the contents in your document.
 
 [^2]: And [Sweave](https://www.statistik.lmu.de/~leisch/Sweave/) files preceded R markdown and knitr by many years.
 
+## Useful Packages
+
+TODO
+
 ## My workflow
 
-At the moment, I use emacs with [AucTex](https://www.sharelatex.com/) for writing pure LaTeX documents.
+At the moment, I use emacs with [AucTeX](http://www.gnu.org/software/auctex/) for writing pure LaTeX documents.
 However, I've started using Atom more and more as a general text editor.
 I use RStudio for writing Rnw files.
 For papers, I haven't moved to using (R) markdown and pandoc yet, because I find the layout and reference support still too
