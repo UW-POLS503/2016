@@ -1,0 +1,29 @@
+---
+title: Project Assignment 1
+date: April 5, 2016
+---
+
+Date due: <time datetime="2016-04-08 17:00">Friday, April 8, 17:00 PDT</time>.
+
+1. Create a file in your project repository named `proposal.md`. You should
+   write this in [markdown](https://guides.github.com/features/mastering-markdown/).
+   You can edit the file in RStudio, in the GitHub website itself, or
+   using a text editor like [Atom](http://atom.io/).
+2. Your proposal should answer the following questions:
+
+    - What is your research question?
+    - Is your research question causal, predictive, or descriptive?
+    - What is (are) the dependent variable(s)?
+    - What is (are) the independent variable?
+    - What data will you use?
+        - What are the data sources? Be specific.
+        - Do you have the data in hand? What pre-processing is required prior to modeling?
+        - If you have any data that cannot be distributed because it is proprietary
+          or sensitive, indicate that.
+    - If you took POLS/CS&SS 501, is this a continuation of your project?
+      If so, How do you hope to extend it. If not, how is this different?
+      Why did you switch projects?
+
+3. Create an issue in Github titled: "Review Project Assignment 1".
+   In the issue message write "cc @jrnold @CasAndreu". This is how you submit
+   your assignment, and lets the instructors know it is ready to review.

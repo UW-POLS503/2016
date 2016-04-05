@@ -11,7 +11,7 @@
 
 
 
-<title>Writing Functions</title>
+<title>Project Assignment 1</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -317,126 +317,31 @@ div.tocify {
 
 
 
-<h1 class="title">Writing Functions</h1>
+<h1 class="title">Project Assignment 1</h1>
+<h4 class="date"><em>April 5, 2016</em></h4>
 
 </div>
 
 
-<div id="learning-objectives" class="section level2">
-<h2>Learning Objectives</h2>
+<p>Date due: <time datetime="2016-04-08 17:00">Friday, April 8, 17:00 PDT</time>.</p>
+<ol style="list-style-type: decimal">
+<li>Create a file in your project repository named <code>proposal.md</code>. You should write this in <a href="https://guides.github.com/features/mastering-markdown/">markdown</a>. You can edit the file in RStudio, in the GitHub website itself, or using a text editor like <a href="http://atom.io/">Atom</a>.</li>
+<li><p>Your proposal should answer the following questions:</p>
 <ul>
-<li>Write R functions to make your code less redundant and more efficient</li>
-</ul>
-</div>
-<div id="required-packages-and-datasets" class="section level2">
-<h2>Required Packages and Datasets</h2>
-<p>If you dont’ have the <code>uwpols501</code> package yet, install it first from GitHub.</p>
-<pre class="r"><code>library(devtools)
-install_github(&quot;UW-POLS501/r-uwpols501&quot;)</code></pre>
-<p>Make sure you can load all these packages and dataset before starting the module</p>
-<pre class="r"><code>library(dplyr)
-library(uwpols501)
-data(turnout)
-data(iver)</code></pre>
-</div>
-<div id="intro" class="section level2">
-<h2>Intro</h2>
-<p>Why should we use functions? Well, don’t take it from me, take it from <a href="http://r4ds.had.co.nz/functions.html">Grolemund &amp; Wickham (2016)</a>:</p>
-<p><em>Writing a function has three big advantages over using copy-and-paste:</em></p>
-<ol style="list-style-type: decimal">
-<li><em>You drastically reduce the chances of making incidental mistakes when you copy and paste.</em></li>
-<li><em>As requirements change, you only need to update code in one place, instead of many.</em></li>
-<li><em>You can give a function an evocative name that makes your code easier to understand.</em></li>
+<li>What is your research question?</li>
+<li>Is your research question causal, predictive, or descriptive?</li>
+<li>What is (are) the dependent variable(s)?</li>
+<li>What is (are) the independent variable?</li>
+<li>What data will you use?
+<ul>
+<li>What are the data sources? Be specific.</li>
+<li>Do you have the data in hand? What pre-processing is required prior to modeling?</li>
+<li>If you have any data that cannot be distributed because it is proprietary or sensitive, indicate that.</li>
+</ul></li>
+<li>If you took POLS/CS&amp;SS 501, is this a continuation of your project? If so, How do you hope to extend it. If not, how is this different? Why did you switch projects?</li>
+</ul></li>
+<li><p>Create an issue in Github titled: “Review Project Assignment 1”. In the issue message write “cc <span class="citation">@jrnold</span> <span class="citation">@CasAndreu</span>”. This is how you submit your assignment, and lets the instructors know it is ready to review.</p></li>
 </ol>
-<p>Writing a function step by step:</p>
-<ol style="list-style-type: decimal">
-<li>Specify a function name</li>
-<li>Use the <code>function()</code> command</li>
-<li>Specify inside the <code>function()</code> command the arguments that the functions takes</li>
-<li>Write what the function does between the curly brackets <code>{ }</code> (Function names should be verbs, and arguments should be nouns)</li>
-</ol>
-<p>A function has the following skeleton:</p>
-<pre class="r"><code>function_name &lt;- function(argument1, argument2, ...) {
-  # do_something with the arguments
-  output &lt;- argument1 + argument2
-  return(output)
-}</code></pre>
-<p>A short/silly example:</p>
-<pre class="r"><code>say_hi &lt;- function(name) {
-  full_statement &lt;- paste0(&quot;Hi! My name is &quot;, name)
-  return(full_statement)
-}
-full_statement &lt;- say_hi(&quot;Andreu&quot;)
-full_statement</code></pre>
-<pre><code>## [1] &quot;Hi! My name is Andreu&quot;</code></pre>
-</div>
-<div id="real-example-1" class="section level2">
-<h2>Real Example (1)</h2>
-<p>For the final project last quarter, one of your classmates needed to retrieve the first digit of all numbers for several numeric variables. So the person had to write the same code multiple times. Let’s now write a function that would simplify that code.</p>
-<pre class="r"><code>get_first_digit &lt;- function(variable) {
-  num_digits &lt;- nchar(variable)
-  var_first_num &lt;- variable %/% (10 ^ (nchar(variable) - 1))
-  return(var_first_num)
-}</code></pre>
-<p>Now apply the function <code>get_first_digit()</code> that we just created to the variables <code>age</code> and <code>educate</code> of the <code>turnout</code> dataset.</p>
-<pre class="r"><code>turnout$age_new &lt;- get_first_digit(turnout$age)
-turnout$educate_new &lt;- get_first_digit(turnout$educate)</code></pre>
-</div>
-<div id="real-example-2" class="section level2">
-<h2>Real Example (2)</h2>
-<p>Last quarter some other classmates needed to create a dummy variable indicating if the country or political party for any given row was part of a particular list of country or political party.</p>
-<p>Here we first create a list of countries we are interested in, and then we write a function that takes a <code>country</code> variable as an argument, and returns a dummy variable indicating which observations are in the list of countries of interest.</p>
-<pre class="r"><code>peripherial_countries &lt;- c(&quot;Portugal&quot;, &quot;Italy&quot;, &quot;Ireland&quot;, 
-                           &quot;Cyprus&quot;, &quot;Greece&quot;, &quot;Spain&quot;)
-create_per_dummy &lt;- function(country_variable) {
-  country_variable &lt;- as.character(country_variable)
-  dummy_boolean &lt;- country_variable %in% peripherial_countries
-  dummy_numeric &lt;- as.numeric(dummy_boolean)
-  return(dummy_numeric)
-}</code></pre>
-<p>Now we apply the function to the <code>cty</code> variable of the <code>iver</code> dataset from the <code>uwpols501</code> package</p>
-<pre class="r"><code>head(iver, n = 10)</code></pre>
-<pre><code>## Source: local data frame [10 x 4]
-## 
-##            cty elec_sys povred   enp
-##         (fctr)   (fctr)  (dbl) (dbl)
-## 1    Australia      maj  42.16  2.38
-## 2      Belgium       pr  78.79  7.01
-## 3       Canada      maj  29.90  1.69
-## 4      Denmark       pr  71.54  5.04
-## 5      Finland       pr  69.08  5.14
-## 6       France      maj  57.91  2.68
-## 7      Germany      maj  46.90  3.16
-## 8        Italy       pr  42.81  4.11
-## 9  Netherlands       pr  66.93  3.49
-## 10      Norway       pr  67.17  3.09</code></pre>
-<pre class="r"><code>iver$peripherial_cty &lt;- create_per_dummy(iver$cty)
-head(iver, n = 10)</code></pre>
-<pre><code>## Source: local data frame [10 x 5]
-## 
-##            cty elec_sys povred   enp peripherial_cty
-##         (fctr)   (fctr)  (dbl) (dbl)           (dbl)
-## 1    Australia      maj  42.16  2.38               0
-## 2      Belgium       pr  78.79  7.01               0
-## 3       Canada      maj  29.90  1.69               0
-## 4      Denmark       pr  71.54  5.04               0
-## 5      Finland       pr  69.08  5.14               0
-## 6       France      maj  57.91  2.68               0
-## 7      Germany      maj  46.90  3.16               0
-## 8        Italy       pr  42.81  4.11               1
-## 9  Netherlands       pr  66.93  3.49               0
-## 10      Norway       pr  67.17  3.09               0</code></pre>
-<div id="challenge-1" class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">
-Challenge
-</h3>
-</div>
-<div class="panel-body">
-<p>Look through some of your previous code from other classes and projects, and write a function to reduce redundancy (10 min.)</p>
-</div>
-</div>
-</div>
 
 <!-- some extra javascript for older browsers -->
 <script type="text/javascript" src="libs/polyfill.js"></script>

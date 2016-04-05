@@ -18,6 +18,10 @@ h3 {
   font-size: 15px;
   font-weight: bold;
 }
+h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
 </style>
 
 
@@ -38,7 +42,9 @@ I will make adjustments based on this feedback.
 - Introduction
 - Install software and set up GitHub accounts
 
-Reading (skim after class, I will discuss ideas inspired by these sources)
+#### Reading
+
+skim after class, I will discuss ideas inspired by these sources:
 
 - Jenny Bryan, Karen Cranston, Justin Kitzez, Lex Nederbragt, Tracy Teal, and Greg Wilson. [Good Enough Practices for Scientific Computing](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/).
 - Matthew Gentzkow and Jesse M. Shapiro. [Code and Data for the Social Sciences: A Practitioner's Guide](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/). March, 2014. Especially Chapter 3: Version Control. The principles of this are good though I don't follow all their exact prescriptions. Thr practices adopted for this class are closer to "Good Enough Practices."
@@ -56,7 +62,7 @@ Science: Data Access and Research Transparency](http://media.wix.com/ugd/fa8393_
 
 ### <time datetime="2016-03-31">Thursday, March 31</time>
 
-Class
+#### Agenda
 
 - Continue set-up of Git and GitHub
 - [Getting Started with Git and GitHub](git.html)
@@ -79,7 +85,7 @@ R markdown
 
 ## Week 2
 
-Readings:
+#### Readings
 
 - Chapters 1 and 2 of Wooldridge
 - Chapter 1 of *Mostly Harmless Econometrics*
@@ -94,9 +100,15 @@ Readings:
      introduction to matrix inverses.
    - Handout: ...
 
-Friday: paragraph proposal due. 
+Friday: paragraph proposal due.
 
 ### <time datetime="2016-04-05">Tuesday, April 5</time>
+
+#### Agenda
+
+1. Confirm that you can push to GitHub Accounts.
+2. Choose papers for analysis
+3.
 
 
 <!--
