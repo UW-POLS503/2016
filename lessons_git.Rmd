@@ -59,18 +59,21 @@ You created a copy of the assignment repository in your GitHub online account. N
 
 ### Commit and Push for the first time
 
-Access a terminal from within RStudio: **Tools > Shell...**
+1. Access a terminal from within RStudio: **Tools > Shell...**
 
-In the terminal enter the following commands:
+2. In the terminal enter the following commands:
 
 ```console
 git add *
 git commit -m 'my first commit'
 git push
 ```
+3. `Git` is going to ask for you GitHub account. Type it and Press `enter`.
+4. Then it will ask for your GitHub password. Type it. When typing it you are not going to see any number being typed in the terminal but it's actually happening. Press `enter` after typing the password and you should be good to go!
+5. Next time you want to commit and push you can do it from within RStudio. You don't need to do it from the console anymore. 
 
 
-### Commit and Push you changes
+### Commit and Push your changes (after first time)
 
 1. Use the Git pane to commit the changes:
     - Select the files you changed
