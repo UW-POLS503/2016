@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,27 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -315,7 +312,6 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-
 <h1 class="title">Getting Started with Git and GitHub</h1>
 
 </div>
@@ -344,12 +340,6 @@ div.tocify {
 <li>Check that <strong>Git executable</strong> is not empty</li>
 <li>Click <strong>enable version control interface for RStudio projects</strong> if it is not already checked.</li>
 </ol>
-</div>
-<div id="introduce-yourself-to-git" class="section level3">
-<h3>Introduce yourself to Git</h3>
-<p>In a terminal enter the following, but replace the the user name and email with your GitHub username and your own email address. To access a terminal from within RStudio from <strong>Tools &gt; Shell…</strong>.</p>
-<pre class="console"><code>git config --global user.name &#39;jrnold&#39;
-git config --global user.email &#39;jeffrey.arnold@gmail.com&#39;</code></pre>
 </div>
 </div>
 <div id="create-a-github-account" class="section level2">
@@ -383,7 +373,16 @@ git config --global user.email &#39;jeffrey.arnold@gmail.com&#39;</code></pre>
 <h3>Edit the README.md file</h3>
 <ol style="list-style-type: decimal">
 <li>Open the README.md file and edit it: add your name.</li>
+<li>Save the README.md file.</li>
 </ol>
+</div>
+<div id="commit-and-push-for-the-first-time" class="section level3">
+<h3>Commit and Push for the first time</h3>
+<p>Access a terminal from within RStudio: <strong>Tools &gt; Shell…</strong></p>
+<p>In the terminal enter the following commands:</p>
+<pre class="console"><code>git add *
+git commit -m &#39;my first commit&#39;
+git push</code></pre>
 </div>
 <div id="commit-and-push-you-changes" class="section level3">
 <h3>Commit and Push you changes</h3>
