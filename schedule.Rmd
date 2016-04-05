@@ -98,17 +98,19 @@ R markdown
      adding and subtracting matrices, multiplying matrices by scalars, properties of matrix addition
      and scalar multiplication, multiplying matrices by matrices, properties of matrix multiplication,
      introduction to matrix inverses.
-   - Handout: ...
+   - [Matrix algebra handout](files/matrix.pdf)
 
 Friday: paragraph proposal due.
 
 ### <time datetime="2016-04-05">Tuesday, April 5</time>
 
-#### Agenda
+#### Class Agenda
 
 1. Confirm that you can push to GitHub Accounts.
-2. Choose papers for analysis
-3.
+2. Discuss [Project Assignment 1](assignments_project_1.html)
+3. Choose papers for analysis
+4. Types of research questions, types of analysis. slides
+5. Conditional expectation function. slides
 
 
 <!--
