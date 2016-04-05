@@ -1,5 +1,5 @@
 ---
-title: Research Questions and Design
+title: "POLS 503: Research Questions and Design"
 date: April 5, 2016
 author: Jeffrey Arnold
 ---

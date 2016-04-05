@@ -109,8 +109,8 @@ Friday: paragraph proposal due.
 1. Confirm that you can push to GitHub Accounts.
 2. Discuss [Project Assignment 1](assignments_project_1.html)
 3. Choose papers for analysis
-4. Types of research questions, types of analysis. slides
-5. Conditional expectation function. slides
+4. Types of research questions, types of analysis. [slides](slides/research_questions_and_design.pdf)
+<!-- 5. Conditional expectation function. slides-->
 
 
 <!--

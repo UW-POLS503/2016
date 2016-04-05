@@ -12,6 +12,7 @@ html: $(HTML_FILES)
 watch:
 	watchman watch "$(shell pwd)"
 	watchman -- trigger "$(shell pwd)" remake $(RMD_FILES) $(HTML_FILES_DEPENDS) Makefile -- make html
+	watchman -- trigger "$(shell pwd)" remake slides/*.Rmd slides/Makefile -- make -C slides all
 
 unwatch:
 	watchman watch-del "$(shell pwd)"
