@@ -35,3 +35,16 @@ Word Scores for probability: http://www.jstor.org/stable/pdf/3118211.pdf
 
 Burke, Marshall, Solomon Hsiang, and Edward Miguel. 2015.
 "Global non-linear effect of temperature on economic production", Nature, doi:10.1038/nature15725.
+
+The Effect of Language on Economic Behavior: Evidence from Savings Rates, Health Behaviors, and Retirement Assets. American Economic Review 2013. http://dx.doi.org/10.1257/aer.103.2.690
+http://www.anderson.ucla.edu/faculty/keith.chen/data/AER_2013_Datasets_Programs_and_Readme.zip
+
+Lipset's Law.
+
+The Kuznet's Curve. Kuznets, Simon. 1955. Economic Growth and Income Inequality. American Economic Review 45 (March): 1–28. Estimate with cross-section and then with fixed-effects.
+
+The Environmental Kuznet's Curve
+Susmita Dasgupta, Benoit Laplante, Hua Wang and David Wheeler.
+"Confronting the Environmental Kuznets Curve" *Journal of Economic Perspectives* 2002.
+
+For tests in difference of means - Dueverger's Law
