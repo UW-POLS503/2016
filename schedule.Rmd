@@ -123,6 +123,14 @@ Friday: paragraph proposal due.
 
 ### <time datetime="2016-04-07">Thursday, April 7</time>
 
+#### Class Agenda
+
+1. Assigned and started working on [Assignment 1](https://github.com/UW-POLS503/Assignment_01)
+
+#### Supplementary Reading
+
+See [Linear Regression Functions in R](regression_in_R.html) for more help
+
 ### <time datetime="2016-04-08">Friday, April 8</time>
 
 NO CLASS due to MPSA
