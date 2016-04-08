@@ -1,0 +1,19 @@
+# Resources for Using R markdown
+
+The best (and relatively) complete place to get help on R markdown is the
+RStudio R Markdown site.
+
+- [R Markdown](http://rmarkdown.rstudio.com/)
+- [R Markdown Cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+- [R Markdown Refernence Guide](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+
+Additionally, there are **many** resources for markdown on the internet, but here are a few good interactive tutorials:
+
+- [Markdown Tutorial](http://www.markdowntutorial.com/)
+- Another interactive markdown tutorial [http://commonmark.org/help/tutorial/]
+
+*Advanced*: The R markdown in RStudio uses the **rmarkdown** and **knitr** packages and
+pandoc.  [Knitr](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) is a more flexible tool for embedding R (and other) language code chunks
+in formatting languages. Markdown is one example, but knitr also allows for code chunks
+in LaTeX, HTML, and others. [Pandoc](http://pandoc.org/) is a powerful tool for converting between document
+formats, e.g. Markdown to HTML, Markdown to LaTeX, HTML to docx, and many more.

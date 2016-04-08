@@ -11,7 +11,7 @@
 
 
 
-<title>Writing Research Paper in Word</title>
+<title></title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -318,28 +318,24 @@ div.tocify {
 
 
 
-<h1 class="title">Writing Research Paper in Word</h1>
 
 </div>
 
 
-<p>While I use LaTeX in my own work, Microsoft Word is powerful piece of software, and many of the complaints against Word come down to not being aware of its features. There are many tools you can use to build your research paper; whatever tool you use, learn how to use it proficiently.</p>
-<div id="general-advice" class="section level2">
-<h2>General Advice</h2>
-<p>This guide on using <a href="http://guides.lib.umich.edu/c.php?g=283073&amp;p=1886001">Microsoft Word for Dissertations</a> covers everything and more that I would have. Also see <a href="http://www3.nd.edu/~shill2/dtclass/word_2013_word_for_research_projects.pdf">this</a></p>
+<div id="resources-for-using-r-markdown" class="section level1">
+<h1>Resources for Using R markdown</h1>
+<p>The best (and relatively) complete place to get help on R markdown is the RStudio R Markdown site.</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Separation_of_presentation_and_content">separate presentation and content</a> using styles</li>
-<li>Automatically number figures and tables</li>
-<li>Use a reference manager like <a href="https://www.mendeley.com/">Mendeley</a>, <a href="https://www.zotero.org/">Zotero</a>, <a href="https://www.colwiz.com/app">Colwiz</a>, or <a href="http://www.papersapp.com/">Papers</a>. They have plugins for citations in Word.</li>
-<li>When exporting figures for Word, if you must use a <a href="https://en.wikipedia.org/wiki/Raster_graphics">raster graphic</a> use PNG files (not JPEG). For publication, use a high DPI (600) with PNG graphics.</li>
-<li>Learn to use <em>Fields</em>. You can insert figures from files that you can update using <code>Insert &gt; Field &gt; Links and References &gt; IncludePicture</code>. This is useful for programmatically generating figures to insert into your document. Likewise, you can insert text from files that you can update using <code>Insert &gt; Field &gt; Links and References &gt; IncludeText</code>.</li>
+<li><a href="http://rmarkdown.rstudio.com/">R Markdown</a></li>
+<li><a href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown Cheatsheet</a></li>
+<li><a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Refernence Guide</a></li>
 </ul>
-</div>
-<div id="using-r-with-word" class="section level2">
-<h2>Using R with Word</h2>
-<p>For a dynamic reports you can use <a href="http://rmarkdown.rstudio.com/word_document_format.html">R Markdown</a> and export to a word document. When doing this, use a reference document to set the the styles that you will use. See <a href="http://rmarkdown.rstudio.com/articles_docx.html">Happy collaboration with Rmd to docx</a> for more advice on using R Markdown with Word.</p>
-<p>When using functions from packages such as <a href="https://cran.r-project.org/package=xtable">xtable</a>, <a href="ttps://cran.r-project.org/package=stargazer">stargazer</a>, or <a href="ttps://cran.r-project.org/package=texreg">texreg</a> output HTML, which can be copy and pasted into word.</p>
-<p>Finally, the [ReporteR][Create Word documents from R](<a href="http://davidgohel.github.io/ReporteRs/word.html" class="uri">http://davidgohel.github.io/ReporteRs/word.html</a>) package is an alternative method to generate Word Documents from R.</p>
+<p>Additionally, there are <strong>many</strong> resources for markdown on the internet, but here are a few good interactive tutorials:</p>
+<ul>
+<li><a href="http://www.markdowntutorial.com/">Markdown Tutorial</a></li>
+<li>Another interactive markdown tutorial [<a href="http://commonmark.org/help/tutorial/" class="uri">http://commonmark.org/help/tutorial/</a>]</li>
+</ul>
+<p><em>Advanced</em>: The R markdown in RStudio uses the <strong>rmarkdown</strong> and <strong>knitr</strong> packages and pandoc. <a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">Knitr</a> is a more flexible tool for embedding R (and other) language code chunks in formatting languages. Markdown is one example, but knitr also allows for code chunks in LaTeX, HTML, and others. <a href="http://pandoc.org/">Pandoc</a> is a powerful tool for converting between document formats, e.g. Markdown to HTML, Markdown to LaTeX, HTML to docx, and many more.</p>
 </div>
 
 <!-- some extra javascript for older browsers -->
