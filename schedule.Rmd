@@ -141,7 +141,12 @@ NO CLASS due to MPSA
 
 ### <time datetime="2016-04-12">Tuesday, April 12</time>
 
+- [Conditional Probability: Explained Visually](http://setosa.io/ev/conditional-probability/)
+- [Ordinary Least Squares Regression: Explained Visually]http://setosa.io/ev/ordinary-least-squares-regression/
+
 ### <time datetime="2016-04-14">Thursday, April 14</time>
+
+[Assignment 1 due](https://github.com/UW-POLS503/Assignment_01)
 
 ### <time datetime="2016-04-15">Friday, April 15</time>
 
