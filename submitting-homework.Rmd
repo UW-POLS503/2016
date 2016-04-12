@@ -1,0 +1,105 @@
+---
+title: "Submitting Homework"
+---
+
+We'll create a new repository in the [UW-POLS503](https://github.com/UW-POLS503) organization for each assignment (e.g. [Assignment_01](https://github.com/UW-POLS503/Assignment_01) ). Follow the following steps to work on and submitt the homework.
+
+# 1. Fork the repository.
+
+![](img/fork.png)
+
+Now you have a copy of the repository in your online`GitHub` account.
+
+![](img/forked.png)
+
+# 2. Clone the repository using RStudio.
+
+a. Copy the URL of your repository from GitHub.
+
+![](img/clone.png)
+
+b. Open RStudio and create a new Git RProject: `File > New Project > Version Control > Git`
+
+c. Enter the URL to where it says `Repository URL`. It will create a directory named `Assignment_01` that will have the original files in the repository plus an `.Rproj` and `.gitingore` file.
+
+<div style="width:300px; height=200px">
+![](img/clone2.png)
+</div>
+
+
+# 3. Create an R Markdown file: `solutions.Rmd`.
+
+a. `File > New File > R Markdown`
+
+<div style="width:300px; height=200px">
+![](img/markdown.png)
+</div>
+
+b. Give it a `Title`: e.g. ** Assignment 1**.
+
+c. Choose PDF as the `Default Output Format`. 
+
+d. Now you have an `R Markdown` document that looks similar to this.
+
+<div style="width:500px; height=200px"> 
+![](img/markdown2.png)
+</div>
+
+e. Write your solutions in this `R Mardown` document. 
+
+# 4. Commit and Push changes.
+
+Once you're done writing your solutions:
+
+a. Make sure you saved the final version of `solutions.Rmd`.
+
+b. Staged the changes and click on `Commit`.
+
+<div style="width:500px; height=200px"> 
+![](img/commit.png)
+</div>
+
+c. Write a commit message and click on `Commit` again. A window message should open indicating that the commit has been made. Close it. 
+
+<div style="width:500px; height=200px"> 
+![](img/commit2.png)
+</div>
+
+d. Finally, click on `Push`. 
+
+<div style="width:500px; height=200px"> 
+![](img/push.png)
+</div>
+
+Another window message shoud open indicating that you have pushed the changes to the online verison of the repository in your GitHub account. 
+
+<div style="width:500px; height=200px"> 
+![](img/push2.png)
+</div>
+
+# 5. Initiate a Pull Request.
+
+Once you're done with the assignment and your `solutions.Rmd` is already in your online version of the assignment's repository:
+
+a. Click on `New Pull Request`.
+
+<div style="width:500px; height=200px"> 
+![](img/pull_request.png)
+</div>
+
+b. Click on `Create pull request`.
+
+<div style="width:500px; height=200px"> 
+![](img/pull_request2.png)
+</div>
+ 
+c. Title your pull request **Submission** and click on `Create pull request`.
+
+<div style="width:500px; height=200px"> 
+![](img/pull_request3.png)
+</div>
+
+
+
+
+

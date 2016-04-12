@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Submitting Homework</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -303,8 +303,8 @@ div.tocify {
             <li><a href="word4research.html">Word for Research</a></li>
             <li><a href="Rmarkdown.html">R Markdown</a></li>
             <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
-            <li><a href="submitting-homework.html"> Submitting Homework</a></li>
-            <li><a href="submitting-proj-assign.html"> Submitting Project Assignments</a></li>
+            <li><a href="submitting-homework"> Submitting Homework</a></li>
+            <li><a href="submitting-proj-assign"> Submitting Project Assignments</a></li>
           </ul>
         </li>
         <!-- end references dropdown -->
@@ -320,103 +320,100 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
+<h1 class="title">Submitting Homework</h1>
 
 </div>
 
 
-<!--
-.. title: Getting Help with R
-.. description: How to get help with R?
--->
-<div id="functions" class="section level1">
-<h1>Functions</h1>
-<p>The first place to look is to use the search box in the <em>Help</em> tab of RStudio.</p>
-<p>If you start typing in either the console or editor in RStudio and hit <code>[TAB]</code>, the RStudio will show a list of completions as well as a short help for each.</p>
-<p>There are several R functions to get help using either <code>?</code> or <code>help</code>. For example to find help for a function <code>quantile</code>, you can use either</p>
-<pre class="r"><code>?quantile</code></pre>
-<p>or</p>
-<pre class="r"><code>help(&quot;quantile&quot;)</code></pre>
-<p>To find the help pages available for a package, use <code>help</code> with the <code>package</code> argument. For example,</p>
-<pre class="r"><code>help(package = &quot;tidyr&quot;)</code></pre>
-<p>Want to find out what datasets are included in the R packages that you have installed?</p>
-<pre class="r"><code>data()</code></pre>
-<p>To find datasets included in a specific package, use <code>data</code> with the <code>package</code> argument, For example,</p>
-<pre class="r"><code>data(package = &quot;ggplot2&quot;)</code></pre>
-<p>The help for R functions is only useful if you know what function you need want to know either what it is doing, or what the arguments are. The help files in R are not useful for understanding what a package does or how to use it. However, <em>vignettes</em> for R packages are often overviews of the functionality of packages that serve as tutorials or introductions to using the package. To get a list of all vignettes of the packages your have installed, run</p>
-<pre class="r"><code>browseVignettes()</code></pre>
-<p>To get the list of vignettes for a specific package, run</p>
-<pre class="r"><code>browseVignettes(&quot;dplyr&quot;)</code></pre>
-<p>You can also find vignettes for packages you have not installed on the packages’ CRAN page [<a href="https://cran.r-project.org/web/packages/tidyr/index.html" class="uri">https://cran.r-project.org/web/packages/tidyr/index.html</a>]<a href="https://github.com/hadley/dplyr" class="uri">https://github.com/hadley/dplyr</a>)“. There is also a <code>vignette</code> function, but you need the exact name of the vignette, which you generally do not know.</p>
-<p>Note that <code>search()</code> <strong>does not</strong> do what you expect it to do, unless you expect it to return the search path in which R looks for packages.</p>
+<p>We’ll create a new repository in the <a href="https://github.com/UW-POLS503">UW-POLS503</a> organization for each assignment (e.g. <a href="https://github.com/UW-POLS503/Assignment_01">Assignment_01</a> ). Follow the following steps to work on and submitt the homework.</p>
+<div id="fork-the-repository." class="section level1">
+<h1>1. Fork the repository.</h1>
+<p><img src="img/fork.png" alt="" /></p>
+<p>Now you have a copy of the repository in your online<code>GitHub</code> account.</p>
+<p><img src="img/forked.png" alt="" /></p>
 </div>
-<div id="internet" class="section level1">
-<h1>Internet</h1>
-<p><a href="http://www.rdocumentation.org/">Rdocumentation.org</a> searches the documentation of all R packages on CRAN and more</p>
-<p>Google has gotten better with R searches, but <code>R</code> is a particularly unfriendly search term. However, if you are searching for “R” with other words in context, you are likely to have some success. An alternative is to use <a href="http://rseek.org">rseek.org</a> instead. It is a Google search restricted to a curated set of sites related to R.</p>
-<p>Many R packages have an article in either the <a href="http://www.jstatsoft.org/index">Journal of Statistical Software</a> or <a href="https://journal.r-project.org/">The R Journal</a> These articles are similar to package does.</p>
-<p><a href="https://stackoverflow.com">Stack Overflow</a> is a question and answer website for computer programming questions. Search for questions about R using the “r” tag. You can do this by adding <code>[r]</code> to your search query. Other tags that may be useful are <code>[ggplot2]</code>, <code>[plyr]</code>. However, generally you should not need to <em>ask</em> questions for this course. Someone has likely already asked your question before.</p>
-<p>If you have a question about “statistics” or “data analysis” rather than “R”, then <a href="https://stats.stackexchange.com/">Cross Validated</a> is a Q-and-A site like Stack Overflow, but for statistics and machine learning.</p>
+<div id="clone-the-repository-using-rstudio." class="section level1">
+<h1>2. Clone the repository using RStudio.</h1>
+<ol style="list-style-type: lower-alpha">
+<li>Copy the URL of your repository from GitHub.</li>
+</ol>
+<p><img src="img/clone.png" alt="" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Open RStudio and create a new Git RProject: <code>File &gt; New Project &gt; Version Control &gt; Git</code></p></li>
+<li><p>Enter the URL to where it says <code>Repository URL</code>. It will create a directory named <code>Assignment_01</code> that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</p></li>
+</ol>
+<div style="width:300px; height=200px">
+<p><img src="img/clone2.png" alt="" /></p>
 </div>
-<div id="cheatsheets" class="section level1">
-<h1>Cheatsheets</h1>
-<p>RStudio has several very good <a href="https://www.rstudio.com/resources/cheatsheets/">cheatsheets</a></p>
-<ul>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">RStudio IDE</a></li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf">Data Visualization</a> (ggplot2)</li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling</a> (dplyr, tidyr, lubridate, tidyr)</li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown</a></li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a></li>
-</ul>
-<p>The <a href="https://cran.r-project.org/doc/contrib/Short-refcard.pdf">Short R Reference Card</a> is the classic cheatsheet. However, some of the data manipulation and plotting functions are not those we use in this course, but it does cover much of the statistical functions.</p>
 </div>
-<div id="books" class="section level1">
-<h1>Books</h1>
-<p>Two references organized by task are <a href="http://www.cookbook-r.com">The Cookbook for R</a> and <a href="http://www.statmethods.net/">Quick-R</a>.</p>
-<!--
-[R-bloggers](http://www.r-bloggers.com/) aggregates R-related blogging. 
-
-On twitter, the R hashtag is `#rstats`. Some prominent R-related people and accounts on twitter are:
-[@R-bloggers](https://twitter.com/Rbloggers)
-[@RevolutionR](https://twitter.com/RevolutionR),
-[@isDotR](https://twitter.com/isDotR),
-[@swirlstats](https://twitter.com/swirlstats),
-[@rOpenGov](https://twitter.com/rOpenGov),
-[@JennyBryan](https://twitter.com/JennyBryan),
-[@rOpenSci](https://twitter.com/rOpenSci),
-[@rstudio](https://twitter.com/rstudio),
-[@inside_R](https://twitter.com/inside_R),
-[@cboettig](https://twitter.com/cboettig),
-[@ramnath_vaidya](https://twitter.com/ramnath_vaidya),
-[@eddelbuettel](https://twitter.com/eddelbuettel),
-[@benmarwick](https://twitter.com/benmarwick),
-[@thosjleeper](https://twitter.com/thosjleeper),
-[@STAT545](https://twitter.com/STAT545).
-
-
-Do you want to know what packages exist for a given topic? [CRAN Task Views](https://cran.r-project.org/web/views/) provide subject matter groupings of R packages. Some potentially useful task-views to social scientists are:
-
-    - [Econometrics](https://cran.r-project.org/web/views/Econometrics.html)
-    - [Natural Language Processing](https://cran.r-project.org/web/views/NaturalLanguageProcessing.html)
-    - [Official Statistics & Survey Methodology](https://cran.r-project.org/web/views/OfficialStatistics.html)
-    - [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html)
-    - [Spatial](https://cran.r-project.org/web/views/Spatial.html)
-    - [Survival Analysis](https://cran.r-project.org/web/views/Survival.html)
-    - [Time Series](https://cran.r-project.org/web/views/TimeSeries.html)
-    - [Web Technologies and Services](https://cran.r-project.org/web/views/WebTechnologies.html)
-    - [Social Sciences](https://cran.r-project.org/web/views/SocialSciences.html)
--->
+<div id="create-an-r-markdown-file-solutions.rmd." class="section level1">
+<h1>3. Create an R Markdown file: <code>solutions.Rmd</code>.</h1>
+<ol style="list-style-type: lower-alpha">
+<li><code>File &gt; New File &gt; R Markdown</code></li>
+</ol>
+<div style="width:300px; height=200px">
+<p><img src="img/markdown.png" alt="" /></p>
 </div>
-<div id="how-to-ask-for-help" class="section level1">
-<h1>How to ask for help</h1>
-<p>TODO: fill in an example</p>
-<!--
-How to write a minimal reproducible example <https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example>
-
-If you are going to ask for help, it is important to know how to ask for help
-
-- Coding Killed the Cat "How to ask programming question" <https://codingkilledthecat.wordpress.com/2012/06/26/how-to-ask-for-programming-help/>
-- Matt Gemmell, "What Have You Tried?" <http://mattgemmell.com/what-have-you-tried/>
--->
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Give it a <code>Title</code>: e.g. ** Assignment 1**.</p></li>
+<li><p>Choose PDF as the <code>Default Output Format</code>.</p></li>
+<li><p>Now you have an <code>R Markdown</code> document that looks similar to this.</p></li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/markdown2.png" alt="" /></p>
+</div>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Write your solutions in this <code>R Mardown</code> document.</li>
+</ol>
+</div>
+<div id="commit-and-push-changes." class="section level1">
+<h1>4. Commit and Push changes.</h1>
+<p>Once you’re done writing your solutions:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Make sure you saved the final version of <code>solutions.Rmd</code>.</p></li>
+<li><p>Staged the changes and click on <code>Commit</code>.</p></li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/commit.png" alt="" /></p>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Write a commit message and click on <code>Commit</code> again. A window message should open indicating that the commit has been made. Close it.</li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/commit2.png" alt="" /></p>
+</div>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Finally, click on <code>Push</code>.</li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/push.png" alt="" /></p>
+</div>
+<p>Another window message shoud open indicating that you have pushed the changes to the online verison of the repository in your GitHub account.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/push2.png" alt="" /></p>
+</div>
+</div>
+<div id="initiate-a-pull-request." class="section level1">
+<h1>5. Initiate a Pull Request.</h1>
+<p>Once you’re done with the assignment and your <code>solutions.Rmd</code> is already in your online version of the assignment’s repository:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Click on <code>New Pull Request</code>.</li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/pull_request.png" alt="" /></p>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Click on <code>Create pull request</code>.</li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/pull_request2.png" alt="" /></p>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Title your pull request <strong>Submission</strong> and click on <code>Create pull request</code>.</li>
+</ol>
+<div style="width:500px; height=200px">
+<p><img src="img/pull_request3.png" alt="" /></p>
+</div>
 </div>
 
 <!-- some extra javascript for older browsers -->
