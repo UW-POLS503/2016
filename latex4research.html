@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,27 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -306,6 +303,7 @@ div.tocify {
             <li><a href="word4research.html">Word for Research</a></li>
             <li><a href="Rmarkdown.html">R Markdown</a></li>
             <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-homewokr"> Submitting Homework</a></li>
           </ul>
         </li>
         <!-- end references dropdown -->
@@ -319,7 +317,6 @@ div.tocify {
 
 
 <div class="fluid-row" id="header">
-
 
 
 <h1 class="title">LaTeX for Research</h1>
@@ -359,44 +356,4 @@ div.tocify {
 </div>
 <div id="my-workflow" class="section level2">
 <h2>My workflow</h2>
-<p>At the moment, I use emacs with <a href="http://www.gnu.org/software/auctex/">AucTeX</a> for writing pure LaTeX documents. However, I’ve started using Atom more and more as a general text editor. I use RStudio for writing Rnw files. For papers, I haven’t moved to using (R) markdown and pandoc yet, because I find the layout and reference support still too limiting; I end up writing enough LaTeX that I figure I might as well write the whole thing in LaTeX. I’ve been using Overleaf for coauthoring in a couple of cases. I often build my document using <a href="https://en.wikipedia.org/wiki/Make_(software)">Makefiles</a>. For smaller papers, I’ll use Rnw files with knitr, but for larger projects, I’ll separate the R code into scripts and include the output into</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>TeX is pronounced as “teck” because the X is a Greek chi. The pronunciation of of LaTeX is thus lah-teck or lay-teck. It is not pronounced like the rubber compund. See this <a href="http://tex.stackexchange.com/questions/17502/what-is-the-correct-pronunciation-of-tex-and-latex">StackExchange</a> question on the pronunciation of LaTeX.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>And of course <a href="http://www.vim.org/">Vim</a> or <a href="https://www.gnu.org/software/emacs/">Emacs</a>.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>And <a href="https://www.statistik.lmu.de/~leisch/Sweave/">Sweave</a> files preceded R markdown and knitr by many years.<a href="#fnref3">↩</a></p></li>
-</ol>
-</div>
-
-<!-- some extra javascript for older browsers -->
-<script type="text/javascript" src="libs/polyfill.js"></script>
-
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-$(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-});
-
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-</body>
-</html>
+<p>At the moment, I use emacs with <a href="http://www.gnu.org/software/auctex/">AucTeX</a> for writing pure LaTeX documents. However, I’ve started using Atom more and more as a general text editor. I use RStudio for writing Rnw files. For papers, I haven’t moved to using (R) markdown and pandoc yet, because I find the layout and reference support still too limiting; I end up writing enough LaTeX that I figure I might as well write the whole thing in LaTeX. I’ve been using Overleaf for coauthoring in a co

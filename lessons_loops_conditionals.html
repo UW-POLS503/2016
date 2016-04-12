@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,27 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -306,6 +303,7 @@ div.tocify {
             <li><a href="word4research.html">Word for Research</a></li>
             <li><a href="Rmarkdown.html">R Markdown</a></li>
             <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-homewokr"> Submitting Homework</a></li>
           </ul>
         </li>
         <!-- end references dropdown -->
@@ -321,144 +319,4 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-
-<h1 class="title">Loops and Conditionals</h1>
-
-</div>
-
-
-<div id="learning-objectives" class="section level2">
-<h2>Learning Objectives</h2>
-<ul>
-<li>Write and use <code>for</code> loops to apply the same code to multiple objects or elements</li>
-<li>Use <code>if</code>-<code>else</code> statements to conditionally execute code</li>
-</ul>
-</div>
-<div id="required-packages-and-datasets" class="section level2">
-<h2>Required Packages and Datasets</h2>
-<p>Make sure you can load all these packages and dataset before starting the module</p>
-<pre class="r"><code>library(dplyr)
-library(uwpols501)
-data(iver)</code></pre>
-</div>
-<div id="for-loops" class="section level2">
-<h2>For Loops</h2>
-<p>We use <code>for</code> loops to iterate through multiple elements of a list, variable, etc., and do <strong>something</strong> with those elements.</p>
-<p>A <code>for</code> loop has the following skeleton:</p>
-<pre class="r"><code>for (each_element in here) { # Try to use meaningful names for the
-  # do something             #   &quot;each_element&quot; object
-  print(each_element)
-}</code></pre>
-<p>A short/silly example:</p>
-<pre class="r"><code>list_numbers &lt;- sample(x = 1:100, size = 10, replace = FALSE) # sample() function
-for (number in list_numbers) {
-  print(paste0(&quot;2 times &quot;, number, &quot; is &quot;, number * 2))
-}</code></pre>
-<pre><code>## [1] &quot;2 times 26 is 52&quot;
-## [1] &quot;2 times 55 is 110&quot;
-## [1] &quot;2 times 6 is 12&quot;
-## [1] &quot;2 times 46 is 92&quot;
-## [1] &quot;2 times 47 is 94&quot;
-## [1] &quot;2 times 78 is 156&quot;
-## [1] &quot;2 times 35 is 70&quot;
-## [1] &quot;2 times 51 is 102&quot;
-## [1] &quot;2 times 16 is 32&quot;
-## [1] &quot;2 times 57 is 114&quot;</code></pre>
-<p>A real example:</p>
-<p>Imagine that we want to calculate the <span class="math inline">\(log\)</span> of the variables <code>povred</code> and <code>enp</code> of the <code>iver</code> dataset. We can create a list with these two variable names and then, for each of them, find them in <code>iver</code>, calculate the <span class="math inline">\(log\)</span>, and add the result as a new variable to the dataset.</p>
-<pre class="r"><code>numeric_vars &lt;- c(&quot;povred&quot;, &quot;enp&quot;)
-for (variable in numeric_vars) {
-  y &lt;- iver[,variable]
-  log_y &lt;- log(y)
-  name_new_var &lt;- paste0(variable, &quot;_log&quot;)
-  iver[,name_new_var] &lt;- log_y
-}</code></pre>
-</div>
-<div id="conditional-execution-if-and-else-statements" class="section level2">
-<h2>Conditional Execution: if and else statements</h2>
-<p>Sometimes we only want to execute certain code if the data fulfills some conditions. To do that we use <code>if</code> and <code>else</code> statements.</p>
-<p>How <code>if</code> and <code>else</code> statements look like:</p>
-<pre class="r"><code>if (this) {
-  # do that
-} else if (that) {
-  # do something else
-} else {
-  #
-}</code></pre>
-<p><strong>This</strong> and <strong>that</strong> in the previous chunk of code are boolean tests: code that returns TRUE/FALSE when the computer executes it. Some examples of boolean tests:</p>
-<pre class="r"><code>10 == 2</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>10 %in% c(2, 5, 13, 20, 10)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>10 == 2 &amp; 10 %in% c(2, 5, 13, 20, 10)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>10 == 2 | 10 %in% c(2, 5, 13, 20, 10)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p>A short/silly example:</p>
-<pre class="r"><code>some_numbers &lt;- c(1, 4, 6, 10,12, 16, 45, 88, 102)
-for (number in some_numbers) {
-  if (number &lt; 10) {
-    print(paste0(number, &quot; is smaller than 10&quot;))
-  } else if (number &lt; 50) {
-    print(paste0(number, &quot; is smaller than 50 but greater or equal to 10&quot;))
-  } else {
-    print(paste0(number, &quot; is greater than 50&quot;))
-  }
-}</code></pre>
-<pre><code>## [1] &quot;1 is smaller than 10&quot;
-## [1] &quot;4 is smaller than 10&quot;
-## [1] &quot;6 is smaller than 10&quot;
-## [1] &quot;10 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;12 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;16 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;45 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;88 is greater than 50&quot;
-## [1] &quot;102 is greater than 50&quot;</code></pre>
-<p>Real example:</p>
-<p>We previously calculated the <span class="math inline">\(log\)</span> and added it to the dataset for the numeric variables in <code>iver</code>. To do that we first created a list with the numeric variables. This time we won’t create that list. Instead, we’ll use conditional execution to indicate that we only want to take the <span class="math inline">\(log\)</span> of numeric variables.</p>
-<pre class="r"><code>data(iver) # load the data set again
-iver &lt;- as.data.frame(iver)
-for (variable in names(iver)) {
-  y &lt;- iver[,variable]
-  if (is.numeric(y)) {
-    log_y &lt;- log(y)
-    name_new_var &lt;- paste0(variable, &quot;_log&quot;)
-    iver[,name_new_var] &lt;- log_y
-  } else{
-    print(paste0(variable, &quot; is not a numeric variable.&quot;))
-  }
-}</code></pre>
-<pre><code>## [1] &quot;cty is not a numeric variable.&quot;
-## [1] &quot;elec_sys is not a numeric variable.&quot;</code></pre>
-</div>
-
-<!-- some extra javascript for older browsers -->
-<script type="text/javascript" src="libs/polyfill.js"></script>
-
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-$(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-});
-
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-</body>
-</html>
+<h1 class="title">Loops a

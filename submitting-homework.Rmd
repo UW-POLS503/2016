@@ -4,7 +4,7 @@ title: "Submitting Homework"
 
 We'll create a new repository in the [UW-POLS503](https://github.com/UW-POLS503) organization for each assignment (e.g. [Assignment_01](https://github.com/UW-POLS503/Assignment_01) ). Follow the following steps to work on and submitt the homework.
 
-### 1. Fork the repository.
+# 1. Fork the repository.
 
 ![](fork.png)
 
@@ -12,7 +12,7 @@ Now you have a copy of the repository in your online`GitHub` account.
 
 ![](forked.png)
 
-### 2. Clone the repository using RStudio.
+# 2. Clone the repository using RStudio.
 
 a. Copy the URL of your repository from GitHub.
 
@@ -27,7 +27,7 @@ c. Enter the URL to where it says `Repository URL`. It will create a directory n
 </div>
 
 
-### 3. Create an R Markdown file: `solutions.Rmd`.
+# 3. Create an R Markdown file: `solutions.Rmd`.
 
 a. `File > New File > R Markdown`
 
@@ -47,7 +47,7 @@ d. Now you have an `R Markdown` document that looks similar to this.
 
 e. Write your solutions in this `R Mardown` document. 
 
-### 4. Commit and Push changes.
+# 4. Commit and Push changes.
 
 Once you're done writing your solutions:
 
@@ -77,7 +77,7 @@ Another window message shoud open indicating that you have pushed the changes to
 ![](push2.png)
 </div>
 
-### 4. Initiate a Pull Request.
+# 5. Initiate a Pull Request.
 
 Once you're done with the assignment and your `solutions.Rmd` is already in your online version of the assignment's repository:
 
