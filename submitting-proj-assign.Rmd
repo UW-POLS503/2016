@@ -9,11 +9,11 @@ title: "Submitting Project Assignments"
 
 # No need to Fork the repository
 
-For the **project** assignments, you don't need to create your own copy (fork) of the original repository that it's located in the `UW-POLS503` organization. 
+For the **project** assignments, you don't need to create your own copy (fork) of the original repository that it's located in the `UW-POLS503` organization.
 
 # Clone the repository
 
-You do need to clone the repo. 
+You do need to clone the repo.
 
 a. Copy the URL of your repository from GitHub.
 
@@ -23,9 +23,9 @@ b. Open RStudio and create a new Git RProject: `File > New Project > Version Con
 
 c. Enter the URL to where it says `Repository URL`. It will create a directory name with your `UW netID`. This new directory will have the original files in the repository plus an `.Rproj` and `.gitingore` file.
 
-<div style="width:300px; height=200px">
-![](img/private_clone2.png)
-</div>
+    <div style="width:300px; height=200px">
+    ![](img/private_clone2.png)
+    </div>
 
 # Work on a new Project Assignment
 
@@ -40,12 +40,12 @@ Every time you work on a new assignment:
 
 2. Create a new issue in your private repository in GitHub.
 
-<div style="width:500px; height=200px">
-![](img/submit_1.png)
-</div>
+    <div style="width:500px; height=200px">
+    ![](img/submit_1.png)
+    </div>
 
 3. Title the new issue “Review Project Assignment <number>”. In the issue message write “cc @jrnold @CasAndreu”. This is how you submit your assignment, and let the instructors know it is ready to review. You're done!
 
-<div style="width:500px; height=200px">
-![](img/submit_2.png)
-</div>
+    <div style="width:500px; height=200px">
+    ![](img/submit_2.png)
+    </div>

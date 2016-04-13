@@ -141,6 +141,9 @@ NO CLASS due to MPSA
 
 ### <time datetime="2016-04-12">Tuesday, April 12</time>
 
+Class Agenda
+
+- [Conditional Expectation Functions slides](slides/what-is-regression.pdf)
 - [Example code](slides/cef_example.R)
 - [Conditional Probability: Explained Visually](http://setosa.io/ev/conditional-probability/)
 - [Ordinary Least Squares Regression: Explained Visually]http://setosa.io/ev/ordinary-least-squares-regression/
