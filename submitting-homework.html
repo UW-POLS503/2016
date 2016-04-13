@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,27 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -320,6 +323,7 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
+
 <h1 class="title">Submitting Homework</h1>
 
 </div>
@@ -340,30 +344,26 @@ div.tocify {
 <p><img src="img/clone.png" alt="" /></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>Open RStudio and create a new Git RProject: <code>File &gt; New Project &gt; Version Control &gt; Git</code></p></li>
-<li><p>Enter the URL to where it says <code>Repository URL</code>. It will create a directory named <code>Assignment_01</code> that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</p></li>
-</ol>
+<li><p>Enter the URL to where it says <code>Repository URL</code>. It will create a directory named <code>Assignment_01</code> that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</p>
 <div style="width:300px; height=200px">
 <p><img src="img/clone2.png" alt="" /></p>
-</div>
+</div></li>
+</ol>
 </div>
 <div id="create-an-r-markdown-file-solutions.rmd." class="section level1">
 <h1>3. Create an R Markdown file: <code>solutions.Rmd</code>.</h1>
 <ol style="list-style-type: lower-alpha">
-<li><code>File &gt; New File &gt; R Markdown</code></li>
-</ol>
+<li><p><code>File &gt; New File &gt; R Markdown</code></p>
 <div style="width:300px; height=200px">
 <p><img src="img/markdown.png" alt="" /></p>
-</div>
-<ol start="2" style="list-style-type: lower-alpha">
+</div></li>
 <li><p>Give it a <code>Title</code>: e.g. ** Assignment 1**.</p></li>
 <li><p>Choose PDF as the <code>Default Output Format</code>.</p></li>
-<li><p>Now you have an <code>R Markdown</code> document that looks similar to this.</p></li>
-</ol>
+<li><p>Now you have an <code>R Markdown</code> document that looks similar to this.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/markdown2.png" alt="" /></p>
-</div>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Write your solutions in this <code>R Mardown</code> document.</li>
+</div></li>
+<li><p>Write your solutions in this <code>R Mardown</code> document.</p></li>
 </ol>
 </div>
 <div id="commit-and-push-changes." class="section level1">
@@ -371,49 +371,41 @@ div.tocify {
 <p>Once you’re done writing your solutions:</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Make sure you saved the final version of <code>solutions.Rmd</code>.</p></li>
-<li><p>Staged the changes and click on <code>Commit</code>.</p></li>
-</ol>
+<li><p>Staged the changes and click on <code>Commit</code>.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/commit.png" alt="" /></p>
-</div>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Write a commit message and click on <code>Commit</code> again. A window message should open indicating that the commit has been made. Close it.</li>
-</ol>
+</div></li>
+<li><p>Write a commit message and click on <code>Commit</code> again. A window message should open indicating that the commit has been made. Close it.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/commit2.png" alt="" /></p>
-</div>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Finally, click on <code>Push</code>.</li>
-</ol>
+</div></li>
+<li><p>Finally, click on <code>Push</code>.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/push.png" alt="" /></p>
-</div>
+</div></li>
+</ol>
 <p>Another window message shoud open indicating that you have pushed the changes to the online verison of the repository in your GitHub account.</p>
-<div style="width:500px; height=200px">
-<p><img src="img/push2.png" alt="" /></p>
-</div>
+<pre><code>&lt;div style=&quot;width:500px; height=200px&quot;&gt;
+![](img/push2.png)
+&lt;/div&gt;</code></pre>
 </div>
 <div id="initiate-a-pull-request." class="section level1">
 <h1>5. Initiate a Pull Request.</h1>
 <p>Once you’re done with the assignment and your <code>solutions.Rmd</code> is already in your online version of the assignment’s repository:</p>
 <ol style="list-style-type: lower-alpha">
-<li>Click on <code>New Pull Request</code>.</li>
-</ol>
+<li><p>Click on <code>New Pull Request</code>.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/pull_request.png" alt="" /></p>
-</div>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Click on <code>Create pull request</code>.</li>
-</ol>
+</div></li>
+<li><p>Click on <code>Create pull request</code>.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/pull_request2.png" alt="" /></p>
-</div>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Title your pull request <strong>Submission</strong> and click on <code>Create pull request</code>.</li>
-</ol>
+</div></li>
+<li><p>Title your pull request <strong>Submission</strong> and click on <code>Create pull request</code>.</p>
 <div style="width:500px; height=200px">
 <p><img src="img/pull_request3.png" alt="" /></p>
-</div>
+</div></li>
+</ol>
 </div>
 
 <!-- some extra javascript for older browsers -->
