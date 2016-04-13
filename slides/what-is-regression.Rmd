@@ -19,6 +19,7 @@ output: pdf_document
     * Voter turnout
     * Log GDP per capita
     * Number of battle deaths
+    
 - $X$ - the independent variable or explanatory variable or regressor or right-hand-side variable or treatment or predictor
     * Social pressure mailer versus Civic Duty Mailer
     * Average Expropriation Risk
@@ -34,21 +35,23 @@ output: pdf_document
 
 # Conditional with Discrete Variables
 
-- We've been writing $\mu_y$ and $\mu_x$ for the means in different groups.
-- Each of these are conditional expectations. Define $Y$ to be the prestige of a profession, $X = ("bc", "wc", "prof")$
+Define $Y$ to be the prestige of a profession, $X = ("bc", "wc", "prof")$ (Duncan data):
+
 \[\begin{aligned}
 \mu_{bc} & = E[Y|X = bc] \\
 \mu_{wc} & = E[Y|X = wc] \\
 \mu_{prof} &= E[Y | X = prof]
 \end{aligned}\]
 
+Each $\mu$ for each group is a conditional expectation.
+
 # How to calculate Conditional Expectation Function with Discrete Variables
 
 - How do we calculate this? We've already done this: it's just the usual sample mean among the men and then the usual sample mean among the women:
 \[\begin{aligned}
-\widehat{E}[Y_i|X_i = wc] &= \frac{1}{n_1} \sum_{i: X_i = wc} Y_i \\
-\widehat{E}[Y_i|X_i = bc] &= \frac{1}{n_0} \sum_{i: X_i = bc} Y_i \\
-\widehat{E}[Y_i|X_i = prof] &= \frac{1}{n_0} \sum_{i: X_i = prof} Y_i
+\widehat{E}[Y_i|X_i = wc] &= \frac{1}{n_{wc}} \sum_{i: X_i = wc} Y_i \\
+\widehat{E}[Y_i|X_i = bc] &= \frac{1}{n_{bc}} \sum_{i: X_i = bc} Y_i \\
+\widehat{E}[Y_i|X_i = prof] &= \frac{1}{n_{prof}} \sum_{i: X_i = prof} Y_i
 \end{aligned}\]
 
 # Continuous covariate (I): each unique value gets a mean
@@ -94,3 +97,7 @@ $$E[Y_i|X_i=x] = \beta_0 + \beta_1 x$$
 - How we model the regression function, $E[Y_i|X_i=x]$, affects our the behavior of our estimates:
 - Higher bias (misses "local" variation)
 - Low variance (slope and intercept will only change slightly from sample to sample)
+
+# References
+
+These slides derived almost without change from Matthew Blackwell, [What is Regression](http://www.mattblackwell.org/teaching/gov2000/).
