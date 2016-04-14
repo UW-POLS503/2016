@@ -5,7 +5,7 @@ output:
     fig_caption: false
 ---
 
-# Homework Assignments
+# Project Assignments
 
 - Each student has its own private repository.
 - The name of the repository is the student's UW `netid`.
@@ -55,7 +55,7 @@ c. Title the new issue “Review Project Assignment <number>”. In the issue me
     ![](img/submit_2.png)
     </div>
 
-# Project Assignments
+# Homework Assignments
 
 We'll create a new repository in the [UW-POLS503](https://github.com/UW-POLS503) organization for each assignment (e.g. [Assignment_01](https://github.com/UW-POLS503/Assignment_01) ). Follow the following steps to work on and submitt the homework.
 
