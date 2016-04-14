@@ -5,7 +5,7 @@ output:
     fig_caption: false
 ---
 
-# Project Assignments
+# Project Assignments 
 
 - Each student has its own private repository.
 - The name of the repository is the student's UW `netid`.
