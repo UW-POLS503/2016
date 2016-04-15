@@ -1,6 +1,9 @@
 ---
 title: "Functional Forms"
-output: html_document
+output: 
+  html_document:
+    fig_width: 5
+    fig_height: 4
 ---
 
 ## Learning Objectives
@@ -9,53 +12,156 @@ output: html_document
 
 ## Required Packages and Datasets
 
+Install the packages if you still don't have them (e.g. `install.packages(gapminder)`). If you don't have the `uwpols501` package, you need to install it from GitHub. Install & load the `devtools` package first, and then execute `install_github("UW-POLS501/r-uwpols501")`.
 ```{r, message = FALSE}
 library(dplyr)
 library(uwpols501)
+library(gapminder)
+library(broom)
+library(ggplot2)
+data(gapminder)
 data(turnout)
+```
+
+Also go to the following link to download a WDI dataset from 1980 to 2010.
+
+`https://www.dropbox.com/s/v6h8jlphf7z739y/wdi_1980_2010.csv?dl=0`
+
+Load the `wdi` dataset:
+```{r}
+wdi <- read.csv("data/wdi_1980_2010.csv")
 ```
 
 
 ## Intro
 I use as a source of inspiration in this lesson Chris Adolph's POLS-503 [notes](http://faculty.washington.edu/cadolph/503/topic5.pw.pdf). 
 
-`r challenge_start()`
-How do the model covariates affect the reponse variable in a linear model? What do we mean by "linear" regression?
-
-$y = \beta_{0} + \beta_{1}X_{1} + ... + \epsilon$
-`r challenge_end()`
-
 In a linear model, any unit change of a given covariate has always the same effect on the outcome variable. If the coefficient for that covariate is for example 0.54, it doesn't matter if the unit change is from 1 to 2 or from 100,001 to 100,002. The expected effect on the outcome variable is always the same: 0.54 increase in the units of the dependent variable. 
 
-However, theoretically we may sometimes think that the way a covariate affects the response variable is not linear.
+However, theoretically we may sometimes think that the way a covariate affects the response variable is not linear. For example, is the relationship between `income` and `life expectancy` linear? Or Acemoglu and Robinson (2006) argue that the relationship between `inequality` and `democratization` follows a U-shape (we'll talk about these two examples in more detail next). How do we deal with this non-linear relationships? Can we still use a linear models to estimate them?
 
-`r challenge_start()`
-Look at the following covariates and response variables. Do you think their relationship is linear? If not, describe the type of relationship you think makes the most sense from a theoretical perspective (e.g. exponential, logarithmic, U-shape, etc.).
-
-  - Income Inequality --> Transition to Democracy
-  - Education --> Income
-  - Age --> Income
-`r challenge_end()`
+$y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2}... + \epsilon$
 
 ## Logrithmic Transformations
 
-Load the `turnout` dataset from the `uw-pols501` package. 
-Imagine that `income` is simply a linear function of `age` and education (`educate`).
+Load the `gapminder` dataset from the `gapminder` package. 
+Imagine that `lifeExp` is simply a linear function of `gdpPercap`.
 
-$income = \beta_{0} + \beta_{1}age + \beta_{2}education + \epsilon$ 
+$lifeExp = \beta_{0} + \beta_{1}gdpPercap + \epsilon$ 
 
-Plot the outcome variable `age` against the response variable `income`.
+Plot the outcome variable `lifeExp` against the response variable `gdpPercap`. Include a linear regression line (`geom_smoth()`) to the plot (with no confidence interal: `se = FALSE`)
 
-```{r}
-ggplot(turnout, aes(y = income, x = age)) +
+```{r, fig.align='center'}
+ggplot(gapminder, aes(y = lifeExp, x = gdpPercap)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+This graphs clearly shows that in the beginning, a unit increase on `gdpPercap` matters a lot in explaining `lifeExp`. However, at some point, extra units increase do not make much of a difference. We call this type of relation a *Logarithmic Relation*. How can we specify this logarithmic relation in a linear model? 
+
+If we believe that there is a *logarithmic* relation between the outcome variable and a covariate, this is the same as saying that there is a *linear* relation between the outcome variable and the $log$ of the covariate. Thus, we just need to transform the covariate of interest by calculating its $log$ and then add the resulting variable to the linear model.
+
+To show this, include a new variable to the `gapminder` dataset: the *log* of `gdpPercap`.
+```{r}
+gapminder <- mutate(gapminder, log_gdpPercap = log(gdpPercap))
+```
+
+Compare the distribution of `gdpPercap` and `log_gdpPercap` by looking at their `quantiles()`.
+```{r}
+data.frame(qGdp = quantile(gapminder$gdpPercap),
+           qLogGdp = quantile(gapminder$log_gdpPercap))
 ```
 
 
-```{r}
-ggplot(turnout, aes(y = income, x = educate)) +
+Plot `lifeExp` against this new variable. Include again a linear regression line to the plot. Observe how there is a linear relation between the outcome and the *log* of the covariate. Observe also that `log_gdpPercap` is not expressed on the original units (\$ per capita) anymore but in *log* \$ per capita.
+
+```{r, fig.align='center'}
+ggplot(gapminder, aes(x = log_gdpPercap, y = lifeExp)) +
   geom_point() +
-  geom_smooth()
+  geom_smooth(method = "lm")
 ```
+
+The model specification describing the two regressions are.
+```{r}
+mod1a <- lm(lifeExp ~ gdpPercap, data = gapminder)
+mod1b <- lm(lifeExp ~ log(gdpPercap), data = gapminder)
+```
+
+Let's see how well each model does in predicting the actual `lifeExp` values.
+```{r}
+gapminder_augm1 <- augment(mod1a, gapminder)
+gapminder_augm2 <- augment(mod1b, gapminder)  
+```
+
+```{r}
+ggplot(gapminder_augm1, aes(x = lifeExp, y = .fitted)) + 
+  geom_point()
+ggplot(gapminder_augm2, aes(x = lifeExp, y = .fitted)) +
+  geom_point()
+```
+
+
+`r challenge_start()`
+How would you create a dataset that contains the actual and predicted values of both models? Having such dataset would facilitate creating a side-by-side plot using the `facet_wrap` of `ggplot`.
+`r challenge_end()`
+
+`r solution_start()`
+
+```{r}
+predictions <- NULL
+models_list <- list(mod1a, mod1b)
+for (i in 1:length(models_list)) {
+  m <- models_list[[i]]
+  new_data <- data.frame(actual = m$model$lifeExp,
+                         predicted = m$fitted.values,
+                         model = i)
+  predictions <- rbind(predictions, new_data)
+}
+```
+
+```{r}
+ggplot(predictions, aes(x = actual, y = predicted)) +
+  geom_point() +
+  facet_wrap(~model)
+```
+
+`r solution_end()`
+
+
+`r challenge_start()`
+1. Look at the regression table for `mod1b`. How would you interpret the coefficients?
+2. Can you think of any covariate that you use in your own projects that has a *logarithmic relation* with the outcome variable you study? Describe that relationship.
+`r challenge_end()`
+
+## Squared Terms
+
+Sometimes we believe that there is a U-shaped relation between a covariate and the dependent variable. For example, some scholars such as [David I. Stern](http://www.sterndavidi.com/publications_type.html) argue that there is an [Environmental Kuznets Curve](https://en.wikipedia.org/wiki/Kuznets_curve#Environmental_Kuznets_curve). This means that there is an inverted U-shaped relation between environmental quality and economic growth. 
+
+As we discussed in the beginning, sometimes there is a squared relation between a covariate and our dependent variable of interest (e.g. [Kuznets curve](https://en.wikipedia.org/wiki/Kuznets_curve)).
+
+![Source: Wikipedia](/img/env_curve.png)
+
+How do we incorporate this theoretical expectation into a linera model? Using a *squared term*!
+
+Estimate the following models:
+
+1. $CO2_emissions = \beta_{0} + \beta_{1}gdpCapita + \epsilon$ 
+2. $CO2_emissions = \beta_{0} + \beta_{1}log(gdpCapita) + \epsilon$ 
+3. $CO2_emissions = \beta_{0} + \beta_{1}gdpCapita + \beta_{2}gdpCapita^{2} + \epsilon$ 
+
+But first change the names of the variables of interest in the `wdi` dataset so that 
+```{r}
+wdi <- mutate(wdi,co2 = EN.ATM.CO2E.KT, gdpCapita = NY.GDP.PCAP.CD)
+```
+
+
+
+
+
+
+
+
+
+
+
 

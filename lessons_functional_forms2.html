@@ -340,25 +340,34 @@ library(broom)
 library(ggplot2)
 data(gapminder)
 data(turnout)</code></pre>
-<p>Also go to the following link to download a WDI dataset from 1980 to 2010:</p>
-<p><code>https://www.dropbox.com/s/v6h8jlphf7z739y/wdi_1980_2010.csv?dl=0</code></p>
+<p>Also go to the following link to download a WDI dataset from 1980 to 2010.</p>
+<p><code>https://www.dropbox.com/s/qqb3vg66hxqfqzb/wdi_co2_gdp_1980_2010.csv?dl=0</code></p>
+<p>Load the <code>wdi</code> dataset.</p>
+<pre class="r"><code>wdi &lt;- read.csv(&quot;data/wdi_co2_gdp_1980_2010.csv&quot;)</code></pre>
 </div>
 <div id="intro" class="section level2">
 <h2>Intro</h2>
 <p>I use as a source of inspiration in this lesson Chris Adolph’s POLS-503 <a href="http://faculty.washington.edu/cadolph/503/topic5.pw.pdf">notes</a>.</p>
 <p>In a linear model, any unit change of a given covariate has always the same effect on the outcome variable. If the coefficient for that covariate is for example 0.54, it doesn’t matter if the unit change is from 1 to 2 or from 100,001 to 100,002. The expected effect on the outcome variable is always the same: 0.54 increase in the units of the dependent variable.</p>
-<p>However, theoretically we may sometimes think that the way a covariate affects the response variable is not linear. For example, is the relationship between <code>income</code> and <code>life expectancy</code> linear? Or Acemoglu and Robinson (2006) argue that the relationship between <code>inequality</code> and <code>democratization</code> follows a U-shape (we’ll talk about these two examples in more detail next). How do we deal with this non-linear relationships? Can we still use a linear models to estimate them?</p>
+<p>However, theoretically we may sometimes think that the way a covariate affects the response variable is not linear. For example, is the relationship between <code>income</code> and <code>life expectancy</code> linear? Or Acemoglu and Robinson (2006) argue that the relationship between <code>inequality</code> and <code>democratization</code> follows a U-shape. How do we deal with this non-linear relationships? Can we still use a linear models to estimate them?</p>
 <p><span class="math inline">\(y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2}... + \epsilon\)</span></p>
 </div>
 <div id="logrithmic-transformations" class="section level2">
 <h2>Logrithmic Transformations</h2>
-<p>Load the <code>gapminder</code> dataset from the <code>gapminder</code> package. Imagine that <code>lifeExp</code> is simply a linear function of <code>gdpPercap</code>.</p>
+<p>Think a little bit more about the relationship between Life Expectancy and GDP per capita. This relation is probably not linear. As the GDP per capita of a country increases, on average its citizens have more resources, better nutrition, etc., so you would expect the Life Expectancy of that country to increase. However, at least with the technology and medicines that are currently available, at a certain point Life Expectancy cannot keep increasing at the same rate or it cannot increase at all.</p>
+<p>Load the <code>gapminder</code> dataset from the <code>gapminder</code> package. Estimate a model that portrays <code>lifeExp</code> as a linear function of <code>gdpPercap</code>.</p>
 <p><span class="math inline">\(lifeExp = \beta_{0} + \beta_{1}gdpPercap + \epsilon\)</span></p>
-<p>Plot the outcome variable <code>lifeExp</code> against the response variable <code>gdpPercap</code>. Include a linear regression line (<code>geom_smoth()</code>) to the plot (with no confidence interal: <code>se = FALSE</code>)</p>
+<pre class="r"><code>mod1a &lt;- lm(lifeExp ~ gdpPercap, data = gapminder)</code></pre>
+<p>Plot the <code>lifeExp</code> that we would predict using this model against the covariate <code>gdpPercap</code>.</p>
+<pre class="r"><code>mod1a_augm &lt;- augment(mod1a, gapminder)
+ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<p>Uau! This model predicts that the Life Expectancy in Kuwait is 140 years!</p>
+<p>Plot now the outcome variable <code>lifeExp</code> against the response variable <code>gdpPercap</code>.</p>
 <pre class="r"><code>ggplot(gapminder, aes(y = lifeExp, x = gdpPercap)) +
-  geom_point() +
-  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-2-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+  geom_point() </code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>This graphs clearly shows that in the beginning, a unit increase on <code>gdpPercap</code> matters a lot in explaining <code>lifeExp</code>. However, at some point, extra units increase do not make much of a difference. We call this type of relation a <em>Logarithmic Relation</em>. How can we specify this logarithmic relation in a linear model?</p>
 <p>If we believe that there is a <em>logarithmic</em> relation between the outcome variable and a covariate, this is the same as saying that there is a <em>linear</em> relation between the outcome variable and the <span class="math inline">\(log\)</span> of the covariate. Thus, we just need to transform the covariate of interest by calculating its <span class="math inline">\(log\)</span> and then add the resulting variable to the linear model.</p>
 <p>To show this, include a new variable to the <code>gapminder</code> dataset: the <em>log</em> of <code>gdpPercap</code>.</p>
@@ -372,23 +381,26 @@ data(turnout)</code></pre>
 ## 50%    3531.8470  8.169576
 ## 75%    9325.4623  9.140504
 ## 100% 113523.1329 11.639762</code></pre>
-<p>Plot <code>lifeExp</code> against this new variable. Include again a linear regression line to the plot. Observe how there is a linear relation between the outcome and the <em>log</em> of the covariate. Observe also that <code>log_gdpPercap</code> is not expressed on the original units ($ per capita) anymore but in <em>log</em> $ per capita.</p>
+<p>Plot <code>lifeExp</code> against this new variable. Observe how there is a linear relation between the outcome and the <em>log</em> of the covariate. Observe also that <code>log_gdpPercap</code> is not expressed on the original units ($ per capita) anymore but in <em>log</em> $ per capita.</p>
 <pre class="r"><code>ggplot(gapminder, aes(x = log_gdpPercap, y = lifeExp)) +
-  geom_point() +
-  geom_smooth(method = &quot;lm&quot;)</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
-<p>The model specification describing the two regressions are.</p>
-<pre class="r"><code>mod1a &lt;- lm(lifeExp ~ gdpPercap, data = gapminder)
-mod1b &lt;- lm(lifeExp ~ log(gdpPercap), data = gapminder)</code></pre>
-<p>Let’s see how well each model does in predicting the actual <code>lifeExp</code> values.</p>
-<pre class="r"><code>gapminder_augm1 &lt;- augment(mod1a, gapminder)
-gapminder_augm2 &lt;- augment(mod1b, gapminder)  </code></pre>
-<pre class="r"><code>ggplot(gapminder_augm1, aes(x = lifeExp, y = .fitted)) + 
+  geom_point() </code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<p>Estimate a model now that portrays <code>lifeExp</code> as a linear function of the <em>log</em> of <code>gdpPercap</code>.</p>
+<p><span class="math inline">\(lifeExp = \beta_{0} + \beta_{1}log(gdpPercap) + \epsilon\)</span></p>
+<pre class="r"><code>mod1b &lt;- lm(lifeExp ~ log_gdpPercap, data = gapminder)</code></pre>
+<p>Plot <code>mod1b</code>’s predicted values of <code>lifeExp</code> against <code>gdpPercap</code>.</p>
+<pre class="r"><code>mod1b_augm &lt;- augment(mod1b, gapminder)
+ggplot(mod1b_augm, aes(y = .fitted, x = gdpPercap)) +
+  geom_point() </code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<p>That makes a lot more sense!</p>
+<p>Finally let’s see how well each model does in predicting the actual <code>lifeExp</code> values.</p>
+<pre class="r"><code>ggplot(mod1a_augm, aes(x = lifeExp, y = .fitted)) + 
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="480" /></p>
-<pre class="r"><code>ggplot(gapminder_augm2, aes(x = lifeExp, y = .fitted)) +
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(mod1b_augm, aes(x = lifeExp, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-8-2.png" title="" alt="" width="480" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-2.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <div id="challenge-1" class="panel panel-primary">
 <div class="panel-heading">
 <h3 class="panel-title">
@@ -417,8 +429,8 @@ for (i in 1:length(models_list)) {
 }</code></pre>
 <pre class="r"><code>ggplot(predictions, aes(x = actual, y = predicted)) +
   geom_point() +
-  facet_wrap(~ model)</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="480" /></p>
+  facet_wrap(~model)</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="challenge-2" class="panel panel-primary">
@@ -437,14 +449,43 @@ Challenge
 </div>
 <div id="squared-terms" class="section level2">
 <h2>Squared Terms</h2>
+<p>Sometimes we believe that there is a U-shaped relation between a covariate and the dependent variable. For example, some scholars such as <a href="http://www.sterndavidi.com/publications_type.html">David I. Stern</a> argue that there is an <a href="https://en.wikipedia.org/wiki/Kuznets_curve#Environmental_Kuznets_curve">Environmental Kuznets Curve</a>. This means that there is an inverted U-shaped relation between environmental quality and economic growth.</p>
 <p>As we discussed in the beginning, sometimes there is a squared relation between a covariate and our dependent variable of interest (e.g. <a href="https://en.wikipedia.org/wiki/Kuznets_curve">Kuznets curve</a>).</p>
-<p>Load the <code>turnout</code> dataset from the <code>uwpols501</code> package. Imagine that <code>income</code> is simply a linear function of <code>age</code>.</p>
-<p>Plot the outcome variable <code>age</code> against the response variable <code>income</code>. Include a conditional mean line (<code>geom_smoth()</code>) and a linear regression line. Do not plot confidence intervals for these lines, and choose a different color for each of the two.</p>
-<pre class="r"><code>ggplot(turnout, aes(y = income, x = age)) +
-  geom_point() +
-  geom_smooth(method = &quot;lm&quot;, se = FALSE) +
-  geom_smooth(se = FALSE, color = &quot;red&quot;)</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="img/env_curve.png" alt="Source: Wikipedia" /></p>
+<p>How do we incorporate this theoretical expectation into a linera model? Using a <em>squared term</em>!</p>
+<p>Estimate the following models:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(CO2emissions = \beta_{0} + \beta_{1}gdpCapita + \epsilon\)</span></li>
+<li><span class="math inline">\(CO2emissions = \beta_{0} + \beta_{1}log(gdpCapita) + \epsilon\)</span></li>
+<li><span class="math inline">\(CO2emissions = \beta_{0} + \beta_{1}gdpCapita + \beta_{2}gdpCapita^{2} + \epsilon\)</span></li>
+</ol>
+<p>Estimate the models and use the <code>augment</code> function to add the predicted values of <code>co2</code> to the dataset.</p>
+<pre class="r"><code>mod2a &lt;- lm(co2 ~ gdpCapita, wdi)
+mod2b &lt;- lm(co2 ~ gdpCapita + I(gdpCapita^2), wdi)
+mod2c &lt;- lm(co2 ~ log(gdpCapita), wdi)
+mod2a_aug &lt;- augment(mod2a, wdi)
+mod2b_aug &lt;- augment(mod2b, wdi)
+mod2c_aug &lt;- augment(mod2c, wdi)</code></pre>
+<p>For the 3 models, plot the predicted values of <code>co2</code>against <code>gdpCapita</code>.</p>
+<pre class="r"><code>ggplot(mod2a_aug, aes(x = gdpCapita, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(mod2b_aug, aes(x = gdpCapita, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-2.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(mod2c_aug, aes(x = gdpCapita, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-3.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<p>For the 3 models, plot the actual v. predicted values of <code>co2</code>.</p>
+<pre class="r"><code>ggplot(mod2a_aug, aes(x = co2, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(mod2b_aug, aes(x = co2, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-2.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(mod2c_aug, aes(x = co2, y = .fitted)) +
+  geom_point()</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-3.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <div id="challenge-3" class="panel panel-primary">
 <div class="panel-heading">
 <h3 class="panel-title">
@@ -452,40 +493,36 @@ Challenge
 </h3>
 </div>
 <div class="panel-body">
-<p>Which of the two lines do you think describes better the data and makes the most theoretical sense?</p>
+<p>How would you create a dataset that contains the actual and predicted values of <code>co2</code>, and <code>gdpCapita</code> for the 3 models ? And how would you replicate the the 2 types of plots we just used using the <code>facet_wrap</code>?</p>
 </div>
 </div>
-<p>Probably the one that describes a more <em>squared</em> (U-shape) <em>relation</em>:</p>
-<ul>
-<li>People do not make much money when they start working (age between 18 and 25).<br />
-</li>
-<li>People’s income increases as age and working experience also increases (from 25 to around 65).</li>
-<li>When people retire, their income decreases. Not everybody retires at the same age. However, beyond a certain point (e.g. 65), as people get older, the likelihood of their income decreasing increases.</li>
-</ul>
-<p>Plot the squared otucome variable against <code>income</code>.</p>
-<pre class="r"><code>ggplot(turnout, aes(y = income, x = age^2)) +
+<div class="panel panel-info">
+<div class="panel-heading">
+<h3 class="panel-title">
+<a data-toggle="collapse" href="#solution-2">Solution</a>
+</h3>
+</div>
+<div id="solution-2" class="panel-collapse collapse">
+<pre class="r"><code>predictions2 &lt;- NULL
+models_list2 &lt;- list(mod2a, mod2b, mod2c)
+for (i in 1:length(models_list2)) {
+  m &lt;- models_list2[[i]]
+  new_data &lt;- data.frame(actual_co2 = m$model$co2,
+                         predicted_co2 = m$fitted.values,
+                         model = i)
+  predictions2 &lt;- rbind(predictions2, new_data)
+}
+predictions2$gdpCapita &lt;- mod2a$model$gdpCapita</code></pre>
+<pre class="r"><code>ggplot(predictions2, aes(x = gdpCapita, y = predicted_co2)) +
   geom_point() +
-  geom_smooth(method = &quot;lm&quot;, se = FALSE) +
-  geom_smooth(se = FALSE, color = &quot;red&quot;)</code></pre>
-<p><img src="lessons_functional_forms_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
-<p>Observe that in this second plot, as age increases, we’re are making the 1-year increases larger. This means that in this new variable we’re giving more weight to larger values of age. If we add in a model both the non-squared (<code>age</code>) and the squared term (<code>age^2</code>), the coefficient for <code>age</code> will indicate the effect of 1-year increase after controlling for the quadratic effect of <code>age</code>. In other words, after controlling for the fact that older individuals behave differently.</p>
-<p>On the other hand, a positive coefficient for <code>age^2</code> will mean that an increase of age has even a bigger effect on <code>income</code> when people gets older. A negative effect will mean the opposite, than when people gets older <code>age</code> has a negative effect on <code>income</code> (or even more negative if the effect of the non-squared term was alread negative).</p>
-<p>Run the following regression:</p>
-<pre class="r"><code>mod_age &lt;- lm(income ~ age, data = turnout)
-sq_age &lt;- turnout$age^2
-mod_age_sq &lt;- lm(income ~ age + sq_age, data = turnout)</code></pre>
-<p>Compare the coefficients and standard errors of the covariates</p>
-<pre class="r"><code>tidy(mod_age)</code></pre>
-<pre><code>##          term    estimate   std.error statistic       p.value
-## 1 (Intercept)  5.03116831 0.173163723 29.054401 4.120691e-155
-## 2         age -0.02526776 0.003565702 -7.086335  1.901460e-12</code></pre>
-<pre class="r"><code>tidy(mod_age_sq)</code></pre>
-<pre><code>##          term     estimate    std.error  statistic      p.value
-## 1 (Intercept) -0.940178456 0.4398276292  -2.137607 3.266980e-02
-## 2         age  0.253503259 0.0193404858  13.107388 1.026591e-37
-## 3      sq_age -0.002822155 0.0001927646 -14.640423 3.507858e-46</code></pre>
-<p>Compared to <em>logarithimc terms</em>, the coefficients for <em>squared terms</em> are a lot harder to interpret. I suggest you use simulations and predictions to do so.</p>
-<p>For example, create a vector with 100 values of <code>age</code> that range from the minimum to the maximum value of <code>age</code> in the <code>turnout</code> dataset. Then use the vector to create a new dataset with the same covariates in <code>mod2</code>: <code>age</code> and <code>sq_age</code>.</p>
+  facet_wrap(~model)</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-18-1.png" title="" alt="" width="480" /></p>
+<pre class="r"><code>ggplot(predictions2, aes(x = actual_co2, y = predicted_co2)) +
+  geom_point() +
+  facet_wrap(~model)</code></pre>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-18-2.png" title="" alt="" width="480" /></p>
+</div>
+</div>
 </div>
 
 <!-- some extra javascript for older browsers -->
