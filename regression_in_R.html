@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Linear Regression Functions in R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Linear Regression Functions in R</h1>
+
+</div>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { extensions: ["autoload-all.js"] }
+});
+</script>
+<p>This tutorial uses the following libraries</p>
+<pre class="r"><code>library(&quot;ggplot2&quot;)
+library(&quot;dplyr&quot;)
+library(&quot;car&quot;)
+library(&quot;broom&quot;)</code></pre>
+<div id="regression" class="section level2">
+<h2>Regression</h2>
+<div id="lm" class="section level3">
+<h3>lm</h3>
+<p>This example makes use of the <a href="http://www.rdocumentation.org/packages/car/functions/Duncan">Duncan Occpuational prestige</a> included in the <a href="https://cran.r-project.org/web/packages/car/index.html">car</a> package. This is data from a classic sociology paper and contains data on the prestige and other characteristics of 45 U.S. occupations in 1950.</p>
+<pre class="r"><code>data(&quot;Duncan&quot;, package = &quot;car&quot;)</code></pre>
+<p>The dataset <code>Duncan</code> contains four variables: <code>type</code>, <code>income</code>, <code>education</code>, and <code>prestige</code>,</p>
+<pre class="r"><code>glimpse(Duncan)</code></pre>
+<pre><code>## Observations: 45
+## Variables: 4
+## $ type      (fctr) prof, prof, prof, prof, prof, prof, prof, prof, wc,...
+## $ income    (int) 62, 72, 75, 55, 64, 21, 64, 80, 67, 72, 42, 76, 76, ...
+## $ education (int) 86, 76, 92, 90, 86, 84, 93, 100, 87, 86, 74, 98, 97,...
+## $ prestige  (int) 82, 83, 90, 76, 90, 87, 93, 90, 52, 88, 57, 89, 97, ...</code></pre>
+<p>You run a regression in R using the function <code>lm</code>. This runs a linear regression of occupational prestige on income,</p>
+<pre class="r"><code>lm(prestige ~ income, data = Duncan)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income, data = Duncan)
+## 
+## Coefficients:
+## (Intercept)       income  
+##       2.457        1.080</code></pre>
+<p>This estimates the linear regression <span class="math display">\[
+\mathtt{prestige} = \beta_0 + \beta_1 \mathtt{income}
+\]</span> In R, <span class="math inline">\(\beta_0\)</span> is named <code>(Intercept)</code>, and the other coefficients are named after the associated predictor.</p>
+<p>The function <code>lm</code> returns an <code>lm</code> object that can be used in future computations. Instead of printing the regression result to the screen, save it to the variable <code>mod1</code>,</p>
+<pre class="r"><code>mod1 &lt;- lm(prestige ~ income, data = Duncan)</code></pre>
+<p>We can print this object</p>
+<pre class="r"><code>print(mod1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income, data = Duncan)
+## 
+## Coefficients:
+## (Intercept)       income  
+##       2.457        1.080</code></pre>
+<p>Somewhat counterintuitively, the <code>summary</code> function returns <strong>more</strong> information about a regression,</p>
+<pre class="r"><code>summary(mod1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income, data = Duncan)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -46.566  -9.421   0.257   9.167  61.855 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2.4566     5.1901   0.473    0.638    
+## income        1.0804     0.1074  10.062 7.14e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 17.4 on 43 degrees of freedom
+## Multiple R-squared:  0.7019, Adjusted R-squared:  0.695 
+## F-statistic: 101.3 on 1 and 43 DF,  p-value: 7.144e-13</code></pre>
+<p>The <code>summary</code> function also returns an object that we can use later,</p>
+<pre class="r"><code>summary_mod1 &lt;- summary(mod1)
+summary_mod1</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income, data = Duncan)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -46.566  -9.421   0.257   9.167  61.855 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2.4566     5.1901   0.473    0.638    
+## income        1.0804     0.1074  10.062 7.14e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 17.4 on 43 degrees of freedom
+## Multiple R-squared:  0.7019, Adjusted R-squared:  0.695 
+## F-statistic: 101.3 on 1 and 43 DF,  p-value: 7.144e-13</code></pre>
+<p>Now lets estimate a multiple linear regression,</p>
+<pre class="r"><code>mod2 &lt;- lm(prestige ~ income + education + type, data = Duncan)
+mod2</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income + education + type, data = Duncan)
+## 
+## Coefficients:
+## (Intercept)       income    education     typeprof       typewc  
+##     -0.1850       0.5975       0.3453      16.6575     -14.6611</code></pre>
+<p>TODO: discusss the formula syntax in detail.</p>
+</div>
+<div id="coefficients-standard-errors" class="section level3">
+<h3>Coefficients, Standard errors</h3>
+<p>Coefficients, <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>:</p>
+<pre class="r"><code>coef(mod2)</code></pre>
+<pre><code>## (Intercept)      income   education    typeprof      typewc 
+##  -0.1850278   0.5975465   0.3453193  16.6575134 -14.6611334</code></pre>
+<p>Variance-covariance matrix of the coefficients, <span class="math inline">\(\Var{\hat{\boldsymbol{\beta}}}\)</span>:</p>
+<pre class="r"><code>vcov(mod2)</code></pre>
+<pre><code>##             (Intercept)       income    education   typeprof     typewc
+## (Intercept)  13.7920916 -0.115636760 -0.257485549 14.0946963  7.9021988
+## income       -0.1156368  0.007984369 -0.002924489 -0.1260105 -0.1090485
+## education    -0.2574855 -0.002924489  0.012906986 -0.6166508 -0.3881200
+## typeprof     14.0946963 -0.126010517 -0.616650831 48.9021401 30.2138627
+## typewc        7.9021988 -0.109048528 -0.388119979 30.2138627 37.3171167</code></pre>
+<p>The standard errors of the coefficients, <span class="math inline">\(\se{\hat{\boldsymbol{\beta}}}\)</span>, are the square root diagonal of the <code>vcov</code> matrix,</p>
+<pre class="r"><code>sqrt(diag(vcov(mod2)))</code></pre>
+<pre><code>## (Intercept)      income   education    typeprof      typewc 
+##   3.7137705   0.0893553   0.1136089   6.9930065   6.1087737</code></pre>
+<p>This can be confirmed by comparing their values to those in the summary table,</p>
+<pre class="r"><code>summary(mod2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income + education + type, data = Duncan)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -14.890  -5.740  -1.754   5.442  28.972 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -0.18503    3.71377  -0.050  0.96051    
+## income        0.59755    0.08936   6.687 5.12e-08 ***
+## education     0.34532    0.11361   3.040  0.00416 ** 
+## typeprof     16.65751    6.99301   2.382  0.02206 *  
+## typewc      -14.66113    6.10877  -2.400  0.02114 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.744 on 40 degrees of freedom
+## Multiple R-squared:  0.9131, Adjusted R-squared:  0.9044 
+## F-statistic:   105 on 4 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="residuals-fitted-values" class="section level3">
+<h3>Residuals, Fitted Values,</h3>
+<p>To get the fitted or predicted values (<span class="math inline">\(\hat{\mathbf{y}} = \mathbf{X} \hat{\boldsymbol\beta}\)</span>) from a regression,</p>
+<pre class="r"><code>mod1_fitted &lt;- fitted(mod1)
+head(mod1_fitted)</code></pre>
+<pre><code>## accountant      pilot  architect     author    chemist   minister 
+##   69.44073   80.24463   83.48580   61.87801   71.60151   25.14476</code></pre>
+<p>or</p>
+<pre class="r"><code>mod1_predict &lt;- predict(mod1)
+head(mod1_predict)</code></pre>
+<pre><code>## accountant      pilot  architect     author    chemist   minister 
+##   69.44073   80.24463   83.48580   61.87801   71.60151   25.14476</code></pre>
+<p>The difference between <code>predict</code> and <code>fitted</code> is how they handle missing values in the data. Fitted values will not include predictions for missing values in the data, while <code>predict</code> will include values for</p>
+<p>Using <code>predict</code>, we can also predict values for new data. For example, create a data frame with each category of <code>type</code>, and in which <code>income</code> and <code>education</code> are set to their mean values.</p>
+<pre class="r"><code>Duncan_at_means &lt;-
+  data.frame(type = unique(Duncan$type),
+             income = mean(Duncan$income),
+             education = mean(Duncan$education))
+Duncan_at_means</code></pre>
+<pre><code>##   type   income education
+## 1 prof 41.86667  52.55556
+## 2   wc 41.86667  52.55556
+## 3   bc 41.86667  52.55556</code></pre>
+<p>Now use this with the <code>newdata</code> argument,</p>
+<pre class="r"><code>predict(mod2, newdata = Duncan_at_means)</code></pre>
+<pre><code>##        1        2        3 
+## 59.63821 28.31957 42.98070</code></pre>
+<p>To get the residuals (<span class="math inline">\(\hat{\boldsymbol{\epsilon}} = \mathbf{y} - \hat{\mathbf{y}}\)</span>).</p>
+<pre class="r"><code>mod1_resid &lt;- residuals(mod1)
+head(mod1_resid)                        </code></pre>
+<pre><code>## accountant      pilot  architect     author    chemist   minister 
+##  12.559266   2.755369   6.514200  14.121993  18.398486  61.855242</code></pre>
+</div>
+<div id="broom" class="section level3">
+<h3>Broom</h3>
+<p>The package broom has some functions that reformat the results of statistical modeling functions (<code>t.test</code>, <code>lm</code>, etc.) to data frames that work nicer with <strong>ggplot2</strong>, <strong>dplyr</strong>, and friends.</p>
+<p>The <strong>broom</strong> package has three main functions:</p>
+<ul>
+<li><code>glance</code>: Information about the model.</li>
+<li><code>tidy</code>: Information about the estimated parameters</li>
+<li><code>augment</code>: The original data with estimates of the model.</li>
+</ul>
+<p><code>glance</code>: Always return a one-row data.frame that is a summary of the model: e.g. R2, adjusted R2, etc.</p>
+<pre class="r"><code>glance(mod2)</code></pre>
+<pre><code>##   r.squared adj.r.squared    sigma statistic      p.value df    logLik
+## 1 0.9130657     0.9043723 9.744171  105.0294 1.170871e-20  5 -163.6522
+##        AIC      BIC deviance df.residual
+## 1 339.3045 350.1444 3797.955          40</code></pre>
+<p><code>tidy</code>: Transforms into a ready-to-go data.frame the coefficients, SEs (and CIs if given), critical values, and p-values in statistical tests’ outputs</p>
+<pre class="r"><code>tidy(mod2)</code></pre>
+<pre><code>##          term    estimate std.error  statistic      p.value
+## 1 (Intercept)  -0.1850278 3.7137705 -0.0498221 9.605121e-01
+## 2      income   0.5975465 0.0893553  6.6873093 5.123720e-08
+## 3   education   0.3453193 0.1136089  3.0395443 4.164463e-03
+## 4    typeprof  16.6575134 6.9930065  2.3820246 2.206245e-02
+## 5      typewc -14.6611334 6.1087737 -2.4000125 2.114015e-02</code></pre>
+<p><code>augment</code>: Add columns to the original data that was modeled. This includes predictions, estandard error of the predictions, residuals, and others.</p>
+<pre class="r"><code>augment(mod2) %&gt;% head()</code></pre>
+<pre><code>##    .rownames prestige income education type  .fitted  .se.fit    .resid
+## 1 accountant       82     62        86 prof 83.21783 2.352262 -1.217831
+## 2      pilot       83     72        76 prof 85.74010 2.674659 -2.740102
+## 3  architect       90     75        92 prof 93.05785 2.755775 -3.057851
+## 4     author       76     55        90 prof 80.41628 2.589351 -4.416282
+## 5    chemist       90     64        86 prof 84.41292 2.360632  5.587076
+## 6   minister       87     21        84 prof 58.02779 4.260837 28.972214
+##         .hat   .sigma      .cooksd .std.resid
+## 1 0.05827491 9.866259 0.0002052803 -0.1287893
+## 2 0.07534370 9.857751 0.0013936701 -0.2924366
+## 3 0.07998300 9.855093 0.0018611391 -0.3271700
+## 4 0.07061418 9.841004 0.0033585648 -0.4701256
+## 5 0.05869037 9.825129 0.0043552315  0.5909809
+## 6 0.19120532 8.412639 0.5168053288  3.3061127</code></pre>
+<ul>
+<li><code>.fitted</code>: the model predictions for all observations</li>
+<li><code>.se.fit</code>: the estandard error of the predictions</li>
+<li><code>.resid</code>: the residuals of the predictions (acual - predicted values)</li>
+<li><code>.sigma</code>: is the standard error of the prediction.</li>
+</ul>
+<p>The other columns—<code>.hat</code>, <code>.cooksd</code>, and <code>.std.resid</code> are used in regression diagnostics.</p>
+</div>
+<div id="plotting-fitted-regression-results" class="section level3">
+<h3>Plotting Fitted Regression Results</h3>
+<p>Consider the regression of prestige on income,</p>
+<pre class="r"><code>mod3 &lt;- lm(prestige ~ income, data = Duncan)</code></pre>
+<p>This creates a new dataset with the column <code>income</code> and 100 observations between the min and maximum observed incomes in the Duncan dataset.</p>
+<pre class="r"><code>mod3_newdata &lt;- data_frame(income = seq(min(Duncan$income), max(Duncan$income), length.out = 100))</code></pre>
+<p>We will calculate fitted values for all these values of <code>income</code>.</p>
+<pre class="r"><code>ggplot() + 
+  geom_point(data = Duncan, 
+             mapping = aes(x = income, y = prestige), colour = &quot;gray75&quot;) +
+  geom_line(data = augment(mod3, newdata = mod3_newdata),
+             mapping = aes(x = income, y = .fitted)) +
+  ylab(&quot;Prestige&quot;) +
+  xlab(&quot;Income&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="regression_in_R_files/figure-html/unnamed-chunk-24-1.png" title="" alt="" width="672" /></p>
+<p>Now plot something similar, but for a regression with <code>income</code> interacted with <code>type</code>,</p>
+<pre class="r"><code>mod4 &lt;- lm(prestige ~ income * type, data = Duncan)</code></pre>
+<p>We want to create a dataset which has, (1) each value of <code>type</code> in the Duncan data, and (2) values spanning the range of <code>income</code> in the Duncan data. The function <code>expand.grid</code> creates a data frame with all combinations of vectors given to it (Cartesian product).</p>
+<pre class="r"><code>mod4_newdata &lt;- expand.grid(income = seq(min(Duncan$income), max(Duncan$income), length.out = 100), type = unique(Duncan$type))</code></pre>
+<p>Now plot the fitted values evaluated at each of these values along wite original values in the data,</p>
+<pre class="r"><code>ggplot() + 
+  geom_point(data = Duncan, 
+             mapping = aes(x = income, y = prestige, color = type)) +
+  geom_line(data = augment(mod4, newdata = mod4_newdata),
+             mapping = aes(x = income, y = .fitted, color = type)) +
+  ylab(&quot;Prestige&quot;) +
+  xlab(&quot;Income&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="regression_in_R_files/figure-html/unnamed-chunk-27-1.png" title="" alt="" width="672" /></p>
+<p>Running <code>geom_smooth</code> with <code>method = &quot;lm&quot;</code> gives similar results. However, note that <code>geom_smooth</code> with run a <strong>separate</strong> regression for each group.</p>
+<pre class="r"><code>ggplot(data = Duncan, aes(x = income, y = prestige, color = type)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE) +
+  ylab(&quot;Prestige&quot;) +
+  xlab(&quot;Income&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="regression_in_R_files/figure-html/unnamed-chunk-28-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="plotting-residuals" class="section level3">
+<h3>Plotting Residuals</h3>
+<p>TODO:</p>
+</div>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

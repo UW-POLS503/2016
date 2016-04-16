@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Submitting Assignments</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Submitting Assignments</h1>
+
+</div>
+
+
+<div id="project-assignments" class="section level1">
+<h1>Project Assignments</h1>
+<ul>
+<li>Each student has its own private repository.</li>
+<li>The name of the repository is the student’s UW <code>netid</code>.</li>
+<li>All students and instructors can <strong>see</strong> the content of the repos.</li>
+<li>Only the student, the instructor, and the TA can <strong>edit</strong> the content of the repo.</li>
+</ul>
+<div id="no-need-to-fork-the-repository" class="section level2">
+<h2>1. No need to Fork the repository</h2>
+<p>For the <strong>project</strong> assignments, you don’t need to create your own copy (fork) of the original repository that it’s located in the <code>UW-POLS503</code> organization.</p>
+</div>
+<div id="clone-the-repository" class="section level2">
+<h2>2. Clone the repository</h2>
+<p>You do need to clone the repo.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Copy the URL of your repository from GitHub.</li>
+</ol>
+<p><img src="img/private_clone.png" alt="" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Open RStudio and create a new Git RProject: <code>File &gt; New Project &gt; Version Control &gt; Git</code></p></li>
+<li><p>Enter the URL to where it says <code>Repository URL</code>. It will create a directory name with your <code>UW netID</code>. This new directory will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</p>
+<div style="width:300px; height=200px">
+<p><img src="img/private_clone2.png" alt="" /></p>
+</div></li>
+</ol>
+</div>
+<div id="work-on-a-new-project-assignment" class="section level2">
+<h2>3. Work on a new Project Assignment</h2>
+<p>Every time you work on a new assignment:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Create a new file (e.g. <code>proposal.md</code>).</li>
+<li>Save it.</li>
+</ol>
+</div>
+<div id="submitting-a-new-project-assignment" class="section level2">
+<h2>4. Submitting a new Project Assignment</h2>
+<ol style="list-style-type: lower-alpha">
+<li><p>Push and Commit the changes you made to existing files, or the new files you created, to the online version of the repository. Follow the same instructions in <a href="http://uw-pols503.github.io/pols_503_sp16/submitting-homework#4_commit_and_push_changes">here</a>.</p></li>
+<li><p>Create a new issue in your private repository in GitHub.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/submit_1.png" alt="" /></p>
+</div></li>
+<li><p>Title the new issue “Review Project Assignment <number>”. In the issue message write “cc <span class="citation">@jrnold</span> <span class="citation">@CasAndreu</span>”. This is how you submit your assignment, and let the instructors know it is ready to review. You’re done!</p>
+<div style="width:500px; height=200px">
+<p><img src="img/submit_2.png" alt="" /></p>
+</div></li>
+</ol>
+</div>
+</div>
+<div id="homework-assignments" class="section level1">
+<h1>Homework Assignments</h1>
+<p>We’ll create a new repository in the <a href="https://github.com/UW-POLS503">UW-POLS503</a> organization for each assignment (e.g. <a href="https://github.com/UW-POLS503/Assignment_01">Assignment_01</a> ). Follow the following steps to work on and submitt the homework.</p>
+<div id="fork-the-repository." class="section level2">
+<h2>1. Fork the repository.</h2>
+<p><img src="img/fork.png" alt="" /></p>
+<p>Now you have a copy of the repository in your online<code>GitHub</code> account.</p>
+<p><img src="img/forked.png" alt="" /></p>
+</div>
+<div id="clone-the-repository-using-rstudio." class="section level2">
+<h2>2. Clone the repository using RStudio.</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Copy the URL of your repository from GitHub.</li>
+</ol>
+<p><img src="img/clone.png" alt="" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Open RStudio and create a new Git RProject: <code>File &gt; New Project &gt; Version Control &gt; Git</code></p></li>
+<li><p>Enter the URL to where it says <code>Repository URL</code>. It will create a directory named <code>Assignment_01</code> that will have the original files in the repository plus an <code>.Rproj</code> and <code>.gitingore</code> file.</p>
+<div style="width:300px; height=200px">
+<p><img src="img/clone2.png" alt="" /></p>
+</div></li>
+</ol>
+</div>
+<div id="create-an-r-markdown-file-solutions.rmd." class="section level2">
+<h2>3. Create an R Markdown file: <code>solutions.Rmd</code>.</h2>
+<ol style="list-style-type: lower-alpha">
+<li><p><code>File &gt; New File &gt; R Markdown</code></p>
+<div style="width:300px; height=200px">
+<p><img src="img/markdown.png" alt="" /></p>
+</div></li>
+<li><p>Give it a <code>Title</code>: e.g. ** Assignment 1**.</p></li>
+<li><p>Choose PDF as the <code>Default Output Format</code>.</p></li>
+<li><p>Now you have an <code>R Markdown</code> document that looks similar to this.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/markdown2.png" alt="" /></p>
+</div></li>
+<li><p>Write your solutions in this <code>R Mardown</code> document.</p></li>
+</ol>
+</div>
+<div id="commit-and-push-changes." class="section level2">
+<h2>4. Commit and Push changes.</h2>
+<p>Once you’re done writing your solutions:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Make sure you saved the final version of <code>solutions.Rmd</code>.</p></li>
+<li><p>Staged the changes and click on <code>Commit</code>.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/commit.png" alt="" /></p>
+</div></li>
+<li><p>Write a commit message and click on <code>Commit</code> again. A window message should open indicating that the commit has been made. Close it.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/commit2.png" alt="" /></p>
+</div></li>
+<li><p>Finally, click on <code>Push</code>.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/push.png" alt="" /></p>
+</div></li>
+</ol>
+<p>Another window message shoud open indicating that you have pushed the changes to the online verison of the repository in your GitHub account.</p>
+<pre><code>&lt;div style=&quot;width:500px; height=200px&quot;&gt;
+![](img/push2.png)
+&lt;/div&gt;</code></pre>
+</div>
+<div id="initiate-a-pull-request." class="section level2">
+<h2>5. Initiate a Pull Request.</h2>
+<p>Once you’re done with the assignment and your <code>solutions.Rmd</code> is already in your online version of the assignment’s repository:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Click on <code>New Pull Request</code>.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/pull_request.png" alt="" /></p>
+</div></li>
+<li><p>Click on <code>Create pull request</code>.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/pull_request2.png" alt="" /></p>
+</div></li>
+<li><p>Title your pull request <strong>Submission</strong> and click on <code>Create pull request</code>.</p>
+<div style="width:500px; height=200px">
+<p><img src="img/pull_request3.png" alt="" /></p>
+</div></li>
+</ol>
+</div>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

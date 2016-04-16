@@ -24,18 +24,6 @@ In this course we will use Git, a version control system that allows you to trac
 2. Check that **Git executable** is not empty
 3. Click **enable version control interface for RStudio projects** if it is not already checked.
 
-### Introduce yourself to Git
-
-In a terminal enter the following, but replace the the user name and email with your
-GitHub username and your own email address.
-To access a terminal from within RStudio from **Tools > Shell...**.
-
-```console
-git config --global user.name 'jrnold'
-git config --global user.email 'jeffrey.arnold@gmail.com'
-```
-
-
 ## Create a GitHub account
 
 [Here](https://github.com/join?source=header-home)
@@ -67,8 +55,24 @@ You created a copy of the assignment repository in your GitHub online account. N
 ### Edit the README.md file
 
 1. Open the README.md file and edit it: add your name.
+2. Save the README.md file.
 
-### Commit and Push you changes
+### Commit and Push your changes (for the first time)
+
+1. Access a terminal from within RStudio: **Tools > Shell...**
+
+2. In the terminal enter the following commands:
+
+```console
+git add *
+git commit -m 'my first commit'
+git push
+```
+3. `Git` is going to ask for you GitHub account. Type it and Press `enter`.
+4. Then it will ask for your GitHub password. Type it. When typing it you are not going to see any number being typed in the terminal but it's actually happening. Press `enter` after typing the password and you should be good to go!
+5. Next time you want to commit and push you can do it from within RStudio. You don't need to do it from the console anymore. 
+
+### Commit and Push your changes (after first time)
 
 1. Use the Git pane to commit the changes:
     - Select the files you changed

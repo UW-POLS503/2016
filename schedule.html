@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,27 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -275,6 +272,11 @@ div.tocify {
           <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
           </ul>
         </li>
@@ -299,7 +301,9 @@ div.tocify {
             <li><a href="writing-advice.html">Writing Advice</a></li>
             <li><a href="latex4research.html">LaTeX</a></li>
             <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
             <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
           </ul>
         </li>
         <!-- end references dropdown -->
@@ -313,7 +317,6 @@ div.tocify {
 
 
 <div class="fluid-row" id="header">
-
 
 
 <h1 class="title">Schedule</h1>
@@ -330,6 +333,10 @@ h3 {
   font-size: 15px;
   font-weight: bold;
 }
+h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
 </style>
 <p>You should expect this schedule to be a dynamic document. Although the the objectives for this course are fixed, the details of how to accomplish those objectives will depend on the interaction between the instructors and students in the course.</p>
 <p>When I make changes, these changes will be recorded in the <a href="https://github.com/UW-POLS503/pols_503_sp16/commits/gh-pages/schedule.html">history</a> of this page on GitHub so that you can track what has changed. I will notify you of changes in class or via email.</p>
@@ -342,7 +349,9 @@ h3 {
 <li>Introduction</li>
 <li>Install software and set up GitHub accounts</li>
 </ul>
-<p>Reading (skim after class, I will discuss ideas inspired by these sources)</p>
+<div id="reading" class="section level4">
+<h4>Reading</h4>
+<p>skim after class, I will discuss ideas inspired by these sources:</p>
 <ul>
 <li>Jenny Bryan, Karen Cranston, Justin Kitzez, Lex Nederbragt, Tracy Teal, and Greg Wilson. <a href="http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/">Good Enough Practices for Scientific Computing</a>.</li>
 <li>Matthew Gentzkow and Jesse M. Shapiro. <a href="http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/">Code and Data for the Social Sciences: A Practitioner’s Guide</a>. March, 2014. Especially Chapter 3: Version Control. The principles of this are good though I don’t follow all their exact prescriptions. Thr practices adopted for this class are closer to “Good Enough Practices.”</li>
@@ -357,14 +366,17 @@ h3 {
 <li><em>PS: Policial Science and Politics</em> Symposium on <a href="http://media.wix.com/ugd/fa8393_d55bef088ac44830bd194b5f80190479.pdf">Openness in Political Science: Data Access and Research Transparency</a>. January 2014.</li>
 </ul>
 </div>
+</div>
 <div id="thursday-march-31" class="section level3">
 <h3><time datetime="2016-03-31">Thursday, March 31</time></h3>
-<p>Class</p>
+<div id="agenda" class="section level4">
+<h4>Agenda</h4>
 <ul>
 <li>Continue set-up of Git and GitHub</li>
 <li><a href="git.html">Getting Started with Git and GitHub</a></li>
 <li><a href="https://github.com/UW-POLS503/Assignment_00">Assignment 0</a></li>
 </ul>
+</div>
 </div>
 <div id="friday-april-1" class="section level3">
 <h3><time datetime="2016-04-01">Friday, April 1</time></h3>
@@ -384,43 +396,75 @@ h3 {
 </div>
 <div id="week-2" class="section level2">
 <h2>Week 2</h2>
-<p>Readings:</p>
+<div id="readings" class="section level4">
+<h4>Readings</h4>
 <ul>
 <li>Chapters 1 and 2 of Wooldridge</li>
 <li>Chapter 1 of <em>Mostly Harmless Econometrics</em></li>
 <li><p>Review matrix algebra: you should understand what vectors and matrices are. How to add, subtract, and multiply them. And what a matrix inverse is, what it’s properties are. You don’t need to worry about how to calculate a matrix inverse, since you’ll never do that by hand.</p></li>
 <li>Wooldridge appendix</li>
 <li>Kahn Academy course <a href="https://www.khanacademy.org/math/precalculus/precalc-matrices">Matrices</a> lessons: Introduction, Representing linear systems of equations, elementary matrix row operations, adding and subtracting matrices, multiplying matrices by scalars, properties of matrix addition and scalar multiplication, multiplying matrices by matrices, properties of matrix multiplication, introduction to matrix inverses.</li>
-<li><p>Handout: …</p></li>
+<li><p><a href="files/matrix.pdf">Matrix algebra handout</a></p></li>
 </ul>
 <p>Friday: paragraph proposal due.</p>
+</div>
 <div id="tuesday-april-5" class="section level3">
 <h3><time datetime="2016-04-05">Tuesday, April 5</time></h3>
-<!--
-- Keele, Luke. 2015. [The Statistics of Causal Inference: A View from Political Methodology](https://dx.doi.org/10.1093/pan/mpv007). *Political Analysis*
-- Dunning, Thad. 2010. [Design Based Inference: Beyond the Pitfalls of Regression Analysis](http://www.thaddunning.com/wp-content/uploads/2010/05/Dunning_Rethinking-Social-Inquiry.pdf) in *Rethinking Social Inquiry*
-- Sekhon, Jasjeet S. 2009. [Opiates for the Matches: Matching Methods for Causal Inference](http://www.annualreviews.org/doi/abs/10.1146/annurev.polisci.11.060606.135444). *Annual Review of Political Science*
-- Grimmer, Justin. 2015. [We're All Social Scientists Now: How Big Data, Machine Learning, and Causal Inference Work Together](http://stanford.edu/~jgrimmer/bd_2.pdf). *PS: Political Science & Politics*
-- Angrist, Joshua D., and  Jörn-Steffen Pischke. 2010. [The Credibility Revolution in Empirical Economics: How Better Research Design Is Taking the Con out of Econometrics](https://dx.doi.org/10.1257/jep.24.2.3). *Journal of Economic Perspectives.*
-- Gelman, Andrew and Guido Imbens. 2013. [Why ask why? Forward Causal Inference and Reverse Causal Questions](http://www.nber.org/papers/w19614).
-- EGAP articles on [10 Strategies for Figuring Out if X Caused Y](http://egap.org/methods-guides/10-strategies-figuring-out-if-x-caused-y) or [10 Things You Need to Know About Causal Inference](http://egap.org/methods-guides/10-things-you-need-know-about-causal-inference).
--->
+<div id="class-agenda" class="section level4">
+<h4>Class Agenda</h4>
+<ol style="list-style-type: decimal">
+<li>Confirm that you can push to GitHub Accounts.</li>
+<li>Discuss <a href="assignments_project_1.html">Project Assignment 1</a></li>
+<li>Types of research questions, types of analysis. <a href="slides/research_questions_and_design.pdf">slides</a> <!-- 5. Conditional expectation function. slides--></li>
+</ol>
+</div>
+<div id="supplementary-reading" class="section level4">
+<h4>Supplementary Reading</h4>
+<ul>
+<li>Keele, Luke. 2015. <a href="https://dx.doi.org/10.1093/pan/mpv007">The Statistics of Causal Inference: A View from Political Methodology</a>. <em>Political Analysis</em></li>
+<li>Dunning, Thad. 2010. <a href="http://www.thaddunning.com/wp-content/uploads/2010/05/Dunning_Rethinking-Social-Inquiry.pdf">Design Based Inference: Beyond the Pitfalls of Regression Analysis</a> in <em>Rethinking Social Inquiry</em></li>
+<li>Sekhon, Jasjeet S. 2009. <a href="http://www.annualreviews.org/doi/abs/10.1146/annurev.polisci.11.060606.135444">Opiates for the Matches: Matching Methods for Causal Inference</a>. <em>Annual Review of Political Science</em></li>
+<li>Grimmer, Justin. 2015. <a href="http://stanford.edu/~jgrimmer/bd_2.pdf">We’re All Social Scientists Now: How Big Data, Machine Learning, and Causal Inference Work Together</a>. <em>PS: Political Science &amp; Politics</em></li>
+<li>Angrist, Joshua D., and Jörn-Steffen Pischke. 2010. <a href="https://dx.doi.org/10.1257/jep.24.2.3">The Credibility Revolution in Empirical Economics: How Better Research Design Is Taking the Con out of Econometrics</a>. <em>Journal of Economic Perspectives.</em></li>
+<li>Gelman, Andrew and Guido Imbens. 2013. <a href="http://www.nber.org/papers/w19614">Why ask why? Forward Causal Inference and Reverse Causal Questions</a>.</li>
+<li>EGAP articles on <a href="http://egap.org/methods-guides/10-strategies-figuring-out-if-x-caused-y">10 Strategies for Figuring Out if X Caused Y</a> or <a href="http://egap.org/methods-guides/10-things-you-need-know-about-causal-inference">10 Things You Need to Know About Causal Inference</a>.</li>
+</ul>
+</div>
 </div>
 <div id="thursday-april-7" class="section level3">
 <h3><time datetime="2016-04-07">Thursday, April 7</time></h3>
+<div id="class-agenda-1" class="section level4">
+<h4>Class Agenda</h4>
+<ol style="list-style-type: decimal">
+<li>Assigned and started working on <a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+</ol>
+</div>
+<div id="supplementary-reading-1" class="section level4">
+<h4>Supplementary Reading</h4>
+<p>See <a href="regression_in_R.html">Linear Regression Functions in R</a> for more help</p>
+</div>
 </div>
 <div id="friday-april-8" class="section level3">
 <h3><time datetime="2016-04-08">Friday, April 8</time></h3>
 <p>NO CLASS due to MPSA</p>
+<p><a href="assignmens_project_1.html">Research Project Assignment 1</a> due at 17:00 PDT.</p>
 </div>
 </div>
 <div id="week-3" class="section level2">
 <h2>Week 3</h2>
 <div id="tuesday-april-12" class="section level3">
 <h3><time datetime="2016-04-12">Tuesday, April 12</time></h3>
+<p>Class Agenda</p>
+<ul>
+<li><a href="slides/what-is-regression.pdf">Conditional Expectation Functions slides</a></li>
+<li><a href="slides/cef_example.R">Example code</a></li>
+<li><a href="http://setosa.io/ev/conditional-probability/">Conditional Probability: Explained Visually</a></li>
+<li>[Ordinary Least Squares Regression: Explained Visually]<a href="http://setosa.io/ev/ordinary-least-squares-regression/" class="uri">http://setosa.io/ev/ordinary-least-squares-regression/</a></li>
+</ul>
 </div>
 <div id="thursday-april-14" class="section level3">
 <h3><time datetime="2016-04-14">Thursday, April 14</time></h3>
+<p><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1 due</a></p>
 </div>
 <div id="friday-april-15" class="section level3">
 <h3><time datetime="2016-04-15">Friday, April 15</time></h3>

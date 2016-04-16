@@ -18,6 +18,10 @@ h3 {
   font-size: 15px;
   font-weight: bold;
 }
+h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
 </style>
 
 
@@ -38,7 +42,9 @@ I will make adjustments based on this feedback.
 - Introduction
 - Install software and set up GitHub accounts
 
-Reading (skim after class, I will discuss ideas inspired by these sources)
+#### Reading
+
+skim after class, I will discuss ideas inspired by these sources:
 
 - Jenny Bryan, Karen Cranston, Justin Kitzez, Lex Nederbragt, Tracy Teal, and Greg Wilson. [Good Enough Practices for Scientific Computing](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/).
 - Matthew Gentzkow and Jesse M. Shapiro. [Code and Data for the Social Sciences: A Practitioner's Guide](http://swcarpentry.github.io/good-enough-practices-in-scientific-computing/). March, 2014. Especially Chapter 3: Version Control. The principles of this are good though I don't follow all their exact prescriptions. Thr practices adopted for this class are closer to "Good Enough Practices."
@@ -56,7 +62,7 @@ Science: Data Access and Research Transparency](http://media.wix.com/ugd/fa8393_
 
 ### <time datetime="2016-03-31">Thursday, March 31</time>
 
-Class
+#### Agenda
 
 - Continue set-up of Git and GitHub
 - [Getting Started with Git and GitHub](git.html)
@@ -79,7 +85,7 @@ R markdown
 
 ## Week 2
 
-Readings:
+#### Readings
 
 - Chapters 1 and 2 of Wooldridge
 - Chapter 1 of *Mostly Harmless Econometrics*
@@ -92,14 +98,21 @@ Readings:
      adding and subtracting matrices, multiplying matrices by scalars, properties of matrix addition
      and scalar multiplication, multiplying matrices by matrices, properties of matrix multiplication,
      introduction to matrix inverses.
-   - Handout: ...
+   - [Matrix algebra handout](files/matrix.pdf)
 
-Friday: paragraph proposal due. 
+Friday: paragraph proposal due.
 
 ### <time datetime="2016-04-05">Tuesday, April 5</time>
 
+#### Class Agenda
 
-<!--
+1. Confirm that you can push to GitHub Accounts.
+2. Discuss [Project Assignment 1](assignments_project_1.html)
+3. Types of research questions, types of analysis. [slides](slides/research_questions_and_design.pdf)
+<!-- 5. Conditional expectation function. slides-->
+
+#### Supplementary Reading
+
 - Keele, Luke. 2015. [The Statistics of Causal Inference: A View from Political Methodology](https://dx.doi.org/10.1093/pan/mpv007). *Political Analysis*
 - Dunning, Thad. 2010. [Design Based Inference: Beyond the Pitfalls of Regression Analysis](http://www.thaddunning.com/wp-content/uploads/2010/05/Dunning_Rethinking-Social-Inquiry.pdf) in *Rethinking Social Inquiry*
 - Sekhon, Jasjeet S. 2009. [Opiates for the Matches: Matching Methods for Causal Inference](http://www.annualreviews.org/doi/abs/10.1146/annurev.polisci.11.060606.135444). *Annual Review of Political Science*
@@ -107,19 +120,37 @@ Friday: paragraph proposal due.
 - Angrist, Joshua D., and  Jörn-Steffen Pischke. 2010. [The Credibility Revolution in Empirical Economics: How Better Research Design Is Taking the Con out of Econometrics](https://dx.doi.org/10.1257/jep.24.2.3). *Journal of Economic Perspectives.*
 - Gelman, Andrew and Guido Imbens. 2013. [Why ask why? Forward Causal Inference and Reverse Causal Questions](http://www.nber.org/papers/w19614).
 - EGAP articles on [10 Strategies for Figuring Out if X Caused Y](http://egap.org/methods-guides/10-strategies-figuring-out-if-x-caused-y) or [10 Things You Need to Know About Causal Inference](http://egap.org/methods-guides/10-things-you-need-know-about-causal-inference).
--->
 
 ### <time datetime="2016-04-07">Thursday, April 7</time>
+
+#### Class Agenda
+
+1. Assigned and started working on [Assignment 1](https://github.com/UW-POLS503/Assignment_01)
+
+#### Supplementary Reading
+
+See [Linear Regression Functions in R](regression_in_R.html) for more help
 
 ### <time datetime="2016-04-08">Friday, April 8</time>
 
 NO CLASS due to MPSA
 
+[Research Project Assignment 1](assignmens_project_1.html) due at 17:00 PDT.
+
 ## Week 3
 
 ### <time datetime="2016-04-12">Tuesday, April 12</time>
 
+Class Agenda
+
+- [Conditional Expectation Functions slides](slides/what-is-regression.pdf)
+- [Example code](slides/cef_example.R)
+- [Conditional Probability: Explained Visually](http://setosa.io/ev/conditional-probability/)
+- [Ordinary Least Squares Regression: Explained Visually]http://setosa.io/ev/ordinary-least-squares-regression/
+
 ### <time datetime="2016-04-14">Thursday, April 14</time>
+
+[Assignment 1 due](https://github.com/UW-POLS503/Assignment_01)
 
 ### <time datetime="2016-04-15">Friday, April 15</time>
 
