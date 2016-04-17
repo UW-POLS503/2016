@@ -198,7 +198,7 @@ ggplot(mod2c_aug, aes(x = co2, y = .fitted)) +
 ```
 
 `r challenge_start()`
-How would you create a dataset that contains the actual and predicted values of `co2`, and `gdpCapita` for the 3 models ? And how would you replicate the the 2 types of plots we just used using the `facet_wrap`?
+How would you create a dataset that contains the actual and predicted values of `co2`, and `gdpCapita` for the 3 models ? And how would you replicate the 2 types of plots we just used using the `facet_wrap`?
 `r challenge_end()`
 
 `r solution_start()`
