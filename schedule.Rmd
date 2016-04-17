@@ -155,7 +155,7 @@ Class Agenda
 
 ### <time datetime="2016-04-15">Friday, April 15</time>
 
-- Transformations: Logarithm, Squared Terms
+- [Transformations: Logarithm, Squared Terms](lessons_functional_forms2.html)
 
 ## Week 4
 
