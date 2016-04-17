@@ -109,7 +109,6 @@ Friday: paragraph proposal due.
 1. Confirm that you can push to GitHub Accounts.
 2. Discuss [Project Assignment 1](assignments_project_1.html)
 3. Types of research questions, types of analysis. [slides](slides/research_questions_and_design.pdf)
-<!-- 5. Conditional expectation function. slides-->
 
 #### Supplementary Reading
 
@@ -150,11 +149,38 @@ Class Agenda
 
 ### <time datetime="2016-04-14">Thursday, April 14</time>
 
-[Assignment 1 due](https://github.com/UW-POLS503/Assignment_01)
+**No Class**
+
+- [Assignment 1 due](https://github.com/UW-POLS503/Assignment_01)
 
 ### <time datetime="2016-04-15">Friday, April 15</time>
 
+- Transformations: Logarithm, Squared Terms
+
 ## Week 4
+
+Topics
+
+- Omitted Variable Bias
+- Multiple regression anatomy
+- Properties of Ordinary Least Squares
+- Inference for Ordinary Least Squares
+- Interpretation of p-Values and Confidence Intervals
+- Substantive Significance
+- Power
+
+
+Readings
+
+- Wooldridge. *Introductory Econometrics*. Ch 4.
+- Wasserstein, Ronald L, and Nicole A. Lazar. 2016. "[The ASA's Statement on p-values: Context, Process, and Purpose](https://dx.doi.org/10.1080/00031305.2016.1154108)". *The American Statistician*.
+- Aschwanden. 2015. "[Science Isn't Broken](http://fivethirtyeight.com/features/science-isnt-broken/)" [fivethirtyeight.com](http://fivethirtyeight.com/).
+- Gelman, Andrew, and Eric Loken. 2014. "[The Statistical Crisis in Science](http://www.americanscientist.org/issues/pub/2014/6/the-statistical-crisis-in-science/)". *The American Scientist*
+- Regina Nuzzo. 2014. [Scientific Method: Statistical Errors](http://www.nature.com/news/scientific-method-statistical-errors-1.14700?WT.mc_id=PIN_NatureNews). *Nature*
+- Simply Statistics. 2014. [On the scalability of statistical procedures: why the p-value bashers just don't get it.](http://simplystatistics.org/2014/02/14/on-the-scalability-of-statistical-procedures-why-the-p-value-bashers-just-dont-get-it/)
+- Simply Statistics. 2012. [http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/](http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/)
+- Matthew Hankins. 2013. [Still Not Significant](https://mchankins.wordpress.com/2013/04/21/still-not-significant-2/). Online. Probable Error blog.
+- xkcd.com. [Significant](https://xkcd.com/882/), [p-values](https://xkcd.com/1478/)
 
 ### <time datetime="2016-04-14">Tuesday, April 19</time>
 
@@ -164,7 +190,32 @@ Class Agenda
 
 ## Week 5
 
+Topics
+
+- Non-constant Variance (Heteroskedasticity)
+- Omitted Variable Bias
+- Measurement Error
+- Multicollinearity
+- Outliers
+- Non-linearity
+- Interaction Terms
+
+Readings
+
+- Wooldrige, Ch 8: "Heteroskedasticity"
+- Wooldridge, Ch 17.1: "Logit and Probit Models for Binary Response"
+- Brambor, Thomas, and William Roberts Clark, and Matt Golder. 2006.
+   "[Understanding Interaction Models: Improving Empirical Analyses](https://dx.doi.org/10.1093/pan/mpi014)" *Political Analysis*
+- Matt Golder. <http://mattgolder.com/interactions>
+- Introduction to Machine Learning, Ch 5.2-5.3
+ LPM?](http://www.mostlyharmlesseconometrics.com/2012/07/probit-better-than-lpm/)
+- ISLR. Ch 7: "Moving Beyond Linearity"
+
+
+
 ### <time datetime="2016-04-26">Tuesday, April 26</time>
+
+**Due** Project paper draft #1: Theory, Data Description, and Model Sections.
 
 ### <time datetime="2016-04-28">Thursday, April 28</time>
 
@@ -173,29 +224,87 @@ Class Agenda
 
 ## Week 6
 
+- Model Selection
+- Model Fit
+- Prediction
+- Regularized Regression (Lasso, Ridge)
+- Cross-Validation
+- Bootstrapping
+
+Readings
+
+- Wooldridge, Ch. 7: "Multiple Regression Analysis with Qualitative Information"
+
+- IML. Ch 6.2: "Shrinkage Methods"
+- Kleinberg, Jon, Jens Ludwig, Sendhil Mullainathan, and Ziad Obermeyer. 2015. "[Prediction Policy Problems](http://dx.doi.org/10.1257/aer.p20151023)." *American Economic Review*
+- Shmeuli, Galit. 2010. "[To Explain or Predict?](http://projecteuclid.org/euclid.ss/1294167961)." *Statistical Science*
+
 ### <time datetime="2016-05-03">Tuesday, May 3</time>
 
 ### <time datetime="2016-05-05">Thursday, May 5</time>
+
+**Due** Peer Review of project draft #1.
 
 ### <time datetime="2016-05-06">Friday, May 6</time>
 
 ## Week 7
 
+Topics
+
+- Experimental Ideal
+- Potential Outcomes
+- Selection on Observables: Regression
+- Selection on Observables: Other Approaches (matching, propensity scores)
+
+Readings
+
+- *MHE*, Ch 2: "The Experimental Ideal"
+- *MHE*, Ch 3: "Making Regression Make Sense"
+
+
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
 ### <time datetime="2016-05-12">Thursday, May 12</time>
+
+**Due** Project draft analysis
 
 ### <time datetime="2016-05-13">Friday, May 13</time>
 
 ## Week 8
 
+Topics
+
+- Fixed Effects
+- Differences-in-differences
+- Clustered Standard Errors
+
+Readings
+
+- *MHE*, Ch 5: "Parallel Worlds"
+- *MHE*, Ch 8: "Non-standard Standard Error Issues"
+- Wooldridge, Ch 13: "Pooling Cross Sections Across Time"
+- Wooldridge, Ch 14: "Advanced Panel Data Methods"
+
 ### <time datetime="2016-05-17">Tuesday, May 17</time>
 
 ### <time datetime="2016-05-19">Thursday, May 19</time>
 
+**Due** Peer review of Project analysis
+
 ### <time datetime="2016-05-20">Friday, May 20</time>
 
 ## Week 9
+
+Topics
+
+- Instrumental variables
+- Regression Discontinuity
+
+Readings
+
+- *MHE*, Ch 4: "Instrumental Variables in Action: Sometimes You Get What You Need"
+- *MHE*, Ch 6: "Getting a Little Jumpy: Regression Discontinuity"
+- Wooldridge, Ch 17
 
 ### <time datetime="2016-05-24">Tuesday, May 24</time>
 
@@ -205,12 +314,33 @@ Class Agenda
 
 ## Week 10
 
+Topics
+
+- Writing, presenting results
+
+Readings
+
+- Wooldrige, Ch 19: "Carrying Out an Empirical Project"
+- Schrodt, Philip A. 2014. "[Seven Deadly Sins of Contemporary Quantitative Political Analysis](https://dx.doi.org/10.1177/0022343313499597)." *Journal of Peace Research*
+
 ### <time datetime="2016-05-31">Tuesday, May 31</time>
+
+**Due** Draft of project final paper
 
 ### <time datetime="2016-06-02">Thursday, June 2</time>
 
 ### <time datetime="2016-06-03">Friday, June 3</time>
 
+Poster session
+
 ## Finals Period
 
 <span id="final-paper-due"><strong>Final paper due on <time datetime="2016-06-08 23:59:00 PDT">June 8, 11:59 pm </time></strong></span>
+
+
+<!--
+
+- Missing Data
+- Weighted Regression
+
+-->
