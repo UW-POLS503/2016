@@ -1,0 +1,26 @@
+Schedule
+
+- Omitted Variable Bias
+- Assumptions of OLS
+- Sampling Distribution of OLS
+- Inference with OLS
+- OLS and Functional Form
+- Outliers and OLS Weights
+- Robust Regression
+- Multicollinearity
+- Model Fit and Model Selection
+- Cross-Validation
+- Lasso and Ridge Regression
+- Heteroskedasticity and Robust Standard Errors
+- Bootstrapping Standard Errors
+- Logit
+- Binary Dependent Variables
+- Potential Outcomes
+- Potential Outcomes and Experiments
+- OLS for Causal Inference
+- Matching, Propensity Score
+- OLS and Prediction
+- Instrumental Variables
+- Fixed Effects
+- Diff-in-Diff
+- Regression Discontinuity
