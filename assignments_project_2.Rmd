@@ -1,0 +1,37 @@
+---
+title: Project Assignment 2
+date: April 20, 2016
+---
+
+Date due: <time datetime="2016-04-26 17:00">Friday, April 26, 11:59 PDT</time>.
+
+1. Write a draft of the theory, data, and model. Do not include results. However,
+    describe and write out the model that you intend to run and how it relates to your
+    theory. This does not bind you to running that model, but is an opportunity to
+    clearly and concretely state what your current understanding, and give
+    the instructors and peers an opportunity to provide constructive feedback.
+    This should answer many of the questions
+    of [Project Assignment 1](assignments_project_1.html), but with more detail.  This should be written as a paper, and in the same format as the [final paper](data_analysis_project_paper_guidelines).
+2. Include an R markdown analysis file with additional information and analysis
+    of your research. This should contain analysis that is more detailed than what
+    would be included in an article. The following questions are the sorts of things
+    that should be included in this R markdown file:
+
+    1. Summary statistics of all variables that you are using
+    2. Plots of distributions of the variables in the data
+    3. Amount of missingness in each of the variables
+
+    The purpose of this is to (1) get you used to keeping track of all your analysis
+    in a transparent manner, and (2) to simulate the way in which most journals ask for
+    or distribute supplemental information containing analysis that was not included
+    in the article itself.
+
+3. Update `README.md` with a description of what is each file in your project.
+4. When you have finished, create an issue in Github titled: "Review Project Assignment 2".
+   In the issue message write "cc @jrnold @CasAndreu". This is how you submit
+   your assignment, and lets the instructors know it is ready to review.
+
+<!--
+
+TODO: I need more concrete questions to cover in these sections. I should start gathering a list of these
+-->

@@ -1,6 +1,6 @@
 ---
 title: "Functional Forms"
-output: 
+output:
   html_document:
     fig_width: 5
     fig_height: 4
@@ -24,7 +24,6 @@ data(turnout)
 ```
 
 Also go to the following link to download a WDI dataset from 1980 to 2010.
-
 `https://www.dropbox.com/s/qqb3vg66hxqfqzb/wdi_co2_gdp_1980_2010.csv?dl=0`
 
 Load the `wdi` dataset.
@@ -34,9 +33,9 @@ wdi <- read.csv("data/wdi_co2_gdp_1980_2010.csv")
 
 
 ## Intro
-I use as a source of inspiration in this lesson Chris Adolph's POLS-503 [notes](http://faculty.washington.edu/cadolph/503/topic5.pw.pdf). 
+I use as a source of inspiration in this lesson Chris Adolph's POLS-503 [notes](http://faculty.washington.edu/cadolph/503/topic5.pw.pdf).
 
-In a linear model, any unit change of a given covariate has always the same effect on the outcome variable. If the coefficient for that covariate is for example 0.54, it doesn't matter if the unit change is from 1 to 2 or from 100,001 to 100,002. The expected effect on the outcome variable is always the same: 0.54 increase in the units of the dependent variable. 
+In a linear model, any unit change of a given covariate has always the same effect on the outcome variable. If the coefficient for that covariate is for example 0.54, it doesn't matter if the unit change is from 1 to 2 or from 100,001 to 100,002. The expected effect on the outcome variable is always the same: 0.54 increase in the units of the dependent variable.
 
 However, theoretically we may sometimes think that the way a covariate affects the response variable is not linear. For example, is the relationship between `income` and `life expectancy` linear? Or Acemoglu and Robinson (2006) argue that the relationship between `inequality` and `democratization` follows a U-shape. How do we deal with this non-linear relationships? Can we still use a linear models to estimate them?
 
@@ -44,18 +43,18 @@ $y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2}... + \epsilon$
 
 ## Logrithmic Transformations
 
-Think a little bit more about the relationship between Life Expectancy and GDP per capita. This relation is probably not linear. As the GDP per capita of a country increases, on average its citizens have more resources, better nutrition, etc., so you would expect the Life Expectancy of that country to increase. However, at least with the technology and medicines that are currently available, at a certain point Life Expectancy cannot keep increasing at the same rate or it cannot increase at all. 
+Think a little bit more about the relationship between Life Expectancy and GDP per capita. This relation is probably not linear. As the GDP per capita of a country increases, on average its citizens have more resources, better nutrition, etc., so you would expect the Life Expectancy of that country to increase. However, at least with the technology and medicines that are currently available, at a certain point Life Expectancy cannot keep increasing at the same rate or it cannot increase at all.
 
-Load the `gapminder` dataset from the `gapminder` package. 
+Load the `gapminder` dataset from the `gapminder` package.
 Estimate a model that portrays `lifeExp` as a linear function of `gdpPercap`.
 
-$lifeExp = \beta_{0} + \beta_{1}gdpPercap + \epsilon$ 
+$lifeExp = \beta_{0} + \beta_{1}gdpPercap + \epsilon$
 
 ```{r}
 mod1a <- lm(lifeExp ~ gdpPercap, data = gapminder)
 ```
 
-Plot the `lifeExp` that we would predict using this model against the covariate `gdpPercap`. 
+Plot the `lifeExp` that we would predict using this model against the covariate `gdpPercap`.
 
 ```{r, fig.align='center'}
 mod1a_augm <- augment(mod1a, gapminder)
@@ -69,10 +68,10 @@ Plot now the outcome variable `lifeExp` against the response variable `gdpPercap
 
 ```{r, fig.align='center'}
 ggplot(gapminder, aes(y = lifeExp, x = gdpPercap)) +
-  geom_point() 
+  geom_point()
 ```
 
-This graphs clearly shows that in the beginning, a unit increase on `gdpPercap` matters a lot in explaining `lifeExp`. However, at some point, extra units increase do not make much of a difference. We call this type of relation a *Logarithmic Relation*. How can we specify this logarithmic relation in a linear model? 
+This graphs clearly shows that in the beginning, a unit increase on `gdpPercap` matters a lot in explaining `lifeExp`. However, at some point, extra units increase do not make much of a difference. We call this type of relation a *Logarithmic Relation*. How can we specify this logarithmic relation in a linear model?
 
 If we believe that there is a *logarithmic* relation between the outcome variable and a covariate, this is the same as saying that there is a *linear* relation between the outcome variable and the $log$ of the covariate. Thus, we just need to transform the covariate of interest by calculating its $log$ and then add the resulting variable to the linear model.
 
@@ -91,12 +90,12 @@ Plot `lifeExp` against this new variable. Observe how there is a linear relation
 
 ```{r, fig.align='center'}
 ggplot(gapminder, aes(x = log_gdpPercap, y = lifeExp)) +
-  geom_point() 
+  geom_point()
 ```
 
 Estimate a model now that portrays `lifeExp` as a linear function of the *log* of `gdpPercap`.
 
-$lifeExp = \beta_{0} + \beta_{1}log(gdpPercap) + \epsilon$ 
+$lifeExp = \beta_{0} + \beta_{1}log(gdpPercap) + \epsilon$
 
 ```{r}
 mod1b <- lm(lifeExp ~ log_gdpPercap, data = gapminder)
@@ -106,7 +105,7 @@ Plot `mod1b`'s predicted values of `lifeExp` against `gdpPercap`.
 ```{r, fig.align='center'}
 mod1b_augm <- augment(mod1b, gapminder)
 ggplot(mod1b_augm, aes(y = .fitted, x = gdpPercap)) +
-  geom_point() 
+  geom_point()
 ```
 
 That makes a lot more sense!
@@ -114,7 +113,7 @@ That makes a lot more sense!
 Finally let's see how well each model does in predicting the actual `lifeExp` values.
 
 ```{r, fig.align='center'}
-ggplot(mod1a_augm, aes(x = lifeExp, y = .fitted)) + 
+ggplot(mod1a_augm, aes(x = lifeExp, y = .fitted)) +
   geom_point()
 ggplot(mod1b_augm, aes(x = lifeExp, y = .fitted)) +
   geom_point()
@@ -153,7 +152,7 @@ ggplot(predictions, aes(x = actual, y = predicted)) +
 
 ## Squared Terms
 
-Sometimes we believe that there is a U-shaped relation between a covariate and the dependent variable. For example, some scholars such as [David I. Stern](http://www.sterndavidi.com/publications_type.html) argue that there is an [Environmental Kuznets Curve](https://en.wikipedia.org/wiki/Kuznets_curve#Environmental_Kuznets_curve). This means that there is an inverted U-shaped relation between environmental quality and economic growth. 
+Sometimes we believe that there is a U-shaped relation between a covariate and the dependent variable. For example, some scholars such as [David I. Stern](http://www.sterndavidi.com/publications_type.html) argue that there is an [Environmental Kuznets Curve](https://en.wikipedia.org/wiki/Kuznets_curve#Environmental_Kuznets_curve). This means that there is an inverted U-shaped relation between environmental quality and economic growth.
 
 As we discussed in the beginning, sometimes there is a squared relation between a covariate and our dependent variable of interest (e.g. [Kuznets curve](https://en.wikipedia.org/wiki/Kuznets_curve)).
 
@@ -163,11 +162,11 @@ How do we incorporate this theoretical expectation into a linera model? Using a 
 
 Estimate the following models:
 
-1. $CO2emissions = \beta_{0} + \beta_{1}gdpCapita + \epsilon$ 
-2. $CO2emissions = \beta_{0} + \beta_{1}log(gdpCapita) + \epsilon$ 
-3. $CO2emissions = \beta_{0} + \beta_{1}gdpCapita + \beta_{2}gdpCapita^{2} + \epsilon$ 
+1. $CO2emissions = \beta_{0} + \beta_{1}gdpCapita + \epsilon$
+2. $CO2emissions = \beta_{0} + \beta_{1}log(gdpCapita) + \epsilon$
+3. $CO2emissions = \beta_{0} + \beta_{1}gdpCapita + \beta_{2}gdpCapita^{2} + \epsilon$
 
-Estimate the models and use the `augment` function to add the predicted values of `co2` to the dataset. 
+Estimate the models and use the `augment` function to add the predicted values of `co2` to the dataset.
 ```{r}
 mod2a <- lm(co2 ~ gdpCapita, wdi)
 mod2b <- lm(co2 ~ gdpCapita + I(gdpCapita^2), wdi)
@@ -225,11 +224,3 @@ ggplot(predictions2, aes(x = actual_co2, y = predicted_co2)) +
   facet_wrap(~model)
 ```
 `r solution_end()`
-
-
-
-
-
-
-
-

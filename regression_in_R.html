@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,27 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -277,6 +280,7 @@ div.tocify {
             <li class="divider"></li>
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
           </ul>
         </li>
@@ -318,6 +322,7 @@ div.tocify {
 
 
 <div class="fluid-row" id="header">
+
 
 
 <h1 class="title">Linear Regression Functions in R</h1>
@@ -562,7 +567,7 @@ head(mod1_resid)                        </code></pre>
   ylab(&quot;Prestige&quot;) +
   xlab(&quot;Income&quot;) +
   theme_minimal()</code></pre>
-<p><img src="regression_in_R_files/figure-html/unnamed-chunk-24-1.png" title="" alt="" width="672" /></p>
+<p><img src="regression_in_R_files/figure-html/unnamed-chunk-24-1.png" alt="" /><!-- --></p>
 <p>Now plot something similar, but for a regression with <code>income</code> interacted with <code>type</code>,</p>
 <pre class="r"><code>mod4 &lt;- lm(prestige ~ income * type, data = Duncan)</code></pre>
 <p>We want to create a dataset which has, (1) each value of <code>type</code> in the Duncan data, and (2) values spanning the range of <code>income</code> in the Duncan data. The function <code>expand.grid</code> creates a data frame with all combinations of vectors given to it (Cartesian product).</p>
@@ -576,7 +581,7 @@ head(mod1_resid)                        </code></pre>
   ylab(&quot;Prestige&quot;) +
   xlab(&quot;Income&quot;) +
   theme_minimal()</code></pre>
-<p><img src="regression_in_R_files/figure-html/unnamed-chunk-27-1.png" title="" alt="" width="672" /></p>
+<p><img src="regression_in_R_files/figure-html/unnamed-chunk-27-1.png" alt="" /><!-- --></p>
 <p>Running <code>geom_smooth</code> with <code>method = &quot;lm&quot;</code> gives similar results. However, note that <code>geom_smooth</code> with run a <strong>separate</strong> regression for each group.</p>
 <pre class="r"><code>ggplot(data = Duncan, aes(x = income, y = prestige, color = type)) +
   geom_point() +
@@ -584,7 +589,7 @@ head(mod1_resid)                        </code></pre>
   ylab(&quot;Prestige&quot;) +
   xlab(&quot;Income&quot;) +
   theme_minimal()</code></pre>
-<p><img src="regression_in_R_files/figure-html/unnamed-chunk-28-1.png" title="" alt="" width="672" /></p>
+<p><img src="regression_in_R_files/figure-html/unnamed-chunk-28-1.png" alt="" /><!-- --></p>
 </div>
 <div id="plotting-residuals" class="section level3">
 <h3>Plotting Residuals</h3>

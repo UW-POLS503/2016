@@ -169,7 +169,6 @@ Topics
 - Substantive Significance
 - Power
 
-
 Readings
 
 - Wooldridge. *Introductory Econometrics*. Ch 4.
@@ -209,7 +208,7 @@ Readings
 - Matt Golder. <http://mattgolder.com/interactions>
 - Introduction to Machine Learning, Ch 5.2-5.3
  LPM?](http://www.mostlyharmlesseconometrics.com/2012/07/probit-better-than-lpm/)
-- ISLR. Ch 7: "Moving Beyond Linearity"
+- [http://www-bcf.usc.edu/~gareth/ISL/getbook.html](http://www-bcf.usc.edu/~gareth/ISL/). Ch 7: "Moving Beyond Linearity" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)
 
 
 
@@ -234,8 +233,7 @@ Readings
 Readings
 
 - Wooldridge, Ch. 7: "Multiple Regression Analysis with Qualitative Information"
-
-- IML. Ch 6.2: "Shrinkage Methods"
+- [http://www-bcf.usc.edu/~gareth/ISL/getbook.html](http://www-bcf.usc.edu/~gareth/ISL/). Ch 6.2: "Shrinkage Methods", Ch 5: "Resampling Methods" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)
 - Kleinberg, Jon, Jens Ludwig, Sendhil Mullainathan, and Ziad Obermeyer. 2015. "[Prediction Policy Problems](http://dx.doi.org/10.1257/aer.p20151023)." *American Economic Review*
 - Shmeuli, Galit. 2010. "[To Explain or Predict?](http://projecteuclid.org/euclid.ss/1294167961)." *Statistical Science*
 

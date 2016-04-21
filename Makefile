@@ -7,7 +7,7 @@ all: html
 html: $(HTML_FILES)
 
 %.html: %.Rmd $(HTML_FILES_DEPENDS)
-	R --slave -e "rmarkdown::render('$<',encoding='UTF-8')"
+	-R --slave -e "rmarkdown::render('$<',encoding='UTF-8')"
 
 watch:
 	watchman watch "$(shell pwd)"

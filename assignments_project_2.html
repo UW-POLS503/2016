@@ -10,8 +10,9 @@
 
 
 
+<meta name="date" content="2016-04-20" />
 
-<title></title>
+<title>Project Assignment 2</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -325,84 +326,29 @@ div.tocify {
 
 
 
+<h1 class="title">Project Assignment 2</h1>
+<h4 class="date"><em>April 20, 2016</em></h4>
 
 </div>
 
 
+<p>Date due: <time datetime="2016-04-26 17:00">Friday, April 26, 11:59 PDT</time>.</p>
+<ol style="list-style-type: decimal">
+<li>Write a draft of the theory, data, and model. Do not include results. However, describe and write out the model that you intend to run and how it relates to your theory. This does not bind you to running that model, but is an opportunity to clearly and concretely state what your current understanding, and give the instructors and peers an opportunity to provide constructive feedback. This should answer many of the questions of <a href="assignments_project_1.html">Project Assignment 1</a>, but with more detail. This should be written as a paper, and in the same format as the <a href="data_analysis_project_paper_guidelines">final paper</a>.</li>
+<li><p>Include an R markdown analysis file with additional information and analysis of your research. This should contain analysis that is more detailed than what would be included in an article. The following questions are the sorts of things that should be included in this R markdown file:</p>
+<ol style="list-style-type: decimal">
+<li>Summary statistics of all variables that you are using</li>
+<li>Plots of distributions of the variables in the data</li>
+<li>Amount of missingness in each of the variables</li>
+</ol>
+<p>The purpose of this is to (1) get you used to keeping track of all your analysis in a transparent manner, and (2) to simulate the way in which most journals ask for or distribute supplemental information containing analysis that was not included in the article itself.</p></li>
+<li>Update <code>README.md</code> with a description of what is each file in your project.</li>
+<li><p>When you have finished, create an issue in Github titled: “Review Project Assignment 2”. In the issue message write “cc <span class="citation">@jrnold</span> <span class="citation">@CasAndreu</span>”. This is how you submit your assignment, and lets the instructors know it is ready to review.</p></li>
+</ol>
 <!--
-.. title: List of Data
+
+TODO: I need more concrete questions to cover in these sections. I should start gathering a list of these
 -->
-<p>Here are links to some datasets potentially of interest to political scientists. However, the data collection process in academia is disaggregated, with many data sets collected by researchers for specific purposes and distributed by the researcher with their paper. See also the Washington Library <a href="http://guides.lib.uw.edu/c.php?g=341607&amp;p=2299327">Data Research Guide</a></p>
-<div id="repositories" class="section level1">
-<h1>Repositories</h1>
-<ul>
-<li><a href="https://dataverse.harvard.edu/">Harvard Dataverse</a> Contains replication data for many political science articles (among other data). The R package <a href="https://cran.r-project.org/web/packages/dvn/index.html">dvn</a> allows for direct download and upload of data to and from the Dataverse.</li>
-<li><p><a href="http://www.icpsr.umich.edu/icpsrweb/landing.jsp">ICPSR</a> Collection of many political science and economics datasets.</p></li>
-<li><a href="https://www.quandl.com/">Quandl</a> A collection of financial and economic data. The R package <a href="https://www.quandl.com/tools/r">Quandl</a> allows for easy access to Quandl data within R.</li>
-<li><p><a href="http://www3.norc.org/GSS+Website/">General Social Survey(GSS)</a></p></li>
-</ul>
-</div>
-<div id="economics" class="section level1">
-<h1>Economics</h1>
-<ul>
-<li><a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators (WDI)</a>. The R package <a href="https://cran.r-project.org/web/packages/WDI/index.html">WDI</a> allows for downloading data.</li>
-<li><a href="http://cid.econ.ucdavis.edu/pwt.html">Penn World Table</a></li>
-</ul>
-</div>
-<div id="american-politics" class="section level1">
-<h1>American Politics</h1>
-<ul>
-<li><a href="https://research.stlouisfed.org/fred2/">FRED</a> Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.</li>
-<li><a href="https://cran.r-project.org/web/views/WebTechnologies.html">data.gov</a> U.S. government open data</li>
-<li><a href="http://www.census.gov/">U.S. Census Bureau</a></li>
-<li><a href="http://voteview.com/">NOMINATE Ideal Points of U.S. Congress</a></li>
-</ul>
-</div>
-<div id="comparative-politics" class="section level1">
-<h1>Comparative Politics</h1>
-<ul>
-<li>Policy Agendas Project <a href="http://www.policyagendas.org/page/datasets-codebooks" class="uri">http://www.policyagendas.org/page/datasets-codebooks</a></li>
-<li>Varieties of Democracy (VDEM) project <a href="http://kellogg.nd.edu/projects/vdem/" class="uri">http://kellogg.nd.edu/projects/vdem/</a></li>
-<li><a href="http://www.systemicpeace.org/polity/polity4.htm">Polity Project data</a> Political regime characteristics</li>
-<li><a href="http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20649465~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html">Database of Political Institutions</a></li>
-</ul>
-</div>
-<div id="international-relations" class="section level1">
-<h1>International Relations</h1>
-<ul>
-<li>Paul Hensel maintains a list of Political Science Datasets <a href="http://www.paulhensel.org/data.html" class="uri">http://www.paulhensel.org/data.html</a></li>
-<li><a href="http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/">UCDP/PRIO Armed Conflict</a> Datasets on armed conflict</li>
-<li><a href="http://www.acleddata.com/data/">ACLED (Armed Conflict Location and Event Data Project)</a> Real-time data on political violence in African and Asian states</li>
-<li><a href="http://openeventdata.org/datasets/OEDA.datasets.php">OpenEvent Data/Phoenix Data Project</a></li>
-<li>Data version of the CIA World Factbook: <a href="http://jmatchparser.sourceforge.net/factbook/" class="uri">http://jmatchparser.sourceforge.net/factbook/</a></li>
-<li><a href="http://www.paulhensel.org/data.html">Paul Hensel’s List of International Relations Data</a></li>
-<li><a href="http://www.paulhensel.org/icow.html">Issue Correlates of War (ICOW)</a></li>
-</ul>
-</div>
-<div id="open-data-open-government-datasets" class="section level1">
-<h1>Open Data / Open Government Datasets</h1>
-<ul>
-<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Provides open data on the U.S. government. Data on Congress, state legislatures, campaign finance, contributions, dockets.</li>
-<li><a href="https://ropengov.github.io/">ROpenGov</a> has R packages to access various government related data. For packages to access data on the web from within R see the <a href="https://cran.r-project.org/web/views/WebTechnologies.html">Web Technologies and Services</a> CRAN Task View.</li>
-<li><a href="https://github.com/caesar0301/awesome-public-datasets">Awesome Public Datasets</a> by <a href="https://github.com/caesar0301">caesar0301</a></li>
-<li><a href="http://www.vox.com/">Vox</a> stories on <a href="https://github.com/voxmedia/data-projects">github</a></li>
-<li>NY Times <a href="http://www.nytimes.com/upshot/">Upshot</a> on <a href="https://github.com/TheUpshot">github</a></li>
-<li>Guardian Data Blog <a href="http://www.theguardian.com/news/datablog/interactive/2013/jan/14/all-our-datasets-index">here</a></li>
-<li><a href="http://fivethirtyeight.com">Fivethirtyeight</a> data on <a href="https://github.com/fivethirtyeight/data">github</a></li>
-<li>Catalog of open government data around the world at <a href="http://dataportals.org">DataPortals.org</a></li>
-<li><a href="http://sunlightfoundation.com/">Sunlight Foundation</a> Datasets focusing on US government transparency</li>
-<li><a href="https://www.propublica.org/data/">ProPublica</a></li>
-<li><a href="http://developer.nytimes.com/docs/campaign_finance_api/">NYTimes Campaign Finance API</a></li>
-<li><a href="http://archive.ics.uci.edu/ml/">UCI Machine Learning Repository</a> : repository of machine learning datasets</li>
-<li><a href="https://github.com/showcases/open-data">Open Data on Github</a></li>
-</ul>
-</div>
-<div id="cleaning-data-guide" class="section level1">
-<h1>Cleaning data guide</h1>
-<ul>
-<li><a href="https://github.com/Quartz/bad-data-guide">The Quartz guide to bad data</a></li>
-</ul>
-</div>
 
 <!-- some extra javascript for older browsers -->
 <script type="text/javascript" src="libs/polyfill.js"></script>
