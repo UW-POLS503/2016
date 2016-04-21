@@ -277,6 +277,7 @@ div.tocify {
             <li class="divider"></li>
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
           </ul>
         </li>
@@ -341,8 +342,7 @@ library(broom)
 library(ggplot2)
 data(gapminder)
 data(turnout)</code></pre>
-<p>Also go to the following link to download a WDI dataset from 1980 to 2010.</p>
-<p><code>https://www.dropbox.com/s/qqb3vg66hxqfqzb/wdi_co2_gdp_1980_2010.csv?dl=0</code></p>
+<p>Also go to the following link to download a WDI dataset from 1980 to 2010. <code>https://www.dropbox.com/s/qqb3vg66hxqfqzb/wdi_co2_gdp_1980_2010.csv?dl=0</code></p>
 <p>Load the <code>wdi</code> dataset.</p>
 <pre class="r"><code>wdi &lt;- read.csv(&quot;data/wdi_co2_gdp_1980_2010.csv&quot;)</code></pre>
 </div>
@@ -367,7 +367,7 @@ ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
 <p>Uau! This model predicts that the Life Expectancy in Kuwait is 140 years!</p>
 <p>Plot now the outcome variable <code>lifeExp</code> against the response variable <code>gdpPercap</code>.</p>
 <pre class="r"><code>ggplot(gapminder, aes(y = lifeExp, x = gdpPercap)) +
-  geom_point() </code></pre>
+  geom_point()</code></pre>
 <p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>This graphs clearly shows that in the beginning, a unit increase on <code>gdpPercap</code> matters a lot in explaining <code>lifeExp</code>. However, at some point, extra units increase do not make much of a difference. We call this type of relation a <em>Logarithmic Relation</em>. How can we specify this logarithmic relation in a linear model?</p>
 <p>If we believe that there is a <em>logarithmic</em> relation between the outcome variable and a covariate, this is the same as saying that there is a <em>linear</em> relation between the outcome variable and the <span class="math inline">\(log\)</span> of the covariate. Thus, we just need to transform the covariate of interest by calculating its <span class="math inline">\(log\)</span> and then add the resulting variable to the linear model.</p>
@@ -384,7 +384,7 @@ ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
 ## 100% 113523.1329 11.639762</code></pre>
 <p>Plot <code>lifeExp</code> against this new variable. Observe how there is a linear relation between the outcome and the <em>log</em> of the covariate. Observe also that <code>log_gdpPercap</code> is not expressed on the original units ($ per capita) anymore but in <em>log</em> $ per capita.</p>
 <pre class="r"><code>ggplot(gapminder, aes(x = log_gdpPercap, y = lifeExp)) +
-  geom_point() </code></pre>
+  geom_point()</code></pre>
 <p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>Estimate a model now that portrays <code>lifeExp</code> as a linear function of the <em>log</em> of <code>gdpPercap</code>.</p>
 <p><span class="math inline">\(lifeExp = \beta_{0} + \beta_{1}log(gdpPercap) + \epsilon\)</span></p>
@@ -392,11 +392,11 @@ ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
 <p>Plot <code>mod1b</code>’s predicted values of <code>lifeExp</code> against <code>gdpPercap</code>.</p>
 <pre class="r"><code>mod1b_augm &lt;- augment(mod1b, gapminder)
 ggplot(mod1b_augm, aes(y = .fitted, x = gdpPercap)) +
-  geom_point() </code></pre>
+  geom_point()</code></pre>
 <p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>That makes a lot more sense!</p>
 <p>Finally let’s see how well each model does in predicting the actual <code>lifeExp</code> values.</p>
-<pre class="r"><code>ggplot(mod1a_augm, aes(x = lifeExp, y = .fitted)) + 
+<pre class="r"><code>ggplot(mod1a_augm, aes(x = lifeExp, y = .fitted)) +
   geom_point()</code></pre>
 <p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mod1b_augm, aes(x = lifeExp, y = .fitted)) +

@@ -27,7 +27,7 @@ Also go to the following link to download a WDI dataset from 1980 to 2010.
 `https://www.dropbox.com/s/qqb3vg66hxqfqzb/wdi_co2_gdp_1980_2010.csv?dl=0`
 
 Load the `wdi` dataset.
-```{r}
+```{r, eval = FALSE}
 wdi <- read.csv("data/wdi_co2_gdp_1980_2010.csv")
 ```
 
