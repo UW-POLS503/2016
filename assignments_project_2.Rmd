@@ -3,7 +3,7 @@ title: Project Assignment 2
 date: April 20, 2016
 ---
 
-Date due: <time datetime="2016-04-26 17:00">Friday, April 26, 11:59 PDT</time>.
+Date due: <time datetime="2016-04-28 16:30">Thursday, April 28, 16:30 PDT</time>.
 
 1. Write a draft of the theory, data, and model. Do not include results. However,
     describe and write out the model that you intend to run and how it relates to your
