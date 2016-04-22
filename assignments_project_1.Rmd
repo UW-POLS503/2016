@@ -3,8 +3,6 @@ title: Project Assignment 1
 date: April 5, 2016
 ---
 
-Date due: <time datetime="2016-04-08 17:00">Friday, April 8, 17:00 PDT</time>.
-
 1. Create a file in your project repository named `proposal.md`. You should
    write this in [markdown](https://guides.github.com/features/mastering-markdown/).
    You can edit the file in RStudio, in the GitHub website itself, or
