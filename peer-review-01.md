@@ -10,9 +10,9 @@ You are also not acting as a gatekeeper for the discipline: you do not need to a
 You are asked to check whether the analysis is replicable: Does the code run and produce the results reported in the paper?
 If you are having problems with the code, contact the author to resolve them by opening an issue in the author's project repository; cc the instructors (`cc @jrnold @CasAndreu`).
 
-Your peer review should be roughly 2--3 pages, and in the following format:
+Your need to submit your peer review assignment as a new issue in the author's project repository; cc the instructors and the author. Your peer review should follow this format:
 
-- Start by summarizing the paper. What is the question? What are the data and methods used to address the question? What does the paper find.
+- Start by summarizing the paper. What is the question? What are the data and methods used to address the question?
 - Discuss general comments.
 - Discuss specific comments (perhaps in a bullet list). These would include things like a confusing graph, or an unclear sentence on a specific page.
 

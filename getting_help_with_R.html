@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,27 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -325,104 +322,10 @@ div.tocify {
 
 
 
-
 </div>
 
 
-<!--
-.. title: Getting Help with R
-.. description: How to get help with R?
--->
-<div id="functions" class="section level1">
-<h1>Functions</h1>
-<p>The first place to look is to use the search box in the <em>Help</em> tab of RStudio.</p>
-<p>If you start typing in either the console or editor in RStudio and hit <code>[TAB]</code>, the RStudio will show a list of completions as well as a short help for each.</p>
-<p>There are several R functions to get help using either <code>?</code> or <code>help</code>. For example to find help for a function <code>quantile</code>, you can use either</p>
-<pre class="r"><code>?quantile</code></pre>
-<p>or</p>
-<pre class="r"><code>help(&quot;quantile&quot;)</code></pre>
-<p>To find the help pages available for a package, use <code>help</code> with the <code>package</code> argument. For example,</p>
-<pre class="r"><code>help(package = &quot;tidyr&quot;)</code></pre>
-<p>Want to find out what datasets are included in the R packages that you have installed?</p>
-<pre class="r"><code>data()</code></pre>
-<p>To find datasets included in a specific package, use <code>data</code> with the <code>package</code> argument, For example,</p>
-<pre class="r"><code>data(package = &quot;ggplot2&quot;)</code></pre>
-<p>The help for R functions is only useful if you know what function you need want to know either what it is doing, or what the arguments are. The help files in R are not useful for understanding what a package does or how to use it. However, <em>vignettes</em> for R packages are often overviews of the functionality of packages that serve as tutorials or introductions to using the package. To get a list of all vignettes of the packages your have installed, run</p>
-<pre class="r"><code>browseVignettes()</code></pre>
-<p>To get the list of vignettes for a specific package, run</p>
-<pre class="r"><code>browseVignettes(&quot;dplyr&quot;)</code></pre>
-<p>You can also find vignettes for packages you have not installed on the packages’ CRAN page [<a href="https://cran.r-project.org/web/packages/tidyr/index.html" class="uri">https://cran.r-project.org/web/packages/tidyr/index.html</a>]<a href="https://github.com/hadley/dplyr" class="uri">https://github.com/hadley/dplyr</a>)“. There is also a <code>vignette</code> function, but you need the exact name of the vignette, which you generally do not know.</p>
-<p>Note that <code>search()</code> <strong>does not</strong> do what you expect it to do, unless you expect it to return the search path in which R looks for packages.</p>
-</div>
-<div id="internet" class="section level1">
-<h1>Internet</h1>
-<p><a href="http://www.rdocumentation.org/">Rdocumentation.org</a> searches the documentation of all R packages on CRAN and more</p>
-<p>Google has gotten better with R searches, but <code>R</code> is a particularly unfriendly search term. However, if you are searching for “R” with other words in context, you are likely to have some success. An alternative is to use <a href="http://rseek.org">rseek.org</a> instead. It is a Google search restricted to a curated set of sites related to R.</p>
-<p>Many R packages have an article in either the <a href="http://www.jstatsoft.org/index">Journal of Statistical Software</a> or <a href="https://journal.r-project.org/">The R Journal</a> These articles are similar to package does.</p>
-<p><a href="https://stackoverflow.com">Stack Overflow</a> is a question and answer website for computer programming questions. Search for questions about R using the “r” tag. You can do this by adding <code>[r]</code> to your search query. Other tags that may be useful are <code>[ggplot2]</code>, <code>[plyr]</code>. However, generally you should not need to <em>ask</em> questions for this course. Someone has likely already asked your question before.</p>
-<p>If you have a question about “statistics” or “data analysis” rather than “R”, then <a href="https://stats.stackexchange.com/">Cross Validated</a> is a Q-and-A site like Stack Overflow, but for statistics and machine learning.</p>
-</div>
-<div id="cheatsheets" class="section level1">
-<h1>Cheatsheets</h1>
-<p>RStudio has several very good <a href="https://www.rstudio.com/resources/cheatsheets/">cheatsheets</a></p>
-<ul>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">RStudio IDE</a></li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf">Data Visualization</a> (ggplot2)</li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling</a> (dplyr, tidyr, lubridate, tidyr)</li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown</a></li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a></li>
-</ul>
-<p>The <a href="https://cran.r-project.org/doc/contrib/Short-refcard.pdf">Short R Reference Card</a> is the classic cheatsheet. However, some of the data manipulation and plotting functions are not those we use in this course, but it does cover much of the statistical functions.</p>
-</div>
-<div id="books" class="section level1">
-<h1>Books</h1>
-<p>Two references organized by task are <a href="http://www.cookbook-r.com">The Cookbook for R</a> and <a href="http://www.statmethods.net/">Quick-R</a>.</p>
-<!--
-[R-bloggers](http://www.r-bloggers.com/) aggregates R-related blogging. 
 
-On twitter, the R hashtag is `#rstats`. Some prominent R-related people and accounts on twitter are:
-[@R-bloggers](https://twitter.com/Rbloggers)
-[@RevolutionR](https://twitter.com/RevolutionR),
-[@isDotR](https://twitter.com/isDotR),
-[@swirlstats](https://twitter.com/swirlstats),
-[@rOpenGov](https://twitter.com/rOpenGov),
-[@JennyBryan](https://twitter.com/JennyBryan),
-[@rOpenSci](https://twitter.com/rOpenSci),
-[@rstudio](https://twitter.com/rstudio),
-[@inside_R](https://twitter.com/inside_R),
-[@cboettig](https://twitter.com/cboettig),
-[@ramnath_vaidya](https://twitter.com/ramnath_vaidya),
-[@eddelbuettel](https://twitter.com/eddelbuettel),
-[@benmarwick](https://twitter.com/benmarwick),
-[@thosjleeper](https://twitter.com/thosjleeper),
-[@STAT545](https://twitter.com/STAT545).
-
-
-Do you want to know what packages exist for a given topic? [CRAN Task Views](https://cran.r-project.org/web/views/) provide subject matter groupings of R packages. Some potentially useful task-views to social scientists are:
-
-    - [Econometrics](https://cran.r-project.org/web/views/Econometrics.html)
-    - [Natural Language Processing](https://cran.r-project.org/web/views/NaturalLanguageProcessing.html)
-    - [Official Statistics & Survey Methodology](https://cran.r-project.org/web/views/OfficialStatistics.html)
-    - [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html)
-    - [Spatial](https://cran.r-project.org/web/views/Spatial.html)
-    - [Survival Analysis](https://cran.r-project.org/web/views/Survival.html)
-    - [Time Series](https://cran.r-project.org/web/views/TimeSeries.html)
-    - [Web Technologies and Services](https://cran.r-project.org/web/views/WebTechnologies.html)
-    - [Social Sciences](https://cran.r-project.org/web/views/SocialSciences.html)
--->
-</div>
-<div id="how-to-ask-for-help" class="section level1">
-<h1>How to ask for help</h1>
-<p>TODO: fill in an example</p>
-<!--
-How to write a minimal reproducible example <https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example>
-
-If you are going to ask for help, it is important to know how to ask for help
-
-- Coding Killed the Cat "How to ask programming question" <https://codingkilledthecat.wordpress.com/2012/06/26/how-to-ask-for-programming-help/>
-- Matt Gemmell, "What Have You Tried?" <http://mattgemmell.com/what-have-you-tried/>
--->
-</div>
 
 <!-- some extra javascript for older browsers -->
 <script type="text/javascript" src="libs/polyfill.js"></script>
