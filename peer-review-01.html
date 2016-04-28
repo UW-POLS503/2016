@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+</div>
+
+
+<div id="peer-review-assignment" class="section level1">
+<h1>Peer Review Assignment</h1>
+<p>Review the paper (theory, data, and model parts) of the peer to which you have been assigned. You should access the author’s write-up, code, and data by going to his/her repository. The objective of this assignment is to give constructive feedback in order to help the author improve their paper.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> The following sections provide some general suggestions of things to look for. However, you are not a coauthor of the paper, nor should you be asking the author to write the paper you would have written. Take the question that the author is asking as given, and address whether they adequately answer it. You are also not acting as a gatekeeper for the discipline: you do not need to address whether the question and analysis is innovative, novel, or contributing to a literature.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>You are asked to check whether the analysis is replicable: Does the code run and produce the results reported in the paper? If you are having problems with the code, contact the author to resolve them by opening an issue in the author’s project repository; cc the instructors (<code>cc @jrnold @CasAndreu</code>).</p>
+<p>Your peer review should be roughly 2–3 pages, and in the following format:</p>
+<ul>
+<li>Start by summarizing the paper. What is the question? What are the data and methods used to address the question? What does the paper find.</li>
+<li>Discuss general comments.</li>
+<li>Discuss specific comments (perhaps in a bullet list). These would include things like a confusing graph, or an unclear sentence on a specific page.</li>
+</ul>
+<div id="questions-to-consider" class="section level2">
+<h2>Questions to consider</h2>
+<p>These are some questions to guide your review, but should not be considered an exclusive list.</p>
+<div id="research-question-and-hypothesis" class="section level3">
+<h3>Research question and hypothesis:</h3>
+<ul>
+<li>Is the researcher focused on well‐defined questions?</li>
+<li>Is the author attempting to identify a causal impact or is it descriptive or inductive?</li>
+<li>Could there be alternative models that produce similar predictions—that is, does evidence on the predictions necessarily weigh on the model or explanation?</li>
+<li>Is the theory a theory, or a list of predictions?</li>
+</ul>
+</div>
+<div id="data" class="section level3">
+<h3>Data:</h3>
+<ul>
+<li>Are the data clearly described? If you were to replicate the paper, would you know where to get the data from (sources) and how to process it in order to produce the dataset the author is using?</li>
+<li>Is the choice of data well‐suited to the question?</li>
+<li>Are there any worrying sources of measurement error or missing data?</li>
+<li>Are there sample size or power issues?</li>
+<li>Could the data sources or collection method be biased?</li>
+<li>Are there types of data that should have been reported, or would have been useful or essential in the empirical analysis?</li>
+</ul>
+</div>
+<div id="empirical-analysis" class="section level3">
+<h3>Empirical analysis:</h3>
+<ul>
+<li>What are the response and outcome variables?</li>
+<li>Are the statistical techniques suggested well suited to the problem at hand?</li>
+<li>Can you imagine a better, or alternative, empirical strategy?</li>
+<li>Is the empirical strategy convincing? Are appropriate caveats mentioned?</li>
+</ul>
+</div>
+</div>
+<div id="replication" class="section level2">
+<h2>Replication</h2>
+<ul>
+<li>Did they cite the sources of the data? They should provide enough information so that you can find the original data that they used; verify that by trying to find the data.</li>
+<li>Was the code and data in the authors’ repository? Were you able to run the code?</li>
+<li>Did the code produce the results that were given in the paper?</li>
+<li>Was the code understandable and well-commented? Could you easily tell which parts of the code produced which tables, figures, and results?</li>
+</ul>
+</div>
+<div id="general-advice" class="section level2">
+<h2>General Advice</h2>
+<p>How to do peer review well (<a href="https://stat545-ubc.github.io/peer-review02_peer-evaluation-guidelines.html" class="uri">https://stat545-ubc.github.io/peer-review02_peer-evaluation-guidelines.html</a>)</p>
+<ul>
+<li>Give thoughtful, constructive and considerate comments.</li>
+<li>Be specific and concise.</li>
+<li>Try to learn something new and, if you succeed, point that out.</li>
+<li>If you can’t find anything to praise or that you found helpful, then at least offer some suggestions in a kind way.</li>
+</ul>
+</div>
+<div id="evaluations-of-peer-review" class="section level2">
+<h2>Evaluations of Peer Review</h2>
+<p>Peer reviews will be evaluated as “good” or “needs more”. Some reasons why a peer review will be given a grade of “needs more”:</p>
+<ul>
+<li>The review is so generic that it’s hard to determine which assignment you’re reviewing.</li>
+<li>The review is mean.</li>
+<li>The review neither expresses good points nor offers suggestions.</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>There are some good sources and suggestions on “doing” peer review. These are geared to reviewing manuscripts for publication, which has a different objectives than this assignment. However, these are useful to read for your professional development.</p>
+<ul>
+<li><em>The Political Methodologist</em>, Fall 2015, issue on Peer Review <a href="https://thepoliticalmethodologist.files.wordpress.com/2016/02/tpm_v23_n1.pdf">[URL]</a>, especially Brendan Nyhan, “A Checklist Manifesto for Peer Review” and Thomas Pepinsky, “What is Peer Review For? Why Referees are not the Disciplinary Police”.</li>
+<li>Miller, Beth, Jon Pevehouse, Ron Rogowski, Dustin Tingley, and Rick Wilson. 2013. “How To Be a Peer Reviewer: A Guide for Recent and Soon-to-be PhDs.” <em>PS: Political Science &amp; Politics</em> <a href="https://dx.doi.org/10.1017/S104909651200128X">[DOI]</a></li>
+<li>Chris Blattman <a href="http://chrisblattman.com/files/2009/07/PLSC508-Syllabus-Spring2010.pdf">Research Design &amp; Casual Inference Syllabus</a>, last two pages</li>
+<li>Tyler Cowen <a href="http://marginalrevolution.com/marginalrevolution/2006/10/how_to_be_a_goo.html">How to be a good referee</a></li>
+<li>William Thompson, <em>A Guide for the Young Economist</em>, 2nd ed. Ch 4 “Writing Referee Reports”.</li>
+</ul>
+<hr />
+<p>Derived in part from Jenny Bryan <a href="https://stat545-ubc.github.io/faq.html">Guidelines for peer review of assignments</a> <a href="http://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0 Create Commons License</a></p>
+<p>Several of these questions come from the syllabus of Chris Blattman for <a href="http://chrisblattman.com/files/2009/07/PLSC508-Syllabus-Spring2010.pdf">Research Design and Causal Inference</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This is different than reviewing an article, in which the objective is to determine whether the paper is publishable or not. This is an example of pre-publication comments when you offer advice to an author.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Though if you find it is, point it out.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
