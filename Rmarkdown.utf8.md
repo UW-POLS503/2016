@@ -1,5 +1,4 @@
-
---
+---
 title: Resources for Using R Markdown and Markdown
 ---
 
