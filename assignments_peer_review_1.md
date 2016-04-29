@@ -4,12 +4,12 @@
   - Wesley reviews Beatrice's project
   - Beatrice reviews Steve's
   - Steve reviews Larry's
-  - Larry reviews Steven's
+  - Larry reviews Steven's 
   - Steven reviews Carolyn's
   - Carolyn reviews Xingwei's
   - Xingwei reviews Ellen's
   - Ellen reviews Erika's
-  - Erik reviews Wesley's
+  - Erik reviews Wesley's 
 
 Review the paper (theory, data, and model parts) of the peer to which you have been assigned. You should access the author's write-up, code, and data by going to his/her repository. 
 The objective of this assignment is to give constructive feedback in order to help the author improve their paper.[^1]
