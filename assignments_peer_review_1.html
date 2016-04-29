@@ -11,7 +11,7 @@
 
 
 
-<title>Resources for Using R Markdown and Markdown</title>
+<title></title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -324,43 +324,113 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Resources for Using R Markdown and Markdown</h1>
 
 </div>
 
 
-<div id="r-markdown" class="section level1">
-<h1>R markdown</h1>
-<p>The best (and relatively) complete place to get help on R markdown is the RStudio R Markdown site.</p>
+<div id="peer-review-assignment" class="section level1">
+<h1>Peer Review Assignment</h1>
+<p><strong>Due: May 5, 2016</strong></p>
 <ul>
-<li><a href="http://rmarkdown.rstudio.com/">R Markdown</a></li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown Cheatsheet</a></li>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Refernence Guide</a></li>
+<li>Wesley reviews Beatrice’s project</li>
+<li>Beatrice reviews Larry’s</li>
+<li>Larry reviews Steven’s</li>
+<li>Steven reviews Carolyn’s</li>
+<li>Carolyn reviews Xingwei’s</li>
+<li>Xingwei reviews Ellen’s</li>
+<li>Ellen reviews Erika’s</li>
+<li>Erik reviews Wesley’s</li>
 </ul>
-<p>Additionally, there are <strong>many</strong> resources for markdown on the internet, but here are a few good interactive tutorials:</p>
+<p>Review the paper (theory, data, and model parts) of the peer to which you have been assigned. You should access the author’s write-up, code, and data by going to his/her repository. The objective of this assignment is to give constructive feedback in order to help the author improve their paper.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> The following sections provide some general suggestions of things to look for. However, you are not a coauthor of the paper, nor should you be asking the author to write the paper you would have written. Take the question that the author is asking as given, and address whether they adequately answer it. You are also not acting as a gatekeeper for the discipline: you do not need to address whether the question and analysis is innovative, novel, or contributing to a literature.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>You are asked to check whether the analysis is replicable: Does the code run and produce the results reported in the paper? If you are having problems with the code, contact the author to resolve them by opening an issue in the author’s project repository; cc the instructors (<code>cc @jrnold @CasAndreu</code>).</p>
+<p>Your need to <strong>submit</strong> your peer review assignment as a new issue in the author’s project repository; cc the instructors and the author. Your peer review should follow this format:</p>
 <ul>
-<li><a href="http://www.markdowntutorial.com/">Markdown Tutorial</a></li>
-<li>Another interactive markdown tutorial [<a href="http://commonmark.org/help/tutorial/" class="uri">http://commonmark.org/help/tutorial/</a>]</li>
+<li>Start by summarizing the paper. What is the question? What are the data and methods used to address the question?</li>
+<li>Discuss general comments.</li>
+<li>Discuss specific comments (perhaps in a bullet list). These would include things like a confusing graph, or an unclear sentence on a specific page.</li>
 </ul>
-<p><em>Advanced</em>: The R markdown in RStudio uses the <strong>rmarkdown</strong> and <strong>knitr</strong> packages and pandoc. <a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">Knitr</a> is a more flexible tool for embedding R (and other) language code chunks in formatting languages. Markdown is one example, but knitr also allows for code chunks in LaTeX, HTML, and others. <a href="http://pandoc.org/">Pandoc</a> is a powerful tool for converting between document formats, e.g. Markdown to HTML, Markdown to LaTeX, HTML to docx, and many more.</p>
+<div id="questions-to-consider" class="section level2">
+<h2>Questions to consider</h2>
+<p>These are some questions to guide your review, but should not be considered an exclusive list.</p>
+<div id="research-question-and-hypothesis" class="section level3">
+<h3>Research question and hypothesis:</h3>
+<ul>
+<li>Is the researcher focused on well‐defined questions?</li>
+<li>Is the author attempting to identify a causal impact or is it descriptive or inductive?</li>
+<li>Could there be alternative models that produce similar predictions—that is, does evidence on the predictions necessarily weigh on the model or explanation?</li>
+<li>Is the theory a theory, or a list of predictions?</li>
+</ul>
 </div>
-<div id="markdown" class="section level1">
-<h1>Markdown</h1>
-<p>You can also create a simple markdown document (<code>.md</code>) using R-Studio. The difference between R-markdown and plain markdown documents is that in R-markdown you can include chuncks of R code and the machine runs them when compiling the document. However, if you have no interest in running code, you can simply write a plain markdown document. To create a markdown using R-Studio, follow these steps:</p>
-<ol style="list-style-type: decimal">
-<li><p>Open a new Text File in R-Studio: <code>File &gt; New File &gt; Text File</code>.</p></li>
-<li><p>Write something using<code>Markdown</code> syntax. For example:</p></li>
+<div id="data" class="section level3">
+<h3>Data:</h3>
+<ul>
+<li>Are the data clearly described? If you were to replicate the paper, would you know where to get the data from (sources) and how to process it in order to produce the dataset the author is using?</li>
+<li>Is the choice of data well‐suited to the question?</li>
+<li>Are there any worrying sources of measurement error or missing data?</li>
+<li>Are there sample size or power issues?</li>
+<li>Could the data sources or collection method be biased?</li>
+<li>Are there types of data that should have been reported, or would have been useful or essential in the empirical analysis?</li>
+</ul>
+</div>
+<div id="empirical-analysis" class="section level3">
+<h3>Empirical analysis:</h3>
+<ul>
+<li>What are the response and outcome variables?</li>
+<li>Are the statistical techniques suggested well suited to the problem at hand?</li>
+<li>Can you imagine a better, or alternative, empirical strategy?</li>
+<li>Is the empirical strategy convincing? Are appropriate caveats mentioned?</li>
+</ul>
+</div>
+</div>
+<div id="replication" class="section level2">
+<h2>Replication</h2>
+<ul>
+<li>Did they cite the sources of the data? They should provide enough information so that you can find the original data that they used; verify that by trying to find the data.</li>
+<li>Was the code and data in the authors’ repository? Were you able to run the code?</li>
+<li>Did the code produce the results that were given in the paper?</li>
+<li>Was the code understandable and well-commented? Could you easily tell which parts of the code produced which tables, figures, and results?</li>
+</ul>
+</div>
+<div id="general-advice" class="section level2">
+<h2>General Advice</h2>
+<p>How to do peer review well (<a href="https://stat545-ubc.github.io/peer-review02_peer-evaluation-guidelines.html" class="uri">https://stat545-ubc.github.io/peer-review02_peer-evaluation-guidelines.html</a>)</p>
+<ul>
+<li>Give thoughtful, constructive and considerate comments.</li>
+<li>Be specific and concise.</li>
+<li>Try to learn something new and, if you succeed, point that out.</li>
+<li>If you can’t find anything to praise or that you found helpful, then at least offer some suggestions in a kind way.</li>
+</ul>
+</div>
+<div id="evaluations-of-peer-review" class="section level2">
+<h2>Evaluations of Peer Review</h2>
+<p>Peer reviews will be evaluated as “good” or “needs more”. Some reasons why a peer review will be given a grade of “needs more”:</p>
+<ul>
+<li>The review is so generic that it’s hard to determine which assignment you’re reviewing.</li>
+<li>The review is mean.</li>
+<li>The review neither expresses good points nor offers suggestions.</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>There are some good sources and suggestions on “doing” peer review. These are geared to reviewing manuscripts for publication, which has a different objectives than this assignment. However, these are useful to read for your professional development.</p>
+<ul>
+<li><em>The Political Methodologist</em>, Fall 2015, issue on Peer Review <a href="https://thepoliticalmethodologist.files.wordpress.com/2016/02/tpm_v23_n1.pdf">[URL]</a>, especially Brendan Nyhan, “A Checklist Manifesto for Peer Review” and Thomas Pepinsky, “What is Peer Review For? Why Referees are not the Disciplinary Police”.</li>
+<li>Miller, Beth, Jon Pevehouse, Ron Rogowski, Dustin Tingley, and Rick Wilson. 2013. “How To Be a Peer Reviewer: A Guide for Recent and Soon-to-be PhDs.” <em>PS: Political Science &amp; Politics</em> <a href="https://dx.doi.org/10.1017/S104909651200128X">[DOI]</a></li>
+<li>Chris Blattman <a href="http://chrisblattman.com/files/2009/07/PLSC508-Syllabus-Spring2010.pdf">Research Design &amp; Casual Inference Syllabus</a>, last two pages</li>
+<li>Tyler Cowen <a href="http://marginalrevolution.com/marginalrevolution/2006/10/how_to_be_a_goo.html">How to be a good referee</a></li>
+<li>William Thompson, <em>A Guide for the Young Economist</em>, 2nd ed. Ch 4 “Writing Referee Reports”.</li>
+</ul>
+<hr />
+<p>Derived in part from Jenny Bryan <a href="https://stat545-ubc.github.io/faq.html">Guidelines for peer review of assignments</a> <a href="http://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0 Create Commons License</a></p>
+<p>Several of these questions come from the syllabus of Chris Blattman for <a href="http://chrisblattman.com/files/2009/07/PLSC508-Syllabus-Spring2010.pdf">Research Design and Causal Inference</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This is different than reviewing an article, in which the objective is to determine whether the paper is publishable or not. This is an example of pre-publication comments when you offer advice to an author.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Though if you find it is, point it out.<a href="#fnref2">↩</a></p></li>
 </ol>
-<div style="width:500px; height=200px">
-<p><img src="img/new_md.png" alt="" /></p>
-</div>
-<ol start="3" style="list-style-type: decimal">
-<li>Save the document and end the file name with <code>.md</code>: e.g. <code>proposal.md</code>.</li>
-</ol>
-<div style="width:500px; height=200px">
-<p><img src="img/name_md.png" alt="" /></p>
-</div>
-<p>Now you have a plain Markdown file you can edit in R-Studio</p>
 </div>
 
 <!-- some extra javascript for older browsers -->
