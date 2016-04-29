@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,27 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,6 +327,7 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
+
 <h1 class="title">Getting Started with Git and GitHub</h1>
 
 </div>
@@ -428,6 +432,23 @@ git push</code></pre>
 <div id="install-github-desktop-optional" class="section level3">
 <h3>Install Github Desktop (optional)</h3>
 <p>Another graphical interface for Git and GitHub, not directly tied to RStudio, is <a href="https://desktop.github.com/">GitHub Desktop</a>. You may want to install that as an alternative to working with GitHub through RStudio.</p>
+</div>
+</div>
+<div id="tips" class="section level2">
+<h2>Tips</h2>
+<div id="using-git-with-r-markdown" class="section level3">
+<h3>Using Git with R Markdown</h3>
+<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore">https://help.github.com/articles/ignoring-files/</a> file to ignore some temporary files.</p>
+<pre><code># Ignore temporary files created by R markdown
+*.utf8.md
+*.knit.md
+# Ignore knitr cache
+*_cache/</code></pre>
+</div>
+<div id="using-git-with-latex" class="section level3">
+<h3>Using Git with LaTeX</h3>
+<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore">https://help.github.com/articles/ignoring-files/</a> file so that git ignores the <strong>many</strong> intermediate files that LaTeX creates when compiling a document.</p>
+<p>For those more comfortable with git and LaTeX see this <a href="http://stackoverflow.com/questions/6188780/git-latex-workflow">Stack Overflow</a> post on a git+LaTeX workflow. Copy the patterns from GitHubs collection of useful gitignore patterns for <a href="https://github.com/github/gitignore/blob/master/TeX.gitignore">TeX</a>.</p>
 </div>
 </div>
 <div id="references" class="section level2">

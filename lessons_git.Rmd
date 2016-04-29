@@ -98,6 +98,28 @@ Now that you pushed your assignment to your online fork of the repository, the l
 Another graphical interface for Git and GitHub, not directly tied to RStudio, is [GitHub Desktop](https://desktop.github.com/). You may want to install that as an alternative to
 working with GitHub through RStudio.
 
+## Tips
+
+### Using Git with R Markdown
+
+If you are using git with R markdown, you will want to add a few patterns to your [https://help.github.com/articles/ignoring-files/](.gitignore) file to ignore
+some temporary files.
+
+```
+# Ignore temporary files created by R markdown
+*.utf8.md
+*.knit.md
+# Ignore knitr cache
+*_cache/
+```
+
+### Using Git with LaTeX
+
+If you are using git with R markdown, you will want to add a few patterns to your [https://help.github.com/articles/ignoring-files/](.gitignore) file so that git ignores
+the **many** intermediate files that LaTeX creates when compiling a document.
+
+For those more comfortable with git and LaTeX see this [Stack Overflow](http://stackoverflow.com/questions/6188780/git-latex-workflow) post on a
+git+LaTeX workflow. Copy the patterns from GitHubs collection of useful gitignore patterns for [TeX](https://github.com/github/gitignore/blob/master/TeX.gitignore).
 
 ## References
 
