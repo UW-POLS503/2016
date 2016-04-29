@@ -275,7 +275,6 @@ Topics
 - Experimental Ideal
 - Potential Outcomes
 - Selection on Observables: Regression
-- Selection on Observables: Other Approaches (matching, propensity scores)
 
 Readings
 
