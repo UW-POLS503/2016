@@ -236,7 +236,6 @@ Readings
 - Model Selection
 - Model Fit
 - Prediction
-- Regularized Regression (Lasso, Ridge)
 - Cross-Validation
 - Bootstrapping
 
