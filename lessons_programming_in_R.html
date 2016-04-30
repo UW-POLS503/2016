@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,27 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -269,17 +272,17 @@ div.tocify {
         <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
         <!-- start assignments dropdown -->
         <li class="dropdown">
-          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW ASSIGNMENTS HERE -->
             <li class="dropdown-header">Assignments</li>
             <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
-            <li class="divider"></li> 
+            <li class="divider"></li>
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
-             <li class="divider"></li> 
+             <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
             <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
           </ul>
@@ -322,6 +325,7 @@ div.tocify {
 
 
 <div class="fluid-row" id="header">
+
 
 
 <h1 class="title">Programming in R</h1>
@@ -400,173 +404,4 @@ Challenge
 <h2>For Loops</h2>
 <p>We use <code>for</code> loops to iterate through multiple elements of a list, variable, etc., and do <strong>something</strong> with those elements.</p>
 <p>A <code>for</code> loop has the following skeleton:</p>
-<pre class="r"><code>for (each_element in here) { # Try to use meaningful names for the
-  # do something             #   &quot;each_element&quot; object
-  print(each_element + 1)
-}</code></pre>
-<p>A short/silly example:</p>
-<pre class="r"><code>list_numbers &lt;- sample(x = 1:100, size = 10, replace = FALSE) # sample() function
-for (number in list_numbers) {
-  print(paste0(&quot;2 times &quot;, number, &quot; is &quot;, number * 2))
-}</code></pre>
-<pre><code>## [1] &quot;2 times 26 is 52&quot;
-## [1] &quot;2 times 55 is 110&quot;
-## [1] &quot;2 times 6 is 12&quot;
-## [1] &quot;2 times 46 is 92&quot;
-## [1] &quot;2 times 47 is 94&quot;
-## [1] &quot;2 times 78 is 156&quot;
-## [1] &quot;2 times 35 is 70&quot;
-## [1] &quot;2 times 51 is 102&quot;
-## [1] &quot;2 times 16 is 32&quot;
-## [1] &quot;2 times 57 is 114&quot;</code></pre>
-<p>A real example:</p>
-<p>Going back to the <code>turnout</code> dataset. Imagine that we want to estimate the same linear model for different groups of people based on their age: if they’re in their 20s, 30s, etc. We can do that using a <code>for</code> loop and the <code>age_new</code> variable we just created. We want to estimate the following linear model:</p>
-<pre class="r"><code>model_formula &lt;- vote ~  educate + income</code></pre>
-<p>We first create an empty <code>results</code> dataset that we’ll fill with the coefficients and SEs of each model run.</p>
-<pre class="r"><code>groups &lt;- sort(unique(turnout$age_new))
-results &lt;- data.frame(age_new = groups,
-                      edu_coef = rep(NA, length(groups)),
-                      edu_se = rep(NA, length(groups)),
-                      inc_coef = rep(NA, length(groups)),
-                      inc_se = rep(NA, length(groups)))</code></pre>
-<p>Now we estimate the model for each age group and we store the coefficients and SEs for each covariate in the <code>results</code> dataset.</p>
-<pre class="r"><code>for (i in 1:length(groups)) {
-  gr &lt;- groups[i]
-  sub_data &lt;- filter(turnout, age_new == gr)
-  gr_model &lt;- lm(model_formula, data = sub_data)
-  results$edu_coef[i] &lt;- coef(gr_model)[2]
-  results$edu_se[i] &lt;- sqrt(diag(vcov(gr_model)))[2]
-  results$inc_coef[i] &lt;- coef(gr_model)[3]
-  results$inc_se[i] &lt;- sqrt(diag(vcov(gr_model)))[3]
-}
-results</code></pre>
-<pre><code>##   age_new    edu_coef      edu_se   inc_coef      inc_se
-## 1       1 0.140059313 0.082778700 0.01274892 0.039715750
-## 2       2 0.063378607 0.009439463 0.02507891 0.010440232
-## 3       3 0.021207718 0.007576099 0.02046039 0.008160295
-## 4       4 0.019001688 0.006927712 0.02376950 0.006841288
-## 5       5 0.007035486 0.008418543 0.02497013 0.009194134
-## 6       6 0.031704074 0.007440671 0.01638239 0.010026787
-## 7       7 0.034649523 0.007606808 0.02289379 0.021474441
-## 8       8 0.040120030 0.017361915 0.03912396 0.039786221
-## 9       9 0.000000000         NaN 0.00000000         NaN</code></pre>
-<div id="challenge-2" class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">
-Challenge
-</h3>
-</div>
-<div class="panel-body">
-<p>Take a look at the <code>results</code> dataset. Is there something wrong? Why? What happened? Talk to your classmates and try to figure it out (5 min.).</p>
-</div>
-</div>
-</div>
-<div id="conditional-execution-if-and-else-statements" class="section level2">
-<h2>Conditional Execution: if and else statements</h2>
-<p>Sometimes we only want to execute certain code if the data fulfills some conditions. To do that we use <code>if</code> and <code>else</code> statements.</p>
-<p>How <code>if</code> and <code>else</code> statements look like:</p>
-<pre class="r"><code>if (this) {
-  # do that
-} else if (that) {
-  # do something else
-} else {
-  #
-}</code></pre>
-<p><strong>This</strong> and <strong>that</strong> in the previous chunk of code are boolean tests: code that returns TRUE/FALSE when the computer executes it. Some examples of boolean tests:</p>
-<pre class="r"><code>10 == 2</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>10 %in% c(2, 5, 13, 20, 10)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>10 == 2 &amp; 10 %in% c(2, 5, 13, 20, 10)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>10 == 2 | 10 %in% c(2, 5, 13, 20, 10)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p>A short/silly example:</p>
-<pre class="r"><code>some_numbers &lt;- c(1, 4, 6, 10,12, 16, 45, 88, 102)
-for (number in some_numbers) {
-  if (number &lt; 10) {
-    print(paste0(number, &quot; is smaller than 10&quot;))
-  } else if (number &lt; 50) {
-    print(paste0(number, &quot; is smaller than 50 but greater or equal to 10&quot;))
-  } else {
-    print(paste0(number, &quot; is greater than 50&quot;))
-  }
-}</code></pre>
-<pre><code>## [1] &quot;1 is smaller than 10&quot;
-## [1] &quot;4 is smaller than 10&quot;
-## [1] &quot;6 is smaller than 10&quot;
-## [1] &quot;10 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;12 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;16 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;45 is smaller than 50 but greater or equal to 10&quot;
-## [1] &quot;88 is greater than 50&quot;
-## [1] &quot;102 is greater than 50&quot;</code></pre>
-<p>Real example:</p>
-<p>In the previous code where we estimated the same model for different groups of age we run into an issue with the last group: people in their 90s.</p>
-<pre class="r"><code>table(turnout$age_new)</code></pre>
-<pre><code>## 
-##   1   2   3   4   5   6   7   8   9 
-##  26 431 433 347 277 256 158  69   3</code></pre>
-<p>Since there are only 3 people who are in their 90s we run out of degrees of freedom. Remember that df = #observations - 1 - #variables_in_the_model. Let’s adapt that code so that we only estimate the model in those cases we have enough degrees of freedom and prints a messages when that’s not the case.</p>
-<pre class="r"><code>results2 &lt;- data.frame(age_new = groups,
-                      edu_coef = rep(NA, length(groups)),
-                      edu_se = rep(NA, length(groups)),
-                      inc_coef = rep(NA, length(groups)),
-                      inc_se = rep(NA, length(groups)))
-for (i in 1:length(groups)) {
-  gr &lt;- groups[i]
-  sub_data &lt;- filter(turnout, age_new == gr)
-  gr_model &lt;- lm(model_formula, data = sub_data)
-  if (gr_model$df &gt; 1) {
-    results2$edu_coef[i] &lt;- coef(gr_model)[2]
-    results2$edu_se[i] &lt;- sqrt(diag(vcov(gr_model)))[2]
-    results2$inc_coef[i] &lt;- coef(gr_model)[3]
-    results2$inc_se[i] &lt;- sqrt(diag(vcov(gr_model)))[3]
-  } else {
-    print(paste0(&quot;Not enough obs. to estimate the model for gr == &quot;, gr))
-  }
-}</code></pre>
-<pre><code>## [1] &quot;Not enough obs. to estimate the model for gr == 9&quot;</code></pre>
-<pre class="r"><code>results2</code></pre>
-<pre><code>##   age_new    edu_coef      edu_se   inc_coef      inc_se
-## 1       1 0.140059313 0.082778700 0.01274892 0.039715750
-## 2       2 0.063378607 0.009439463 0.02507891 0.010440232
-## 3       3 0.021207718 0.007576099 0.02046039 0.008160295
-## 4       4 0.019001688 0.006927712 0.02376950 0.006841288
-## 5       5 0.007035486 0.008418543 0.02497013 0.009194134
-## 6       6 0.031704074 0.007440671 0.01638239 0.010026787
-## 7       7 0.034649523 0.007606808 0.02289379 0.021474441
-## 8       8 0.040120030 0.017361915 0.03912396 0.039786221
-## 9       9          NA          NA         NA          NA</code></pre>
-</div>
-
-<!-- some extra javascript for older browsers -->
-<script type="text/javascript" src="libs/polyfill.js"></script>
-
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-$(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-});
-
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-</body>
-</html>
+<pre class="r"><code>

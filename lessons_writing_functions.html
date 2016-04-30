@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,27 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -269,17 +272,17 @@ div.tocify {
         <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
         <!-- start assignments dropdown -->
         <li class="dropdown">
-          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW ASSIGNMENTS HERE -->
             <li class="dropdown-header">Assignments</li>
             <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
-            <li class="divider"></li> 
+            <li class="divider"></li>
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
-             <li class="divider"></li> 
+             <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
             <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
           </ul>
@@ -322,6 +325,7 @@ div.tocify {
 
 
 <div class="fluid-row" id="header">
+
 
 
 <h1 class="title">Writing Functions</h1>
@@ -419,7 +423,30 @@ create_per_dummy &lt;- function(country_variable) {
 ## 10      Norway       pr  67.17  3.09</code></pre>
 <pre class="r"><code>iver$peripherial_cty &lt;- create_per_dummy(iver$cty)
 head(iver, n = 10)</code></pre>
-<p>``` ## Source: local data frame [10 x 5] ## ## cty elec_sys povred enp peripherial_cty ## (fctr) (fctr) (dbl) (dbl)</p>
+<pre><code>## Source: local data frame [10 x 5]
+## 
+##            cty elec_sys povred   enp peripherial_cty
+##         (fctr)   (fctr)  (dbl) (dbl)           (dbl)
+## 1    Australia      maj  42.16  2.38               0
+## 2      Belgium       pr  78.79  7.01               0
+## 3       Canada      maj  29.90  1.69               0
+## 4      Denmark       pr  71.54  5.04               0
+## 5      Finland       pr  69.08  5.14               0
+## 6       France      maj  57.91  2.68               0
+## 7      Germany      maj  46.90  3.16               0
+## 8        Italy       pr  42.81  4.11               1
+## 9  Netherlands       pr  66.93  3.49               0
+## 10      Norway       pr  67.17  3.09               0</code></pre>
+<div id="challenge-1" class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">
+Challenge
+</h3>
+</div>
+<div class="panel-body">
+<p>Look through some of your previous code from other classes and projects, and write a function to reduce redundancy (10 min.)</p>
+</div>
+</div>
 </div>
 
 <!-- some extra javascript for older browsers -->
