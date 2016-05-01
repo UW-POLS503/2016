@@ -2,7 +2,8 @@
 **Due: May 5, 2016**
 
   - Wesley reviews Beatrice's project
-  - Beatrice reviews Larry's
+  - Beatrice reviews Steve's
+  - Steve reviews Larry's
   - Larry reviews Steven's 
   - Steven reviews Carolyn's
   - Carolyn reviews Xingwei's
