@@ -3,7 +3,7 @@
 .. description: How to get help with R?
 -->
 
-# Functions 
+# Functions
 
 The first place to look is to use the search box in the *Help* tab of RStudio.
 
@@ -14,7 +14,7 @@ For example to find help for a function `quantile`, you can use either
 ``` r
 ?quantile
 ```
-or 
+or
 ``` r
 help("quantile")
 ```
@@ -25,7 +25,7 @@ For example,
 help(package = "tidyr")
 ```
 
-Want to find out what datasets are included in the R packages that you have installed? 
+Want to find out what datasets are included in the R packages that you have installed?
 ```r
 data()
 ```
@@ -36,7 +36,7 @@ data(package = "ggplot2")
 ```
 
 The help for R functions is only useful if you know what function you need want to know either what it is doing, or what the arguments are.
-The help files in R are not useful for understanding what a package does or how to use it. 
+The help files in R are not useful for understanding what a package does or how to use it.
 However, *vignettes* for R packages are often overviews of the functionality of packages that serve as tutorials or introductions to using the package.
 To get a list of all vignettes of the packages your have installed, run
 ``` r
@@ -46,7 +46,7 @@ To get the list of vignettes for a specific package, run
 ``` r
 browseVignettes("dplyr")
 ```
-You can also find vignettes for packages you have not installed on the packages' CRAN page [https://cran.r-project.org/web/packages/tidyr/index.html]https://github.com/hadley/dplyr)". 
+You can also find vignettes for packages you have not installed on the packages' CRAN page [https://cran.r-project.org/web/packages/tidyr/index.html]https://github.com/hadley/dplyr)".
 There is also a `vignette` function, but you need the exact name of the vignette, which you generally do not know.
 
 Note that `search()` **does not** do what you expect it to do, unless you expect it to return the search path in which R looks for packages.
@@ -61,7 +61,7 @@ An alternative is to use [rseek.org](http://rseek.org) instead.
 It is a Google search restricted to a curated set of sites related to R.
 
 Many R packages have an article in either the [Journal of Statistical Software](http://www.jstatsoft.org/index) or [The R Journal](https://journal.r-project.org/)
-These articles are similar to package does. 
+These articles are similar to package does.
 
 [Stack Overflow](https://stackoverflow.com) is a question and answer website for computer programming questions.
 Search for questions about R using the "r" tag. You can do this by adding `[r]` to your search query. Other tags that may be useful are `[ggplot2]`, `[plyr]`.
@@ -87,8 +87,7 @@ However, some of the data manipulation and plotting functions are not those we u
 
 Two references organized by task are [The Cookbook for R](http://www.cookbook-r.com) and [Quick-R](http://www.statmethods.net/).
 
-<!--
-[R-bloggers](http://www.r-bloggers.com/) aggregates R-related blogging. 
+[R-bloggers](http://www.r-bloggers.com/) aggregates R-related blogging.
 
 On twitter, the R hashtag is `#rstats`. Some prominent R-related people and accounts on twitter are:
 [@R-bloggers](https://twitter.com/Rbloggers)
@@ -119,18 +118,14 @@ Do you want to know what packages exist for a given topic? [CRAN Task Views](htt
 	- [Time Series](https://cran.r-project.org/web/views/TimeSeries.html)
 	- [Web Technologies and Services](https://cran.r-project.org/web/views/WebTechnologies.html)
     - [Social Sciences](https://cran.r-project.org/web/views/SocialSciences.html)
--->
 
 
 # How to ask for help
 
-TODO: fill in an example
 
-<!--
 How to write a minimal reproducible example <https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example>
 
 If you are going to ask for help, it is important to know how to ask for help
 
 - Coding Killed the Cat "How to ask programming question" <https://codingkilledthecat.wordpress.com/2012/06/26/how-to-ask-for-programming-help/>
 - Matt Gemmell, "What Have You Tried?" <http://mattgemmell.com/what-have-you-tried/>
--->

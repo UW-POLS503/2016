@@ -233,6 +233,20 @@ Readings
 
 ## Week 6
 
+
+### <time datetime="2016-05-03">Tuesday, May 3</time>
+
+- [slides](slides/diagnostics.pdf) on OVB, Measurement Error, Missing Data, Non-Normal Errors
+
+### <time datetime="2016-05-05">Thursday, May 5</time>
+
+**Due** Peer Review of project draft #1.
+
+### <time datetime="2016-05-06">Friday, May 6</time>
+
+
+## Week 7
+
 - Model Selection
 - Model Fit
 - Prediction
@@ -243,20 +257,6 @@ Readings
 
 - [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/). Ch 6.2: "Shrinkage Methods", Ch 5: "Resampling Methods" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf) (skim)
 
-### <time datetime="2016-05-03">Tuesday, May 3</time>
-
-### <time datetime="2016-05-05">Thursday, May 5</time>
-
-**Due** Peer Review of project draft #1.
-
-### <time datetime="2016-05-06">Friday, May 6</time>
-
-
-
-## Week 7
-
-Continuation of Linear Regression Topics. Work on Project.
-
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
 ### <time datetime="2016-05-12">Thursday, May 12</time>
@@ -264,7 +264,6 @@ Continuation of Linear Regression Topics. Work on Project.
 ### <time datetime="2016-05-13">Friday, May 13</time>
 
 **Due** Project draft analysis
-
 
 
 ## Week 8
