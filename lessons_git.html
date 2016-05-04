@@ -272,7 +272,7 @@ div.tocify {
         <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
         <!-- start assignments dropdown -->
         <li class="dropdown">
-          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW ASSIGNMENTS HERE -->
             <li class="dropdown-header">Assignments</li>
@@ -282,6 +282,9 @@ div.tocify {
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
           </ul>
         </li>
         <!-- end assignments dropdown -->
@@ -300,7 +303,7 @@ div.tocify {
         <!-- end lessons dropdown -->
         <!-- start references dropdown -->
         <li class="dropdown">
-          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW REFERENCE PAGES HERE -->
             <li><a href="writing-advice.html">Writing Advice</a></li>
@@ -429,6 +432,23 @@ git push</code></pre>
 <div id="install-github-desktop-optional" class="section level3">
 <h3>Install Github Desktop (optional)</h3>
 <p>Another graphical interface for Git and GitHub, not directly tied to RStudio, is <a href="https://desktop.github.com/">GitHub Desktop</a>. You may want to install that as an alternative to working with GitHub through RStudio.</p>
+</div>
+</div>
+<div id="tips" class="section level2">
+<h2>Tips</h2>
+<div id="using-git-with-r-markdown" class="section level3">
+<h3>Using Git with R Markdown</h3>
+<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore">https://help.github.com/articles/ignoring-files/</a> file to ignore some temporary files.</p>
+<pre><code># Ignore temporary files created by R markdown
+*.utf8.md
+*.knit.md
+# Ignore knitr cache
+*_cache/</code></pre>
+</div>
+<div id="using-git-with-latex" class="section level3">
+<h3>Using Git with LaTeX</h3>
+<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore">https://help.github.com/articles/ignoring-files/</a> file so that git ignores the <strong>many</strong> intermediate files that LaTeX creates when compiling a document.</p>
+<p>For those more comfortable with git and LaTeX see this <a href="http://stackoverflow.com/questions/6188780/git-latex-workflow">Stack Overflow</a> post on a git+LaTeX workflow. Copy the patterns from GitHubs collection of useful gitignore patterns for <a href="https://github.com/github/gitignore/blob/master/TeX.gitignore">TeX</a>.</p>
 </div>
 </div>
 <div id="references" class="section level2">

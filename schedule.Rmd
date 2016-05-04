@@ -35,6 +35,7 @@ I will ask the class for feedback frequently---both in class and anonymously via
 Please let me know what is working and what can be improved.
 I will make adjustments based on this feedback.
 
+
 ## Week 1
 
 ### <time datetime="2016-03-29">Tuesday, March 29</time>
@@ -82,6 +83,8 @@ R markdown
 - [Rstudio Markdown website](http://rmarkdown.rstudio.com/)
 - Roger Peng. [Report Writing for Data Science in R](https://leanpub.com/reportwriting) for some more discussion of reproducible research (some of which is more relevant to biostatistics than political science) and discussion of R markdown in particular
 - Data Camp course [Reporting with R Markdown](https://www.datacamp.com/courses/reporting-with-r-markdown) for more practice if you need it.
+
+
 
 ## Week 2
 
@@ -136,6 +139,8 @@ NO CLASS due to MPSA
 
 [Research Project Assignment 1](assignmens_project_1.html) due at 17:00 PDT.
 
+
+
 ## Week 3
 
 ### <time datetime="2016-04-12">Tuesday, April 12</time>
@@ -156,6 +161,8 @@ Class Agenda
 ### <time datetime="2016-04-15">Friday, April 15</time>
 
 - [Transformations: Logarithm, Squared Terms](lessons_functional_forms2.html)
+
+
 
 ## Week 4
 
@@ -187,6 +194,8 @@ Readings
 
 ### <time datetime="2016-04-22">Friday, April 22</time>
 
+
+
 ## Week 5
 
 Topics
@@ -210,7 +219,6 @@ Readings
 - Brambor, Thomas, and William Roberts Clark, and Matt Golder. 2006.
    "[Understanding Interaction Models: Improving Empirical Analyses](https://dx.doi.org/10.1093/pan/mpi014)" *Political Analysis*
 - Matt Golder [Interactions](http://mattgolder.com/interactions)
-- [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/). Ch 5.2-5.3,  Ch 7: "Moving Beyond Linearity" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)
 
 
 ### <time datetime="2016-04-26">Tuesday, April 26</time>
@@ -222,23 +230,13 @@ Readings
 ### <time datetime="2016-04-29">Friday, April 29</time>
 
 
+
 ## Week 6
 
-- Model Selection
-- Model Fit
-- Prediction
-- Regularized Regression (Lasso, Ridge)
-- Cross-Validation
-- Bootstrapping
-
-Readings
-
-- [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/). Ch 6.2: "Shrinkage Methods", Ch 5: "Resampling Methods" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf)
-- Wooldridge, Ch 17.1: "Logit and Probit Models for Binary Response"
-- Kleinberg, Jon, Jens Ludwig, Sendhil Mullainathan, and Ziad Obermeyer. 2015. "[Prediction Policy Problems](http://dx.doi.org/10.1257/aer.p20151023)." *American Economic Review*
-- Shmeuli, Galit. 2010. "[To Explain or Predict?](http://projecteuclid.org/euclid.ss/1294167961)." *Statistical Science*. Get the big picture.
 
 ### <time datetime="2016-05-03">Tuesday, May 3</time>
+
+- [slides](slides/diagnostics.pdf) on OVB, Measurement Error, Missing Data, Non-Normal Errors
 
 ### <time datetime="2016-05-05">Thursday, May 5</time>
 
@@ -246,32 +244,52 @@ Readings
 
 ### <time datetime="2016-05-06">Friday, May 6</time>
 
+
 ## Week 7
+
+- Model Selection
+- Model Fit
+- Prediction
+- Cross-Validation
+- Bootstrapping
+
+Readings
+
+- [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/). Ch 6.2: "Shrinkage Methods", Ch 5: "Resampling Methods" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf) (skim)
+
+### <time datetime="2016-05-10">Tuesday, May 10</time>
+
+### <time datetime="2016-05-12">Thursday, May 12</time>
+
+### <time datetime="2016-05-13">Friday, May 13</time>
+
+**Due** Project draft analysis
+
+
+## Week 8
 
 Topics
 
 - Experimental Ideal
 - Potential Outcomes
 - Selection on Observables: Regression
-- Selection on Observables: Other Approaches (matching, propensity scores)
 
 Readings
 
 - *MHE*, Ch 2: "The Experimental Ideal"
 - *MHE*, Ch 3: "Making Regression Make Sense"
 
+### <time datetime="2016-05-17">Tuesday, May 17</time>
 
-### <time datetime="2016-05-10">Tuesday, May 10</time>
+### <time datetime="2016-05-19">Thursday, May 19</time>
 
-### <time datetime="2016-05-12">Thursday, May 12</time>
+**Due** Peer review of Project analysis
 
-**Due** Project draft analysis
+### <time datetime="2016-05-20">Friday, May 20</time>
 
-### <time datetime="2016-05-13">Friday, May 13</time>
 
-## Week 8
 
-Topics
+## Week 9
 
 - Fixed Effects
 - Differences-in-differences
@@ -284,32 +302,15 @@ Readings
 - Wooldridge, Ch 13: "Pooling Cross Sections Across Time"
 - Wooldridge, Ch 14: "Advanced Panel Data Methods"
 
-### <time datetime="2016-05-17">Tuesday, May 17</time>
-
-### <time datetime="2016-05-19">Thursday, May 19</time>
-
-**Due** Peer review of Project analysis
-
-### <time datetime="2016-05-20">Friday, May 20</time>
-
-## Week 9
-
-Topics
-
-- Instrumental variables
-- Regression Discontinuity
-
-Readings
-
-- *MHE*, Ch 4: "Instrumental Variables in Action: Sometimes You Get What You Need"
-- *MHE*, Ch 6: "Getting a Little Jumpy: Regression Discontinuity"
-- Wooldridge, Ch 17
-
 ### <time datetime="2016-05-24">Tuesday, May 24</time>
 
 ### <time datetime="2016-05-26">Thursday, May 26</time>
 
 ### <time datetime="2016-05-27">Friday, May 27</time>
+
+**Due** Peer review of Project analysis
+
+
 
 ## Week 10
 
@@ -332,23 +333,14 @@ Readings
 
 Poster session
 
+**Due** Peer review of project final paper
+
 ## Finals Period
 
 <span id="final-paper-due"><strong>Final paper due on <time datetime="2016-06-08 23:59:00 PDT">June 8, 11:59 pm </time></strong></span>
 
 
 <!--
-
 - Missing Data
 - Weighted Regression
-
 -->
-
-<!--  LocalWords:  GitHub Kitzez Github Peng Leeper blog apsa c13ay
- -->
-<!--  LocalWords:  Editors' APSR AJPS html Wickham Rstudio Wooldridge
- -->
-<!--  LocalWords:  Keele Sekhon Jasjeet Angrist Jörn toc '3' h2 16px
- -->
-<!--  LocalWords:  h3 15px h4 14px Github Jörn
- -->

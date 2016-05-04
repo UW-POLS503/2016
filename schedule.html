@@ -272,7 +272,7 @@ div.tocify {
         <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
         <!-- start assignments dropdown -->
         <li class="dropdown">
-          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW ASSIGNMENTS HERE -->
             <li class="dropdown-header">Assignments</li>
@@ -282,6 +282,9 @@ div.tocify {
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
           </ul>
         </li>
         <!-- end assignments dropdown -->
@@ -300,7 +303,7 @@ div.tocify {
         <!-- end lessons dropdown -->
         <!-- start references dropdown -->
         <li class="dropdown">
-          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <!-- ADD NEW REFERENCE PAGES HERE -->
             <li><a href="writing-advice.html">Writing Advice</a></li>
@@ -502,7 +505,7 @@ h4 {
 <li>Gelman, Andrew, and Eric Loken. 2014. “<a href="http://www.americanscientist.org/issues/pub/2014/6/the-statistical-crisis-in-science/">The Statistical Crisis in Science</a>”. <em>The American Scientist</em></li>
 <li>Regina Nuzzo. 2014. <a href="http://www.nature.com/news/scientific-method-statistical-errors-1.14700?WT.mc_id=PIN_NatureNews">Scientific Method: Statistical Errors</a>. <em>Nature</em></li>
 <li>Simply Statistics. 2014. <a href="http://simplystatistics.org/2014/02/14/on-the-scalability-of-statistical-procedures-why-the-p-value-bashers-just-dont-get-it/">On the scalability of statistical procedures: why the p-value bashers just don’t get it.</a></li>
-<li>Simply Statistics. 2012. <a href="http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/"><a href="http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/" class="uri">http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/</a></a></li>
+<li>Simply Statistics. 2012. <a href="http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/" class="uri">http://simplystatistics.org/2012/01/06/p-values-and-hypothesis-testing-get-a-bad-rap-but-we/</a></li>
 <li>Matthew Hankins. 2013. <a href="https://mchankins.wordpress.com/2013/04/21/still-not-significant-2/">Still Not Significant</a>. Online. Probable Error blog.</li>
 <li>xkcd.com. <a href="https://xkcd.com/882/">Significant</a>, <a href="https://xkcd.com/1478/">p-values</a></li>
 </ul>
@@ -538,7 +541,6 @@ h4 {
 <li>Wooldridge, Ch 17.1: “Logit and Probit Models for Binary Response”</li>
 <li>Brambor, Thomas, and William Roberts Clark, and Matt Golder. 2006. “<a href="https://dx.doi.org/10.1093/pan/mpi014">Understanding Interaction Models: Improving Empirical Analyses</a>” <em>Political Analysis</em></li>
 <li>Matt Golder <a href="http://mattgolder.com/interactions">Interactions</a></li>
-<li><a href="http://www-bcf.usc.edu/~gareth/ISL/">Introduction to Statistical Learning</a>. Ch 5.2-5.3, Ch 7: “Moving Beyond Linearity” <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf">pdf</a></li>
 </ul>
 <div id="tuesday-april-26" class="section level3">
 <h3><time datetime="2016-04-26">Tuesday, April 26</time></h3>
@@ -553,23 +555,11 @@ h4 {
 </div>
 <div id="week-6" class="section level2">
 <h2>Week 6</h2>
-<ul>
-<li>Model Selection</li>
-<li>Model Fit</li>
-<li>Prediction</li>
-<li>Regularized Regression (Lasso, Ridge)</li>
-<li>Cross-Validation</li>
-<li>Bootstrapping</li>
-</ul>
-<p>Readings</p>
-<ul>
-<li><a href="http://www-bcf.usc.edu/~gareth/ISL/">Introduction to Statistical Learning</a>. Ch 6.2: “Shrinkage Methods”, Ch 5: “Resampling Methods” <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf">pdf</a></li>
-<li>Wooldridge, Ch 17.1: “Logit and Probit Models for Binary Response”</li>
-<li>Kleinberg, Jon, Jens Ludwig, Sendhil Mullainathan, and Ziad Obermeyer. 2015. “<a href="http://dx.doi.org/10.1257/aer.p20151023">Prediction Policy Problems</a>.” <em>American Economic Review</em></li>
-<li>Shmeuli, Galit. 2010. “<a href="http://projecteuclid.org/euclid.ss/1294167961">To Explain or Predict?</a>.” <em>Statistical Science</em>. Get the big picture.</li>
-</ul>
 <div id="tuesday-may-3" class="section level3">
 <h3><time datetime="2016-05-03">Tuesday, May 3</time></h3>
+<ul>
+<li><a href="slides/diagnostics.pdf">slides</a> on OVB, Measurement Error, Missing Data, Non-Normal Errors</li>
+</ul>
 </div>
 <div id="thursday-may-5" class="section level3">
 <h3><time datetime="2016-05-05">Thursday, May 5</time></h3>
@@ -581,43 +571,40 @@ h4 {
 </div>
 <div id="week-7" class="section level2">
 <h2>Week 7</h2>
-<p>Topics</p>
 <ul>
-<li>Experimental Ideal</li>
-<li>Potential Outcomes</li>
-<li>Selection on Observables: Regression</li>
-<li>Selection on Observables: Other Approaches (matching, propensity scores)</li>
+<li>Model Selection</li>
+<li>Model Fit</li>
+<li>Prediction</li>
+<li>Cross-Validation</li>
+<li>Bootstrapping</li>
 </ul>
 <p>Readings</p>
 <ul>
-<li><em>MHE</em>, Ch 2: “The Experimental Ideal”</li>
-<li><em>MHE</em>, Ch 3: “Making Regression Make Sense”</li>
+<li><a href="http://www-bcf.usc.edu/~gareth/ISL/">Introduction to Statistical Learning</a>. Ch 6.2: “Shrinkage Methods”, Ch 5: “Resampling Methods” <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf">pdf</a> (skim)</li>
 </ul>
 <div id="tuesday-may-10" class="section level3">
 <h3><time datetime="2016-05-10">Tuesday, May 10</time></h3>
 </div>
 <div id="thursday-may-12" class="section level3">
 <h3><time datetime="2016-05-12">Thursday, May 12</time></h3>
-<p><strong>Due</strong> Project draft analysis</p>
 </div>
 <div id="friday-may-13" class="section level3">
 <h3><time datetime="2016-05-13">Friday, May 13</time></h3>
+<p><strong>Due</strong> Project draft analysis</p>
 </div>
 </div>
 <div id="week-8" class="section level2">
 <h2>Week 8</h2>
 <p>Topics</p>
 <ul>
-<li>Fixed Effects</li>
-<li>Differences-in-differences</li>
-<li>Clustered Standard Errors</li>
+<li>Experimental Ideal</li>
+<li>Potential Outcomes</li>
+<li>Selection on Observables: Regression</li>
 </ul>
 <p>Readings</p>
 <ul>
-<li><em>MHE</em>, Ch 5: “Parallel Worlds”</li>
-<li><em>MHE</em>, Ch 8: “Non-standard Standard Error Issues”</li>
-<li>Wooldridge, Ch 13: “Pooling Cross Sections Across Time”</li>
-<li>Wooldridge, Ch 14: “Advanced Panel Data Methods”</li>
+<li><em>MHE</em>, Ch 2: “The Experimental Ideal”</li>
+<li><em>MHE</em>, Ch 3: “Making Regression Make Sense”</li>
 </ul>
 <div id="tuesday-may-17" class="section level3">
 <h3><time datetime="2016-05-17">Tuesday, May 17</time></h3>
@@ -632,16 +619,17 @@ h4 {
 </div>
 <div id="week-9" class="section level2">
 <h2>Week 9</h2>
-<p>Topics</p>
 <ul>
-<li>Instrumental variables</li>
-<li>Regression Discontinuity</li>
+<li>Fixed Effects</li>
+<li>Differences-in-differences</li>
+<li>Clustered Standard Errors</li>
 </ul>
 <p>Readings</p>
 <ul>
-<li><em>MHE</em>, Ch 4: “Instrumental Variables in Action: Sometimes You Get What You Need”</li>
-<li><em>MHE</em>, Ch 6: “Getting a Little Jumpy: Regression Discontinuity”</li>
-<li>Wooldridge, Ch 17</li>
+<li><em>MHE</em>, Ch 5: “Parallel Worlds”</li>
+<li><em>MHE</em>, Ch 8: “Non-standard Standard Error Issues”</li>
+<li>Wooldridge, Ch 13: “Pooling Cross Sections Across Time”</li>
+<li>Wooldridge, Ch 14: “Advanced Panel Data Methods”</li>
 </ul>
 <div id="tuesday-may-24" class="section level3">
 <h3><time datetime="2016-05-24">Tuesday, May 24</time></h3>
@@ -651,6 +639,7 @@ h4 {
 </div>
 <div id="friday-may-27" class="section level3">
 <h3><time datetime="2016-05-27">Friday, May 27</time></h3>
+<p><strong>Due</strong> Peer review of Project analysis</p>
 </div>
 </div>
 <div id="week-10" class="section level2">
@@ -674,25 +663,16 @@ h4 {
 <div id="friday-june-3" class="section level3">
 <h3><time datetime="2016-06-03">Friday, June 3</time></h3>
 <p>Poster session</p>
+<p><strong>Due</strong> Peer review of project final paper</p>
 </div>
 </div>
 <div id="finals-period" class="section level2">
 <h2>Finals Period</h2>
 <p><span id="final-paper-due"><strong>Final paper due on <time datetime="2016-06-08 23:59:00 PDT">June 8, 11:59 pm </time></strong></span></p>
 <!--
-
 - Missing Data
 - Weighted Regression
-
 -->
-<!--  LocalWords:  GitHub Kitzez Github Peng Leeper blog apsa c13ay
- -->
-<!--  LocalWords:  Editors' APSR AJPS html Wickham Rstudio Wooldridge
- -->
-<!--  LocalWords:  Keele Sekhon Jasjeet Angrist Jörn toc '3' h2 16px
- -->
-<!--  LocalWords:  h3 15px h4 14px Github Jörn
- -->
 </div>
 
 <!-- some extra javascript for older browsers -->
