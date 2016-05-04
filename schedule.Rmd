@@ -140,7 +140,6 @@ NO CLASS due to MPSA
 [Research Project Assignment 1](assignmens_project_1.html) due at 17:00 PDT.
 
 
-
 ## Week 3
 
 ### <time datetime="2016-04-12">Tuesday, April 12</time>
@@ -161,7 +160,6 @@ Class Agenda
 ### <time datetime="2016-04-15">Friday, April 15</time>
 
 - [Transformations: Logarithm, Squared Terms](lessons_functional_forms2.html)
-
 
 
 ## Week 4
@@ -195,7 +193,6 @@ Readings
 ### <time datetime="2016-04-22">Friday, April 22</time>
 
 
-
 ## Week 5
 
 Topics
@@ -227,8 +224,12 @@ Readings
 
 ### <time datetime="2016-04-28">Thursday, April 28</time>
 
+- [slides](sldies/regression-diagnostics.pdf) on overview of OLS assumptions and
+    regression diagnostics.
+
 ### <time datetime="2016-04-29">Friday, April 29</time>
 
+- [Interactions](https://github.com/UW-POLS503/Assignment_05)
 
 
 ## Week 6
