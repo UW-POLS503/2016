@@ -8,7 +8,7 @@ output:
       in_header: in_header.tex
 ---
 
-# Overview
+# Topics for Today
 
 1. Omitted Variable Bias
 2. Measurement Error
@@ -52,14 +52,14 @@ $$
 
 - Suppose $X$ and $Z$ observed, and $W$ unobserved in,
   $$
-  Y = \beta_0 + \beta_1 X + \gamma_{2} Z + \beta_3 W + \varepsilon
+  Y = \beta_0 + \beta_1 X + \beta_{2} Z + \beta_3 W + \varepsilon
   $$
 - Statistic to assess importance of OVB
     $$
     \delta = \frac{\Cov(X, \beta_3 W)}{\Cov(X, \beta_2 Z)} = \frac{\hat\beta_{C}}{\hat\beta_{NC} - \hat\beta_{C}}
     $$
 - If $Z$ representative of all controls, then large $\delta$ implies OVB implausible
-- Example in Nunn and Wanthekon
+- Example in Nunn and Wantchekon (2011)
 
 # Omitted Variable Bias: Reasoning about Bias
 
@@ -79,7 +79,7 @@ $< 0$             -                   0                  +
 - Preference for methods relying on identification in other ways
 
     - experiments
-    - instrumental tables
+    - instrumental variables
     - regression discontinuity
     - fixed effects/diff-in-diff
 
@@ -114,21 +114,21 @@ $< 0$             -                   0                  +
 
 # Measurement error in $Y$
 
-- We want to estimate
+- Population is
     $$
-    Y_i = \beta_0 + \beta_1 X_{1,i} + \beta_2 X_{2,i} + \epsilon
+    Y_i = \beta_0 + \beta_1 X_{1,i}  + \epsilon
     $$
 - But we estimate
     $$
-    Y_i + \delta_i = \beta_0 + \beta_1 X^*_{1,i} + \beta_2 X_{2,i} + \varepsilon_i
+    Y_i + \delta_i = \beta_0 + \beta_1 X_{1,i} + \varepsilon_i
     $$
-- Not a problem. Regression with larger variance,
+- $\beta$ not biased, but larger standard errors
     $$
-    Y_i = \beta_0 + \beta_1 X^*_{1,i} + \beta_2 X_{2,i} + (\epsilon_i + \delta_i)
+    Y_i = \beta_0 + \beta_1 X_{1,i} + (\epsilon_i + \delta_i)
     $$
     where $\E(\epsilon_i + \delta_i) = 0$, and
     $\Var(\varepsilon_i + \delta_i) = \sigma^2_\varepsilon + \sigma^2_\delta$.
-- If $\delta_i$ has different variances, then heteroskedasticity
+- If each $\delta_i$ has different variances, then heteroskedasticity
 
 # Measurement Error: Solutions
 
@@ -149,12 +149,24 @@ $< 0$             -                   0                  +
     - $\E(Y | X)$ is not a good summary
 - Diagnose: QQ-plot of (Studentized) residuals
 
-# Missing Data
+# Missing Data in $X$
 
-- Missing data in $X$
-- **Listwise deletion:** Drop row with *any* missing values in $Y$ or $X$
+## Listwise Deletion
+
+- Drop row with *any* missing values in $Y$ or $X$
 - Problem: If missingness correlated with $X$, coefficients biased
-- Solution: Multiple imputation predicts missing values from non-missing data.
+
+## Multiple Imputation
+
+- Predict missing values from non-missing data
 - Multiple imputation packages:  **Amelia**, **mice**
-- Imputation almost always better than listwise deletion
-- What is does not solve: If $Y$ truncated or censored, need more complicated models.
+- Almost always better than listwise deletion
+
+# More complicated Missing Data Problems
+
+- MNAR: Missing not-at randrom in $X$.
+
+    - Values in $X$ do not predict missingness
+    - Need to model the selection process
+
+- Truncation or censored dependent variable: specific MLE models
