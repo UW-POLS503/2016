@@ -1,8 +1,6 @@
 ---
 title: "Outliers and Robust Regression"
 author: "Jeffrey B. Arnold"
-date: "05/19/2015"
-output: html_document
 ---
 ```{r echo = FALSE, results = 'hide'}
 knitr::opts_chunk$set(cache = TRUE, autodep = TRUE,
@@ -22,11 +20,9 @@ select <- dplyr::select
 
 ## Iver Data
 
-This is an example of from Iversen and Soskice (2003).
-That paper is interested in the relationship between party systems and redistributive efforts of the government. 
-
-The party system is measured using the effective number of parties;
-the redistributive efforts of the government is measured as the percent people lifted from poverty by taxes and transfers
+This example is a simplied version of Iversen and Soskice (2003).
+That work is interested in the relationship between party systems and redistributive efforts of the government. 
+The party system is measured using the effective number of parties; the redistributive efforts of the government is measured as the percent people lifted from poverty by taxes and transfers
 
 First, let's load the data
 ```{r}

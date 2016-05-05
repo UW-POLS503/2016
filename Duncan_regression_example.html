@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Jeffrey B. Arnold" />
+
+<meta name="date" content="2015-04-21" />
+
+<title>Duncan Prestige Regression Example</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Duncan Prestige Regression Example</h1>
+<h4 class="author"><em>Jeffrey B. Arnold</em></h4>
+<h4 class="date"><em>04/21/2015</em></h4>
+
+</div>
+
+
+<p>This example will use Duncan’s Occpational Prestige Data, which has data on prestige and other characteristics of 45 U.S. occupations in 1950. See the help page for more info. This data is contained in the <strong>car</strong> package.</p>
+<pre class="r"><code>library(&quot;car&quot;)
+data(&quot;Duncan&quot;)</code></pre>
+<pre class="r"><code>?Duncan</code></pre>
+<p>We’ll also use a few other packages, which we should load now.</p>
+<pre class="r"><code>library(&quot;ggplot2&quot;)
+library(&quot;dplyr&quot;)
+library(&quot;broom&quot;)</code></pre>
+<p>The <code>Duncan</code> data frame contains the names of the profession as row names. This is something that is generally discouraged in modern R, so we will make a new column named <code>occupation</code>.</p>
+<p>This uses the <code>$</code> to assign a value to a column in R. We’ve been using <strong>dplyr</strong> so much that we haven’t had to do this, but it can be easier at times. This could have also been done using the dplyr function <code>add_rownames</code>.</p>
+<pre class="r"><code>Duncan &lt;- add_rownames(Duncan, var = &quot;occupation&quot;)</code></pre>
+<p>Without <strong>dplyr</strong> we would have used</p>
+<pre class="r"><code># Duncan$occupation &lt;- rownames(Duncan)</code></pre>
+<div id="scatterplots" class="section level2">
+<h2>Scatterplots</h2>
+<p>Before starting let’s create a couple of scatterplots of the data. First, prestige vs. income, labeling the points, and coloring them by type.</p>
+<pre class="r"><code>ggplot(Duncan, aes(x = income, y = prestige, colour = type,
+                   label = occupation)) +
+  geom_text() +
+  theme_minimal() </code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /> Now, prestige vs. income, coloring the points by education level:</p>
+<pre class="r"><code>ggplot(Duncan, aes(x = income, y = prestige, colour = education)) +
+  geom_point() +
+  theme_minimal() </code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="672" /></p>
+<p>Run a regression of prestige on income and education</p>
+<pre class="r"><code>mod1 &lt;- lm(prestige ~ income + education, data = Duncan)
+mod1_summary &lt;- summary(mod1)
+mod1_summary</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income + education, data = Duncan)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.538  -6.417   0.655   6.605  34.641 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -6.06466    4.27194  -1.420    0.163    
+## income       0.59873    0.11967   5.003 1.05e-05 ***
+## education    0.54583    0.09825   5.555 1.73e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 13.37 on 42 degrees of freedom
+## Multiple R-squared:  0.8282, Adjusted R-squared:   0.82 
+## F-statistic: 101.2 on 2 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This extracts the coefficient estimates <span class="math inline">\(\hat{\beta}\)</span>,</p>
+<pre class="r"><code>beta &lt;- coef(mod1)</code></pre>
+<p>This extracts the variance covariance matrix of the coefficient estimatates <span class="math inline">\(V(\hat{\beta})\)</span>.</p>
+<pre class="r"><code>beta_vc &lt;- vcov(mod1)</code></pre>
+<p>Standard errors of the coefficients are <span class="math inline">\(se(\hat{\beta}) = \sqrt{diag(V(\hat{\beta}))}\)</span>,</p>
+<pre class="r"><code>beta_se &lt;- sqrt(diag(beta_vc))</code></pre>
+<p>The <span class="math inline">\(t\)</span>-statistic of the hypothesis test <span class="math inline">\(\beta = 0\)</span> is <span class="math inline">\(\frac{\hat{\beta}}{se(\hat{\beta})}\)</span>,</p>
+<pre class="r"><code>tstat &lt;- beta / beta_se</code></pre>
+<p>And the <span class="math inline">\(p\)</span>-value of the two-sided hypothesis test <span class="math inline">\(H_0: \beta = 0\)</span>, <span class="math inline">\(H_a: \beta \neq 0\)</span> is,</p>
+<pre class="r"><code>pval &lt;- 2 * (1 - pt(tstat, mod1$df.residual))</code></pre>
+<p>This uses the <code>qt</code> function to calculate probabilities from the <span class="math inline">\(t\)</span>-distribution.</p>
+<p>The degrees of freedom <span class="math inline">\(n - k - 1\)</span></p>
+<pre class="r"><code>mod1$df.residual</code></pre>
+<pre><code>## [1] 42</code></pre>
+<p>The coefficients, <span class="math inline">\(\hat{\beta}\)</span>:</p>
+<pre class="r"><code>coef(mod1)</code></pre>
+<pre><code>## (Intercept)      income   education 
+##  -6.0646629   0.5987328   0.5458339</code></pre>
+<p>The coefficients can also be extracted directly from the element in the <code>lm</code> object</p>
+<pre class="r"><code>mod1$coefficients</code></pre>
+<pre><code>## (Intercept)      income   education 
+##  -6.0646629   0.5987328   0.5458339</code></pre>
+<p>The fitted values, <span class="math inline">\(\hat{y}\)</span> (of the data used for fitting the regression).</p>
+<pre class="r"><code>head(fitted(mod1))</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 77.99849 78.52748 89.05702 75.99069 79.19595 52.35877</code></pre>
+<pre class="r"><code>head(mod1$fitted)</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 77.99849 78.52748 89.05702 75.99069 79.19595 52.35877</code></pre>
+<p>The residuals, <span class="math inline">\(\hat{epsilon} = y - \hat{y}\)</span>:</p>
+<pre class="r"><code>head(residuals(mod1))</code></pre>
+<pre><code>##            1            2            3            4            5 
+##  4.001511779  4.472522658  0.942981643  0.009305892 10.804046136 
+##            6 
+## 34.641225280</code></pre>
+<pre class="r"><code>head(mod1$residuals)</code></pre>
+<pre><code>##            1            2            3            4            5 
+##  4.001511779  4.472522658  0.942981643  0.009305892 10.804046136 
+##            6 
+## 34.641225280</code></pre>
+<p>You can check that the residuals are <span class="math inline">\(y - \hat{y}\)</span>,</p>
+<pre class="r"><code>head(Duncan$prestige - fitted(mod1))</code></pre>
+<pre><code>##            1            2            3            4            5 
+##  4.001511779  4.472522658  0.942981643  0.009305892 10.804046136 
+##            6 
+## 34.641225280</code></pre>
+<p>To get the data used in the regression back from the regression,</p>
+<pre class="r"><code>head(model.frame(mod1))</code></pre>
+<pre><code>##   prestige income education
+## 1       82     62        86
+## 2       83     72        76
+## 3       90     75        92
+## 4       76     55        90
+## 5       90     64        86
+## 6       87     21        84</code></pre>
+<p>To get the <span class="math inline">\(y\)</span> values (model or design matrix) used in the regression,</p>
+<pre class="r"><code>head(model.response(model.frame(mod1)))</code></pre>
+<pre><code>##  1  2  3  4  5  6 
+## 82 83 90 76 90 87</code></pre>
+<p>Note that if you have missing values in the regression, R has sophisticated but subtle ways of handling them, especially in <code>predict</code>. See the help for <code>na.omit</code> and follow links about <code>lm</code>.</p>
+<p>The <code>anova</code> function returns a table with the total, model, and residual sum of squares.</p>
+<pre class="r"><code>anova(mod1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: prestige
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## income     1 30664.8 30664.8 171.570 &lt; 2.2e-16 ***
+## education  1  5516.1  5516.1  30.863 1.727e-06 ***
+## Residuals 42  7506.7   178.7                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="result-post-processing-with-broom" class="section level2">
+<h2>Result post-processing with broom</h2>
+<p><a href="https://github.com/dgrtwo/broom">Broom</a> is a relatively new package that works well with the <strong>dplyr</strong> and <code>%&gt;%</code> workflow by converting the results of common models into data frames that can be processed more easily than the default objects R returns.</p>
+<p><strong>broom</strong> has three main functions, all of which return data frames (not lists, numeric vectors, or other types of object). <code>glance</code> returns a data frame with a single row summary of the model:</p>
+<pre class="r"><code>glance(mod1)</code></pre>
+<pre><code>##   r.squared adj.r.squared    sigma statistic      p.value df    logLik
+## 1 0.8281734     0.8199912 13.36903  101.2162 8.647636e-17  3 -178.9822
+##        AIC      BIC deviance df.residual
+## 1 365.9645 373.1911 7506.699          42</code></pre>
+<p><code>tidy</code> returns a data frame with a row for each coefficient estimate:</p>
+<pre class="r"><code>tidy(mod1)</code></pre>
+<pre><code>##          term   estimate  std.error statistic      p.value
+## 1 (Intercept) -6.0646629 4.27194117 -1.419650 1.630896e-01
+## 2      income  0.5987328 0.11966735  5.003310 1.053184e-05
+## 3   education  0.5458339 0.09825264  5.555412 1.727192e-06</code></pre>
+<p><code>augment</code> returns the original data frame used in the model with additional columns for fitted values, the standard errors of those fitted values, residuals, etc.</p>
+<pre class="r"><code>head(augment(mod1))</code></pre>
+<pre><code>##   prestige income education  .fitted  .se.fit       .resid       .hat
+## 1       82     62        86 77.99849 3.017029  4.001511779 0.05092832
+## 2       83     72        76 78.52748 3.200759  4.472522658 0.05732001
+## 3       90     75        92 89.05702 3.527929  0.942981643 0.06963699
+## 4       76     55        90 75.99069 3.405677  0.009305892 0.06489441
+## 5       90     64        86 79.19595 3.028764 10.804046136 0.05132528
+## 6       87     21        84 52.35877 5.561551 34.641225280 0.17305816
+##     .sigma      .cooksd   .std.resid
+## 1 13.51587 1.688452e-03 0.3072378711
+## 2 13.51194 2.406367e-03 0.3445645225
+## 3 13.53022 1.334199e-04 0.0731269019
+## 4 13.53108 1.198619e-08 0.0007198265
+## 5 13.41973 1.241505e-02 0.8297130469
+## 6 12.15304 5.663797e-01 2.8494163845</code></pre>
+</div>
+<div id="coefficient-plots" class="section level2">
+<h2>Coefficient Plots</h2>
+<p>Also known as airplane plots or ropeladder plots:</p>
+<pre class="r"><code>ggplot(tidy(mod1) %&gt;% filter(term != &quot;(Intercept)&quot;), 
+       aes(x = term, y = estimate, 
+           ymin = estimate - 2 * std.error, 
+           ymax = estimate + 2 * std.error)) + 
+  geom_pointrange() + 
+  coord_flip()</code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-26-1.png" title="" alt="" width="672" /></p>
+<p>This could also be done with the <code>coefplot</code> function from the <strong>coefplot</strong> package:</p>
+<pre class="r"><code>library(&quot;coefplot&quot;)
+coefplot(mod1)</code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-27-1.png" title="" alt="" width="672" /> or to drop the intercept</p>
+<pre class="r"><code>coefplot(mod1, coefficients = c(&quot;income&quot;, &quot;education&quot;))</code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-28-1.png" title="" alt="" width="672" /> Since internally <code>coefplot</code> uses <strong>ggplot2</strong>, you could also edit the object it returns.</p>
+</div>
+<div id="creating-regression-tables" class="section level2">
+<h2>Creating regression tables</h2>
+<p>Several packages (<strong>stargazer</strong>, <strong>texreg</strong>, <strong>apsrtable</strong>) are useful for creating publication type regression tables. <strong>stargazer</strong> and <strong>texreg</strong> are the most complete package. Both allow output to either LaTeX or HTML tables for many types of statistical models. We’ll use <strong>stargazer</strong> here:</p>
+<pre class="r"><code>library(&quot;stargazer&quot;)</code></pre>
+<pre><code>## 
+## Please cite as:</code></pre>
+<pre><code>##  Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
+<pre><code>##  R package version 5.2. http://CRAN.R-project.org/package=stargazer</code></pre>
+<pre class="r"><code>stargazer(mod1, type = &quot;text&quot;)</code></pre>
+<pre><code>## 
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                              prestige          
+## -----------------------------------------------
+## income                       0.599***          
+##                               (0.120)          
+##                                                
+## education                    0.546***          
+##                               (0.098)          
+##                                                
+## Constant                      -6.065           
+##                               (4.272)          
+##                                                
+## -----------------------------------------------
+## Observations                    45             
+## R2                             0.828           
+## Adjusted R2                    0.820           
+## Residual Std. Error      13.369 (df = 42)      
+## F Statistic           101.216*** (df = 2; 42)  
+## ===============================================
+## Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Now render that as html instead,</p>
+<pre class="r"><code>stargazer(mod1, type = &quot;html&quot;)</code></pre>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+prestige
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+income
+</td>
+<td>
+0.599<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.120)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+education
+</td>
+<td>
+0.546<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.098)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-6.065
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(4.272)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.828
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.820
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+13.369 (df = 42)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+101.216<sup>***</sup> (df = 2; 42)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<p>Look at the source <code>.Rmd</code> file for this document; the chunk above used <code>results = &quot;asis&quot;</code> to print and render the HTML rather than R output.</p>
+<p>This usefulness of this function is apparent when multiple regressions are plotted:</p>
+<pre class="r"><code>mod3 &lt;- lm(prestige ~ income, data = Duncan)
+mod4 &lt;- lm(prestige ~ income * type + education * type, data = Duncan)
+stargazer(mod1, mod3, mod4, type = &quot;html&quot;)</code></pre>
+<table style="text-align:center">
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="3">
+prestige
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+income
+</td>
+<td>
+0.599<sup>***</sup>
+</td>
+<td>
+1.080<sup>***</sup>
+</td>
+<td>
+0.783<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.120)
+</td>
+<td>
+(0.107)
+</td>
+<td>
+(0.131)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+typeprof
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+32.008<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(14.109)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+typewc
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-7.043
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(20.638)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+education
+</td>
+<td>
+0.546<sup>***</sup>
+</td>
+<td>
+</td>
+<td>
+0.320
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.098)
+</td>
+<td>
+</td>
+<td>
+(0.280)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+income:typeprof
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-0.369<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.204)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+income:typewc
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-0.360
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.260)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+typeprof:education
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.318)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+typewc:education
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.107
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.362)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-6.065
+</td>
+<td>
+2.457
+</td>
+<td>
+-3.951
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(4.272)
+</td>
+<td>
+(5.190)
+</td>
+<td>
+(6.794)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+45
+</td>
+<td>
+45
+</td>
+<td>
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.828
+</td>
+<td>
+0.702
+</td>
+<td>
+0.923
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.820
+</td>
+<td>
+0.695
+</td>
+<td>
+0.906
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+13.369 (df = 42)
+</td>
+<td>
+17.403 (df = 43)
+</td>
+<td>
+9.647 (df = 36)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+101.216<sup>***</sup> (df = 2; 42)
+</td>
+<td>
+101.252<sup>***</sup> (df = 1; 43)
+</td>
+<td>
+54.174<sup>***</sup> (df = 8; 36)
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="3" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<p>Addtionally, the packages <strong>xtable</strong> and <strong>pander</strong> are not a specific to the problem of creating regression tables, but since they are more genral purpose, they are good for creating LaTeX / HTML / Markdown tables for a variety of R objects.</p>
+</div>
+<div id="predicted-values" class="section level2">
+<h2>Predicted values</h2>
+<p>You could calculate predicted values manually. For example, the predicted <code>prestige</code> from <code>mod1</code> of an occupation with an income of 41.9 and an <code>education</code> of 52.5 is</p>
+<pre class="r"><code>coef(mod1)[&quot;(Intercept)&quot;] + coef(mod1)[&quot;income&quot;] * 41.9 + coef(mod1)[&quot;education&quot;] * 52.5</code></pre>
+<pre><code>## (Intercept) 
+##    47.67852</code></pre>
+<p>or</p>
+<pre class="r"><code>c(1, 41.9, 52.5) %*% coef(mod1)</code></pre>
+<pre><code>##          [,1]
+## [1,] 47.67852</code></pre>
+<p>However, it is much easier to calculate this with the <code>predict</code> function. If predict is used without a <code>newdata</code> argument it acts similarly to <code>fitted</code> and returns the predicted values for the data used to estimate the model (although it will include predicted values for missing data):</p>
+<pre class="r"><code>head(predict(mod1))</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 77.99849 78.52748 89.05702 75.99069 79.19595 52.35877</code></pre>
+<p>But, if the <code>newdata</code> argument is used, then <code>predict</code> can be used to find the predicted values for new data points. To calculate the predicted value of the example above:</p>
+<pre class="r"><code>predict(mod1, newdata = data.frame(education = 52.5, income = 41.9))</code></pre>
+<pre><code>##        1 
+## 47.67852</code></pre>
+<p>You can find the confidence intervals by specifying <code>interval = &quot;confidence&quot;</code>.</p>
+<pre class="r"><code>yhat &lt;- predict(mod1, interval = &quot;confidence&quot;)</code></pre>
+<p>A note on help for <code>predict</code>: <code>predict</code> works with many different types of analyses and object. You need to go to <code>?predict.lm</code> to get help for predict as it relates to <code>lm</code>.</p>
+<p>To plot, convert to a data_frame</p>
+<pre class="r"><code>yhat_df &lt;- as.data.frame(yhat) %&gt;% add_rownames(var = &quot;occupation&quot;)</code></pre>
+<p>Now it is easy to plot in <strong>ggplot2</strong></p>
+<pre class="r"><code>ggplot() + 
+  geom_point(data = Duncan, aes(x = income, y = prestige))</code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-38-1.png" title="" alt="" width="672" /></p>
+<p>Now do it with hypothetical values. All values of income observed in the data, but education at its mean.</p>
+<pre class="r"><code>duncan_mean_education &lt;- 
+  data.frame(education = mean(Duncan$education),
+             income = seq(min(Duncan$income), max(Duncan$income),
+                          length.out = 50))
+mod1_predicted &lt;- as.data.frame(predict(mod1, newdata = duncan_mean_education,
+                                interval = &quot;confidence&quot;, conf.level = 0.95))         
+# augment(mod1, newdata = duncan_mean_education) %&gt;%
+#   mutate(lower = .fitted + qt(0.025, mod1$df.residual) * .se.fit,
+#          upper = .fitted + qt(0.975, mod1$df.residual) * .se.fit)</code></pre>
+<p>To plot this, we’ll need to combine it back with the original data.</p>
+<pre class="r"><code>mod1_predicted &lt;- cbind(duncan_mean_education, mod1_predicted)</code></pre>
+<p>Now, let’s plot the predicted values and the 95% confidence interval of predicted values as income changes. Additionally, we’ll plot the original values.</p>
+<pre class="r"><code>ggplot() +
+  geom_line(data = mod1_predicted, mapping = aes(x = income, y = fit)) +
+  geom_ribbon(data = mod1_predicted, mapping = aes(x = income, ymin = lwr, ymax = upr),
+              alpha = 0.2) + 
+  geom_point(data = Duncan, mapping = aes(x = income, y = prestige)) + 
+  ylab(&quot;prestige&quot;)</code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-41-1.png" title="" alt="" width="672" /> Note that we use different datasets in each <code>geom</code>, and do not use any values in <code>ggplot</code>. The <code>ggplot</code> function can provide default mappings in <code>aes</code> and a default dataset. But if you are using multiple datasets, it can be safter and less buggy to specify a <code>data</code> and <code>mapping</code> argument for each <code>geom</code> layer.</p>
+<p>For more interesting predicted value plots, let’s run a regression with a categorical variable.</p>
+<pre class="r"><code>mod2 &lt;- lm(prestige ~ income + education + type, data = Duncan)
+mod2</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = prestige ~ income + education + type, data = Duncan)
+## 
+## Coefficients:
+## (Intercept)       income    education     typeprof       typewc  
+##     -0.1850       0.5975       0.3453      16.6575     -14.6611</code></pre>
+<p>Now, let’s predict values for each type of occupation for all values of income, holding education at its mean value. First, we need to create the data that will be used for the predicted values. This can be made easier with the function <code>expand.grid</code>, which returns a data frame with all combinations of its arguments. For example,</p>
+<pre class="r"><code>expand.grid(a = 1:3, b = c(&quot;a&quot;, &quot;b&quot;))</code></pre>
+<pre><code>##   a b
+## 1 1 a
+## 2 2 a
+## 3 3 a
+## 4 1 b
+## 5 2 b
+## 6 3 b</code></pre>
+<p>With that information, let’s create data frame with the values needed for prediction</p>
+<pre class="r"><code>newdata_types_inc &lt;-
+  expand.grid(type = unique(Duncan$type),
+              income = seq(min(Duncan$income), max(Duncan$income),
+                           length.out = 5),
+              education = mean(Duncan$education))
+# # Another method
+# newdata_types_inc &lt;- 
+#   Duncan %&gt;% {
+#     expand.grid(type = unique(.$type),
+#                 income = seq(min(.$income), max(.$income),
+#                             length.out = 5),
+#                 education = mean(.$education))
+#     }</code></pre>
+<p>Then, create predicted values and confidence intervals with either <code>predict</code> or <code>augment</code>.</p>
+<pre class="r"><code>predicted_mod2 &lt;- 
+  augment(mod2, newdata = newdata_types_inc) %&gt;%
+  mutate(lower = .fitted + qt(0.025, mod2$df.residual) * .se.fit,
+         upper = .fitted + qt(0.975, mod2$df.residual) * .se.fit)</code></pre>
+<p>And then plot it,</p>
+<pre class="r"><code>ggplot(predicted_mod2, aes(x = income, y = .fitted,
+                           ymin = lower, ymax = upper)) +
+  geom_line(mapping = aes(colour = type)) +
+  geom_ribbon(mapping = aes(fill = type), alpha = 0.2) +
+  ylab(&quot;prestige&quot;) + 
+  ggtitle(&quot;Predicted values of prestige by type, holding education constant&quot;)</code></pre>
+<p><img src="Duncan_regression_example_files/figure-html/unnamed-chunk-46-1.png" title="" alt="" width="672" /></p>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

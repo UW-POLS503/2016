@@ -1,12 +1,5 @@
 ---
 title: "Imputing Missing Data"
-author: "Jeffrey B. Arnold"
-date: "05/19/2015"
-output:
-  html_document:
-    toc: true
-    fig_height: 4
-    fig_width: 5
 ---
 ```{r echo = FALSE, results = 'hide'}
 knitr::opts_chunk$set(cache = TRUE, autodep = TRUE, tidy = TRUE)
@@ -58,7 +51,7 @@ variable                   description
 `economicActivityMale`     Percentage of men who are economically active.
 `economicActivityFemale`   Percentage of women who are economically active.
 `illiteracyMale`           Percentage of males 15 years of age and older who are illiterate.
-`illiteracyFemale`         Percentage of females 15 years of age and older who are illiterate. 
+`illiteracyFemale`         Percentage of females 15 years of age and older who are illiterate.
 -------------------------- -----------------------------------------------------------------
 
 Before starting let's summarize the data
@@ -66,17 +59,17 @@ Before starting let's summarize the data
 summary(UN)
 ```
 We are particularly interested in the amount of missing values in each variable.
-Although `summary()` lists the missingness in each variable, it can be useful to use 
+Although `summary()` lists the missingness in each variable, it can be useful to use
 The function `frac_missing` calculates the fraction of missing values in `x`.
 ```{r}
 frac_missing <- function(x) {
   sum(is.na(x)) / length(x)
 }
 ```
-The amount of missingness in the variables of interests is highest for `educationFemale` 
+The amount of missingness in the variables of interests is highest for `educationFemale`
 at over 63%, followed by contraception at 30%.
 ```{r warning = FALSE,message = FALSE}
-UN_miss_by_var <- 
+UN_miss_by_var <-
   UN %>%
   gather(variable, value) %>%
   group_by(variable) %>%
@@ -93,16 +86,16 @@ missmap(UN)
 As an aside, and to show you how the combination of `dplyr`, `ggplot` occupy a nice spot on the flexibility / amount of code frontier,
 
 ```{r fig.width = 6,warning = FALSE,message = FALSE}
-UN_miss_mat <- 
+UN_miss_mat <-
   mutate(UN, n = row_number()) %>%
   gather(variable, value, - n) %>%
   mutate(is_na = is.na(value)) %>%
   filter(! variable %in% "country")
 ggplot(UN_miss_mat,
-       aes(x = reorder(variable, is_na, mean), y = n, fill = is_na)) + 
+       aes(x = reorder(variable, is_na, mean), y = n, fill = is_na)) +
   geom_tile() +
   theme_minimal() +
-  coord_flip() + 
+  coord_flip() +
   # this manually sets the colors of the plot; guide = FALSE removes the legend
   scale_fill_manual(values = c("black", NA), guide = FALSE) +
   xlab("") + ylab("Observation number")
@@ -111,7 +104,7 @@ ggplot(UN_miss_mat,
 Other tools for visualization missingness are in the [VIM](http://cran.r-project.org/web/packages/VIM/index.html) package.
 
 Considering that analyses that we will run, with `infantMortality`, `educationFemale`,
-`contraception`, `GDPperCapita`. 
+`contraception`, `GDPperCapita`.
 What is the level of missingness if we keep only observations will non-missing values in all the variables?
 Although the original data has observations for 207 countries, 145 (70%) of them have a missing value for at least one of those variables.
 ```{r}
@@ -128,7 +121,7 @@ UN %>%
 
 ## Models
 
-The model we would like to estimate is to regress Infant Mortality on 
+The model we would like to estimate is to regress Infant Mortality on
 log GDP, contraception and Female Education.
 
 
@@ -137,8 +130,8 @@ log GDP, contraception and Female Education.
 We will only use rows for which **all** the variables used in the model are non-missing.
 This is what `lm()` does by default when it encounters missing values.
 ```{r}
-mod_listwise <- 
-  lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale, 
+mod_listwise <-
+  lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale,
      data = UN)
 summary(mod_listwise)
 ```
@@ -155,7 +148,7 @@ fill_na <- function(x, fill = 0) {
 ```
 Now we generate a new dataset with those dummy variables and with the missing values replaced by their means.
 ```{r}
-UN_with_dummies <- 
+UN_with_dummies <-
   UN %>%
   mutate(GDPperCapita_na = as.integer(is.na(GDPperCapita)),
          GDPperCapita = fill_na(GDPperCapita, mean(GDPperCapita, na.rm = TRUE)),
@@ -163,7 +156,7 @@ UN_with_dummies <-
          contraception = fill_na(contraception, mean(contraception, na.rm = TRUE)),
          educationFemale_na = as.integer(is.na(educationFemale)),
          educationFemale = fill_na(educationFemale, mean(educationFemale, na.rm = TRUE)))
-mod_dummies <- lm(infantMortality ~ log(GDPperCapita) + GDPperCapita_na + contraception + 
+mod_dummies <- lm(infantMortality ~ log(GDPperCapita) + GDPperCapita_na + contraception +
      contraception_na + educationFemale + educationFemale, data = UN_with_dummies)
 mod_dummies
 ```
@@ -195,28 +188,28 @@ ggplot(UN_with_dummies,
 ```
 
 ```{r}
-mod_means <- lm(infantMortality ~ log(GDPperCapita) + contraception + 
+mod_means <- lm(infantMortality ~ log(GDPperCapita) + contraception +
       educationFemale, data = UN_with_dummies)
 mod_means
 ```
 
 ### Multiple Imputation
 
-Our **preferred** method is multiple imputation. 
+Our **preferred** method is multiple imputation.
 For multiple imputation we will use the implementation in **Amelia**.[^1]
 Multiple imputation works by creates $m$ datasets with the missing values filled in with imputations.
 The analyst then runs the analysis on each of the datasets, and there are (fairly easy) methods to combine the estimates and standard errors from the individual analyses into an overall point estimate and standard error.
 The function `amelia` creates these imputations.
 
-- `m = 5` is the number of observations. Usually `5 - 10` are sufficient. 
+- `m = 5` is the number of observations. Usually `5 - 10` are sufficient.
    See Fox, p. 564.
 - `amelia` models the distribution of the data as multivariate normal so it is useful to transform the data to make it more normal.
   Use the arguments `logs` to indicate variables to log transform, and `lgstc` to logistic transform variables.
-- Additionally, you need to tell `amelia` which variables are nominal (`noms = `) so 
+- Additionally, you need to tell `amelia` which variables are nominal (`noms = `) so
   it creates dummy variables; and which variables are id variables (`idvars = `) so it can ignore them in the imputation process, but still include them in the final datasets.
 
 ```{r message = FALSE, results = 'hide'}
-UN_mi <- 
+UN_mi <-
   amelia(UN,
          m = 5,
          logs = c("GDPperCapita"),
@@ -232,7 +225,7 @@ Note several things about the imputation process.
 First, the number of imputations is **small**, `m = 5`. There is not much improvement in the performance of multiple imputation from using many imputations. Usually 5--10 is more than sufficient. See Fox, p. 564.
 
 Second, we use the dependent variable as well as variables not used in the regression in the imputation. (Fox, p. 567)
-This is not an issue. 
+This is not an issue.
 Concerns like endogeneity and multicollinearity are not concerns in this context; we are not interested in estimating unbiased coefficients.
 We are concerned with predicting the values of these variables.
 
@@ -251,7 +244,7 @@ UN_mi$imputations[[1]] %>% filter(country %in% countries) %>% select(country, co
 UN_mi$imputations[[2]] %>% filter(country %in% countries) %>% select(country, contraception)
 ```
 
-The following creates plots of each variable, overplotting the values from each imputation against the observation number. 
+The following creates plots of each variable, overplotting the values from each imputation against the observation number.
 Points which are black were observed in the original data; points which are gray are imputed.
 ```{r}
 all_imputations <-
@@ -278,18 +271,18 @@ imputation_plot("log(GDPperCapita)")
 
 ```
 
-Let's see how one of these imputed datasets looks and compare the imputed and non-imputed values as an informal way of judging its plausibility. 
+Let's see how one of these imputed datasets looks and compare the imputed and non-imputed values as an informal way of judging its plausibility.
 ```{r}
 ggplot(UN_mi$imputations[[1]] %>%
          mutate(missing = UN_mi$missMatrix[ , "educationFemale"]),
-       aes(x = educationFemale, y = infantMortality, colour = missing)) + 
+       aes(x = educationFemale, y = infantMortality, colour = missing)) +
   geom_point() +
   theme_local()
 ```
 ```{r}
 ggplot(UN_mi$imputations[[1]] %>%
          mutate(missing = UN_mi$missMatrix[ , "contraception"]),
-       aes(x = contraception, y = infantMortality, colour = missing)) + 
+       aes(x = contraception, y = infantMortality, colour = missing)) +
   geom_point() +
   theme_local()
 ```
@@ -304,7 +297,7 @@ Amelia suggests several diagnostics for evaluating
 The first is "overimputation".
 This is similar to leave-one-out cross validation.
 Each observation is removed and treated as a missing value to be imputated.
-Amelia plots 90% confidence intervals for each observation against the true values. 
+Amelia plots 90% confidence intervals for each observation against the true values.
 If the imputation is reasonable, then these confidence intervals should have 90% coverage of the true value.
 The following code runs the overimputation diagnostic for the variables of interest (the ones that will be used in the regression).
 The overimputation diagnostics do not suggest any issues with the imputation of these variables.
@@ -315,7 +308,7 @@ for (var in c("GDPperCapita", "contraception", "illiteracyFemale")) {
 }
 ```
 
-The second method is to plot the marginal density of the imputed values against observed values. 
+The second method is to plot the marginal density of the imputed values against observed values.
 If these appear too different, then there *may* be issues with imputation.
 However, there is no particular criteria for what is **too different**, and there may be reasons why these distributions diverge; see the Amelia vignette for an example of what would be a big difference.
 But if these distributions are different, then you should revisit the data to see whether imputation makes sense.
@@ -328,7 +321,7 @@ for (var in c("GDPperCapita", "contraception", "illiteracyFemale")) {
 ```
 
 Now that we are satisfied that the imputations are reasonable, we run the analysis on each of the imputated datasets.
-The following code runs the regression on each imputed dataset saving the coefficients to `b_out`, and the standard errors of the coefficients to `se_out`. 
+The following code runs the regression on each imputed dataset saving the coefficients to `b_out`, and the standard errors of the coefficients to `se_out`.
 These are originally saved to a list, but `rbind` converts it to a matrix with each imputations as rows and coefficients as columns.
 
 Now estimate the model using each imputed dataset.
@@ -400,22 +393,19 @@ plot_mi_models <- function(data, variable) {
              ymax = estimate + 2 * std.error)) +
   geom_pointrange() +
   geom_hline(yintercept = 0, colour = "red", alpha = 0.2) +
-  coord_flip() + 
+  coord_flip() +
   theme_minimal()
 }
 
 plot_mi_models(model_comp, "log(GDPperCapita)")
 plot_mi_models(model_comp, "contraception")
 plot_mi_models(model_comp, "educationFemale")
-
 ```
 
-These plots show that the various methods produce different answers both in terms of point-estimates and standard errors. 
-The reasons why multiple imputation answers are **better** are better handled by [cites].
+These plots show that the various methods produce different answers both in terms of point-estimates and standard errors.
+Though, we would have to use simulations to determine why the imputation methods are better than the alternatives.
 
 [^1]: There are several other R packages that do multiple imputation.
       For example, [mice](http://www.jstatsoft.org/v45/i03/paper) and [mi](http://www.jstatsoft.org/v45/i02/), which use a different method, called chained equations.
       We will use **Amelia** because it is stable, works well, and since it is written
       by Gary King, it is the one that most political scientists are familiar with.
-
-
