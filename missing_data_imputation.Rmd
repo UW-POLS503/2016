@@ -2,7 +2,8 @@
 title: "Imputing Missing Data"
 ---
 ```{r echo = FALSE, results = 'hide'}
-knitr::opts_chunk$set(cache = TRUE, autodep = TRUE, tidy = TRUE)
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE, tidy = TRUE,
+  eval = FALSE)
 ```
 
 
@@ -170,7 +171,8 @@ we will use that, but not include the dummy variables.
 These bivariate plots illustrate how unconditional imputation means work, and give an indication of how they will affect results.
 
 ```{r warning=FALSE}
-ggplot(UN_with_dummies,
+ggplot(filter(UN_with_dummies, !is.na(infantMortality),
+              !is.na(educationFemale)),
        aes(y = infantMortality, x = educationFemale,
            colour = as.factor(educationFemale_na))) +
   geom_point() +
@@ -179,7 +181,8 @@ ggplot(UN_with_dummies,
 ```
 
 ```{r warning=FALSE}
-ggplot(UN_with_dummies,
+ggplot(na.omit(select(UN_with_dummies, infantMortality,
+                      contraception, contraception_na)),
        aes(y = infantMortality, x = contraception,
            colour = as.factor(contraception_na))) +
   geom_point() +
@@ -210,7 +213,7 @@ The function `amelia` creates these imputations.
 
 ```{r message = FALSE, results = 'hide'}
 UN_mi <-
-  amelia(UN,
+  amelia(data.frame(UN),
          m = 5,
          logs = c("GDPperCapita"),
          lgstc = c("economicActivityMale", "economicActivityFemale",
@@ -219,6 +222,8 @@ UN_mi <-
          idvars = "country")
 
 ```
+*Note* I had to use `data.frame` because at the moment `amelia` has bugs when using 
+**dplyr** `data_frame` objects.
 
 Note several things about the imputation process.
 

@@ -1,6 +1,4 @@
----
-title: "POLS 503: Regression Diagnostics"
-date: April 28, 2016
+gmadate: April 28, 2016
 author: Jeffrey Arnold
 ---
 

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Jeffrey B. Arnold" />
+
+<meta name="date" content="2015-05-20" />
+
+<title>Outliers and Robust Regression</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Outliers and Robust Regression</h1>
+<h4 class="author"><em>Jeffrey B. Arnold</em></h4>
+<h4 class="date"><em>05/20/2015</em></h4>
+
+</div>
+
+
+<p>This example works through diagnostics for outliers, as well as methods of robust regression.</p>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<p>This example will use the following</p>
+<pre class="r"><code>library(&quot;MASS&quot;)
+library(&quot;dplyr&quot;)
+library(&quot;tidyr&quot;)
+library(&quot;broom&quot;)
+library(&quot;boot&quot;)
+library(&quot;ggplot2&quot;)</code></pre>
+<p>This ensures that we always use the <code>select</code> function from <strong>dplyr</strong> rather than the one from <strong>MASS</strong>.</p>
+<pre class="r"><code>select &lt;- dplyr::select</code></pre>
+<p>For the <strong>ggplot2</strong> plots, we will the default theme settings here, so that we can reuse them for all plots, and also, if we feel like changing them, we only need to change them in one location.</p>
+<pre class="r"><code>theme_local &lt;- theme_minimal</code></pre>
+</div>
+<div id="iver-and-soskice-data" class="section level2">
+<h2>Iver and Soskice Data</h2>
+<p>This is an example of from Iversen and Soskice (2003). That paper is interested in the relationship between party systems and redistributive efforts of the government.</p>
+<p>The party system is measured using the effective number of parties; the redistributive efforts of the government is measured as the percent people lifted from poverty by taxes and transfers</p>
+<p>First, let’s load the data</p>
+<pre class="r"><code>iver &lt;- read.csv(&quot;http://uw-pols503.github.io/pols_503_sp15/data/iver.csv&quot;)
+glimpse(iver)</code></pre>
+<pre><code>## Observations: 14
+## Variables: 8
+## $ cty      (fctr) Australia, Belgium, Canada, Denmark, Finland, France...
+## $ elec_sys (fctr) maj, pr, maj, pr, pr, maj, maj, pr, pr, pr, pr, unam...
+## $ povred   (dbl) 42.16, 78.79, 29.90, 71.54, 69.08, 57.91, 46.90, 42.8...
+## $ enp      (dbl) 2.38, 7.01, 1.69, 5.04, 5.14, 2.68, 3.16, 4.11, 3.49,...
+## $ lnenp    (dbl) 0.867100, 1.947340, 0.524729, 1.617410, 1.637050, 0.9...
+## $ maj      (int) 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1
+## $ pr       (int) 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0
+## $ unam     (int) 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0</code></pre>
+<p>The variables of interest are <code>lnemp</code> (log effective number of parties), and <code>povred</code> (poverty reduction). Let’s plot the relationship between them</p>
+<pre class="r"><code>ggplot(iver, aes(x = lnenp, y = povred)) + 
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;) +
+  xlab(&quot;log(Number of Effective parties)&quot;) +
+  ylab(&quot;Poverty Reduction&quot;) +
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="480" /></p>
+</div>
+<div id="influential-observations" class="section level2">
+<h2>Influential Observations</h2>
+<p>What are influential points in a regression? They are points that How much would the regression line change if we deleted a the point and reran the regression?</p>
+<pre class="r"><code>iver_mod1 &lt;- lm(povred ~ lnenp, data = iver)
+
+iver_loo_regs &lt;-
+  # Start with the iver data
+  iver %&gt;%
+  # Group by country
+  group_by(cty) %&gt;%
+  # For each country
+  # Run the regression without that country and store the coefficient values
+  do({
+    tidy(lm(povred ~ lnenp, data = filter(iver, cty != .$cty))) %&gt;%
+      select(term, estimate)
+  }) %&gt;%
+  # Reshape the dataset so that each coefficient is in a column
+  spread(term, estimate) %&gt;%
+  # Calculate how much these slopes differ from the one with all the data
+  mutate(diff_slope = lnenp - coef(iver_mod1)[&quot;lnenp&quot;],
+         abs_diff_slope = abs(diff_slope)) %&gt;%
+  # Sort by the difference in slopes
+  arrange(- abs_diff_slope)
+    
+iver_loo_regs</code></pre>
+<pre><code>## Source: local data frame [14 x 5]
+## Groups: cty [14]
+## 
+##               cty (Intercept)    lnenp  diff_slope abs_diff_slope
+##            (fctr)       (dbl)    (dbl)       (dbl)          (dbl)
+## 1       Australia    21.96619 24.07283 -0.09847140     0.09847140
+## 2         Belgium    26.39803 19.48071 -4.69058913     4.69058913
+## 3          Canada    24.46021 22.32840 -1.84289747     1.84289747
+## 4         Denmark    23.62155 21.91104 -2.26025292     2.26025292
+## 5         Finland    23.22400 22.44224 -1.72905264     1.72905264
+## 6          France    19.31982 25.43240  1.26110272     1.26110272
+## 7         Germany    22.08429 24.10787 -0.06343038     0.06343038
+## 8           Italy    21.22614 25.50988  1.33858580     1.33858580
+## 9     Netherlands    21.06469 23.82630 -0.34499536     0.34499536
+## 10         Norway    19.66602 24.78567  0.61437307     0.61437307
+## 11         Sweden    20.93623 24.04618 -0.12511217     0.12511217
+## 12    Switzerland    11.96341 35.84168 11.67038124    11.67038124
+## 13 United Kingdom    18.40976 26.35067  2.17937476     2.17937476
+## 14  United States    33.00804 16.74422 -7.42708138     7.42708138</code></pre>
+<p>Switzerland looks particularly problematic. The effect of <code>lnenp</code> on <code>povred</code> is 7.</p>
+<p>We could also plot these lines against the original data, to get a more intuitive sense of how much dropping one observation affects the regression slopes.</p>
+<pre class="r"><code>ggplot() +
+  geom_abline(data = iver_loo_regs, aes(intercept = `(Intercept)`,
+                                        slope = lnenp)) + 
+  geom_point(data = iver, aes(x = lnenp, y = povred)) +
+  xlab(&quot;log(Number of Effective parties)&quot;) +
+  ylab(&quot;Poverty Reduction&quot;) +
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="480" /></p>
+<p>Conveniently, in linear regression we can find which observations will have the largest influence on regression lines without rerunning the regression. Three statistics are of interest:</p>
+<ul>
+<li>Cook’s distance: a single number that summarizes how much dropping an observation changes <strong>all</strong> the regression coefficients.</li>
+<li>Studentized residual: The scaled residual of the observation.</li>
+<li>Hat score: How far the observation is from the center of the data.</li>
+</ul>
+<p>Use the <strong>broom</strong> function augment to add residuals and other diagnostic data to the original regression data. See <code>help(influence)</code> for functions to get these diagnostics using base R.</p>
+<pre class="r"><code>iver_mod1_aug &lt;- augment(iver_mod1) %&gt;%
+  mutate(cty = iver$cty)
+glimpse(iver_mod1_aug)</code></pre>
+<pre><code>## Observations: 14
+## Variables: 10
+## $ povred     (dbl) 42.16, 78.79, 29.90, 71.54, 69.08, 57.91, 46.90, 42...
+## $ lnenp      (dbl) 0.867100, 1.947340, 0.524729, 1.617410, 1.637050, 0...
+## $ .fitted    (dbl) 42.75835, 68.86916, 34.48280, 60.89432, 61.36904, 4...
+## $ .se.fit    (dbl) 6.692466, 10.833460, 10.047244, 7.413818, 7.595310,...
+## $ .resid     (dbl) -0.5983544, 9.9208441, -4.5828034, 10.6456800, 7.71...
+## $ .hat       (dbl) 0.11973167, 0.31374085, 0.26985506, 0.14693340, 0.1...
+## $ .sigma     (dbl) 20.20023, 19.87581, 20.13632, 19.89997, 20.04234, 1...
+## $ .cooksd    (dbl) 7.394393e-05, 8.763926e-02, 1.420959e-02, 3.058498e...
+## $ .std.resid (dbl) -0.03297382, 0.61918852, -0.27729691, 0.59593691, 0...
+## $ cty        (fctr) Australia, Belgium, Canada, Denmark, Finland, Fran...</code></pre>
+<p>Oddly, <code>augment</code> calculates the <em>standardized residual</em>, <span class="math display">\[
+\mathtt{.std.resid} = E&#39;_i = \frac{E_i}{S_E \sqrt{1 - h_i}}
+\]</span> which divides by the regression residual standard error, which is itself a function of the residual of <span class="math inline">\(i\)</span>, <span class="math inline">\(S_E = \sqrt{\frac{\sum_j E_j}{n - k - 1}}\)</span>. What we want is the <em>studentized residual</em> which divides by the standard error of the regression calculated omitting observation <span class="math inline">\(i\)</span>: <span class="math display">\[
+\mathtt{.resid / .sigma * sqrt(1 - .hat)} = E^*_i = \frac{E_i}{S_{E_{(i)}} \sqrt{1 - h_i}}
+\]</span> where <span class="math inline">\(S_{E_(i)}\)</span> is the standard error of the regression run without observation <span class="math inline">\(i\)</span>. It is called the Studentized residual, because it is distributed Student’s <span class="math inline">\(t\)</span>; the standardized residual is not. Add a new variable called <code>.student.resid</code>, which we can calculate using the residual (<code>.resid</code>), standard error of the regression that omits that observation (<code>.sigma</code>), and the hat value (<code>.hat</code>):</p>
+<pre class="r"><code>iver_mod1_aug &lt;-
+  iver_mod1_aug %&gt;% 
+  mutate(.student.resid = .resid / .sigma * sqrt(1 - .hat))</code></pre>
+<p>In base R, the function <code>rstudent</code> calculates the Studentized residuals, and <code>rstandard</code> calculates the standardized residuals:</p>
+<pre class="r"><code>setNames(rstudent(iver_mod1), iver$cty)</code></pre>
+<pre><code>##      Australia        Belgium         Canada        Denmark        Finland 
+##    -0.03157146     0.60253131    -0.26634629     0.57920127     0.41834057 
+##         France        Germany          Italy    Netherlands         Norway 
+##     0.64999275    -0.13942917    -0.69795162     0.78818851     0.97001936 
+##         Sweden    Switzerland United Kingdom  United States 
+##     0.69123825    -4.39123120     0.49519482    -1.57878326</code></pre>
+<pre class="r"><code>setNames(rstandard(iver_mod1), iver$cty)</code></pre>
+<pre><code>##      Australia        Belgium         Canada        Denmark        Finland 
+##    -0.03297382     0.61918852    -0.27729691     0.59593691     0.43350755 
+##         France        Germany          Italy    Netherlands         Norway 
+##     0.66622163    -0.14550050    -0.71336214     0.80092982     0.97241536 
+##         Sweden    Switzerland United Kingdom  United States 
+##     0.70678751    -2.76425506     0.51154375    -1.48890165</code></pre>
+<p>This scatterplot weights observations by their hat score. Points further from the mean of <code>lnenp</code> have higher hat scores.</p>
+<pre class="r"><code>ggplot(data = iver_mod1_aug, aes(x = lnenp, y = povred)) +
+  geom_point(mapping = aes(size = .hat)) +
+  geom_smooth(method = &quot;lm&quot;) +
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" width="480" /></p>
+<p>This scatterplot weights observations by their absolute Studentized residuals. Those observations furthest from the regression line <em>and</em> high hat values, have the highest residuals.</p>
+<pre class="r"><code>ggplot(data = iver_mod1_aug, aes(x = lnenp, y = povred)) +
+  geom_point(mapping = aes(size = abs(.student.resid))) +
+  geom_smooth(method = &quot;lm&quot;) +
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="480" /> Cook’s distance is a measure of the overall influence of points on the regression; the point’s effect on <em>all</em> the parameters. This plot weights points by their Cook’s distance. We can see that the two points on the bottom (Switzerland and the US) have the highest Cook’s distance.</p>
+<pre class="r"><code>ggplot(data = iver_mod1_aug, aes(x = lnenp, y = povred)) +
+  geom_point(mapping = aes(size = .cooksd)) +
+  geom_smooth(method = &quot;lm&quot;) +
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" width="480" /></p>
+<p>A standard plot to assess outliers is the Influence Plot. The x-axis is hat scores, the y-axis is Studentized residuals. The points are sized by Cook’s Distance. Rules of thumb lines are drawn at -2 and 2 for Studentized residuals, and <span class="math inline">\(\bar{h} + 2 sd(h)\)</span> and <span class="math inline">\(\bar{h} + 3 sd(h)\)</span> for hat scores.</p>
+<pre class="r"><code>ggplot() +
+  geom_point(data = iver_mod1_aug,
+             mapping = aes(x = .hat, y = .student.resid, size = .cooksd)) +
+  # add labels to points, but only those points that are flagged as outliers
+  # for at least one of the diagnostics considered here
+  geom_text(data =
+              filter(iver_mod1_aug,
+                     .cooksd &gt; 4 / iver_mod1$df.residual
+                     | abs(.student.resid) &gt; 2
+                     | .hat &gt; mean(.hat) + 2 * sd(.hat)),
+            mapping = aes(x = .hat, y = .student.resid, label = cty),
+            hjust = 0, size = 4, colour = &quot;red&quot;) +
+  geom_hline(data = data.frame(yintercept = c(-2, 0, 2)),
+             mapping = aes(yintercept = yintercept),
+             colour = &quot;blue&quot;, alpha = 0.4) +
+  geom_vline(data = data.frame(xintercept = mean(iver_mod1_aug$.hat) +
+                                 sd(iver_mod1_aug$.hat) * c(2, 3)),
+             mapping = aes(xintercept = xintercept),
+             colour = &quot;blue&quot;, alpha = 0.4) +
+  xlab(&quot;hat&quot;) +
+  ylab(&quot;Studentized residuals&quot;) + 
+  scale_size_continuous(&quot;Cook&#39;s Distance&quot;) + 
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" width="576" /></p>
+<p>Instead of a plot, we could find the id Observations with high Cook’s distance (greater than <span class="math inline">\(4 / (n - k - 1)\)</span>):</p>
+<pre class="r"><code>filter(iver_mod1_aug, .cooksd &gt; (4 / iver_mod1$df.residual)) %&gt;%
+  select(cty, .cooksd, lnenp)</code></pre>
+<pre><code>##           cty  .cooksd   lnenp
+## 1 Switzerland 0.745124 1.66013</code></pre>
+<p>Observations with high hat scores (greater than 2 standard deviations than the mean hat score):</p>
+<pre class="r"><code>filter(iver_mod1_aug, .hat &gt; mean(.hat) + 2 * sd(.hat)) %&gt;%
+  select(cty, .hat, lnenp)</code></pre>
+<pre><code>##       cty      .hat   lnenp
+## 1 Belgium 0.3137408 1.94734</code></pre>
+<p>Observations with high Studentized residuals (+/- 2):</p>
+<pre class="r"><code>filter(iver_mod1_aug, abs(.student.resid) &gt; 2) %&gt;%
+  select(cty, .student.resid, lnenp)</code></pre>
+<pre><code>##           cty .student.resid   lnenp
+## 1 Switzerland      -3.674577 1.66013</code></pre>
+<p>Or combine these,</p>
+<pre class="r"><code>filter(iver_mod1_aug,
+       abs(.student.resid) &gt; 2 |
+         .hat &gt; mean(.hat) + 2 * sd(.hat) |
+         .cooksd &gt; 4 / iver_mod1$df.residual) %&gt;%
+  select(cty, .cooksd, .hat, .student.resid, lnenp)</code></pre>
+<pre><code>##           cty    .cooksd      .hat .student.resid   lnenp
+## 1     Belgium 0.08763926 0.3137408      0.4134926 1.94734
+## 2 Switzerland 0.74512398 0.1632012     -3.6745770 1.66013</code></pre>
+<p>Also see <code>influencePlot</code> in <strong>car</strong>, and <code>influencePlot</code> in <strong>simcf</strong> for other implementations of this plot type. One feature of those implementations is that they allow for the ability to identify the points on the plot.</p>
+<p>Now that we’ve identified Switzerland as a problematic point, the question is what to do about it. Checking the Switzerland data, it appears that it is correct and is not the result of data entry issues. In general, we should avoid dropping points. Perhaps the issue is that we have not accounted for different electoral systems. Let’s try including</p>
+<pre class="r"><code>iver_mod2 &lt;- lm(povred ~ lnenp + elec_sys, data = iver)
+iver_mod2</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = povred ~ lnenp + elec_sys, data = iver)
+## 
+## Coefficients:
+##  (Intercept)         lnenp    elec_syspr  elec_sysunam  
+##       17.658        26.693         9.221       -48.952</code></pre>
+<pre class="r"><code>iver_mod2_aug &lt;- augment(iver_mod2) %&gt;%
+  mutate(.student.resid = .resid / (.sigma * sqrt(1 - .hat)),
+         cty = iver$cty)</code></pre>
+<p>However, by including a categorical variable for electoral system in which Switzerland is the only country with a unanamity government, we are effectively dropping Switzerland from the regression. This means that we cannot calculate Cook’s distance or studentized residuals, or hat scores for Switzerland since a regression estimated <em>without</em> switzerland cannot estimate a coefficient for the <code>unam</code> category, since Switzerland is the only member of that category.</p>
+<pre class="r"><code>filter(iver_mod2_aug,
+       abs(.student.resid) &gt; 2 |
+         .hat &gt; mean(.hat) + 2 * sd(.hat) |
+         .cooksd &gt; 4 / iver_mod1$df.residual) %&gt;%
+  select(cty, .cooksd, .hat, .student.resid, lnenp)</code></pre>
+<pre><code>##             cty   .cooksd      .hat .student.resid    lnenp
+## 1         Italy 0.1548996 0.1455977      -2.267585 1.413420
+## 2   Switzerland       NaN 1.0000000           -Inf 1.660130
+## 3 United States 0.2749067 0.1978831      -2.690288 0.667829</code></pre>
+<p>But now that we’ve ignored Switzerland, both Italy and the United States seem to be influential. This is because now that there are fewer observations per group, in some sense it is easier for observations to be influentia. But, although the US and Italy have high studentized residuals, neither of them exceed the rule of thumb for Cooks distance.</p>
+<pre class="r"><code>filter(iver_mod2_aug,
+         .cooksd &gt; 4 / iver_mod1$df.residual) %&gt;%
+  select(cty, .cooksd, .hat, .student.resid, lnenp)</code></pre>
+<pre><code>## [1] cty            .cooksd        .hat           .student.resid
+## [5] lnenp         
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<pre class="r"><code>ggplot() +
+  geom_point(data = filter(iver_mod2_aug, .cooksd &lt; Inf),
+             mapping = aes(x = .hat, y = .student.resid, size = .cooksd)) +
+  # add labels to points, but only those points that are flagged as outliers
+  # for at least one of the diagnostics considered here
+  geom_text(data =
+              filter(iver_mod2_aug,
+                     .cooksd &gt; 4 / iver_mod2$df.residual
+                     | abs(.student.resid) &gt; 2
+                     | .hat &gt; mean(.hat) + 2 * sd(.hat),
+                     .cooksd &lt; Inf),
+            mapping = aes(x = .hat, y = .student.resid, label = cty),
+            hjust = 0, size = 4, colour = &quot;red&quot;) +
+  geom_hline(data = data.frame(yintercept = c(-2, 0, 2)),
+             mapping = aes(yintercept = yintercept),
+             colour = &quot;blue&quot;, alpha = 0.4) +
+  geom_vline(data = data.frame(xintercept = mean(iver_mod2_aug$.hat) +
+                                 sd(iver_mod2_aug$.hat) * c(2, 3)),
+             mapping = aes(xintercept = xintercept),
+             colour = &quot;blue&quot;, alpha = 0.4) +
+  xlab(&quot;hat&quot;) +
+  ylab(&quot;Studentized residuals&quot;) + 
+  scale_size_continuous(&quot;Cook&#39;s Distance&quot;) + 
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-23-1.png" title="" alt="" width="576" /></p>
+<p>Although there are still a few observations with large residuals, and with a small dataset, it is almost inevitable that some observations will have outsized influence on the results, from an outlier perspective the new model seems less problematic. However, we accomplished this at the cost of effectively ignoring Switzerland. The model is able to estimate how different Switzerland is from what would be predicted, but by including a dummy variable that is only 1 for Switzerland, we are treating Switzerland as <em>sui generis</em>. Also note, that although the category is called <code>unam</code>, it would be inappropriate to interpret it as the effect of that type of government since Switzerland is the only country in that category. We cannot separate the effect of the government type from all the other things that make Switzerland unique. It would be more appropriate to call it the “Switzerland” category in this instance.</p>
+</div>
+<div id="robust-and-resistant-regression-methods" class="section level2">
+<h2>Robust and Resistant Regression Methods</h2>
+<p>Methods of dealing with outliers include robust and resistant regression methods. Many forms of robust regression are available through the **MASS* library functions <code>lqs</code> and <code>rls</code>. These include least median squares:</p>
+<pre class="r"><code>library(&quot;MASS&quot;)
+iver_lms &lt;- lqs(povred ~ lnenp, data = iver, method = &quot;lms&quot;)
+iver_lms</code></pre>
+<pre><code>## Call:
+## lqs.formula(formula = povred ~ lnenp, data = iver, method = &quot;lms&quot;)
+## 
+## Coefficients:
+## (Intercept)        lnenp  
+##       35.25        22.69  
+## 
+## Scale estimates 4.919 3.558</code></pre>
+<p>least trimmed squares</p>
+<pre class="r"><code>iver_lts &lt;- lqs(povred ~ lnenp, data = iver, method = &quot;lts&quot;)
+iver_lts</code></pre>
+<pre><code>## Call:
+## lqs.formula(formula = povred ~ lnenp, data = iver, method = &quot;lts&quot;)
+## 
+## Coefficients:
+## (Intercept)        lnenp  
+##       37.18        21.58  
+## 
+## Scale estimates 6.875 7.823</code></pre>
+<p>M-method with Huber weighting,</p>
+<pre class="r"><code>iver_huber &lt;- rlm(povred ~ lnenp, data = iver, method = &quot;M&quot;,
+                  scale.est = &quot;Huber&quot;)
+iver_huber</code></pre>
+<pre><code>## Call:
+## rlm(formula = povred ~ lnenp, data = iver, scale.est = &quot;Huber&quot;, 
+##     method = &quot;M&quot;)
+## Converged in 10 iterations
+## 
+## Coefficients:
+## (Intercept)       lnenp 
+##    18.09365    29.67556 
+## 
+## Degrees of freedom: 14 total; 12 residual
+## Scale estimate: 14.7</code></pre>
+<p>MM-methods,</p>
+<pre class="r"><code>iver_mm &lt;- rlm(povred ~ lnenp, data = iver, method = &quot;MM&quot;,
+               scale.est = &quot;Huber&quot;)
+iver_mm</code></pre>
+<pre><code>## Call:
+## rlm(formula = povred ~ lnenp, data = iver, scale.est = &quot;Huber&quot;, 
+##     method = &quot;MM&quot;)
+## Converged in 6 iterations
+## 
+## Coefficients:
+## (Intercept)       lnenp 
+##    14.29807    34.48933 
+## 
+## Degrees of freedom: 14 total; 12 residual
+## Scale estimate: 12.6</code></pre>
+<p>Now plot all of them together,</p>
+<pre class="r"><code>iver_line_compare &lt;-
+  bind_rows(data_frame(method = &quot;OLS&quot;,
+                       intercept = coef(iver_mod1)[&quot;(Intercept)&quot;],
+                       slope = coef(iver_mod1)[&quot;lnenp&quot;]),
+            data_frame(method = &quot;LMS&quot;,
+                       intercept = coef(iver_lms)[&quot;(Intercept)&quot;],
+                       slope = coef(iver_lms)[&quot;lnenp&quot;]),
+            data_frame(method = &quot;LTS&quot;,
+                       intercept = coef(iver_lts)[&quot;(Intercept)&quot;],
+                       slope = coef(iver_lts)[&quot;lnenp&quot;]),
+            data_frame(method = &quot;Huber&quot;,
+                       intercept = coef(iver_huber)[&quot;(Intercept)&quot;],
+                       slope = coef(iver_huber)[&quot;lnenp&quot;]),
+            data_frame(method = &quot;MM&quot;,
+                       intercept = coef(iver_mm)[&quot;(Intercept)&quot;],
+                       slope = coef(iver_mm)[&quot;lnenp&quot;])
+            )
+
+print(iver_line_compare)</code></pre>
+<pre><code>## Source: local data frame [5 x 3]
+## 
+##   method intercept    slope
+##    (chr)     (dbl)    (dbl)
+## 1    OLS  21.79942 24.17130
+## 2    LMS  35.25001 22.69176
+## 3    LTS  37.18191 21.58035
+## 4  Huber  18.09365 29.67556
+## 5     MM  14.29807 34.48933</code></pre>
+<pre class="r"><code>ggplot() +
+  geom_abline(data = iver_line_compare, 
+              mapping = aes(intercept = intercept, slope = slope,
+                            colour = method)) +
+  geom_point(data = iver, mapping = aes(x = lnenp, y = povred)) +
+  scale_colour_discrete() +
+  xlab(&quot;log(number of effective parties)&quot;) +
+  ylab(&quot;Poverty reduction&quot;) +
+  theme_local()</code></pre>
+<p><img src="outliers_robust_regression_files/figure-html/unnamed-chunk-28-1.png" title="" alt="" width="576" /></p>
+<p>Note that these robust and resistant estimators do no include standard errors. To get standard errors, we need to bootstrap these estimates. The following code uses the <code>bootstrap</code> function combined <code>do</code> to generate bootstraps; see this <a href="http://cran.r-project.org/web/packages/broom/vignettes/bootstrapping.html">vignette</a>. Then</p>
+<pre class="r"><code>iver %&gt;%
+  bootstrap(5000) %&gt;%
+  do({
+    mod &lt;- lqs(povred ~ lnenp, method = &quot;lms&quot;,
+               data = .)
+    data.frame(term = names(coef(mod)),
+               estimate = coef(mod))
+  }) %&gt;%
+  group_by(term) %&gt;%
+  summarise(mean = mean(estimate),
+            lb = quantile(estimate, 0.025),
+            ub = quantile(estimate, 0.975))</code></pre>
+<pre><code>## Source: local data frame [2 x 4]
+## 
+##          term     mean         lb       ub
+##        (fctr)    (dbl)      (dbl)    (dbl)
+## 1 (Intercept) 40.80727  -63.92612 207.9342
+## 2       lnenp 18.01669 -117.14091 119.6287</code></pre>
+<p>We find that the standard errors are very large compared to those of the OLS.</p>
+<pre class="r"><code>sqrt(diag(vcov(iver_mod1)))</code></pre>
+<pre><code>## (Intercept)       lnenp 
+##    16.15440    12.74855</code></pre>
+<p>This makes LTS not particularly useful in small datasets.</p>
+<p>This is alternative code to calculate the bootstrap of LTS using the <strong>boot</strong> package. <code>boot</code> is a more general and powerful method of bootstrapping, supporting many different sampling methods. However, it requires defining a function to calculate the statistic (in this case I write the function <code>leasttrimmed</code>), and does not return a data frame, but a special <code>boot</code> object.</p>
+<pre class="r"><code>run_lqs &lt;- function(d, i, ...) {
+  coef(lqs(povred ~ lnenp, data = d, subset = i))
+}
+
+boot(iver[ , c(&quot;povred&quot;, &quot;lnenp&quot;)], run_lqs, R = 1000)</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = iver[, c(&quot;povred&quot;, &quot;lnenp&quot;)], statistic = run_lqs, 
+##     R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##     original    bias    std. error
+## t1* 37.18191 -6.348212    46.83936
+## t2* 21.58035  3.203307    38.64660</code></pre>
+<p>Adapted from an example in Christopher Adolph (Spring 2014), “Outliers and Robust Regression Techniques” [lecture slides]. <a href="http://faculty.washington.edu/cadolph/503/topic6.pw.pdf" class="uri">http://faculty.washington.edu/cadolph/503/topic6.pw.pdf</a>.</p>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -258,9 +258,15 @@ Readings
 
 - [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/). Ch 6.2: "Shrinkage Methods", Ch 5: "Resampling Methods" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf) (skim)
 
+
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
+- [Multiple imputation example](missing_data_imputation.html)
+
 ### <time datetime="2016-05-12">Thursday, May 12</time>
+
+- [slides](slides/diagnostics2.pdf)
+- [Example with outliers](outliers_robust_regression.html)
 
 ### <time datetime="2016-05-13">Friday, May 13</time>
 

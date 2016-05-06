@@ -8,6 +8,45 @@ output:
       in_header: in_header.tex
 ---
 
+# Question
+
+How do regression diagnostics fit into analysis?
+
+# Steps in Regression
+
+- For any model
+
+    1. Run regression
+    2. Check for departures from CLR assumptions
+    3. Attempt to fix those problems
+
+- Additionally, compare between models based on purpose, fit, and diagnostics
+
+# OLS assumptions
+
+
+1. Linearity               $y = X \beta + \varepsilon$              
+2. Iid sample              $y_i, x'_i)$ iid sample     
+3. No perfect collinearity $X$ has full rank
+4. Zero conditional mean   $E(\varepsilon | X) = )$                  
+5. Homoskedasticity        $Var(\varepsilon | X) = \sigma^2 I_{N}$
+6. Normality               $\varepsilon | X \sim N(0, \sigma^2 I_N)$
+
+- 1-4: unbiased and consistent $\beta$
+- 1-5: asymptotic inference, BLUE
+- 1-6: small sample inference
+
+# OLS Problems
+
+1. Perfect collinearity: Cannot estimate OLS
+2. Non-linearity: Biased $\beta$
+3. Omitted variable bias: Biased $\beta$.
+3. Correlated errors: Wrong SEs
+5. Heteroskedasticity: Wrong SEs
+6. Non-normality: Wrong SEs - p-values.
+7. Outliers: Depends on where they come from
+
+
 # Topics for Today
 
 1. Omitted Variable Bias

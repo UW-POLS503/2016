@@ -9,7 +9,7 @@ output:
     fig_width: 5
 ---
 ```{r echo = FALSE, results = 'hide'}
-knitr::opts_chunk$set(cache = TRUE, autodep = TRUE,
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE,
                   fig.height = 3, fig.width = 5)
 ```
 
@@ -51,7 +51,7 @@ the redistributive efforts of the government is measured as the percent people l
 
 First, let's load the data
 ```{r}
-iver <- read.csv("http://pols503.github.io/pols_503_sp15/data/iver.csv")
+iver <- read.csv("http://uw-pols503.github.io/pols_503_sp15/data/iver.csv")
 glimpse(iver)
 ```
 The variables of interest are `lnemp` (log effective number of parties),
