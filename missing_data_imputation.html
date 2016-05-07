@@ -290,6 +290,7 @@ div.tocify {
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 2</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
              <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
@@ -354,13 +355,10 @@ theme_local &lt;- theme_minimal</code></pre>
 <h2>Data</h2>
 <p>For this example we will run a regression model of infant mortality (number of deaths per 1,000) on GDP per capita, percentage of married women practicing contraception, and average number of years of education for women. This is the data and model used for missing data in Chapter 20 of Fox, <em>Applied Regression Analysis</em>, although our methods of imputation and implementations thereof will be different.</p>
 <p>We will load the data and do some minor cleaning of it</p>
-<pre class="r"><code>UN &lt;- read.table(&quot;http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-3E/datasets/UnitedNations.txt&quot;) %&gt;%
-  add_rownames(var = &quot;country&quot;) %&gt;%
-  mutate(illiteracyMale = illiteracyMale / 100,
-         illiteracyFemale = illiteracyFemale / 100,
-         economicActivityMale = economicActivityMale / 100,
-         economicActivityFemale = economicActivityFemale / 100,
-         contraception = contraception / 100)</code></pre>
+<pre class="r"><code>UN &lt;- read.table(&quot;http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-3E/datasets/UnitedNations.txt&quot;) %&gt;% 
+    add_rownames(var = &quot;country&quot;) %&gt;% mutate(illiteracyMale = illiteracyMale/100, 
+    illiteracyFemale = illiteracyFemale/100, economicActivityMale = economicActivityMale/100, 
+    economicActivityFemale = economicActivityFemale/100, contraception = contraception/100)</code></pre>
 <p>The variables in the dataset are described in the table below. Although we will only use <code>infantMortality</code>, <code>educationFemale</code>, <code>contraception</code>, and <code>illiteracyFemale</code> in the regressions, it will be useful to use all of the available data for imputation.</p>
 <table>
 <thead>
@@ -428,69 +426,27 @@ theme_local &lt;- theme_minimal</code></pre>
 <pre class="r"><code>summary(UN)</code></pre>
 <p>We are particularly interested in the amount of missing values in each variable. Although <code>summary()</code> lists the missingness in each variable, it can be useful to use The function <code>frac_missing</code> calculates the fraction of missing values in <code>x</code>.</p>
 <pre class="r"><code>frac_missing &lt;- function(x) {
-  sum(is.na(x)) / length(x)
+    sum(is.na(x))/length(x)
 }</code></pre>
 <p>The amount of missingness in the variables of interests is highest for <code>educationFemale</code> at over 63%, followed by contraception at 30%.</p>
-<pre class="r"><code>UN_miss_by_var &lt;-
-  UN %&gt;%
-  gather(variable, value) %&gt;%
-  group_by(variable) %&gt;%
-  summarise(missing = frac_missing(value)) %&gt;%
-  arrange(- missing)
+<pre class="r"><code>UN_miss_by_var &lt;- UN %&gt;% gather(variable, value) %&gt;% group_by(variable) %&gt;% 
+    summarise(missing = frac_missing(value)) %&gt;% arrange(-missing)
 UN_miss_by_var</code></pre>
-<pre><code>## Source: local data frame [14 x 2]
-## 
-##                  variable    missing
-##                     (chr)      (dbl)
-## 1         educationFemale 0.63285024
-## 2           educationMale 0.63285024
-## 3           contraception 0.30434783
-## 4        illiteracyFemale 0.22705314
-## 5          illiteracyMale 0.22705314
-## 6  economicActivityFemale 0.20289855
-## 7    economicActivityMale 0.20289855
-## 8              lifeFemale 0.05314010
-## 9                lifeMale 0.05314010
-## 10           GDPperCapita 0.04830918
-## 11                    tfr 0.04830918
-## 12        infantMortality 0.02898551
-## 13                country 0.00000000
-## 14                 region 0.00000000</code></pre>
 <p>The function <code>missmap</code> in <strong>Amelia</strong> is a useful way to view the missingness of variables in your data</p>
 <pre class="r"><code>missmap(UN)</code></pre>
-<pre><code>## Warning in if (class(obj) == &quot;amelia&quot;) {: the condition has length &gt; 1 and
-## only the first element will be used</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="672" /></p>
 <p>As an aside, and to show you how the combination of <code>dplyr</code>, <code>ggplot</code> occupy a nice spot on the flexibility / amount of code frontier,</p>
-<pre class="r"><code>UN_miss_mat &lt;-
-  mutate(UN, n = row_number()) %&gt;%
-  gather(variable, value, - n) %&gt;%
-  mutate(is_na = is.na(value)) %&gt;%
-  filter(! variable %in% &quot;country&quot;)
-ggplot(UN_miss_mat,
-       aes(x = reorder(variable, is_na, mean), y = n, fill = is_na)) +
-  geom_tile() +
-  theme_minimal() +
-  coord_flip() +
-  # this manually sets the colors of the plot; guide = FALSE removes the legend
-  scale_fill_manual(values = c(&quot;black&quot;, NA), guide = FALSE) +
-  xlab(&quot;&quot;) + ylab(&quot;Observation number&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="576" /></p>
+<pre class="r"><code>UN_miss_mat &lt;- mutate(UN, n = row_number()) %&gt;% gather(variable, value, -n) %&gt;% 
+    mutate(is_na = is.na(value)) %&gt;% filter(!variable %in% &quot;country&quot;)
+ggplot(UN_miss_mat, aes(x = reorder(variable, is_na, mean), y = n, fill = is_na)) + 
+    geom_tile() + theme_minimal() + coord_flip() + # this manually sets the colors of the plot; guide = FALSE removes the
+# legend
+scale_fill_manual(values = c(&quot;black&quot;, NA), guide = FALSE) + xlab(&quot;&quot;) + ylab(&quot;Observation number&quot;)</code></pre>
 <p>Other tools for visualization missingness are in the <a href="http://cran.r-project.org/web/packages/VIM/index.html">VIM</a> package.</p>
 <p>Considering that analyses that we will run, with <code>infantMortality</code>, <code>educationFemale</code>, <code>contraception</code>, <code>GDPperCapita</code>. What is the level of missingness if we keep only observations will non-missing values in all the variables? Although the original data has observations for 207 countries, 145 (70%) of them have a missing value for at least one of those variables.</p>
-<pre class="r"><code>UN %&gt;%
-  mutate(n = row_number()) %&gt;%
-  select(n, infantMortality, educationFemale, contraception, GDPperCapita) %&gt;%
-  gather(variable, value, - n) %&gt;%
-  group_by(n) %&gt;%
-  summarize(any_missing = any(is.na(value))) %&gt;%
-  summarise(total = length(n), total_miss = sum(any_missing),
-            miss_frac = total_miss / total)</code></pre>
-<pre><code>## Source: local data frame [1 x 3]
-## 
-##   total total_miss miss_frac
-##   (int)      (int)     (dbl)
-## 1   207        145 0.7004831</code></pre>
+<pre class="r"><code>UN %&gt;% mutate(n = row_number()) %&gt;% select(n, infantMortality, educationFemale, 
+    contraception, GDPperCapita) %&gt;% gather(variable, value, -n) %&gt;% group_by(n) %&gt;% 
+    summarize(any_missing = any(is.na(value))) %&gt;% summarise(total = length(n), 
+    total_miss = sum(any_missing), miss_frac = total_miss/total)</code></pre>
 </div>
 <div id="models" class="section level2">
 <h2>Models</h2>
@@ -498,97 +454,40 @@ ggplot(UN_miss_mat,
 <div id="listwise-deletion" class="section level3">
 <h3>Listwise deletion</h3>
 <p>We will only use rows for which <strong>all</strong> the variables used in the model are non-missing. This is what <code>lm()</code> does by default when it encounters missing values.</p>
-<pre class="r"><code>mod_listwise &lt;-
-  lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale,
-     data = UN)
+<pre class="r"><code>mod_listwise &lt;- lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale, 
+    data = UN)
 summary(mod_listwise)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = infantMortality ~ log(GDPperCapita) + contraception + 
-##     educationFemale, data = UN)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -47.251 -11.145   0.634   7.925  66.125 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        148.245     11.913  12.444   &lt;2e-16 ***
-## log(GDPperCapita)   -7.580      2.365  -3.205   0.0022 ** 
-## contraception      -46.114     17.399  -2.650   0.0103 *  
-## educationFemale     -2.491      1.386  -1.798   0.0775 .  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 17.9 on 58 degrees of freedom
-##   (145 observations deleted due to missingness)
-## Multiple R-squared:  0.7466, Adjusted R-squared:  0.7335 
-## F-statistic: 56.97 on 3 and 58 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="indicator-variables-for-missing-values" class="section level3">
 <h3>Indicator Variables for Missing Values</h3>
 <p>For each variable, we will add a dummy variable that is equal 1 if that variable is missing and 0 if not. Then for each variable we will replace its missing values with 0 (or its mean). To assist in that, we will define the function <code>fill_na</code> which fills in missing values in <code>x</code> with whatever value is given in <code>fill</code>.</p>
 <pre class="r"><code>fill_na &lt;- function(x, fill = 0) {
-  x[is.na(x)] &lt;- fill
-  x
+    x[is.na(x)] &lt;- fill
+    x
 }</code></pre>
 <p>Now we generate a new dataset with those dummy variables and with the missing values replaced by their means.</p>
-<pre class="r"><code>UN_with_dummies &lt;-
-  UN %&gt;%
-  mutate(GDPperCapita_na = as.integer(is.na(GDPperCapita)),
-         GDPperCapita = fill_na(GDPperCapita, mean(GDPperCapita, na.rm = TRUE)),
-         contraception_na = as.integer(is.na(contraception)),
-         contraception = fill_na(contraception, mean(contraception, na.rm = TRUE)),
-         educationFemale_na = as.integer(is.na(educationFemale)),
-         educationFemale = fill_na(educationFemale, mean(educationFemale, na.rm = TRUE)))
-mod_dummies &lt;- lm(infantMortality ~ log(GDPperCapita) + GDPperCapita_na + contraception +
-     contraception_na + educationFemale + educationFemale, data = UN_with_dummies)
+<pre class="r"><code>UN_with_dummies &lt;- UN %&gt;% mutate(GDPperCapita_na = as.integer(is.na(GDPperCapita)), 
+    GDPperCapita = fill_na(GDPperCapita, mean(GDPperCapita, na.rm = TRUE)), 
+    contraception_na = as.integer(is.na(contraception)), contraception = fill_na(contraception, 
+        mean(contraception, na.rm = TRUE)), educationFemale_na = as.integer(is.na(educationFemale)), 
+    educationFemale = fill_na(educationFemale, mean(educationFemale, na.rm = TRUE)))
+mod_dummies &lt;- lm(infantMortality ~ log(GDPperCapita) + GDPperCapita_na + contraception + 
+    contraception_na + educationFemale + educationFemale, data = UN_with_dummies)
 mod_dummies</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = infantMortality ~ log(GDPperCapita) + GDPperCapita_na + 
-##     contraception + contraception_na + educationFemale + educationFemale, 
-##     data = UN_with_dummies)
-## 
-## Coefficients:
-##       (Intercept)  log(GDPperCapita)    GDPperCapita_na  
-##          166.4830           -12.5506             3.7953  
-##     contraception   contraception_na    educationFemale  
-##          -55.0697             3.5130            -0.4682</code></pre>
 </div>
 <div id="unconditional-mean-imputation" class="section level3">
 <h3>Unconditional Mean Imputation</h3>
 <p>Another ad hoc method is to replace missing values with their means. Since we filled in the missing values in <code>UN_with_dummies</code> with the mean values, we will use that, but not include the dummy variables.</p>
 <p>These bivariate plots illustrate how unconditional imputation means work, and give an indication of how they will affect results.</p>
-<pre class="r"><code>ggplot(filter(UN_with_dummies, !is.na(infantMortality),
-              !is.na(educationFemale)),
-       aes(y = infantMortality, x = educationFemale,
-           colour = as.factor(educationFemale_na))) +
-  geom_point() +
-  scale_colour_discrete(&quot;Imputed&quot;) +
-  theme_local()</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>ggplot(na.omit(select(UN_with_dummies, infantMortality,
-                      contraception, contraception_na)),
-       aes(y = infantMortality, x = contraception,
-           colour = as.factor(contraception_na))) +
-  geom_point() +
-  scale_colour_discrete(&quot;Imputed&quot;) +
-  theme_local()</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>mod_means &lt;- lm(infantMortality ~ log(GDPperCapita) + contraception +
-      educationFemale, data = UN_with_dummies)
+<pre class="r"><code>ggplot(filter(UN_with_dummies, !is.na(infantMortality), !is.na(educationFemale)), 
+    aes(y = infantMortality, x = educationFemale, colour = as.factor(educationFemale_na))) + 
+    geom_point() + scale_colour_discrete(&quot;Imputed&quot;) + theme_local()</code></pre>
+<pre class="r"><code>ggplot(na.omit(select(UN_with_dummies, infantMortality, contraception, contraception_na)), 
+    aes(y = infantMortality, x = contraception, colour = as.factor(contraception_na))) + 
+    geom_point() + scale_colour_discrete(&quot;Imputed&quot;) + theme_local()</code></pre>
+<pre class="r"><code>mod_means &lt;- lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale, 
+    data = UN_with_dummies)
 mod_means</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = infantMortality ~ log(GDPperCapita) + contraception + 
-##     educationFemale, data = UN_with_dummies)
-## 
-## Coefficients:
-##       (Intercept)  log(GDPperCapita)      contraception  
-##          166.5511           -12.2072           -56.1593  
-##   educationFemale  
-##           -0.5595</code></pre>
 </div>
 <div id="multiple-imputation" class="section level3">
 <h3>Multiple Imputation</h3>
@@ -598,14 +497,9 @@ mod_means</code></pre>
 <li><code>amelia</code> models the distribution of the data as multivariate normal so it is useful to transform the data to make it more normal. Use the arguments <code>logs</code> to indicate variables to log transform, and <code>lgstc</code> to logistic transform variables.</li>
 <li>Additionally, you need to tell <code>amelia</code> which variables are nominal (<code>noms =</code>) so it creates dummy variables; and which variables are id variables (<code>idvars =</code>) so it can ignore them in the imputation process, but still include them in the final datasets.</li>
 </ul>
-<pre class="r"><code>UN_mi &lt;-
-  amelia(data.frame(UN),
-         m = 5,
-         logs = c(&quot;GDPperCapita&quot;),
-         lgstc = c(&quot;economicActivityMale&quot;, &quot;economicActivityFemale&quot;,
-                   &quot;illiteracyMale&quot;, &quot;illiteracyFemale&quot;, &quot;contraception&quot;),
-         noms = c(&quot;region&quot;),
-         idvars = &quot;country&quot;)</code></pre>
+<pre class="r"><code>UN_mi &lt;- amelia(data.frame(UN), m = 5, logs = c(&quot;GDPperCapita&quot;), lgstc = c(&quot;economicActivityMale&quot;, 
+    &quot;economicActivityFemale&quot;, &quot;illiteracyMale&quot;, &quot;illiteracyFemale&quot;, &quot;contraception&quot;), 
+    noms = c(&quot;region&quot;), idvars = &quot;country&quot;)</code></pre>
 <p><em>Note</em> I had to use <code>data.frame</code> because at the moment <code>amelia</code> has bugs when using <strong>dplyr</strong> <code>data_frame</code> objects.</p>
 <p>Note several things about the imputation process.</p>
 <p>First, the number of imputations is <strong>small</strong>, <code>m = 5</code>. There is not much improvement in the performance of multiple imputation from using many imputations. Usually 5–10 is more than sufficient. See Fox, p. 564.</p>
@@ -614,131 +508,74 @@ mod_means</code></pre>
 <pre class="r"><code>str(UN_mi$imputations)</code></pre>
 <p>Each of these datasets is <strong>complete</strong>, meaning it has no missing observations. But for values which were missing in the original data, they are filled with different imputations. For example, compare this subset in the orginal data and two imputations.</p>
 <pre class="r"><code>countries &lt;- c(&quot;Afghanistan&quot;, &quot;Angola&quot;, &quot;Algeria&quot;, &quot;Antigua&quot;)
-UN %&gt;% filter(country %in% countries) %&gt;% select(country, contraception)</code></pre>
-<pre><code>## Source: local data frame [4 x 2]
-## 
-##       country contraception
-##         (chr)         (dbl)
-## 1 Afghanistan            NA
-## 2     Algeria          0.52
-## 3      Angola            NA
-## 4     Antigua          0.53</code></pre>
-<pre class="r"><code>UN_mi$imputations[[1]] %&gt;% filter(country %in% countries) %&gt;% select(country, contraception)</code></pre>
-<pre><code>##       country contraception
-## 1 Afghanistan    0.07640913
-## 2     Algeria    0.52000000
-## 3      Angola    0.14690295
-## 4     Antigua    0.53000000</code></pre>
-<pre class="r"><code>UN_mi$imputations[[2]] %&gt;% filter(country %in% countries) %&gt;% select(country, contraception)</code></pre>
-<pre><code>##       country contraception
-## 1 Afghanistan    0.06033049
-## 2     Algeria    0.52000000
-## 3      Angola    0.28073275
-## 4     Antigua    0.53000000</code></pre>
+UN %&gt;% filter(country %in% countries) %&gt;% select(country, contraception)
+UN_mi$imputations[[1]] %&gt;% filter(country %in% countries) %&gt;% select(country, 
+    contraception)
+UN_mi$imputations[[2]] %&gt;% filter(country %in% countries) %&gt;% select(country, 
+    contraception)</code></pre>
 <p>The following creates plots of each variable, overplotting the values from each imputation against the observation number. Points which are black were observed in the original data; points which are gray are imputed.</p>
-<pre class="r"><code>all_imputations &lt;-
-  data_frame(i = seq_len(UN_mi$m)) %&gt;%
-    rowwise() %&gt;%
-    do({
-      mutate(UN_mi$imputations[[.$i]],
-             .obsnum = row_number(),
-             .imputation = .$i)
-    })
+<pre class="r"><code>all_imputations &lt;- data_frame(i = seq_len(UN_mi$m)) %&gt;% rowwise() %&gt;% do({
+    mutate(UN_mi$imputations[[.$i]], .obsnum = row_number(), .imputation = .$i)
+})
 
 imputation_plot &lt;- function(yvar) {
-  ggplot(all_imputations, aes_string(x = &quot;.obsnum&quot;,
-                                     y = yvar)) +
-  geom_point(alpha = 0.2) +
-  theme_minimal() +
-  xlab(&quot;Observation number&quot;) +
-  theme_local()
+    ggplot(all_imputations, aes_string(x = &quot;.obsnum&quot;, y = yvar)) + geom_point(alpha = 0.2) + 
+        theme_minimal() + xlab(&quot;Observation number&quot;) + theme_local()
 }
 
-imputation_plot(&quot;educationFemale&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-19-1.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>imputation_plot(&quot;contraception&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-19-2.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>imputation_plot(&quot;log(GDPperCapita)&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-19-3.png" title="" alt="" width="672" /></p>
+imputation_plot(&quot;educationFemale&quot;)
+imputation_plot(&quot;contraception&quot;)
+imputation_plot(&quot;log(GDPperCapita)&quot;)</code></pre>
 <p>Let’s see how one of these imputed datasets looks and compare the imputed and non-imputed values as an informal way of judging its plausibility.</p>
-<pre class="r"><code>ggplot(UN_mi$imputations[[1]] %&gt;%
-         mutate(missing = UN_mi$missMatrix[ , &quot;educationFemale&quot;]),
-       aes(x = educationFemale, y = infantMortality, colour = missing)) +
-  geom_point() +
-  theme_local()</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-20-1.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>ggplot(UN_mi$imputations[[1]] %&gt;%
-         mutate(missing = UN_mi$missMatrix[ , &quot;contraception&quot;]),
-       aes(x = contraception, y = infantMortality, colour = missing)) +
-  geom_point() +
-  theme_local()</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-21-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>ggplot(UN_mi$imputations[[1]] %&gt;% mutate(missing = UN_mi$missMatrix[, &quot;educationFemale&quot;]), 
+    aes(x = educationFemale, y = infantMortality, colour = missing)) + geom_point() + 
+    theme_local()</code></pre>
+<pre class="r"><code>ggplot(UN_mi$imputations[[1]] %&gt;% mutate(missing = UN_mi$missMatrix[, &quot;contraception&quot;]), 
+    aes(x = contraception, y = infantMortality, colour = missing)) + geom_point() + 
+    theme_local()</code></pre>
 <p>These look much more plausible than those of the unconditionally imputed mean.</p>
 <p>The plots we just made suggest <strong>Amelia</strong> is working well, but let’s look at a couple of diagnostics that <strong>Amelia</strong> suggests: The first is to drop each observation of a variable, impute it, and plot the values against the original values. If the imputed values resemble the original values, then the imputation procedure has worked well.</p>
 <p>Amelia suggests several diagnostics for evaluating The first is “overimputation”. This is similar to leave-one-out cross validation. Each observation is removed and treated as a missing value to be imputated. Amelia plots 90% confidence intervals for each observation against the true values. If the imputation is reasonable, then these confidence intervals should have 90% coverage of the true value. The following code runs the overimputation diagnostic for the variables of interest (the ones that will be used in the regression). The overimputation diagnostics do not suggest any issues with the imputation of these variables.</p>
 <pre class="r"><code>for (var in c(&quot;GDPperCapita&quot;, &quot;contraception&quot;, &quot;illiteracyFemale&quot;)) {
-  overimpute(UN_mi, var, main = var)
+    overimpute(UN_mi, var, main = var)
 }</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-22-1.png" title="" alt="" width="672" /><img src="missing_data_imputation_files/figure-html/unnamed-chunk-22-2.png" title="" alt="" width="672" /><img src="missing_data_imputation_files/figure-html/unnamed-chunk-22-3.png" title="" alt="" width="672" /></p>
 <p>The second method is to plot the marginal density of the imputed values against observed values. If these appear too different, then there <em>may</em> be issues with imputation. However, there is no particular criteria for what is <strong>too different</strong>, and there may be reasons why these distributions diverge; see the Amelia vignette for an example of what would be a big difference. But if these distributions are different, then you should revisit the data to see whether imputation makes sense. The following code performs this for each variable of interest. The plots do not suggest any differences to be concerned about.</p>
 <pre class="r"><code>for (var in c(&quot;GDPperCapita&quot;, &quot;contraception&quot;, &quot;illiteracyFemale&quot;)) {
-  compare.density(UN_mi, var, main = var)
+    compare.density(UN_mi, var, main = var)
 }</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-23-1.png" title="" alt="" width="672" /><img src="missing_data_imputation_files/figure-html/unnamed-chunk-23-2.png" title="" alt="" width="672" /><img src="missing_data_imputation_files/figure-html/unnamed-chunk-23-3.png" title="" alt="" width="672" /></p>
 <p>Now that we are satisfied that the imputations are reasonable, we run the analysis on each of the imputated datasets. The following code runs the regression on each imputed dataset saving the coefficients to <code>b_out</code>, and the standard errors of the coefficients to <code>se_out</code>. These are originally saved to a list, but <code>rbind</code> converts it to a matrix with each imputations as rows and coefficients as columns.</p>
 <p>Now estimate the model using each imputed dataset. We save the results to <code>b_out</code> and <code>se_out</code>.</p>
 <pre class="r"><code>b_out &lt;- list()
 se_out &lt;- list()
 for (i in seq_along(UN_mi$imputations)) {
-  mod &lt;- lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale, data = UN_mi$imputations[[i]])
-  b_out[[i]] &lt;- coef(mod)
-  se_out[[i]] &lt;- sqrt(diag(vcov(mod)))
+    mod &lt;- lm(infantMortality ~ log(GDPperCapita) + contraception + educationFemale, 
+        data = UN_mi$imputations[[i]])
+    b_out[[i]] &lt;- coef(mod)
+    se_out[[i]] &lt;- sqrt(diag(vcov(mod)))
 }
 b_out &lt;- do.call(rbind, b_out)
 se_out &lt;- do.call(rbind, se_out)</code></pre>
 <p>As described in Fox or Gelman, the coefficients from the imputations can be combined to calculate a single point estimate and standard error. The function <code>mi.meld</code> does this, and returns a list with point estimates in the element <code>q.mi</code> and standard errors in <code>se.mi</code>:</p>
 <pre class="r"><code>mod_mi_res &lt;- mi.meld(q = b_out, se = se_out)
 mod_mi_res</code></pre>
-<pre><code>## $q.mi
-##      (Intercept) log(GDPperCapita) contraception educationFemale
-## [1,]    134.5969         -2.699894     -45.31222       -5.023085
-## 
-## $se.mi
-##      (Intercept) log(GDPperCapita) contraception educationFemale
-## [1,]    13.43238          3.431773      14.32526        1.894144</code></pre>
 </div>
 <div id="model-comparison" class="section level3">
 <h3>Model Comparison</h3>
 <p>Now that we’ve estimated this model using various methods to handle missing data, let’s compare the results. First, we combine these into a single dataset. For the results returned by <code>Amelia</code>, since there is no <code>tidy</code> function defined for Amelia objects we need to manually create a data frame consistent with those returned by <code>tidy</code>.</p>
-<pre class="r"><code>model_comp &lt;-
-  bind_rows(tidy(mod_listwise) %&gt;%
-              mutate(model = &quot;listwise&quot;),
-            tidy(mod_dummies) %&gt;%
-              mutate(model = &quot;dummies&quot;),
-            tidy(mod_means) %&gt;%
-              mutate(model = &quot;means&quot;),
-            data_frame(term = colnames(mod_mi_res$q.mi),
-                       estimate = as.numeric(mod_mi_res$q.mi),
-                       std.error = as.numeric(mod_mi_res$se.mi),
-                       model = &quot;mi&quot;))</code></pre>
+<pre class="r"><code>model_comp &lt;- bind_rows(tidy(mod_listwise) %&gt;% mutate(model = &quot;listwise&quot;), tidy(mod_dummies) %&gt;% 
+    mutate(model = &quot;dummies&quot;), tidy(mod_means) %&gt;% mutate(model = &quot;means&quot;), 
+    data_frame(term = colnames(mod_mi_res$q.mi), estimate = as.numeric(mod_mi_res$q.mi), 
+        std.error = as.numeric(mod_mi_res$se.mi), model = &quot;mi&quot;))</code></pre>
 <pre class="r"><code>plot_mi_models &lt;- function(data, variable) {
-  ggplot(data %&gt;%
-         filter(term %in% variable),
-         aes(x = model, y = estimate,
-             ymin = estimate - 2 * std.error,
-             ymax = estimate + 2 * std.error)) +
-  geom_pointrange() +
-  geom_hline(yintercept = 0, colour = &quot;red&quot;, alpha = 0.2) +
-  coord_flip() +
-  theme_minimal()
+    ggplot(data %&gt;% filter(term %in% variable), aes(x = model, y = estimate, 
+        ymin = estimate - 2 * std.error, ymax = estimate + 2 * std.error)) + 
+        geom_pointrange() + geom_hline(yintercept = 0, colour = &quot;red&quot;, alpha = 0.2) + 
+        coord_flip() + theme_minimal()
 }
 
-plot_mi_models(model_comp, &quot;log(GDPperCapita)&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-28-1.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>plot_mi_models(model_comp, &quot;contraception&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-28-2.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>plot_mi_models(model_comp, &quot;educationFemale&quot;)</code></pre>
-<p><img src="missing_data_imputation_files/figure-html/unnamed-chunk-28-3.png" title="" alt="" width="672" /></p>
+plot_mi_models(model_comp, &quot;log(GDPperCapita)&quot;)
+plot_mi_models(model_comp, &quot;contraception&quot;)
+plot_mi_models(model_comp, &quot;educationFemale&quot;)</code></pre>
 <p>These plots show that the various methods produce different answers both in terms of point-estimates and standard errors. Though, we would have to use simulations to determine why the imputation methods are better than the alternatives.</p>
 </div>
 </div>

@@ -11,7 +11,7 @@
 
 
 
-<title>Installing R, RStudio, and associated tools</title>
+<title>Project Assignment 3</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -338,92 +338,78 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Installing R, RStudio, and associated tools</h1>
+<h1 class="title toc-ignore">Project Assignment 3</h1>
 
 </div>
 
 
-<div id="installing-or-updating-r" class="section level2">
-<h2>Installing or Updating R</h2>
-<div id="install-r" class="section level3">
-<h3>Install R</h3>
-<p>The R website is … special. Since you probably don’t know or care what a mirror is, here are links to the</p>
+<ol style="list-style-type: decimal">
+<li>Conduct the following analysis in a well-documented R markdown file. You should include text in the document discussing what and why you are doing the analysis you are doing so that someone unfamiliar with your project could follow along. It may make sense for you to add to and edit your existing R markdown file that you used for analysis.</li>
+<li><p>If you have not already:</p>
 <ul>
-<li>Go to the <a href="https://cran.r-project.org/">R Project</a> website</li>
-<li>Choose the <code>Download and install R</code> your operation system:
-<ul>
-<li>Mac: Download <code>R-3.2.4.pkg</code></li>
-<li>Windows: First click on <code>base</code> and then on <code>Download R 3.2.4 for Windows</code></li>
+<li>In <code>README.md</code>, include a brief description of what is in your repository and instructions of how to repeat the analysis.</li>
+<li>Separate the code that generates your the dataset you will primarily use for your analysis from the code you will use in your analysis.</li>
 </ul></li>
-</ul>
-</div>
-<div id="upgrade-r" class="section level3">
-<h3>Upgrade R</h3>
-<p>If you already have R installed, to check that you have the newest version of R, run</p>
-<pre class="r"><code>sessionInfo()</code></pre>
-<p>which will produce output like,</p>
-<pre><code>R version 3.2.4 (2016-03-10)
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
-Running under: OS X 10.11.3 (El Capitan)
-
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] R6_2.1.2
-
-loaded via a namespace (and not attached):
-[1] rsconnect_0.4.2 tools_3.2.4     knitr_1.12.3</code></pre>
-<p>At the start of this course, March 29, 2016, the newest version of R is 3.2.4. Check that your <code>R version</code> is that one.</p>
-</div>
-<div id="update-packages" class="section level3">
-<h3>Update packages</h3>
-<p>Now, update all your packages</p>
-<pre class="r"><code>update.packages(ask = FALSE)</code></pre>
-<p>The option <code>ask = FALSE</code> answers “yes to all the questions” as to whether to answer</p>
-</div>
-</div>
-<div id="installing-or-upgrading-r-rstudio" class="section level2">
-<h2>Installing or Upgrading R RStudio</h2>
-<p>If you don’t have RStudio installed, install it from <a href="https://www.rstudio.com/products/RStudio/#Desktop">rstudio.com</a>. You want to download the RStudio <strong>Desktop Open Source Edition</strong> (which is FREE).</p>
-<p>If you already have RStudio installed, go to <code>Help &gt; Check for Updates</code> in the menu and install a new version if the pop-up window indicates that there is a new version available.</p>
-</div>
-<div id="installing-tools-to-build-r-packages-from-scratch" class="section level2">
-<h2>Installing Tools to Build R Packages from Scratch</h2>
-<p>Mature R packages are distributed over CRAN and installable in R using <code>install.packages</code> without any other assistance. However, we may use some bleeding-edge R packages that require the packages to be built from source and installed using the <a href="http://www.rstudio.com/products/rpackages/devtools/">devtools</a> package. Install or</p>
-<p>This requires some extra <a href="http://www.rstudio.com/products/rpackages/devtools/">programs</a>.</p>
+<li><p>When you have finished, create an issue in Github titled: “Review Project Assignment 3”. In the issue message write “cc <span class="citation">@jrnold</span> <span class="citation">@CasAndreu</span>”. This is how you submit your assignment, and lets the instructors know it is ready to review.</p></li>
+</ol>
+<p>These are questions that you should try to answer in order of importance. Do as much as you can in the time you have. We can then evaluate where you are and there are still time to wok on</p>
+<ol style="list-style-type: decimal">
+<li><p>For your variable of interest:</p>
 <ul>
-<li>Windows: Install the newest version of <a href="http://cran.r-project.org/bin/windows/Rtools/">Rtools</a>. Use default settings.</li>
-<li>Mac: Install Xcode from the Mac App Store.</li>
-</ul>
-<p>To check that this is setup correctly, run the following</p>
-<pre class="r"><code>library(&quot;devtools&quot;)
-has_devel()</code></pre>
-<p>If everything is correctly set up, it will return <code>TRUE</code>. If you do not have Rtools or Xcode installed you will get an error message similar to this:</p>
-<pre><code>&gt; has_devel()
-&quot;C:/PROGRA~1/R/R-32~1.4RE/bin/x64/R&quot;  \
-  --no-site-file --no-environ --no-save  \
-  --no-restore CMD SHLIB foo.c
-
-Warning message:
-running command &#39;make -f &quot;C:/PROGRA~1/R/R-32~1.4RE/etc/x64/Makeconf&quot; -f &quot;C:/PROGRA~1/R/R-32~1.4RE/share/make/winshlib.mk&quot; SHLIB=&quot;foo.dll&quot; WIN=64 TCLBIN=64 OBJECTS=&quot;foo.o&quot;&#39; had status 127
-Error: Command failed (1)</code></pre>
-</div>
-<div id="installing-latex" class="section level2">
-<h2>Installing LaTeX</h2>
-<p>LaTeX is needed to create PDFs from R Markdown files. Install the following, depending on your operating system:</p>
-<ul>
-<li><p>Windows: <a href="http://miktex.org/download">MikTex</a></p>
-<ul>
-<li>When asked choose default paper size of “letter” instead of “A4”</li>
+<li>Run a bivariate regression</li>
+<li>Plot the results of the bivariate regression, and interpret.</li>
 </ul></li>
-<li><p>OSX: <a href="https://tug.org/mactex/">MacTex</a></p></li>
-</ul>
-<p>Note, these are very large files.</p>
-</div>
+<li><p>Interactions</p>
+<ul>
+<li>Does your theory require interactions?</li>
+<li>If so, include those and interpret them using the methods discussed in Golder et. al.</li>
+</ul></li>
+<li><p>Omitted variable bias</p>
+<ul>
+<li>What potential omitted variables can you think of?</li>
+<li>Are you controlling for any variables that are mechanisms by which your variable of interest may be affecting the outcome?</li>
+<li>Run a model with those controls. How much does this affect the</li>
+<li>Evaluate the possible degree of omitted variable bias using the proportional selection of observables and unobservables assumption (e.g. the test used in Nunn and Wantchekon)</li>
+<li>If there are any particular variables that you can think of but cannot control for, can you reason about how they would affect the coefficients of the variable of interest.</li>
+</ul></li>
+<li><p>Interpret the substantive effects</p>
+<ul>
+<li>Calculate a first difference for a reasonable change in your variable of interest and its standard error.</li>
+<li>What is the average marginal effect of your effect and its standard error?</li>
+</ul></li>
+<li><p>Measurement error</p>
+<ul>
+<li>Are you concerned about measurement error in any of your variables?</li>
+<li>How would that measurement error affect your results?</li>
+</ul></li>
+<li><p>Heteroskedasticity</p>
+<ul>
+<li>Check for heteroskedasticity using a plot of studentized residuals vs. fitted values</li>
+<li>Conduct a test for Breusch-Pagan test for heteroskedasticity. Does it suggest that there is heteroskedasticity?</li>
+<li>Do you have time-series data? Calculate heteroskedasticity and autocorrelation robust standard errors.</li>
+<li>Do you have groups in data? What are they? Include cluster-robust standard errors.</li>
+<li>Estimate your model using bootstrapped standard errors: be sure to use the correct data generating process.</li>
+</ul></li>
+<li><p>Outliers</p>
+<ul>
+<li>Check for influential observations using Cook’s distance and visual methods.</li>
+<li>If there are outliers, can you explain them?</li>
+<li>Ensure that your results do not rely on an outlier. If your results depend on dropping observations, how much would they change if you included those observations? Justify the omission.</li>
+</ul></li>
+<li><p>Model comparison</p>
+<ul>
+<li>Compare the MSE, <span class="math inline">\(R^2\)</span>, and adjusted <span class="math inline">\(R^2\)</span> of your models. Does it make sense to use this statistic for model comparison?</li>
+<li>Compare your models using cross-validated MSE.</li>
+<li>Are there other criteria that you should use to compare the model that are particular to your research question?</li>
+</ul></li>
+<li><p>Non-normal errors</p>
+<ul>
+<li>Create a QQ-plot of the studentized residuals.</li>
+<li>Does this plot appear approximately normal?</li>
+<li>Is the mean a reasonable summary of your outcome variable?</li>
+<li>Can you respecify your model so that the errors are more normal?</li>
+</ul></li>
+</ol>
 
 <!-- some extra javascript for older browsers -->
 <script type="text/javascript" src="libs/polyfill.js"></script>
