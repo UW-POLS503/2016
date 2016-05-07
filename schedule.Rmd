@@ -281,7 +281,7 @@ Readings
 - *MHE*, Ch 2: "The Experimental Ideal"
 - *MHE*, Ch 3: "Making Regression Make Sense"
 
-### <time datetime="2016-05-17">Monday, May 17</time>
+### <time datetime="2016-05-16">Monday, May 16</time>
 
 **Due** Project draft analysis
 
