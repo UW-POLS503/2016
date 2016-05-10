@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,27 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -281,6 +278,7 @@ div.tocify {
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 3</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
              <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
@@ -327,7 +325,6 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-
 <h1 class="title">Functional Forms</h1>
 
 </div>
@@ -370,12 +367,12 @@ data(turnout)</code></pre>
 <pre class="r"><code>mod1a_augm &lt;- augment(mod1a, gapminder)
 ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>Uau! This model predicts that the Life Expectancy in Kuwait is 140 years!</p>
 <p>Plot now the outcome variable <code>lifeExp</code> against the response variable <code>gdpPercap</code>.</p>
 <pre class="r"><code>ggplot(gapminder, aes(y = lifeExp, x = gdpPercap)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>This graphs clearly shows that in the beginning, a unit increase on <code>gdpPercap</code> matters a lot in explaining <code>lifeExp</code>. However, at some point, extra units increase do not make much of a difference. We call this type of relation a <em>Logarithmic Relation</em>. How can we specify this logarithmic relation in a linear model?</p>
 <p>If we believe that there is a <em>logarithmic</em> relation between the outcome variable and a covariate, this is the same as saying that there is a <em>linear</em> relation between the outcome variable and the <span class="math inline">\(log\)</span> of the covariate. Thus, we just need to transform the covariate of interest by calculating its <span class="math inline">\(log\)</span> and then add the resulting variable to the linear model.</p>
 <p>To show this, include a new variable to the <code>gapminder</code> dataset: the <em>log</em> of <code>gdpPercap</code>.</p>
@@ -392,7 +389,7 @@ ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
 <p>Plot <code>lifeExp</code> against this new variable. Observe how there is a linear relation between the outcome and the <em>log</em> of the covariate. Observe also that <code>log_gdpPercap</code> is not expressed on the original units ($ per capita) anymore but in <em>log</em> $ per capita.</p>
 <pre class="r"><code>ggplot(gapminder, aes(x = log_gdpPercap, y = lifeExp)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>Estimate a model now that portrays <code>lifeExp</code> as a linear function of the <em>log</em> of <code>gdpPercap</code>.</p>
 <p><span class="math inline">\(lifeExp = \beta_{0} + \beta_{1}log(gdpPercap) + \epsilon\)</span></p>
 <pre class="r"><code>mod1b &lt;- lm(lifeExp ~ log_gdpPercap, data = gapminder)</code></pre>
@@ -400,15 +397,15 @@ ggplot(mod1a_augm, aes(x = gdpPercap, y = .fitted)) +
 <pre class="r"><code>mod1b_augm &lt;- augment(mod1b, gapminder)
 ggplot(mod1b_augm, aes(y = .fitted, x = gdpPercap)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>That makes a lot more sense!</p>
 <p>Finally let’s see how well each model does in predicting the actual <code>lifeExp</code> values.</p>
 <pre class="r"><code>ggplot(mod1a_augm, aes(x = lifeExp, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mod1b_augm, aes(x = lifeExp, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-2.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-11-2.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <div id="challenge-1" class="panel panel-primary">
 <div class="panel-heading">
 <h3 class="panel-title">
@@ -438,7 +435,7 @@ for (i in 1:length(models_list)) {
 <pre class="r"><code>ggplot(predictions, aes(x = actual, y = predicted)) +
   geom_point() +
   facet_wrap(~model)</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="challenge-2" class="panel panel-primary">
@@ -459,10 +456,7 @@ Challenge
 <h2>Squared Terms</h2>
 <p>Sometimes we believe that there is a U-shaped relation between a covariate and the dependent variable. For example, some scholars such as <a href="http://www.sterndavidi.com/publications_type.html">David I. Stern</a> argue that there is an <a href="https://en.wikipedia.org/wiki/Kuznets_curve#Environmental_Kuznets_curve">Environmental Kuznets Curve</a>. This means that there is an inverted U-shaped relation between environmental quality and economic growth.</p>
 <p>As we discussed in the beginning, sometimes there is a squared relation between a covariate and our dependent variable of interest (e.g. <a href="https://en.wikipedia.org/wiki/Kuznets_curve">Kuznets curve</a>).</p>
-<div class="figure">
-<img src="img/env_curve.png" alt="Source: Wikipedia" />
-<p class="caption">Source: Wikipedia</p>
-</div>
+<p><img src="img/env_curve.png" alt="Source: Wikipedia" /></p>
 <p>How do we incorporate this theoretical expectation into a linera model? Using a <em>squared term</em>!</p>
 <p>Estimate the following models:</p>
 <ol style="list-style-type: decimal">
@@ -480,23 +474,23 @@ mod2c_aug &lt;- augment(mod2c, wdi)</code></pre>
 <p>For the 3 models, plot the predicted values of <code>co2</code>against <code>gdpCapita</code>.</p>
 <pre class="r"><code>ggplot(mod2a_aug, aes(x = gdpCapita, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mod2b_aug, aes(x = gdpCapita, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-2.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-2.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mod2c_aug, aes(x = gdpCapita, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-3.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-15-3.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <p>For the 3 models, plot the actual v. predicted values of <code>co2</code>.</p>
 <pre class="r"><code>ggplot(mod2a_aug, aes(x = co2, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mod2b_aug, aes(x = co2, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-2.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-2.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mod2c_aug, aes(x = co2, y = .fitted)) +
   geom_point()</code></pre>
-<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-3.png" title="" alt="" style="display: block; margin: auto;" /></p>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-16-3.png" title="" alt="" width="480" style="display: block; margin: auto;" /></p>
 <div id="challenge-3" class="panel panel-primary">
 <div class="panel-heading">
 <h3 class="panel-title">
@@ -527,17 +521,11 @@ predictions2$gdpCapita &lt;- mod2a$model$gdpCapita</code></pre>
 <pre class="r"><code>ggplot(predictions2, aes(x = gdpCapita, y = predicted_co2)) +
   geom_point() +
   facet_wrap(~model)</code></pre>
-<div class="figure">
-<img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-18-1.png" alt="" />
-
-</div>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-18-1.png" title="" alt="" width="480" /></p>
 <pre class="r"><code>ggplot(predictions2, aes(x = actual_co2, y = predicted_co2)) +
   geom_point() +
   facet_wrap(~model)</code></pre>
-<div class="figure">
-<img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-18-2.png" alt="" />
-
-</div>
+<p><img src="lessons_functional_forms2_files/figure-html/unnamed-chunk-18-2.png" title="" alt="" width="480" /></p>
 </div>
 </div>
 </div>

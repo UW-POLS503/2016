@@ -1,0 +1,60 @@
+---
+title: "Imputation"
+output: html_document
+---
+
+## Required Packages and Datasets
+
+In this lesson we will use the `Amelia` package and a subset of Beatrice Magistro's [dataset](), with data from the `European Social Survey`. 
+
+```{r}
+install.packages("Amelia")
+library(Amelia)
+ess_sub <- read.csv("data/ess_sub.csv")
+```
+
+## Introduction
+Often the datasets we use to test our theories and hypotheses have some, and sometimes numerous, missing values (`NA`s). What do we do?
+
+One option would be to drop the rows that have a missing value for one of our covariates and/or the variable of interest. However, despite not having a value for a particular variable or set of variables, those row may contain information about the other variables. Moreover, dropping those observation may result in biased and inefficient estimates.
+
+The other option is to **impute** ("fill in") the missing values. In this lesson we will see one method and `R package` to do so: `Amelia`. This method assumes that the data: 
+
+  a. follows a multivariate normal distribution 
+  b. is missing at random -MAR- (which means that the *missingness* depends only on the observed data) 
+
+Then the `Amelia` uses a bootstrap-EM algorithm (EMB) to estimate/impute the missing values. 
+
+## Exploring missing values
+
+
+
+```{r}
+summary(ess_sub)
+
+amelia_output <- amelia(ess_sub, m = 5, ts = "year" , cs = "cntry",
+                      ords = c("stfdem", "crisis", "age_gr","edulvla"),
+                      noms = c("gndr", "pigs"))
+
+# Combining all imputed dataset into 1
+
+ess_all <- NULL
+
+for (i in 1:length(amelia_output$imputations)) {
+  imp <- as.data.frame(amelia_output$imputations[i])
+  colnames(imp) <- colnames(ess_sub)
+  imp$imp <- paste0("imp", i)
+  ess_all <- rbind(ess_all, imp)
+}
+
+ggplot(ess_all %>%
+         group_by(imp,stfdem)%>%
+         summarize(n = n()), aes(y = n, x = factor(stfdem))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n), vjust = 0, ) +
+  facet_wrap(~ imp)
+
+ggplot(ess_all, aes(x = factor(edulvla))) +
+  geom_bar() +
+  facet_wrap(~ imp)
+```
