@@ -1,0 +1,199 @@
+---
+title: "R-squared"
+date: May 10, 2016
+author: Jeffrey Arnold
+output: beamer_presentation
+---
+
+```{r include=FALSE}
+library("broom")
+library("ggplot2")
+library("dplyr")
+```
+
+
+# R-squared, similar model fit stats, and advice on what to do
+
+1. R-squared
+2. Adjusted R-squared
+3. Standard error of the regression
+4. F-test
+5. Advice
+
+
+# Several definitions of $R^2$
+
+- Ratio of variance of fitted values to sample $y$
+    $$
+    R^2 = \frac{\Var(\hat{\vec{y}})}{\Var{\vec{y}}}
+    $$
+- Ratio of variance "explained" by the regression
+    $$
+    R^2 = 1 - SSE / SST = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{\vec{y}})^2}
+    $$
+- For bivariate regression, correlation of $Y$ and $X$ squared,
+    $$
+    R^2 = \Cor(\vec{x}, \vec{y})^2 = \hat{\beta}_1 \frac{\sd{\vec{y}}}{\sd{\vec{x}}}
+    $$
+    
+- $R^2 \in [0, 1]$ where $1$ is all points are on a line/plane
+
+# R-squared is dependent on scale  of $X$
+
+
+```{r echo=FALSE}
+set.seed(13235)
+nobs <- 200
+dat <-
+  data_frame(x = rnorm(nobs),
+             y = x + rnorm(nobs, 0, 0.3),
+             sbst = abs(x) < 1)
+mod1 <- lm(y ~ x, data = dat)
+ggplot() +
+  geom_point(data = dat, mapping = aes(x = x, y = y)) +
+  geom_line(data = augment(mod1), mapping= aes(x = x, y = .fitted)) +  
+  theme_minimal()
+```
+
+$\hat{\sigma}^2 = `r round(summary(mod1)[["sigma"]], 2)`$, $R^2 = `r round(summary(mod1)[["r.squared"]], 2)`$
+
+# R-squared is dependent on scale  of $X$
+
+Same data, regression on subset
+
+```{r echo=FALSE}
+mod1 <- lm(y ~ x, data = filter(dat, sbst))
+ggplot() +
+  geom_point(data = dat, aes(x = x, y = y, color = sbst)) +
+  geom_line(data = augment(mod1, newdata = dat), aes(x = x, y = .fitted)) +
+  scale_color_manual("", values = c("TRUE" = "black", "FALSE" = "gray")) +
+  theme_minimal() +
+  guides(color = FALSE)
+```
+
+$\hat{\sigma}^2 = `r round(summary(mod1)[["sigma"]], 2)`$, $R^2 = `r round(summary(mod1)[["r.squared"]], 2)`$
+
+# In-sample fit always increases as variables are added
+
+$y = x + \epsilon$, $\epsilon_i \sim N(0, 2)$
+```{r include=FALSE}
+library("dplyr")
+library("ggplot2")
+set.seed(13235)
+nobs <- 10
+dat <-
+  data_frame(x = runif(nobs),
+             y = x + rnorm(nobs, 0, 2))
+
+ggplot(dat, aes(x = x, y = y)) +
+  geom_point()
+```
+
+```{r, echo=FALSE}
+fittedvals <-
+  data_frame(order = seq_len(nobs - 1)) %>%
+  group_by(order) %>%
+  do({
+    ret <- dat
+    ret[["fitted"]] <- fitted(lm(y ~ poly(x, .$order), data = dat))
+    ret
+  })
+
+ggplot(fittedvals, aes(x = x)) + 
+  geom_point(mapping = aes(y = y)) + 
+  geom_line(mapping = aes(y = fitted)) +
+  facet_wrap(~order, nrow = 3) + 
+  theme_minimal()
+
+```
+
+# $R^2$ always increases as variables are added
+
+```{r echo=FALSE}
+r_squares <-
+  data_frame(order = seq_len(nobs - 1)) %>%
+  group_by(order) %>%
+  do({
+    glance(lm(y ~ poly(x, .$order), data = dat))
+  })
+
+ggplot(r_squares, aes(x = order, y = r.squared)) + 
+  geom_point() + geom_line() +
+  theme_minimal()
+```
+
+
+
+# Other problems with R^2
+
+1. Does not measure goodness of fit
+    1. To get $R^2$ large, make $X$ spread out
+    2. To get $R^2$ small, make $X$ not spread out
+
+2. Does not measure prediction
+3. Cannot compare different datasets (including transformed $Y$)
+4. Not variance "explained" in causal sense
+
+
+# Adjusted $R^2$
+
+Adjust $R^2$ for sample size and variables, 
+$$
+R^2 = 1 - \frac{SSE / (N - K - 1)}{SST / (N - 1)}
+$$
+
+- Slightly penalizes $R^2$ for more variables
+- Adjustment only relevant for cases where $N \approx K$
+- Atheoretical
+- Doesn't fix any important problem with $R^2$.
+- Pointless for comparing models
+
+# Standard error of the regression ($\hat{sigma}$)
+
+$$
+\hat{\sigma} = \sqrt{ \frac{1}{N - K - 1} \sum \varepsilon_i^2 }
+$$
+
+- "Average" error
+- RMSE is similar, with denominator $N$ instead of $N - K - 1$.
+- On the same scale as $\vec{y}$ - substantive interpretation
+- Often suggested as alternative to $R^2$
+
+# Problems with $\hat{\sigma}$
+
+2. All insample problems with $R^2$ apply to $\hat{\sigma}$
+2. To interpret $\hat{\sigma}$ need to compare to scale (variance) of $\vec{y}$, but then almost the same as $R^2$.
+
+
+
+# $F$-test
+
+- $R^2$ and $\hat{\sigma}$ are statistics, but generally not used in tests
+- $F$-test with $H_0: \beta_1 = \dots = \beta_K = 0$
+- $F$-statistic is a function of the SSE of models
+- Inherits most of the same problems as $R^2$
+- Assumes that linear model is correct, not whether it is a good model
+
+# What to do about it?
+
+1. Focus on what's important:
+    1. If prediction: out of sample performance
+    2. If causation: 
+    
+        - identification of $\beta$ (omitted variable bias or design)
+        - assumptions of model (other diagnostics)
+    
+2. Focus on results/average of many models - not the "best" model
+
+
+# Next time
+
+Comparing predictive performance of models using cross-validation
+
+# References
+
+- Gary King "[How Not to Lie With Statistics: Avoiding Common Mistakes in Quantitative Political Science](http://gking.harvard.edu/files/mist.pdf)."
+- Cosmo Shalizi, [F-Tests, R2, and Other Distractions](http://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/10/lecture-10.pdf).
+- Gelman and King. [R-squared: useful or evil?](http://andrewgelman.com/2007/08/29/rsquared_useful/)
+
+

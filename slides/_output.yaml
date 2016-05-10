@@ -1,1 +1,4 @@
-
+beamer_presentation:
+  keep_tex: true
+  includes:
+    in_header: in_header.tex
