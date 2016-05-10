@@ -1,0 +1,86 @@
+---
+title: Project Assignment 3
+---
+
+1. Conduct the following analysis in a well-documented R markdown file. You should
+   include text in the document discussing what and why you are doing the analysis
+   you are doing so that someone unfamiliar with your project could follow along.
+   It may make sense for you to add to and edit your existing R markdown file that
+   you used for analysis.
+2. If you have not already:
+
+    - In `README.md`, include a brief description of what is in your repository
+     and instructions of how to repeat the analysis.
+    - Separate the code that generates your the dataset you will primarily use
+     for your analysis from the code you will use in your analysis.
+
+3. When you have finished, create an issue in Github titled: "Review Project Assignment 3".
+   In the issue message write "cc @jrnold @CasAndreu". This is how you submit
+   your assignment, and lets the instructors know it is ready to review.
+
+These are questions that you should try to answer in order of importance.
+Do as much as you can in the time you have. We can then evaluate where you are
+and there are still time to wok on
+
+1. For your variable of interest:
+
+    - Run a bivariate regression
+    - Plot the results of the bivariate regression, and interpret.
+
+2. Interactions
+
+    - Does your theory require interactions?
+    - If so, include those and interpret them using the methods discussed in Golder et. al.
+
+3. Omitted variable bias
+
+    - What potential omitted variables can you think of?
+    - Are you controlling for any variables that are mechanisms by which your variable of interest may be affecting the outcome?
+    - Run a model with those controls. How much does this affect the
+    - Evaluate the possible degree of omitted variable bias using the
+      proportional selection of observables and unobservables assumption (e.g. the test used in Nunn and Wantchekon)
+    - If there are any particular variables that you can think of but cannot control for,
+      can you reason about how they would affect the coefficients of the variable of interest.
+
+4. Interpret the substantive effects
+
+    - Calculate a first difference for a reasonable change in your variable of interest and its standard error.
+    - What is the average marginal effect of your effect and its standard error?
+
+5. Measurement error
+
+    - Are you concerned about measurement error in any of your variables?
+    - How would that measurement error affect your results?
+
+4. Heteroskedasticity
+
+    - Check for heteroskedasticity using a plot of studentized residuals vs. fitted values
+    - Conduct a test for Breusch-Pagan test for heteroskedasticity. Does it suggest that
+        there is heteroskedasticity?
+    - Do you have time-series data? Calculate heteroskedasticity and autocorrelation robust standard errors.
+    - Do you have groups in data? What are they? Include cluster-robust standard errors.
+    - Estimate your model using bootstrapped standard errors: be sure to use the correct
+        data generating process.
+
+4. Outliers
+
+    - Check for influential observations using Cook's distance and visual methods.
+    - If there are outliers, can you explain them?
+    - Ensure that your results do not rely on an outlier. If your results depend
+      on dropping observations, how much would they change if you included those
+      observations? Justify the omission.
+
+7. Model comparison
+
+    - Compare the MSE, $R^2$, and adjusted $R^2$ of your models. Does it make sense to use this
+      statistic for model comparison?
+    - Compare your models using cross-validated MSE.
+    - Are there other criteria that you should use to compare the model that are
+      particular to your research question?
+
+6. Non-normal errors
+
+    - Create a QQ-plot of the studentized residuals.
+    - Does this plot appear approximately normal?
+    - Is the mean a reasonable summary of your outcome variable?
+    - Can you respecify your model so that the errors are more normal?

@@ -257,11 +257,6 @@ Readings
 - Prediction
 - Cross-Validation
 
-Readings
-
-- [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/). Ch 5: "Resampling Methods" [pdf](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Fourth%20Printing.pdf) (skim)
-
-
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
 - [slides](sldies/regression-diagnostics.pdf)
@@ -273,7 +268,7 @@ Readings
 
 ### <time datetime="2016-05-13">Friday, May 13</time>
 
-**Due** Project draft analysis
+
 
 
 ## Week 8
@@ -289,14 +284,15 @@ Readings
 - *MHE*, Ch 2: "The Experimental Ideal"
 - *MHE*, Ch 3: "Making Regression Make Sense"
 
+### <time datetime="2016-05-16">Monday, May 16</time>
+
+**Due** Project draft analysis
+
 ### <time datetime="2016-05-17">Tuesday, May 17</time>
 
 ### <time datetime="2016-05-19">Thursday, May 19</time>
 
-**Due** Peer review of Project analysis
-
 ### <time datetime="2016-05-20">Friday, May 20</time>
-
 
 
 ## Week 9
@@ -321,7 +317,6 @@ Readings
 **Due** Peer review of Project analysis
 
 
-
 ## Week 10
 
 Topics
@@ -340,8 +335,6 @@ Readings
 ### <time datetime="2016-06-02">Thursday, June 2</time>
 
 ### <time datetime="2016-06-03">Friday, June 3</time>
-
-Poster session
 
 **Due** Peer review of project final paper
 

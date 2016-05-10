@@ -292,6 +292,7 @@ div.tocify {
             <li class="dropdown-header">Project</li>
             <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
             <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 3</a></li>
             <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
              <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
@@ -416,21 +417,21 @@ iver_loo_regs</code></pre>
 ## Groups: cty [14]
 ## 
 ##               cty (Intercept)    lnenp  diff_slope abs_diff_slope
-##            (fctr)       (dbl)    (dbl)       (dbl)          (dbl)
-## 1       Australia    21.96619 24.07283 -0.09847140     0.09847140
-## 2         Belgium    26.39803 19.48071 -4.69058913     4.69058913
-## 3          Canada    24.46021 22.32840 -1.84289747     1.84289747
+##            &lt;fctr&gt;       &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
+## 1     Switzerland    11.96341 35.84168 11.67038124    11.67038124
+## 2   United States    33.00804 16.74422 -7.42708138     7.42708138
+## 3         Belgium    26.39803 19.48071 -4.69058913     4.69058913
 ## 4         Denmark    23.62155 21.91104 -2.26025292     2.26025292
-## 5         Finland    23.22400 22.44224 -1.72905264     1.72905264
-## 6          France    19.31982 25.43240  1.26110272     1.26110272
-## 7         Germany    22.08429 24.10787 -0.06343038     0.06343038
+## 5  United Kingdom    18.40976 26.35067  2.17937476     2.17937476
+## 6          Canada    24.46021 22.32840 -1.84289747     1.84289747
+## 7         Finland    23.22400 22.44224 -1.72905264     1.72905264
 ## 8           Italy    21.22614 25.50988  1.33858580     1.33858580
-## 9     Netherlands    21.06469 23.82630 -0.34499536     0.34499536
+## 9          France    19.31982 25.43240  1.26110272     1.26110272
 ## 10         Norway    19.66602 24.78567  0.61437307     0.61437307
-## 11         Sweden    20.93623 24.04618 -0.12511217     0.12511217
-## 12    Switzerland    11.96341 35.84168 11.67038124    11.67038124
-## 13 United Kingdom    18.40976 26.35067  2.17937476     2.17937476
-## 14  United States    33.00804 16.74422 -7.42708138     7.42708138</code></pre>
+## 11    Netherlands    21.06469 23.82630 -0.34499536     0.34499536
+## 12         Sweden    20.93623 24.04618 -0.12511217     0.12511217
+## 13      Australia    21.96619 24.07283 -0.09847140     0.09847140
+## 14        Germany    22.08429 24.10787 -0.06343038     0.06343038</code></pre>
 <p>Switzerland looks particularly problematic. The effect of <code>lnenp</code> on <code>povred</code> is 7.</p>
 <p>We could also plot these lines against the original data, to get a more intuitive sense of how much dropping one observation affects the regression slopes.</p>
 <pre class="r"><code>ggplot() +
@@ -688,7 +689,7 @@ print(iver_line_compare)</code></pre>
 <pre><code>## Source: local data frame [5 x 3]
 ## 
 ##   method intercept    slope
-##    (chr)     (dbl)    (dbl)
+##    &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1    OLS  21.79942 24.17130
 ## 2    LMS  35.25001 22.69176
 ## 3    LTS  37.18191 21.58035
@@ -720,7 +721,7 @@ print(iver_line_compare)</code></pre>
 <pre><code>## Source: local data frame [2 x 4]
 ## 
 ##          term     mean         lb       ub
-##        (fctr)    (dbl)      (dbl)    (dbl)
+##        &lt;fctr&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept) 40.80727  -63.92612 207.9342
 ## 2       lnenp 18.01669 -117.14091 119.6287</code></pre>
 <p>We find that the standard errors are very large compared to those of the OLS.</p>
