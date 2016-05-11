@@ -66,7 +66,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-\title{Regression Fit}
+\title{R-squared}
 \author{Jeffrey Arnold}
 \date{May 10, 2016}
 \usepackage{amsmath}
@@ -95,34 +95,29 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Ways to understand model fit and advice on what to do}
+\begin{frame}{R-squared, similar model fit stats, and advice on what to
+do}
 
-\begin{enumerate}[<+->]
+\begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
-\item
-  Standard error of the regression
 \item
   R-squared
 \item
   Adjusted R-squared
 \item
+  Standard error of the regression
+\item
   F-test
 \item
   Advice
-\item
-  More \ldots{}
 \end{enumerate}
-
-\end{frame}
-
-\begin{frame}{R\^{}2}
 
 \end{frame}
 
 \begin{frame}{Several definitions of \(R^2\)}
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \item
   Ratio of variance of fitted values to sample \(y\) \[
   R^2 = \frac{\Var(\hat{\vec{y}})}{\Var{\vec{y}}}
@@ -167,7 +162,7 @@ Same data, regression on subset
 
 \end{frame}
 
-\begin{frame}{R-squared always increases as variables are added}
+\begin{frame}{\(R^2\) always increases as variables are added}
 
 \includegraphics{r2_regression_fit_files/figure-beamer/unnamed-chunk-6-1.pdf}
 
@@ -175,13 +170,13 @@ Same data, regression on subset
 
 \begin{frame}{Other problems with R\^{}2}
 
-\begin{enumerate}[<+->]
+\begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   Does not measure goodness of fit
 
-  \begin{enumerate}[<+->]
+  \begin{enumerate}
   \def\labelenumii{\arabic{enumii}.}
   \tightlist
   \item
@@ -199,56 +194,56 @@ Same data, regression on subset
 
 \end{frame}
 
-\begin{frame}{Standard error of the regression (\(\hat{sigma}\))}
-
-\[
-\hat{\sigma} = \sqrt{ \frac{1}{N - K - 1} \sum \varepsilon_i^2 }
-\]
-
-\begin{itemize}[<+->]
-\tightlist
-\item
-  ``Average'' error
-\item
-  RMSE is similar, with denominator \(N\) instead of \(N - K - 1\).
-\item
-  On the same scale as \(\vec{y}\)
-\item
-  Often suggested as alternative to \(R^2\)
-\end{itemize}
-
-\end{frame}
-
 \begin{frame}{Adjusted \(R^2\)}
 
 Adjust \(R^2\) for sample size and variables, \[
 R^2 = 1 - \frac{SSE / (N - K - 1)}{SST / (N - 1)}
 \]
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \tightlist
 \item
   Slightly penalizes \(R^2\) for more variables
 \item
   Adjustment only relevant for cases where \(N \approx K\)
 \item
-  No theory as to what it is good for
+  Atheoretical
 \item
-  Doesn't fix any important problem with \(R^2\). Pointless for
-  comparing models
+  Doesn't fix any important problem with \(R^2\).
+\item
+  Pointless for comparing models
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Standard error of the regression (\(\hat{sigma}\))}
+
+\[
+\hat{\sigma} = \sqrt{ \frac{1}{N - K - 1} \sum \varepsilon_i^2 }
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  ``Average'' error
+\item
+  RMSE is similar, with denominator \(N\) instead of \(N - K - 1\).
+\item
+  On the same scale as \(\vec{y}\) - substantive interpretation
+\item
+  Often suggested as alternative to \(R^2\)
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Problems with \(\hat{\sigma}\)}
 
-\begin{enumerate}[<+->]
+\begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
 \tightlist
 \item
-  Less affected by changes in scale of \(X\)
-\item
-  But almost all problems with R\^{}2 related to in-sample performance
+  All insample problems with \(R^2\) apply to \(\hat{\sigma}\)
 \item
   To interpret \(\hat{\sigma}\) need to compare to scale (variance) of
   \(\vec{y}\), but then almost the same as \(R^2\).
@@ -258,13 +253,13 @@ R^2 = 1 - \frac{SSE / (N - K - 1)}{SST / (N - 1)}
 
 \begin{frame}{\(F\)-test}
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \tightlist
 \item
-  \(R^2\) and \(\hat{sigma}\) are statistics, but generally not used in
+  \(R^2\) and \(\hat{\sigma}\) are statistics, but generally not used in
   tests
 \item
-  \(F\)-test with \(H_O: \beta_1 = \dots = \beta_K = 0\)
+  \(F\)-test with \(H_0: \beta_1 = \dots = \beta_K = 0\)
 \item
   \(F\)-statistic is a function of the SSE of models
 \item
@@ -277,20 +272,20 @@ R^2 = 1 - \frac{SSE / (N - K - 1)}{SST / (N - 1)}
 
 \begin{frame}{What to do about it?}
 
-\begin{enumerate}[<+->]
+\begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   Focus on what's important:
 
-  \begin{enumerate}[<+->]
+  \begin{enumerate}
   \def\labelenumii{\arabic{enumii}.}
   \item
     If prediction: out of sample performance
   \item
     If causation:
 
-    \begin{itemize}[<+->]
+    \begin{itemize}
     \tightlist
     \item
       identification of \(\beta\) (omitted variable bias or design)
@@ -312,7 +307,7 @@ Comparing predictive performance of models using cross-validation
 
 \begin{frame}{References}
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \tightlist
 \item
   Gary King ``\href{http://gking.harvard.edu/files/mist.pdf}{How Not to
@@ -321,8 +316,9 @@ Comparing predictive performance of models using cross-validation
 \item
   Cosmo Shalizi,
   \href{http://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/10/lecture-10.pdf}{F-Tests,
-  R2 ad, and Other Distractions}.
+  R2, and Other Distractions}.
 \item
+  Gelman and King.
   \href{http://andrewgelman.com/2007/08/29/rsquared_useful/}{R-squared:
   useful or evil?}
 \end{itemize}

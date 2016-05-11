@@ -260,6 +260,7 @@ Readings
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
 - [slides](sldies/regression-diagnostics.pdf)
+- [Heteroskedasticity example code](files/heteroskedasticity-example.R)
 
 
 ### <time datetime="2016-05-12">Thursday, May 12</time>

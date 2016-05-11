@@ -1,5 +1,11 @@
---- title: "Duncan Prestige Regression Example" author: "Jeffrey B. Arnold" 
-date: "04/21/2015" output: html_document: toc: yes ---
+---
+title: "Duncan Prestige Regression Example" 
+author: "Jeffrey B. Arnold" 
+date: "04/21/2015"
+output: 
+  html_document:
+    toc: yes
+---
 
 This example will use Duncan's Occpational Prestige Data, which has data on
 prestige and other characteristics of 45 U.S. occupations in 1950. See the help

@@ -38,8 +38,9 @@ library("dplyr")
     
 - $R^2 \in [0, 1]$ where $1$ is all points are on a line/plane
 
-# R-squared is dependent on scale  of $X$
 
+
+# R-squared is dependent on scale  of $X$
 
 ```{r echo=FALSE}
 set.seed(13235)
@@ -51,7 +52,7 @@ dat <-
 mod1 <- lm(y ~ x, data = dat)
 ggplot() +
   geom_point(data = dat, mapping = aes(x = x, y = y)) +
-  geom_line(data = augment(mod1), mapping= aes(x = x, y = .fitted)) +  
+  geom_line(data = augment(mod1), mapping = aes(x = x, y = .fitted)) +  
   theme_minimal()
 ```
 
