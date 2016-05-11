@@ -33,7 +33,7 @@ library("dplyr")
     $$
 - For bivariate regression, correlation of $Y$ and $X$ squared,
     $$
-    R^2 = \Cor(\vec{x}, \vec{y})^2 = \hat{\beta}_1 \frac{\sd{\vec{y}}}{\sd{\vec{x}}}
+    R^2 = \Cor(\vec{x}, \vec{y})^2
     $$
     
 - $R^2 \in [0, 1]$ where $1$ is all points are on a line/plane
