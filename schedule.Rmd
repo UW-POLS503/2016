@@ -259,7 +259,7 @@ Readings
 
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
-- [Heteroskedasticity slides](slides/regression-diagnostics.pdf)
+- [R squared slides](slides/r2_regression_fit.pdf)
 - [Heteroskedasticity example code](files/heteroskedasticity-example.R)
 
 
