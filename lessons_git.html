@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -45,7 +45,25 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<style type="text/css">
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 h1 {
   font-size: 34px;
 }
@@ -66,30 +84,6 @@ h5 {
 }
 h6 {
   font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -169,12 +163,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
     // establish options
     var options = {
       selectors: "h1,h2",
@@ -183,7 +171,7 @@ $(document).ready(function ()  {
       hashGenerator: function (text) {
         return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
-      ignoreSelector: ".toc-ignore",
+      ignoreSelector: "h1.title, .toc-ignore",
       scrollTo: 0
     };
     options.showAndHide = true;
@@ -308,6 +296,8 @@ div.tocify {
             <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
             <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
             <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+            <li><a href="lessons_imputation.html">Multiple Imputation</a></li>
+            <li><a href="lessons_weights.html">Weights</a></li>
           </ul>
         </li>
         <!-- end lessons dropdown -->
@@ -337,8 +327,7 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-
-<h1 class="title toc-ignore">Getting Started with Git and GitHub</h1>
+<h1 class="title">Getting Started with Git and GitHub</h1>
 
 </div>
 
@@ -448,7 +437,7 @@ git push</code></pre>
 <h2>Tips</h2>
 <div id="using-git-with-r-markdown" class="section level3">
 <h3>Using Git with R Markdown</h3>
-<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore">https://help.github.com/articles/ignoring-files/</a> file to ignore some temporary files.</p>
+<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore"><a href="https://help.github.com/articles/ignoring-files/" class="uri">https://help.github.com/articles/ignoring-files/</a></a> file to ignore some temporary files.</p>
 <pre><code># Ignore temporary files created by R markdown
 *.utf8.md
 *.knit.md
@@ -457,7 +446,7 @@ git push</code></pre>
 </div>
 <div id="using-git-with-latex" class="section level3">
 <h3>Using Git with LaTeX</h3>
-<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore">https://help.github.com/articles/ignoring-files/</a> file so that git ignores the <strong>many</strong> intermediate files that LaTeX creates when compiling a document.</p>
+<p>If you are using git with R markdown, you will want to add a few patterns to your <a href=".gitignore"><a href="https://help.github.com/articles/ignoring-files/" class="uri">https://help.github.com/articles/ignoring-files/</a></a> file so that git ignores the <strong>many</strong> intermediate files that LaTeX creates when compiling a document.</p>
 <p>For those more comfortable with git and LaTeX see this <a href="http://stackoverflow.com/questions/6188780/git-latex-workflow">Stack Overflow</a> post on a git+LaTeX workflow. Copy the patterns from GitHubs collection of useful gitignore patterns for <a href="https://github.com/github/gitignore/blob/master/TeX.gitignore">TeX</a>.</p>
 </div>
 </div>

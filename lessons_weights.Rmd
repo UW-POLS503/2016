@@ -1,0 +1,108 @@
+---
+title: "Weights"
+output: html_document
+---
+
+```{r echo = FALSE, results = 'hide'}
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE, tidy = TRUE,
+  eval = FALSE)
+```
+
+## Required Packages and Datasets
+
+In this lesson we will use a subset of Carolyn Dapper's [dataset](https://www.dropbox.com/s/b3h69zhsfyb9fkk/appeals_sub.csv?dl=0), with data from the United States Courts of Appeals Data Base (Dr. Donald R. Songer's project). 
+
+```{r, message = FALSE}
+library(dplyr)
+library(ggplot2)
+appeals_sub <- read.csv("data/appeals_sub.csv")
+```
+
+Each row in the dataset contains information about a Court appeal and has the following variables:
+
+variable        description
+--------------  -------------------------------------------------------------------
+`fileid`        The ID for that case
+`year`          Year: {1925, 1926, ..., 1995} (time variable)
+`month`         Moth: {1, 2, ..., 12} (time variable)
+`day`           Day: {1, 2, ..., 31} (time variable)
+`circuit`       Circuit number: {0, 1, ..., 11} (categorical)
+`state`         State: {0, 1, ..., 55} (categorical)
+`district`      District: {0, 1, ..., 8} (categorical)
+`reversed_dum`  Reversed dummy: {0, 1} (categorical)
+`ethnicity`     Ethnicity: {Asian, Black, Caucasian, Hispanic, Native America} (categorical)
+`income`        Income: {Poor, Middle, Wealthy} (ordinal)
+`counstel_type` Counsel Type: {Public, Government, Interest Group, None, Private} (categorical)
+`weight`        Weight: (weights variable)
+-------------- -------------------------------------------------------------------
+
+## Introduction
+
+Sometimes we know that the data we have is not representative of the population we are trying to imply something about, but we do have information about how unrepresentative the sample on certain dimensions. 
+
+In this case, the researchers that collected the data sampled 15 random cases from each appellate court circuit and year from 1925 to 1960, and 30 random cases from 1961 to 1996. However, since the number of cases by circuit and year vary widely, this means that there is an over-representation of some circuit/years and an under-representation of others in the data. We need to calculate some weights and use them in our analysis in order to account for that miss-representation. The following figure illustrates the point.
+
+
+circuit   sample    proportion    universe    proportion   weight
+-------   ------    ----------    ------      ----------  ------
+01        15        .1            095         .049        0.49
+02        15        .1            329         .170        1.70
+03        15        .1            116         .060        0.60
+04        15        .1            099         .051        0.51
+05        15        .1            175         .091        0.91
+06        15        .1            222         .115        1.15
+07        15        .1            081         .042        0.42
+08        15        .1            220         .171        1.71
+09        15        .1            289         .150        1.50
+DC        15        .1            196         .101        1.01
+**total** **150**   **1.0**       **1,932**   **1.0**
+
+## Adding weights to a regression
+
+Once we have a weights variable in our dataset, it's pretty easy to estimate a model accounting for those weights. The `lm()` function in `R` has a `weights` parameter where we need to specify the name of the variable containing the weights.
+
+```{r}
+model <- lm(reversed_dum ~ ethnicity + income + counsel_type, 
+             data = appeals_sub)
+model_weights <- lm(reversed_dum ~ ethnicity + income + counsel_type, 
+             data = appeals_sub,
+             weights = appeals_sub$weight)
+summary(model)
+summary(model_weights)
+```
+
+By the way, when using categorical covariates, in the regression output you will get a coefficient for each of the categories but one, which is the base category. The coefficients represent the average difference between being in the base category and being that other cateogry. The intercept represents the mean outcome value for the base category. If you are interested in changing the base category of your categorical covariate, you can use the `relevel()` function. For example, right now the base category for the `ethnicity` variable is `Asian`.
+
+```{r}
+levels(appeals_sub$ethnicity)
+```
+
+If we wanted to change it to `Caucasian`, we would do the following:
+
+```{r}
+appeals_sub$ethnicity <- relevel(appeals_sub$ethnicity, "Caucasian")
+levels(appeals_sub$ethnicity)
+```
+
+## Adding weights to a plot
+
+Plots representing absoulte data (e.g. histograms, barplots) should also take the calculated weights into consideration. There is a `weight` parameter that most `ggplot2` geoms have that makes this very eashy.
+
+A barplot of the variable `ethnicity` without weights.
+
+```{r}
+ggplot(appeals_sub, aes(x = ethnicity)) +
+       geom_bar(stat = "count", position = "dodge")
+```
+
+A barplot of the variable `ethnicity` with weights. The difference is small but it's there!
+
+```{r}
+ggplot(appeals_sub, aes(x = ethnicity)) +
+       geom_bar(appeals_sub$weight, stat = "count",
+                position = "dodge")
+```
+
+
+
+

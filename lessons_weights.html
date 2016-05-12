@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Weights</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 3</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+            <li><a href="lessons_imputation.html">Multiple Imputation</a></li>
+            <li><a href="lessons_weights.html">Weights</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Weights</h1>
+
+</div>
+
+
+<div id="required-packages-and-datasets" class="section level2">
+<h2>Required Packages and Datasets</h2>
+<p>In this lesson we will use a subset of Carolyn Dapper’s <a href="https://www.dropbox.com/s/b3h69zhsfyb9fkk/appeals_sub.csv?dl=0">dataset</a>, with data from the United States Courts of Appeals Data Base (Dr. Donald R. Songer’s project).</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+appeals_sub &lt;- read.csv(&quot;data/appeals_sub.csv&quot;)</code></pre>
+<p>Each row in the dataset contains information about a Court appeal and has the following variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">variable</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>fileid</code></td>
+<td align="left">The ID for that case</td>
+</tr>
+<tr class="even">
+<td align="left"><code>year</code></td>
+<td align="left">Year: {1925, 1926, …, 1995} (time variable)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>month</code></td>
+<td align="left">Moth: {1, 2, …, 12} (time variable)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>day</code></td>
+<td align="left">Day: {1, 2, …, 31} (time variable)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>circuit</code></td>
+<td align="left">Circuit number: {0, 1, …, 11} (categorical)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>state</code></td>
+<td align="left">State: {0, 1, …, 55} (categorical)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>district</code></td>
+<td align="left">District: {0, 1, …, 8} (categorical)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>reversed_dum</code></td>
+<td align="left">Reversed dummy: {0, 1} (categorical)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ethnicity</code></td>
+<td align="left">Ethnicity: {Asian, Black, Caucasian, Hispanic, Native America} (categorical)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>income</code></td>
+<td align="left">Income: {Poor, Middle, Wealthy} (ordinal)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>counstel_type</code></td>
+<td align="left">Counsel Type: {Public, Government, Interest Group, None, Private} (categorical)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>weight</code></td>
+<td align="left">Weight: (weights variable)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Sometimes we know that the data we have is not representative of the population we are trying to imply something about, but we do have information about how unrepresentative the sample on certain dimensions.</p>
+<p>In this case, the researchers that collected the data sampled 15 random cases from each appellate court circuit and year from 1925 to 1960, and 30 random cases from 1961 to 1996. However, since the number of cases by circuit and year vary widely, this means that there is an over-representation of some circuit/years and an under-representation of others in the data. We need to calculate some weights and use them in our analysis in order to account for that miss-representation. The following figure illustrates the point.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">circuit</th>
+<th align="left">sample</th>
+<th align="left">proportion</th>
+<th align="left">universe</th>
+<th align="left">proportion</th>
+<th align="right">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">095</td>
+<td align="left">.049</td>
+<td align="right">0.49</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">329</td>
+<td align="left">.170</td>
+<td align="right">1.70</td>
+</tr>
+<tr class="odd">
+<td align="left">03</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">116</td>
+<td align="left">.060</td>
+<td align="right">0.60</td>
+</tr>
+<tr class="even">
+<td align="left">04</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">099</td>
+<td align="left">.051</td>
+<td align="right">0.51</td>
+</tr>
+<tr class="odd">
+<td align="left">05</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">175</td>
+<td align="left">.091</td>
+<td align="right">0.91</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">222</td>
+<td align="left">.115</td>
+<td align="right">1.15</td>
+</tr>
+<tr class="odd">
+<td align="left">07</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">081</td>
+<td align="left">.042</td>
+<td align="right">0.42</td>
+</tr>
+<tr class="even">
+<td align="left">08</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">220</td>
+<td align="left">.171</td>
+<td align="right">1.71</td>
+</tr>
+<tr class="odd">
+<td align="left">09</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">289</td>
+<td align="left">.150</td>
+<td align="right">1.50</td>
+</tr>
+<tr class="even">
+<td align="left">DC</td>
+<td align="left">15</td>
+<td align="left">.1</td>
+<td align="left">196</td>
+<td align="left">.101</td>
+<td align="right">1.01</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>total</strong></td>
+<td align="left"><strong>150</strong></td>
+<td align="left"><strong>1.0</strong></td>
+<td align="left"><strong>1,932</strong></td>
+<td align="left"><strong>1.0</strong></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="adding-weights-to-a-regression" class="section level2">
+<h2>Adding weights to a regression</h2>
+<p>Once we have a weights variable in our dataset, it’s pretty easy to estimate a model accounting for those weights. The <code>lm()</code> function in <code>R</code> has a <code>weights</code> parameter where we need to specify the name of the variable containing the weights.</p>
+<pre class="r"><code>model &lt;- lm(reversed_dum ~ ethnicity + income + counsel_type, 
+             data = appeals_sub)
+model_weights &lt;- lm(reversed_dum ~ ethnicity + income + counsel_type, 
+             data = appeals_sub,
+             weights = appeals_sub$weight)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = reversed_dum ~ ethnicity + income + counsel_type, 
+##     data = appeals_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8663 -0.3894 -0.2393  0.5891  0.8466 
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                 0.04780    0.09582   0.499  0.61806    
+## ethnicityBlack              0.16941    0.06107   2.774  0.00568 ** 
+## ethnicityCaucasian          0.19366    0.10305   1.879  0.06061 .  
+## ethnicityHispanic           0.02146    0.04511   0.476  0.63439    
+## ethnicityNative American    0.06430    0.07295   0.881  0.37836    
+## incomePoor                 -0.06428    0.07692  -0.836  0.40365    
+## incomeWealthy               0.10565    0.06985   1.512  0.13086    
+## counsel_typeGovernment      0.56975    0.24376   2.337  0.01969 *  
+## counsel_typeInterest Group  0.54348    0.24331   2.234  0.02581 *  
+## counsel_typeNone            0.06438    0.09724   0.662  0.50817    
+## counsel_typePrivate         0.23597    0.05893   4.004 6.88e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4744 on 717 degrees of freedom
+## Multiple R-squared:  0.04581,    Adjusted R-squared:  0.0325 
+## F-statistic: 3.442 on 10 and 717 DF,  p-value: 0.0001993</code></pre>
+<pre class="r"><code>summary(model_weights)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = reversed_dum ~ ethnicity + income + counsel_type, 
+##     data = appeals_sub, weights = appeals_sub$weight)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8663 -0.3894 -0.2393  0.5891  0.8466 
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                 0.04780    0.09582   0.499  0.61806    
+## ethnicityBlack              0.16941    0.06107   2.774  0.00568 ** 
+## ethnicityCaucasian          0.19366    0.10305   1.879  0.06061 .  
+## ethnicityHispanic           0.02146    0.04511   0.476  0.63439    
+## ethnicityNative American    0.06430    0.07295   0.881  0.37836    
+## incomePoor                 -0.06428    0.07692  -0.836  0.40365    
+## incomeWealthy               0.10565    0.06985   1.512  0.13086    
+## counsel_typeGovernment      0.56975    0.24376   2.337  0.01969 *  
+## counsel_typeInterest Group  0.54348    0.24331   2.234  0.02581 *  
+## counsel_typeNone            0.06438    0.09724   0.662  0.50817    
+## counsel_typePrivate         0.23597    0.05893   4.004 6.88e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4744 on 717 degrees of freedom
+## Multiple R-squared:  0.04581,    Adjusted R-squared:  0.0325 
+## F-statistic: 3.442 on 10 and 717 DF,  p-value: 0.0001993</code></pre>
+<p>By the way, when using categorical covariates, in the regression output you will get a coefficient for each of the categories but one, which is the base category. The coefficients represent the average difference between being in the base category and being that other cateogry. The intercept represents the mean outcome value for the base category. If you are interested in changing the base category of your categorical covariate, you can use the <code>relevel()</code> function. For example, right now the base category for the <code>ethnicity</code> variable is <code>Asian</code>.</p>
+<pre class="r"><code>levels(appeals_sub$ethnicity)</code></pre>
+<pre><code>## [1] &quot;Asian&quot;           &quot;Black&quot;           &quot;Caucasian&quot;       &quot;Hispanic&quot;       
+## [5] &quot;Native American&quot;</code></pre>
+<p>If we wanted to change it to <code>Caucasian</code>, we would do the following:</p>
+<pre class="r"><code>appeals_sub$ethnicity &lt;- relevel(appeals_sub$ethnicity, &quot;Caucasian&quot;)
+levels(appeals_sub$ethnicity)</code></pre>
+<pre><code>## [1] &quot;Caucasian&quot;       &quot;Asian&quot;           &quot;Black&quot;           &quot;Hispanic&quot;       
+## [5] &quot;Native American&quot;</code></pre>
+</div>
+<div id="adding-weights-to-a-plot" class="section level2">
+<h2>Adding weights to a plot</h2>
+<p>Plots representing absoulte data (e.g. histograms, barplots) should also take the calculated weights into consideration. There is a <code>weight</code> parameter that most <code>ggplot2</code> geoms have that makes this very eashy.</p>
+<p>A barplot of the variable <code>ethnicity</code> without weights.</p>
+<pre class="r"><code>ggplot(appeals_sub, aes(x = ethnicity)) +
+       geom_bar(stat = &quot;count&quot;, position = &quot;dodge&quot;)</code></pre>
+<p><img src="lessons_weights_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
+<p>A barplot of the variable <code>ethnicity</code> with weights. The difference is small but it’s there!</p>
+<pre class="r"><code>ggplot(appeals_sub, aes(x = ethnicity)) +
+       geom_bar(appeals_sub$weight, stat = &quot;count&quot;,
+                position = &quot;dodge&quot;)</code></pre>
+<p><img src="lessons_weights_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="672" /></p>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

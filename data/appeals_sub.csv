@@ -1,0 +1,729 @@
+"fileid","year","month","day","circuit","state","district","reversed_dum","ethnicity","income","counsel_type","weight"
+"B0196MH1",1996,6,25,1,29,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.648039371328782
+"B0196MH1",1996,12,19,1,21,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.648039371328782
+"B0296MH1",1996,7,22,2,32,5,1,"Hispanic","Wealthy","Private",1.35799333227496
+"B0396MH1",1996,10,18,3,30,7,0,"Hispanic","Wealthy","None",0.473646610573107
+"B0396MH1",1996,10,18,3,30,7,1,"Black","Poor","Private",0.473646610573107
+"B0496MH1",1996,5,28,4,20,7,0,"Black","Poor","Private",0.448717841595575
+"B0496MH1",1996,8,20,4,46,1,0,"Black","Wealthy","Court Appointed or Public Defender",0.448717841595575
+"B0596MH1",1996,12,13,5,43,5,0,"Black","Poor","Private",0.922886310456456
+"B0596MH1",1996,12,31,5,43,2,0,"Hispanic","Wealthy","None",0.922886310456456
+"B0596MH1",1996,11,14,5,43,2,1,"Hispanic","Wealthy","Private",0.922886310456456
+"B0796MH1",1996,5,3,7,13,5,1,"Native American","Wealthy","Private",1.40172665351265
+"B0996MH1",1996,9,11,9,5,6,0,"Asian","Poor","Private",2.0524686458168
+"B0996MH1",1996,7,25,9,3,7,1,"Native American","Wealthy","Court Appointed or Public Defender",2.0524686458168
+"B1096MH1",1996,1,17,10,31,7,0,"Hispanic","Poor","Private",0.720003865347847
+"B1096MH1",1996,2,2,10,44,7,0,"Hispanic","Wealthy","Private",0.720003865347847
+"B1096MH1",1996,11,18,10,31,7,1,"Hispanic","Wealthy","None",0.720003865347847
+"B1196MH1",1996,10,21,11,9,4,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.720003865347847
+"B1196MH1",1996,7,19,11,9,5,1,"Hispanic","Wealthy","Interest Group",0.720003865347847
+"B0096MH1",1996,11,1,0,53,7,0,"Black","Wealthy","Court Appointed or Public Defender",0.842038418796634
+"B0096MH1",1996,10,4,0,53,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.842038418796634
+"B0096MH1",1996,3,29,0,53,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.842038418796634
+"B0195MH1",1995,10,17,1,52,7,1,"Hispanic","Wealthy","Private",0.640061565523307
+"B0195MH1",1995,12,26,1,52,7,0,"Hispanic","Poor","Private",0.640061565523307
+"B0195MH1",1995,5,31,1,52,7,0,"Hispanic","Poor","Private",0.640061565523307
+"B0195MH1",1995,6,14,1,29,7,0,"Native American","Wealthy","Private",0.640061565523307
+"B0195MH1",1995,1,30,1,52,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.640061565523307
+"B0495MH1",1995,1,20,4,46,1,0,"Asian","Poor","Private",0.494808993919927
+"B0495MH1",1995,6,16,4,55,0,1,"Black","Wealthy","Private",0.494808993919927
+"B0595MH1",1995,2,17,5,24,5,0,"Hispanic","Wealthy","None",1.36162307931088
+"B0695EK1",1995,10,19,6,22,1,0,"Asian","Wealthy","Private",0.717296208859881
+"B0695EK1",1995,5,23,6,35,6,0,"Caucasian","Poor","Private",0.717296208859881
+"B0695EK1",1995,12,20,6,35,6,0,"Caucasian","Poor","Private",0.717296208859881
+"B0795EK1",1995,8,16,7,55,0,0,"Asian","Wealthy","Private",1.1469183778823
+"B0795EK1",1995,6,19,7,13,6,0,"Hispanic","Wealthy","Private",1.1469183778823
+"B0795EK1",1995,9,15,7,55,0,1,"Black","Wealthy","Private",1.1469183778823
+"B0895MH1",1995,2,27,8,4,2,1,"Hispanic","Wealthy","Private",1.47341515067352
+"B0995MH1",1995,4,21,9,47,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.9649522737855
+"B0995MH1",1995,6,1,9,37,7,0,"Black","Poor","Private",1.9649522737855
+"B0995MH1",1995,11,21,9,2,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.9649522737855
+"B1095MH1",1995,3,14,10,6,7,0,"Hispanic","Poor","Private",0.876181838170624
+"B1095MH1",1995,12,21,10,31,7,1,"Hispanic","Wealthy","Court Appointed or Public Defender",0.876181838170624
+"B1095MH1",1995,9,14,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.876181838170624
+"B1195MH1",1995,5,23,11,9,5,1,"Hispanic","Wealthy","Private",0.880328578496042
+"B1195MH1",1995,3,16,11,9,5,0,"Hispanic","Wealthy","None",0.880328578496042
+"B1195MH1",1995,7,7,11,9,5,0,"Caucasian","Poor","Private",0.880328578496042
+"B0095MH1",1995,3,21,0,53,7,0,"Asian","Wealthy","Private",0.613096665867114
+"B0594EK1",1994,8,31,5,43,1,1,"Asian","Wealthy","Private",1.59068219633943
+"B0594EK1",1994,11,25,5,43,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.59068219633943
+"B0694EK1",1994,6,24,6,55,0,0,"Asian","Middle","Private",0.787576261785912
+"B0894EK1",1994,1,7,8,25,2,1,"Hispanic","Wealthy","Private",1.37800635304795
+"B0894EK1",1994,9,29,8,25,1,0,"Black","Poor","Private",1.37800635304795
+"B0994EK1",1994,4,1,9,54,7,1,"Hispanic","Wealthy","Private",1.44002420208743
+"B1094EK1",1994,2,1,10,6,7,1,"Hispanic","Wealthy","Private",0.756709831440353
+"B1094EK1",1994,12,20,10,36,2,1,"Asian","Poor","Private",0.756709831440353
+"B1094EK1",1994,4,6,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.756709831440353
+"b0193ek1",1993,12,29,1,52,7,0,"Hispanic","Poor","Private",0.678639069264069
+"b0193ek1",1993,4,30,1,55,0,0,"Hispanic","Wealthy","Private",0.678639069264069
+"B0493MH1",1993,9,3,4,48,6,0,"Hispanic","Wealthy","Private",0.788084215167548
+"B0593EK1",1993,3,29,5,43,6,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.42795634920635
+"B0593EK1",1993,8,5,5,43,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.42795634920635
+"B0593EK1",1993,6,23,5,43,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.42795634920635
+"B0593EK1",1993,7,23,5,18,2,1,"Hispanic","Wealthy","Private",1.42795634920635
+"B0593EK1",1993,7,29,5,18,4,1,"Hispanic","Wealthy","Private",1.42795634920635
+"B0793EK1",1993,12,30,7,49,2,1,"Native American","Wealthy","Private",1.37479332010582
+"B0793EK1",1993,5,4,7,13,6,1,"Caucasian","Poor","Private",1.37479332010582
+"B0893EK1",1993,11,30,8,23,7,0,"Black","Wealthy","Court Appointed or Public Defender",0.224431818181818
+"B1093EK1",1993,12,28,10,36,2,1,"Black","Poor","Private",1.17559523809524
+"B1093EK1",1993,3,22,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.17559523809524
+"B1093EK1",1993,2,10,10,44,7,1,"Hispanic","Wealthy","Private",1.17559523809524
+"B1093EK1",1993,7,7,10,36,1,0,"Hispanic","Wealthy","Private",1.17559523809524
+"B1193EK1",1993,3,19,11,1,6,1,"Black","Poor","Private",1.18082010582011
+"b0093ek1",1993,1,15,0,53,7,0,"Black","Poor","Private",0.868131868131868
+"B0492MH1",1992,4,3,4,48,5,0,"Asian","Poor","Private",0.629772121929565
+"B0492MH1",1992,1,21,4,40,7,1,"Black","Wealthy","Court Appointed or Public Defender",0.629772121929565
+"B0592MH1",1992,7,1,5,43,5,0,"Black","Poor","Private",1.51311038768867
+"B0592MH1",1992,7,27,5,43,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.51311038768867
+"B0592MH1",1992,2,24,5,43,6,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.51311038768867
+"B0592MH1",1992,10,29,5,43,6,1,"Black","Poor","Private",1.51311038768867
+"B0692MH1",1992,5,11,6,42,1,1,"Black","Poor","Private",0.775245799217388
+"B0692MH1",1992,1,6,6,22,1,0,"Black","Poor","Private",0.775245799217388
+"B0792MH1",1992,9,11,7,49,2,0,"Black","Poor","Private",1.53692310088628
+"B0792MH1",1992,2,24,7,55,0,1,"Black","Wealthy","Private",1.53692310088628
+"B0792MH1",1992,9,29,7,13,6,0,"Hispanic","Poor","Private",1.53692310088628
+"B0992MH1",1992,3,13,9,37,7,0,"Hispanic","Wealthy","Private",1.43790075959357
+"B0992MH1",1992,3,24,9,3,7,0,"Native American","Wealthy","Court Appointed or Public Defender",1.43790075959357
+"B1092MH1",1992,5,21,10,6,7,1,"Asian","Middle","Private",0.836539410081878
+"B1092MH1",1992,7,7,10,36,1,0,"Native American","Wealthy","Court Appointed or Public Defender",0.836539410081878
+"B1192MH1",1992,6,5,11,9,4,1,"Caucasian","Poor","Private",0.720170034168258
+"B1192MH1",1992,5,8,11,10,4,0,"Black","Poor","Court Appointed or Public Defender",0.720170034168258
+"B0092MH1",1992,3,16,0,55,0,0,"Native American","Wealthy","Private",0.971174903817698
+"",1991,10,29,1,52,7,0,"Hispanic","Poor","Private",0.668582195007065
+"",1991,1,23,2,32,5,0,"Hispanic","Wealthy","Private",1.04015730958736
+"",1991,3,18,2,32,6,1,"Native American","Wealthy","Private",1.04015730958736
+"",1991,6,5,2,32,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.04015730958736
+"B0391MH1",1991,5,3,3,38,1,0,"Hispanic","Wealthy","Private",0.640279663443333
+"B0391MH1",1991,8,9,3,30,7,0,"Native American","Wealthy","Private",0.640279663443333
+"B0391MH1",1991,9,30,3,38,1,1,"Asian","Middle","Private",0.640279663443333
+"B0591MH1",1991,5,3,5,43,2,1,"Black","Wealthy","Court Appointed or Public Defender",1.21300439629455
+"B0591MH1",1991,7,29,5,43,5,1,"Native American","Poor","Private",1.21300439629455
+"B0591MH1",1991,12,19,5,43,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.21300439629455
+"B0591MH1",1991,12,9,5,43,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.21300439629455
+"b0691mh1",1991,1,22,6,17,2,1,"Hispanic","Wealthy","Private",0.971633432773329
+"b0891mh1",1991,5,16,8,27,7,1,"Black","Poor","Private",0.312209379566893
+"b0891mh1",1991,12,2,8,25,2,1,"Hispanic","Wealthy","Private",0.312209379566893
+"B0991MH1",1991,4,4,9,3,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",2.18563261385572
+"B0991MH1",1991,12,24,9,11,7,1,"Hispanic","Wealthy","Private",2.18563261385572
+"B0991MH1",1991,1,25,9,5,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",2.18563261385572
+"B0991MH1",1991,4,1,9,5,5,1,"Hispanic","Wealthy","Court Appointed or Public Defender",2.18563261385572
+"B1091MH1",1991,7,16,10,6,7,1,"Hispanic","Wealthy","Private",0.857866227037211
+"B1091MH1",1991,9,16,10,16,7,1,"Hispanic","Wealthy","None",0.857866227037211
+"B1091MH1",1991,6,26,10,36,1,0,"Black","Wealthy","Private",0.857866227037211
+"B1091MH1",1991,9,24,10,36,6,1,"Black","Wealthy","None",0.857866227037211
+"B1191MH1",1991,4,25,11,9,5,0,"Hispanic","Poor","Private",1.35136991678442
+"b0091mh1",1991,6,21,0,53,7,1,"Hispanic","Wealthy","Court Appointed or Public Defender",0.851716648348773
+"b0091mh1",1991,4,9,0,53,7,0,"Asian","Wealthy","None",0.851716648348773
+"b0091mh1",1991,4,9,0,55,0,0,"Hispanic","Wealthy","Private",0.851716648348773
+"",1990,4,4,1,21,7,0,"Hispanic","Poor","Private",0.670975522753138
+"",1990,11,28,1,52,7,0,"Hispanic","Poor","Private",0.670975522753138
+"b0290mh1",1990,5,18,2,32,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.24882827250716
+"b0290mh1",1990,1,10,2,32,1,0,"Hispanic","Wealthy","None",1.24882827250716
+"b0490mh1",1990,6,27,4,46,2,1,"Hispanic","Wealthy","Private",0.576699714441557
+"b0490mh1",1990,4,13,4,33,2,0,"Hispanic","Poor","Private",0.576699714441557
+"b0590mh1",1990,1,3,5,43,1,1,"Hispanic","Wealthy","Private",1.49874867648474
+"b0590mh1",1990,8,20,5,43,6,0,"Native American","Wealthy","Government",1.49874867648474
+"b0590mh1",1990,8,29,5,43,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.49874867648474
+"b0590mh1",1990,6,5,5,43,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.49874867648474
+"b0690mh1",1990,5,24,6,35,5,1,"Hispanic","Wealthy","None",0.862682814968321
+"b0790mh1",1990,9,4,7,13,6,0,"Black","Middle","Private",1.03696217152758
+"b0790mh1",1990,11,30,7,55,0,0,"Black","Wealthy","Private",1.03696217152758
+"b0890mh1",1990,7,3,8,25,1,0,"Native American","Wealthy","Private",1.14943690441813
+"b0890mh1",1990,5,16,8,27,7,0,"Hispanic","Wealthy","Private",1.14943690441813
+"",1990,8,6,9,5,5,0,"Asian","Poor","Private",1.75376671026482
+"",1990,9,20,9,5,3,1,"Hispanic","Wealthy","Private",1.75376671026482
+"B1090MH1",1990,9,20,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.752966736795787
+"B1090MH1",1990,7,24,10,6,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.752966736795787
+"B1090MH1",1990,8,7,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.752966736795787
+"B1090MH1",1990,11,19,10,6,7,0,"Hispanic","Wealthy","None",0.752966736795787
+"B1090MH1",1990,7,11,10,6,7,1,"Native American","Wealthy","Private",0.752966736795787
+"B1190MH1",1990,11,30,11,9,5,1,"Caucasian","Wealthy","Private",0.836310383235015
+"",1990,4,13,0,55,0,1,"Asian","Middle","Private",1.12406150736356
+"B0189YB1",1989,12,11,1,21,7,0,"Hispanic","Wealthy","Private",0.687624750499002
+"B0189YB1",1989,11,20,1,52,7,0,"Hispanic","Wealthy","None",0.687624750499002
+"B0289YB1",1989,12,12,2,32,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.5614371257485
+"b0389yb1",1989,5,16,3,38,2,1,"Hispanic","Wealthy","Interest Group",0.937448180561953
+"B0489YB1",1989,8,10,4,46,2,0,"Caucasian","Middle","Private",0.686302395209581
+"",1989,12,26,5,43,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.19218953397553
+"",1989,1,12,5,18,1,0,"Black","Poor","Private",1.19218953397553
+"",1989,12,5,5,43,5,0,"Hispanic","Wealthy","Private",1.19218953397553
+"b0689mh1",1989,9,20,6,17,1,0,"Hispanic","Wealthy","Private",0.813059595095523
+"b0689mh1",1989,4,4,6,35,6,0,"Black","Poor","Private",0.813059595095523
+"b0789mh1",1989,5,26,7,13,3,0,"Black","Poor","Private",0.979298545765611
+"B0889YB1",1989,12,19,8,23,7,0,"Asian","Wealthy","Private",1.20281437125749
+"B0889YB1",1989,12,14,8,4,1,0,"Hispanic","Wealthy","Private",1.20281437125749
+"B0889YB1",1989,12,6,8,25,1,0,"Black","Wealthy","Private",1.20281437125749
+"B0889YB1",1989,11,30,8,25,1,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.20281437125749
+"",1989,7,6,9,5,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.79964776329694
+"",1989,8,15,9,2,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.79964776329694
+"",1989,5,9,9,2,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.79964776329694
+"",1989,6,26,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.694469883761888
+"",1989,12,29,10,31,7,0,"Native American","Wealthy","Court Appointed or Public Defender",0.694469883761888
+"",1989,7,19,11,9,4,0,"Native American","Wealthy","Private",0.894667807242657
+"",1989,7,21,11,10,4,0,"Hispanic","Wealthy","Private",0.894667807242657
+"",1989,11,14,11,1,6,1,"Hispanic","Wealthy","Private",0.894667807242657
+"b0089mh1",1989,12,8,0,53,7,1,"Black","Poor","Private",0.702435129740519
+"",1988,7,27,1,52,7,0,"Hispanic","Poor","Private",0.768914987039094
+"",1988,9,19,2,32,5,0,"Hispanic","Wealthy","Private",0.909238392495018
+"",1988,6,27,2,32,5,0,"Hispanic","Wealthy","Private",0.909238392495018
+"",1988,8,23,5,43,2,1,"Hispanic","Wealthy","Court Appointed or Public Defender",1.63099111252182
+"",1988,6,30,6,35,5,1,"Black","Poor","Private",1.04383431201397
+"",1988,5,24,6,22,1,1,"Hispanic","Poor","Private",1.04383431201397
+"",1988,4,29,7,14,5,1,"Hispanic","Middle","Private",1.0370840607311
+"",1988,12,1,7,55,0,0,"Hispanic","Wealthy","Private",1.0370840607311
+"",1988,11,25,9,5,8,1,"Asian","Middle","Private",1.3209014442152
+"",1988,8,17,9,5,3,0,"Black","Poor","Private",1.3209014442152
+"",1988,9,1,9,5,3,1,"Hispanic","Wealthy","Private",1.3209014442152
+"",1988,12,29,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.636761671816799
+"",1988,9,6,11,10,4,1,"Hispanic","Wealthy","Private",0.992286938581178
+"",1988,10,28,0,53,7,1,"Asian","Poor","Private",1.7857482939216
+"",1987,11,12,1,52,7,1,"Hispanic","Wealthy","Court Appointed or Public Defender",0.663724172686041
+"",1987,5,29,3,38,1,0,"Black","Poor","Private",0.626154879892491
+"",1987,12,23,4,46,1,1,"Caucasian","Poor","Private",0.70566661067249
+"",1987,11,3,4,33,4,0,"Black","Poor","Private",0.70566661067249
+"",1987,7,9,5,43,5,1,"Hispanic","Wealthy","Court Appointed or Public Defender",1.30364668161468
+"",1987,11,17,5,18,2,0,"Black","Wealthy","Private",1.30364668161468
+"",1987,4,14,5,18,1,1,"Black","Wealthy","Private",1.30364668161468
+"",1987,1,28,5,43,2,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.30364668161468
+"",1987,6,26,6,42,4,0,"Native American","Wealthy","Private",0.444697751433851
+"",1987,6,2,6,42,4,0,"Black","Poor","Private",0.444697751433851
+"",1987,3,31,6,35,6,0,"Asian","Wealthy","Private",0.444697751433851
+"",1987,9,14,7,13,3,1,"Black","Poor","Private",1.31633762720256
+"",1987,2,26,8,4,2,1,"Hispanic","Wealthy","Private",0.359429164821404
+"",1987,4,7,8,55,0,0,"Black","Poor","Private",0.359429164821404
+"",1987,4,16,8,25,1,1,"Black","Wealthy","Court Appointed or Public Defender",0.359429164821404
+"",1987,6,18,10,31,7,1,"Black","Poor","Private",0.69175205778599
+"",1987,9,20,11,10,6,0,"Black","Wealthy","Interest Group",1.39543087518898
+"",1987,6,19,11,9,6,0,"Caucasian","Middle","Private",1.39543087518898
+"",1987,4,13,11,1,6,1,"Black","Poor","Private",1.39543087518898
+"",1987,8,24,11,9,5,0,"Hispanic","Poor","Private",1.39543087518898
+"",1986,2,28,1,21,7,1,"Hispanic","Wealthy","Government",0.543317370483239
+"",1986,8,5,2,32,1,0,"Asian","Middle","Private",0.789103799987561
+"",1986,4,23,2,32,5,1,"Asian","Wealthy","Private",0.789103799987561
+"",1986,7,17,3,38,1,1,"Hispanic","Wealthy","Private",0.510836440726089
+"",1986,10,15,3,38,4,0,"Hispanic","Middle","Private",0.510836440726089
+"",1986,5,20,3,38,1,1,"Hispanic","Wealthy","Private",0.510836440726089
+"",1986,11,6,3,38,1,1,"Black","Wealthy","None",0.510836440726089
+"",1986,5,2,3,38,1,0,"Asian","Wealthy","Private",0.510836440726089
+"",1986,11,3,4,48,6,1,"Asian","Poor","Private",0.597944388711173
+"",1986,9,18,4,33,1,1,"Hispanic","Wealthy","Private",0.597944388711173
+"",1986,3,28,5,18,2,1,"Hispanic","Wealthy","Private",1.55718639218857
+"",1986,9,11,6,17,2,0,"Native American","Wealthy","Private",0.759997512283102
+"",1986,5,12,6,42,1,1,"Hispanic","Middle","Private",0.759997512283102
+"",1986,4,11,7,13,3,1,"Hispanic","Wealthy","Private",1.1409664780148
+"",1986,6,9,7,13,5,0,"Hispanic","Wealthy","Private",1.1409664780148
+"",1986,5,8,8,4,1,1,"Black","Wealthy","Private",1.24033636551108
+"",1986,9,24,9,11,7,0,"Asian","Wealthy","Court Appointed or Public Defender",2.59288512967224
+"",1986,6,4,11,1,0,0,"Black","Wealthy","Private",1.2595084497566
+"",1986,6,17,11,10,4,1,"Caucasian","Poor","Private",1.2595084497566
+"",1986,12,19,0,53,7,1,"Native American","Wealthy","Private",1.3328254244667
+"",1985,5,24,2,55,0,0,"Caucasian","Middle","Private",0.850372510263038
+"",1985,8,14,4,33,4,0,"Black","Poor","Private",0.62642542192489
+"",1985,11,27,4,33,2,0,"Hispanic","Wealthy","Private",0.62642542192489
+"",1985,3,14,5,43,2,0,"Hispanic","Poor","Private",1.25881680024906
+"",1985,12,27,5,43,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.25881680024906
+"",1985,4,16,6,35,5,0,"Hispanic","Wealthy","Private",0.929850235669758
+"",1985,8,14,7,55,0,1,"Black","Wealthy","Private",1.27311754867676
+"",1985,11,22,7,13,3,0,"Hispanic","Poor","Private",1.27311754867676
+"",1985,5,21,0,53,7,1,"Black","Poor","Private",1.15497187167402
+"",1985,7,23,0,53,7,0,"Native American","Middle","Private",1.15497187167402
+"",1984,3,15,1,29,7,1,"Hispanic","Wealthy","Private",0.581166093780401
+"",1984,6,20,2,32,5,0,"Hispanic","Wealthy","Private",0.768887488843387
+"",1984,4,20,3,55,0,1,"Black","Wealthy","Private",0.694891583976479
+"",1984,2,28,4,46,1,1,"Asian","Middle","Private",0.679437706725469
+"",1984,9,17,9,5,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.41926987627098
+"",1984,2,14,10,55,0,0,"Hispanic","Middle","Private",0.815325248070562
+"",1984,6,12,0,53,7,0,"Native American","Wealthy","Private",1.32290518191841
+"",1984,6,26,0,53,0,1,"Black","Poor","None",1.32290518191841
+"",1983,11,21,3,38,2,1,"Native American","Wealthy","Private",0.691120636864666
+"",1983,12,12,5,43,5,1,"Native American","Wealthy","Private",1.76346313173157
+"",1983,5,27,5,18,2,1,"Asian","Middle","Private",1.76346313173157
+"",1983,9,27,6,42,1,0,"Asian","Poor","Private",0.939681567666871
+"",1983,10,26,8,25,2,0,"Black","Wealthy","Court Appointed or Public Defender",1.30342927127985
+"",1983,11,17,8,55,0,0,"Black","Wealthy","None",1.30342927127985
+"",1983,3,8,8,23,7,0,"Native American","Wealthy","Private",1.30342927127985
+"",1983,5,26,10,31,7,0,"Asian","Poor","Private",0.604562155541947
+"",1983,5,9,11,1,6,1,"Black","Poor","Private",1.04793981278978
+"",1983,4,29,0,55,0,1,"Caucasian","Poor","Private",0.861374770361298
+"",1982,1,5,2,32,5,0,"Black","Poor","Private",0.962564278368186
+"",1982,6,18,4,46,1,0,"Hispanic","Wealthy","Private",0.588618443606445
+"",1982,6,28,5,18,4,0,"Asian","Wealthy","Private",2.65810500777933
+"",1982,7,29,5,18,4,1,"Black","Poor","Private",2.65810500777933
+"",1982,7,9,6,35,6,0,"Black","Poor","Private",1.0486311768451
+"",1982,10,12,10,31,7,1,"Caucasian","Poor","Private",0.119022111758656
+"",1982,9,13,11,9,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.0783094176992
+"",1982,4,12,11,1,6,0,"Black","Poor","Court Appointed or Public Defender",1.0783094176992
+"",1981,5,13,1,21,7,0,"Asian","Middle","Private",0.537562449169281
+"",1981,1,9,3,38,1,1,"Hispanic","Wealthy","Private",0.603508771929825
+"",1981,10,26,4,20,7,1,"Asian","Poor","Private",0.715132201364338
+"",1981,7,21,4,46,2,0,"Black","Poor","Private",0.715132201364338
+"",1981,5,13,5,18,1,1,"Black","Poor","Private",2.22091954751418
+"",1981,2,17,7,13,6,0,"Asian","Middle","Private",1.0701289647961
+"",1981,9,30,7,13,6,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.0701289647961
+"",1981,3,5,10,16,7,0,"Hispanic","Wealthy","Private",0.774754001662332
+"",1980,3,6,1,52,7,0,"Hispanic","Middle","Private",0.410347903657449
+"",1980,7,24,1,21,7,1,"Asian","Wealthy","Private",0.410347903657449
+"",1980,8,26,2,32,5,1,"Asian","Wealthy","Court Appointed or Public Defender",0.769365373267951
+"",1980,5,8,5,18,1,1,"Asian","Wealthy","Private",2.64483646565971
+"",1980,8,19,6,42,4,0,"Hispanic","Middle","Private",0.86916291940505
+"",1980,1,11,7,14,6,0,"Hispanic","Wealthy","Private",0.666512932856758
+"",1980,9,10,9,37,7,0,"Hispanic","Wealthy","Private",1.30322346856418
+"",1980,2,8,10,36,1,1,"Hispanic","Middle","Private",0.765871094200392
+"",1980,5,19,10,31,7,1,"Native American","Poor","Private",0.765871094200392
+"",1980,10,1,0,53,7,0,"Asian","Middle","Private",1.30792113455552
+"",1980,2,22,0,53,7,0,"Black","Poor","Private",1.30792113455552
+"",1979,10,30,2,32,1,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.83596837944664
+"",1979,2,5,3,38,2,0,"Black","Wealthy","Private",0.827075098814229
+"",1979,1,9,5,18,1,0,"Hispanic","Wealthy","Private",2.14328063241107
+"",1979,12,5,5,43,5,0,"Black","Poor","Private",2.14328063241107
+"",1979,9,11,6,42,1,1,"Hispanic","Wealthy","Private",0.51403162055336
+"",1979,7,18,9,3,7,0,"Native American","Wealthy","Private",1.78339920948617
+"",1979,9,24,10,31,7,1,"Hispanic","Wealthy","Private",0.578531308508425
+"",1979,6,19,10,6,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.578531308508425
+"",1978,1,6,2,32,1,0,"Black","Poor","Private",0.950485637528415
+"",1978,11,17,4,40,7,1,"Native American","Wealthy","Private",0.476159612241447
+"",1978,9,21,4,48,5,1,"Asian","Wealthy","Private",0.476159612241447
+"",1978,6,12,8,27,7,0,"Asian","Wealthy","Private",0.851721070648805
+"",1978,1,25,8,4,1,0,"Black","Poor","Private",0.851721070648805
+"",1978,9,13,8,55,0,0,"Hispanic","Wealthy","Private",0.851721070648805
+"",1977,5,3,1,52,7,1,"Hispanic","Wealthy","Court Appointed or Public Defender",0.493417553191489
+"",1977,8,16,3,38,1,1,"Black","Wealthy","Court Appointed or Public Defender",0.664950354609929
+"",1977,3,18,5,43,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",2.17310030395137
+"",1977,9,8,5,43,5,1,"Hispanic","Wealthy","Court Appointed or Public Defender",2.17310030395137
+"",1977,8,12,5,18,1,0,"Black","Wealthy","Court Appointed or Public Defender",2.17310030395137
+"",1977,6,27,6,43,2,0,"Black","Poor","None",0.525670212765957
+"",1977,12,7,8,25,1,0,"Black","Poor","Private",1.25159574468085
+"",1977,11,2,9,5,6,0,"Caucasian","Middle","Private",1.04328820116054
+"",1977,3,23,10,16,7,0,"Hispanic","Wealthy","None",0.515614657210402
+"",1977,11,11,0,53,7,0,"Hispanic","Wealthy","Private",1.31417553191489
+"",1976,1,26,1,52,7,0,"Hispanic","Wealthy","Private",0.353876185164529
+"",1976,6,14,1,52,7,0,"Hispanic","Wealthy","Private",0.353876185164529
+"",1976,7,28,3,38,2,0,"Black","Poor","Private",0.747339426568173
+"",1976,7,16,4,33,2,1,"Native American","Wealthy","None",0.675090076930568
+"",1976,3,19,5,1,4,0,"Hispanic","Wealthy","Private",1.86975574438898
+"",1976,4,29,6,35,6,1,"Black","Poor","Private",0.770531525493633
+"",1976,1,11,7,13,6,1,"Black","Wealthy","Private",0.794762076609785
+"",1976,2,5,7,13,6,0,"Black","Poor","Private",0.794762076609785
+"",1976,8,18,9,5,5,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.32020157756354
+"",1975,5,29,1,52,7,1,"Asian","Wealthy","Private",0.485724398301085
+"",1975,10,24,2,7,7,1,"Hispanic","Wealthy","Private",1.31632066170026
+"",1975,6,24,3,38,1,0,"Hispanic","Wealthy","Private",0.253776357168634
+"",1975,5,2,3,30,7,1,"Caucasian","Poor","Private",0.253776357168634
+"",1975,4,9,3,38,2,1,"Hispanic","Wealthy","Private",0.253776357168634
+"",1975,3,25,5,55,0,0,"Hispanic","Wealthy","None",2.35550600608342
+"",1975,2,5,6,42,1,1,"Asian","Wealthy","Private",1.20978561315985
+"",1975,3,21,8,27,7,0,"Black","Poor","Private",1.13968654946641
+"",1975,11,19,8,4,1,1,"Black","Poor","Private",1.13968654946641
+"",1975,2,3,10,44,7,1,"Asian","Wealthy","Interest Group",0.445146801051709
+"",1974,1,2,2,32,5,0,"Asian","Middle","Private",1.14079822616408
+"",1974,6,19,3,38,1,0,"Hispanic","Wealthy","Private",0.45435873497491
+"",1974,1,14,4,46,1,1,"Native American","Wealthy","Private",0.408592017738359
+"",1974,12,13,5,24,5,0,"Caucasian","Poor","Private",2.49015054265375
+"",1974,2,1,6,35,6,0,"Asian","Wealthy","Private",1.18237250554324
+"",1974,12,16,7,13,1,1,"Black","Wealthy","Private",0.838137472283814
+"",1974,7,26,7,13,6,1,"Black","Poor","Private",0.838137472283814
+"",1974,5,14,8,25,2,1,"Hispanic","Wealthy","Private",1.09219789356984
+"",1974,12,18,8,27,7,0,"Asian","Poor","Private",1.09219789356984
+"",1974,12,16,10,31,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.62860310421286
+"",1974,3,18,10,16,7,0,"Hispanic","Poor","Private",0.62860310421286
+"",1973,3,23,1,52,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.278041658555577
+"",1973,11,29,1,21,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.278041658555577
+"",1973,6,29,3,38,2,1,"Black","Wealthy","None",0.649368308351178
+"",1973,8,14,6,35,5,1,"Asian","Wealthy","Private",0.842184154175589
+"",1973,6,29,7,13,6,1,"Hispanic","Wealthy","Private",0.669548067170066
+"",1973,8,7,8,41,7,0,"Asian","Wealthy","Private",0.98254817987152
+"",1973,7,24,8,41,7,0,"Native American","Poor","Private",0.98254817987152
+"",1973,2,12,9,26,7,0,"Native American","Wealthy","Private",1.54154175588865
+"",1973,10,29,9,5,3,0,"Asian","Wealthy","Private",1.54154175588865
+"",1973,8,14,10,36,2,0,"Black","Wealthy","Private",0.669548067170066
+"",1972,1,5,1,52,7,1,"Hispanic","Wealthy","Private",0.233486943164363
+"",1972,11,2,1,29,7,1,"Asian","Wealthy","Private",0.233486943164363
+"",1972,5,10,3,30,7,0,"Hispanic","Wealthy","Private",0.899874319229158
+"",1972,5,31,3,30,7,0,"Black","Wealthy","None",0.899874319229158
+"",1972,2,1,5,1,5,0,"Hispanic","Wealthy","Private",2.44993715961458
+"",1972,6,8,8,25,1,1,"Hispanic","Wealthy","Private",0.828522920203735
+"",1972,9,8,10,36,2,1,"Hispanic","Wealthy","Private",0.770506912442396
+"",1972,7,26,10,6,7,0,"Native American","Wealthy","Private",0.770506912442396
+"",1972,9,21,10,36,2,1,"Hispanic","Wealthy","Private",0.770506912442396
+"",1972,4,18,10,44,7,0,"Caucasian","Middle","Private",0.770506912442396
+"",1971,8,12,2,32,5,1,"Asian","Wealthy","Private",0.945648343904158
+"",1971,4,23,2,32,5,0,"Asian","Wealthy","Private",0.945648343904158
+"",1971,5,29,4,40,7,1,"Native American","Middle","Private",0.462672733400741
+"",1971,9,28,5,18,2,1,"Black","Wealthy","Private",3.52325581395349
+"",1970,4,12,1,52,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.286573550783142
+"",1970,4,7,1,52,7,0,"Hispanic","Poor","Private",0.286573550783142
+"",1970,6,8,1,29,7,0,"Hispanic","Wealthy","Court Appointed or Public Defender",0.286573550783142
+"",1970,10,19,7,14,6,0,"Asian","Wealthy","Private",0.63600839657678
+"",1970,4,1,8,4,1,0,"Native American","Middle","Private",0.601281952274307
+"",1970,10,5,9,47,2,0,"Hispanic","Wealthy","None",1.84005751501311
+"",1970,4,13,9,3,7,0,"Native American","Middle","Private",1.84005751501311
+"",1969,3,13,1,52,7,0,"Hispanic","Wealthy","Private",0.37585384524791
+"",1969,6,16,3,38,1,0,"Asian","Middle","Private",0.839047572862616
+"",1969,9,20,3,38,1,1,"Asian","Wealthy","Private",0.839047572862616
+"",1969,9,26,4,26,2,1,"Asian","Poor","Private",0.704492992580379
+"",1969,2,20,6,22,1,1,"Native American","Middle","Private",0.779146056608959
+"",1969,10,6,6,22,2,0,"Hispanic","Wealthy","Private",0.779146056608959
+"",1969,7,9,8,34,7,0,"Native American","Middle","Private",0.592254544027009
+"",1969,6,18,8,25,2,1,"Hispanic","Wealthy","Private",0.592254544027009
+"",1969,3,7,8,25,1,1,"Asian","Wealthy","Private",0.592254544027009
+"",1969,11,28,9,5,5,0,"Caucasian","Middle","Private",1.70744565453204
+"",1969,11,10,9,5,4,1,"Black","Wealthy","None",1.70744565453204
+"",1969,1,14,10,6,7,0,"Hispanic","Wealthy","Private",0.510974855729596
+"",1968,3,11,1,52,7,0,"Hispanic","Poor","Private",0.319259838415429
+"",1968,11,14,2,32,6,1,"Black","Wealthy","Court Appointed or Public Defender",0.334462687863782
+"",1968,7,24,2,32,5,0,"Hispanic","Poor","Private",0.334462687863782
+"",1968,10,1,3,38,2,0,"Hispanic","Wealthy","Private",0.761248134195749
+"",1968,11,20,4,46,1,0,"Black","Wealthy","Court Appointed or Public Defender",0.898728447388996
+"",1968,3,18,4,40,7,0,"Hispanic","Wealthy","Private",0.898728447388996
+"",1968,12,3,5,9,5,0,"Hispanic","Wealthy","Private",2.62207690667425
+"",1968,7,23,6,42,1,0,"Caucasian","Poor","Private",1.24055251498567
+"",1968,12,13,8,25,2,0,"Hispanic","Wealthy","Private",0.645240936586972
+"",1968,8,12,8,15,5,0,"Hispanic","Wealthy","Private",0.645240936586972
+"",1968,10,9,10,36,1,0,"Asian","Wealthy","Private",0.766223612197029
+"",1968,12,14,0,53,7,0,"Black","Wealthy","Court Appointed or Public Defender",0.817913300321432
+"",1967,4,13,1,52,7,0,"Hispanic","Wealthy","Private",0.335613905325444
+"",1967,12,11,2,32,1,0,"Hispanic","Middle","Private",1.27899408284024
+"",1967,4,11,6,22,1,0,"Hispanic","Wealthy","Private",1.05769230769231
+"",1967,6,29,7,13,6,0,"Hispanic","Wealthy","Private",0.693195266272189
+"",1967,11,30,7,14,5,0,"Hispanic","Wealthy","Private",0.693195266272189
+"",1967,12,4,8,34,7,0,"Native American","Wealthy","None",0.567813765182186
+"",1967,12,21,8,41,7,1,"Native American","Wealthy","Private",0.567813765182186
+"",1967,3,9,8,27,7,0,"Asian","Wealthy","Private",0.567813765182186
+"",1966,3,25,1,52,7,0,"Hispanic","Wealthy","Private",0.511426091987272
+"",1966,10,13,3,30,7,1,"Hispanic","Wealthy","Private",0.940517333252135
+"",1966,12,6,3,38,2,0,"Asian","Wealthy","Private",0.940517333252135
+"",1966,12,19,3,38,2,0,"Asian","Poor","Private",0.940517333252135
+"",1966,4,28,4,46,1,1,"Black","Poor","Private",0.779565091622543
+"",1966,3,7,4,33,2,0,"Hispanic","Wealthy","Private",0.779565091622543
+"",1966,4,6,4,46,1,1,"Black","Wealthy","Court Appointed or Public Defender",0.779565091622543
+"",1966,1,3,4,46,1,0,"Asian","Wealthy","Private",0.779565091622543
+"",1966,3,29,5,9,5,0,"Hispanic","Wealthy","Private",2.77479623611087
+"",1966,9,29,6,42,2,0,"Asian","Poor","Private",0.813848332140737
+"",1966,10,11,6,42,1,0,"Asian","Wealthy","Private",0.813848332140737
+"",1966,3,9,9,3,7,0,"Hispanic","Wealthy","Private",1.74132620939611
+"",1966,9,8,9,47,2,0,"Asian","Wealthy","Private",1.74132620939611
+"",1966,4,29,10,36,1,1,"Hispanic","Wealthy","Private",0.747083212804937
+"",1965,2,24,1,52,7,0,"Hispanic","Wealthy","None",0.303085174263197
+"",1965,4,29,4,46,2,0,"Hispanic","Wealthy","Private",0.860549203557119
+"",1965,11,5,4,20,7,0,"Hispanic","Wealthy","Private",0.860549203557119
+"",1965,6,25,7,14,5,1,"Hispanic","Wealthy","Private",0.734655259721223
+"",1965,7,16,8,23,7,0,"Asian","Poor","Private",0.699362742828928
+"",1965,11,10,8,34,7,0,"Hispanic","Wealthy","Private",0.699362742828928
+"",1965,4,12,9,37,7,0,"Asian","Wealthy","Private",1.23236913254503
+"",1964,3,3,1,52,7,0,"Hispanic","Wealthy","None",0.36150234741784
+"",1964,4,8,1,52,7,1,"Native American","Middle","Private",0.36150234741784
+"",1964,1,21,4,46,1,0,"Asian","Wealthy","Private",0.723004694835681
+"",1964,4,12,4,46,1,1,"Hispanic","Wealthy","Private",0.723004694835681
+"",1964,4,15,4,46,1,0,"Asian","Poor","Private",0.723004694835681
+"",1964,4,7,6,42,2,0,"Native American","Middle","Private",1.07417840375587
+"",1964,5,22,6,17,2,0,"Black","Wealthy","Private",1.07417840375587
+"",1964,10,30,8,15,5,0,"Asian","Wealthy","Private",0.764319248826291
+"",1964,4,3,8,34,7,0,"Hispanic","Wealthy","Private",0.764319248826291
+"",1964,10,26,9,47,1,0,"Native American","Wealthy","Private",1.30076291079812
+"",1964,9,1,10,6,7,1,"Native American","Wealthy","Private",0.728440820360761
+"",1963,12,3,1,29,7,0,"Hispanic","Wealthy","Private",0.324159510323406
+"",1963,4,8,4,33,1,0,"Caucasian","Wealthy","Private",0.606591448931116
+"",1963,1,15,4,46,7,0,"Black","Wealthy","None",0.606591448931116
+"",1963,5,20,5,43,2,0,"Hispanic","Wealthy","Private",2.37847158779463
+"",1963,1,23,5,9,5,0,"Asian","Wealthy","Private",2.37847158779463
+"",1963,5,24,5,43,2,0,"Hispanic","Wealthy","None",2.37847158779463
+"",1963,2,16,6,22,2,0,"Hispanic","Wealthy","Private",0.852969121140143
+"",1963,1,15,8,25,2,0,"Hispanic","Wealthy","Private",0.821311303618835
+"",1963,11,21,8,34,7,1,"Hispanic","Wealthy","Private",0.821311303618835
+"",1963,5,20,8,4,2,0,"Hispanic","Wealthy","Private",0.821311303618835
+"",1963,6,13,8,25,1,0,"Hispanic","Wealthy","Private",0.821311303618835
+"",1963,11,19,8,4,1,0,"Hispanic","Wealthy","Private",0.821311303618835
+"",1962,6,11,1,52,7,0,"Native American","Middle","Private",0.505457598656591
+"",1962,9,21,1,52,7,0,"Hispanic","Wealthy","None",0.505457598656591
+"",1962,4,11,1,52,7,1,"Asian","Wealthy","Private",0.505457598656591
+"",1962,1,5,2,45,7,1,"Asian","Poor","Private",1.72883162177873
+"",1962,7,19,5,44,1,0,"Hispanic","Wealthy","Private",2.14690536164088
+"",1962,5,25,5,43,1,0,"Native American","Middle","Private",2.14690536164088
+"",1962,8,29,6,22,1,1,"Asian","Wealthy","Private",0.967074487225621
+"",1962,6,13,6,42,1,0,"Asian","Wealthy","Private",0.967074487225621
+"",1962,2,6,8,23,7,0,"Hispanic","Wealthy","Private",0.6227959697733
+"",1962,6,30,8,23,7,0,"Hispanic","Wealthy","Private",0.6227959697733
+"",1962,4,16,8,4,2,0,"Hispanic","Wealthy","Private",0.6227959697733
+"",1962,6,27,8,4,1,0,"Hispanic","Wealthy","Private",0.6227959697733
+"",1962,6,7,8,25,2,0,"Asian","Poor","Private",0.6227959697733
+"",1962,3,20,10,36,6,0,"Black","Wealthy","Private",0.669826329046798
+"",1962,5,25,10,36,6,0,"Asian","Wealthy","Private",0.669826329046798
+"",1961,5,29,1,52,7,1,"Asian","Wealthy","Private",0.441925357516568
+"",1961,5,5,1,21,7,1,"Asian","Wealthy","Private",0.441925357516568
+"",1961,8,25,1,52,7,0,"Hispanic","Wealthy","Private",0.441925357516568
+"",1961,7,17,2,7,7,0,"Asian","Wealthy","Private",1.21280267288381
+"",1961,3,28,2,32,5,0,"Asian","Wealthy","Private",1.21280267288381
+"",1961,2,15,2,32,5,0,"Native American","Middle","Private",1.21280267288381
+"",1961,2,17,2,32,2,0,"Asian","Wealthy","Private",1.21280267288381
+"",1961,2,20,3,38,1,0,"Asian","Middle","Private",1.13064020039953
+"",1961,4,24,3,38,2,0,"Asian","Wealthy","Private",1.13064020039953
+"",1961,5,30,5,43,1,0,"Hispanic","Wealthy","Private",1.7714150885328
+"",1961,8,2,5,10,6,0,"Asian","Wealthy","Private",1.7714150885328
+"",1961,5,19,5,18,1,1,"Hispanic","Wealthy","Private",1.7714150885328
+"",1961,2,24,5,18,1,0,"Hispanic","Poor","Private",1.7714150885328
+"",1961,4,11,6,42,1,0,"Asian","Wealthy","Private",0.954874433205441
+"",1961,2,23,6,35,6,0,"Asian","Wealthy","Private",0.954874433205441
+"",1961,10,27,6,22,1,0,"Asian","Poor","Private",0.954874433205441
+"",1961,6,21,8,15,5,0,"Native American","Wealthy","Private",0.737649844877279
+"",1961,8,30,8,25,1,0,"Asian","Wealthy","Private",0.737649844877279
+"",1961,9,26,9,54,7,1,"Asian","Wealthy","Private",1.37312521799791
+"",1961,9,27,10,36,6,0,"Black","Wealthy","Private",0.724358856681292
+"",1960,4,29,1,52,7,0,"Hispanic","Wealthy","None",0.491335587489434
+"",1960,9,15,1,52,7,0,"Hispanic","Poor","Private",0.491335587489434
+"",1960,2,15,2,32,5,1,"Asian","Wealthy","Private",1.70118343195266
+"",1960,1,28,5,43,6,0,"Black","Wealthy","Private",1.48265196342119
+"",1960,7,12,5,43,5,0,"Hispanic","Wealthy","Private",1.48265196342119
+"",1960,3,14,7,13,6,1,"Asian","Wealthy","Private",0.817307692307692
+"",1960,4,22,8,25,2,1,"Hispanic","Wealthy","Private",1.08173076923077
+"",1960,5,31,9,3,7,0,"Hispanic","Wealthy","Private",1.3724523339908
+"",1960,9,19,10,16,7,0,"Asian","Poor","None",0.290574809805579
+"",1959,7,29,1,52,7,0,"Hispanic","Wealthy","Private",0.197344815213491
+"",1959,3,31,2,32,5,0,"Asian","Wealthy","Private",2.06099748833872
+"",1959,6,15,2,32,6,0,"Asian","Wealthy","Private",2.06099748833872
+"",1959,8,6,4,40,2,1,"Hispanic","Wealthy","Private",0.975959813419447
+"",1959,1,5,4,46,1,1,"Asian","Wealthy","Private",0.975959813419447
+"",1959,7,27,6,35,6,0,"Asian","Wealthy","Private",0.485771852833209
+"",1959,4,1,7,49,2,0,"Native American","Wealthy","Private",1.07642626480086
+"",1959,11,10,8,4,2,1,"Asian","Poor","Private",0.836536982930955
+"",1959,11,6,8,25,2,0,"Caucasian","Wealthy","Private",0.836536982930955
+"",1959,3,6,9,5,5,0,"Hispanic","Wealthy","None",2.36813778256189
+"",1958,1,8,4,40,1,1,"Asian","Wealthy","Private",0.692706533010716
+"",1958,3,3,4,33,1,0,"Hispanic","Wealthy","Private",0.692706533010716
+"",1958,10,6,4,33,4,1,"Hispanic","Wealthy","Private",0.692706533010716
+"",1958,4,30,5,43,5,1,"Asian","Wealthy","Private",1.11675396846499
+"",1958,6,26,5,43,2,1,"Black","Wealthy","Private",1.11675396846499
+"",1958,2,25,6,22,2,0,"Hispanic","Wealthy","Private",0.809770710911395
+"",1958,10,8,7,14,6,0,"Native American","Middle","Private",1.96474248185275
+"",1958,8,8,10,44,7,1,"Caucasian","Middle","Private",1.06851019702731
+"",1958,8,15,10,44,7,1,"Hispanic","Wealthy","Private",1.06851019702731
+"",1958,1,9,0,53,7,0,"Asian","Poor","Private",1.46837193225026
+"",1957,11,22,1,21,7,0,"Asian","Wealthy","Private",0.445434703528556
+"",1957,2,8,7,13,5,1,"Black","Middle","Private",0.826967382078332
+"",1957,1,2,10,36,7,1,"Black","Middle","Private",0.676609676245908
+"",1957,1,2,10,44,7,0,"Hispanic","Wealthy","Private",0.676609676245908
+"",1957,8,23,10,36,6,0,"Hispanic","Wealthy","Private",0.676609676245908
+"",1957,2,21,0,53,7,1,"Asian","Wealthy","Private",1.08565098052184
+"",1956,4,26,1,52,7,0,"Hispanic","Wealthy","None",0.454368932038835
+"",1956,7,10,3,38,1,0,"Asian","Wealthy","Private",0.45873786407767
+"",1956,5,25,5,18,2,1,"Hispanic","Wealthy","Private",2.13106796116505
+"",1956,4,24,8,4,2,0,"Hispanic","Wealthy","Private",0.936893203883495
+"",1956,8,27,9,47,2,0,"Hispanic","Wealthy","Private",1.21359223300971
+"",1956,6,27,10,16,7,0,"Asian","Wealthy","Private",0.355987055016181
+"",1956,1,3,10,36,6,1,"Hispanic","Wealthy","Private",0.355987055016181
+"",1955,6,6,1,52,7,0,"Hispanic","Poor","Private",0.241935483870968
+"",1955,3,28,1,52,7,0,"Hispanic","Wealthy","None",0.241935483870968
+"",1955,2,9,2,32,1,1,"Hispanic","Wealthy","Private",1.36803519061584
+"",1955,2,21,4,40,1,1,"Hispanic","Wealthy","Private",0.756598240469208
+"",1955,2,3,4,40,1,1,"Hispanic","Wealthy","Private",0.756598240469208
+"",1955,12,29,7,13,6,1,"Asian","Wealthy","Private",0.590642495334577
+"",1955,8,2,7,49,2,1,"Hispanic","Wealthy","Private",0.590642495334577
+"",1955,5,25,10,36,2,1,"Hispanic","Wealthy","Private",1.18240469208211
+"",1954,5,12,1,52,7,1,"Hispanic","Wealthy","Private",0.354829561567693
+"",1954,2,26,1,52,7,0,"Hispanic","Wealthy","Private",0.354829561567693
+"",1954,2,12,3,38,1,0,"Asian","Wealthy","Private",0.605819295558959
+"",1954,6,14,4,40,1,0,"Asian","Wealthy","Private",0.669218989280245
+"",1954,11,29,6,17,2,0,"Asian","Poor","Private",1.24115802523153
+"",1954,1,4,7,13,6,0,"Asian","Poor","Private",0.79249617151608
+"",1954,9,24,9,37,7,1,"Hispanic","Wealthy","Private",1.19114576082417
+"",1954,8,13,10,36,1,0,"Black","Wealthy","Private",0.962736089841756
+"",1954,4,15,0,53,7,0,"Asian","Poor","Private",0.653564743916965
+"",1953,1,28,1,21,7,1,"Hispanic","Wealthy","Private",0.670859538784067
+"",1953,6,25,2,32,5,1,"Asian","Wealthy","Private",1.17250673854447
+"",1953,3,27,2,32,5,1,"Asian","Wealthy","Private",1.17250673854447
+"",1953,4,16,3,38,2,0,"Asian","Wealthy","Private",0.657232704402516
+"",1953,5,29,9,37,7,0,"Asian","Wealthy","Private",1.30503144654088
+"",1952,12,1,2,32,5,0,"Hispanic","Poor","Private",1.73907721280603
+"",1952,7,18,4,46,1,1,"Asian","Wealthy","Private",0.697202044659672
+"",1952,4,11,6,42,1,0,"Native American","Middle","Private",0.730343691148776
+"",1952,11,18,8,25,2,1,"Hispanic","Wealthy","Private",0.577401129943503
+"",1952,4,24,0,53,7,0,"Hispanic","Wealthy","Private",0.842043314500942
+"",1951,6,27,5,43,5,1,"Asian","Wealthy","Private",1.49969197070299
+"",1951,3,2,6,42,2,1,"Hispanic","Wealthy","Private",0.724621808474228
+"",1951,1,9,6,42,4,0,"Hispanic","Wealthy","Private",0.724621808474228
+"",1951,8,30,8,25,1,1,"Asian","Wealthy","Government",0.940173865425423
+"",1950,12,14,2,7,7,1,"Hispanic","Wealthy","Private",1.17257248044179
+"",1950,6,14,3,38,1,0,"Asian","Wealthy","Private",1.20846755637368
+"",1950,1,10,5,9,6,0,"Asian","Wealthy","Private",1.5105844454671
+"",1950,6,9,5,24,5,0,"Black","Wealthy","Private",1.5105844454671
+"",1950,11,13,8,23,7,1,"Native American","Wealthy","Private",0.751137700056246
+"",1949,12,30,5,10,5,1,"Hispanic","Wealthy","Government",1.20552204176334
+"",1949,5,25,7,49,1,0,"Hispanic","Wealthy","Private",0.847331786542923
+"",1949,12,27,8,23,7,0,"Asian","Wealthy","Private",0.685568445475638
+"",1949,12,30,9,5,5,0,"Asian","Wealthy","Private",1.78709976798144
+"",1948,10,29,1,21,7,0,"Hispanic","Wealthy","Private",0.353282975014526
+"",1948,12,27,4,20,7,0,"Asian","Wealthy","Private",0.429559980983572
+"",1948,11,12,5,1,6,0,"Black","Middle","Private",2.35816385822196
+"",1948,1,9,8,25,1,0,"Asian","Wealthy","Private",0.988088320743754
+"",1948,3,30,9,11,7,1,"Asian","Poor","Private",1.15552973077668
+"",1948,7,17,10,31,7,1,"Hispanic","Wealthy","Private",0.220801859384079
+"",1948,9,9,10,6,7,0,"Hispanic","Wealthy","Private",0.220801859384079
+"",1947,10,27,1,21,7,0,"Asian","Poor","Private",0.505968778696051
+"",1947,3,7,1,21,7,0,"Asian","Wealthy","Private",0.505968778696051
+"",1947,4,9,4,40,2,1,"Hispanic","Wealthy","Private",0.523415977961433
+"",1947,12,8,6,22,1,0,"Hispanic","Middle","Private",1.02439984258166
+"",1947,10,27,8,23,7,1,"Asian","Wealthy","Private",0.723265715001252
+"",1946,11,21,4,48,5,1,"Asian","Wealthy","Private",0.346910197869102
+"",1946,7,11,4,40,2,0,"Asian","Wealthy","Private",0.346910197869102
+"",1946,4,5,5,9,5,1,"Hispanic","Wealthy","Private",1.53698630136986
+"",1946,11,23,7,13,6,0,"Asian","Poor","Private",1.08995433789954
+"",1945,3,23,1,21,8,0,"Asian","Wealthy","Private",0.344008056394763
+"",1945,7,24,4,40,2,0,"Native American","Middle","Private",0.46686807653575
+"",1945,4,23,5,9,5,0,"Black","Poor","Private",1.22348103390399
+"",1945,7,9,6,22,2,0,"Black","Middle","Private",0.595103222557905
+"",1945,5,24,6,35,5,0,"Hispanic","Wealthy","Private",0.595103222557905
+"",1945,12,10,0,53,7,1,"Hispanic","Wealthy","Private",0.719608689397209
+"",1944,11,29,2,32,5,0,"Asian","Wealthy","Private",1.86283367556468
+"",1944,5,11,4,20,7,0,"Hispanic","Wealthy","Private",0.402464065708419
+"",1944,3,25,5,43,5,0,"Hispanic","Wealthy","Private",1.16906228610541
+"",1944,2,15,6,35,6,0,"Hispanic","Wealthy","Private",0.84517453798768
+"",1944,1,12,8,4,2,1,"Hispanic","Wealthy","Private",1.21889117043121
+"",1943,11,29,1,21,7,0,"Caucasian","Poor","Private",0.385288319369147
+"",1943,2,9,4,20,7,0,"Black","Wealthy","Private",0.901429275505175
+"",1943,10,20,5,10,4,1,"Hispanic","Wealthy","Private",1.5295219319862
+"",1943,6,21,8,25,2,1,"Native American","Wealthy","Private",0.856196265264772
+"",1943,12,24,8,25,2,1,"Hispanic","Wealthy","Private",0.856196265264772
+"",1943,10,29,9,0,8,0,"Hispanic","Wealthy","Court Appointed or Public Defender",1.59931000492854
+"",1942,12,16,2,32,1,0,"Asian","Wealthy","Private",1.51141589350545
+"",1942,5,20,3,38,1,0,"Asian","Wealthy","Private",1.52077450584913
+"",1942,8,21,3,30,7,0,"Asian","Wealthy","Private",1.52077450584913
+"",1942,4,28,5,18,2,0,"Hispanic","Wealthy","Private",1.22831787010892
+"",1942,12,30,5,43,5,0,"Hispanic","Wealthy","Private",1.22831787010892
+"",1942,4,22,6,42,2,1,"Asian","Wealthy","Private",0.835590387829194
+"",1942,6,2,6,35,2,0,"Asian","Wealthy","Private",0.835590387829194
+"",1942,11,27,7,13,6,0,"Asian","Poor","Private",2.71399757966922
+"",1942,12,7,9,37,7,1,"Caucasian","Middle","Private",1.21194029850746
+"",1942,7,17,9,5,5,1,"Hispanic","Wealthy","Private",1.21194029850746
+"",1941,8,22,4,46,2,0,"Hispanic","Wealthy","Private",0.354256547365863
+"",1941,1,8,6,17,1,0,"Asian","Wealthy","Private",1.47384091875798
+"",1941,2,10,8,4,1,1,"Asian","Wealthy","Private",1.17439387494683
+"",1941,5,31,10,36,1,0,"Native American","Middle","Private",0.666737558485751
+"",1940,3,29,1,52,7,0,"Hispanic","Poor","Private",0.293833131801693
+"",1940,1,10,1,52,7,0,"Hispanic","Poor","Private",0.293833131801693
+"",1940,3,8,1,52,7,0,"Hispanic","Poor","Private",0.293833131801693
+"",1940,2,26,4,48,5,1,"Hispanic","Wealthy","Private",0.353688029020556
+"",1940,1,6,5,43,6,0,"Asian","Wealthy","Private",1.08827085852479
+"",1940,5,5,5,43,5,0,"Asian","Wealthy","Private",1.08827085852479
+"",1940,4,10,6,22,1,0,"Hispanic","Wealthy","Private",1.09697702539299
+"",1940,5,10,6,35,5,0,"Asian","Wealthy","Private",1.09697702539299
+"",1940,5,2,8,25,1,0,"Hispanic","Wealthy","Private",1.39842805320435
+"",1939,2,20,2,55,0,0,"Hispanic","Wealthy","Private",1.30054189245519
+"",1939,6,12,2,32,2,1,"Hispanic","Wealthy","Private",1.30054189245519
+"",1939,6,30,3,38,4,1,"Asian","Wealthy","Private",1.55794080867028
+"",1939,12,14,5,43,2,0,"Hispanic","Wealthy","Private",0.839933305543977
+"",1939,6,28,6,35,5,0,"Hispanic","Wealthy","Private",1.27344726969571
+"",1939,2,25,8,25,1,0,"Hispanic","Wealthy","Private",0.894122551062943
+"",1939,6,15,9,37,7,0,"Hispanic","Middle","Private",1.28247881061553
+"",1938,12,6,1,39,7,1,"Asian","Poor","Private",0.211794019933555
+"",1938,8,25,3,38,4,0,"Asian","Wealthy","Private",1.03920265780731
+"",1938,3,22,3,38,4,0,"Asian","Wealthy","Private",1.03920265780731
+"",1938,1,27,5,9,5,0,"Hispanic","Wealthy","Private",2.74861572535991
+"",1938,11,9,7,13,1,0,"Hispanic","Wealthy","Private",1.12956810631229
+"",1938,7,1,8,4,2,1,"Hispanic","Wealthy","Private",1.0125771238728
+"",1938,7,13,8,25,1,0,"Hispanic","Wealthy","Private",1.0125771238728
+"",1938,4,11,8,4,2,1,"Hispanic","Wealthy","Private",1.0125771238728
+"",1938,5,6,10,36,2,0,"Asian","Poor","Private",0.420450350682909
+"",1938,9,15,10,36,6,0,"Hispanic","Wealthy","Private",0.420450350682909
+"",1937,6,14,4,40,1,0,"Hispanic","Wealthy","Private",0.414644179350062
+"",1937,8,6,4,46,1,0,"Black","Wealthy","Private",0.414644179350062
+"",1937,9,27,4,46,1,0,"Hispanic","Wealthy","Private",0.414644179350062
+"",1937,4,17,4,48,6,1,"Hispanic","Wealthy","Private",0.414644179350062
+"",1937,4,6,4,40,1,0,"Hispanic","Wealthy","Private",0.414644179350062
+"",1937,4,12,6,22,2,0,"Asian","Wealthy","Private",1.29823118058412
+"",1937,6,28,8,4,2,0,"Black","Wealthy","Private",1.33278486219663
+"",1937,7,2,9,26,7,1,"Asian","Wealthy","Private",1.07280954339778
+"",1937,11,12,10,36,6,0,"Asian","Poor","Private",0.328484349874724
+"",1937,12,27,10,16,7,0,"Hispanic","Wealthy","Private",0.328484349874724
+"",1936,9,11,3,30,7,0,"Hispanic","Wealthy","Private",0.518610421836228
+"",1936,1,16,3,38,1,1,"Hispanic","Wealthy","Private",0.518610421836228
+"",1936,6,19,3,30,7,0,"Hispanic","Wealthy","Private",0.518610421836228
+"",1936,6,11,5,9,5,0,"Asian","Wealthy","Private",1.01757650951199
+"",1936,3,9,8,25,2,1,"Hispanic","Wealthy","Private",0.67772952853598
+"",1935,12,17,1,29,7,1,"Asian","Wealthy","Private",0.30546357615894
+"",1935,3,9,1,21,7,1,"Hispanic","Wealthy","Private",0.30546357615894
+"",1935,4,1,2,32,1,1,"Asian","Wealthy","Private",3.68253311258278
+"",1935,7,1,2,32,5,0,"Asian","Wealthy","Private",3.68253311258278
+"",1935,1,14,2,32,1,1,"Hispanic","Wealthy","Private",3.68253311258278
+"",1935,4,10,4,48,6,0,"Hispanic","Wealthy","Private",1.33046357615894
+"",1935,4,3,4,46,1,0,"Asian","Poor","Private",1.33046357615894
+"",1935,2,22,5,43,5,1,"Hispanic","Wealthy","Private",1.18791390728477
+"",1935,2,15,5,9,5,0,"Asian","Wealthy","Private",1.18791390728477
+"",1935,2,25,8,15,5,0,"Hispanic","Wealthy","Private",1.1327607615894
+"",1935,4,8,9,2,7,1,"Black","Middle","Private",1.37458609271523
+"",1935,4,22,9,5,8,1,"Hispanic","Wealthy","Private",1.37458609271523
+"",1935,1,7,9,47,2,0,"Hispanic","Wealthy","Private",1.37458609271523
+"",1935,3,25,10,55,0,0,"Native American","Poor","Private",0.595842531272995
+"",1934,6,11,4,40,1,0,"Hispanic","Wealthy","Private",0.88
+"",1934,6,8,6,22,2,0,"Asian","Middle","Private",0.591377852916315
+"",1934,6,13,7,13,6,0,"Hispanic","Wealthy","Private",1.12473372781065
+"",1934,3,23,8,25,2,1,"Native American","Middle","Private",1.21499013806706
+"",1934,7,19,8,4,1,0,"Hispanic","Wealthy","Private",1.21499013806706
+"",1934,10,12,8,25,2,1,"Hispanic","Wealthy","Private",1.21499013806706
+"",1934,6,7,10,44,7,1,"Hispanic","Wealthy","Private",0.755029585798817
+"",1934,6,11,0,53,7,0,"Asian","Wealthy","Private",0.792223161453931
+"",1933,3,3,3,30,7,0,"Hispanic","Wealthy","Private",0.844660194174757
+"",1933,8,23,3,38,8,0,"Hispanic","Wealthy","Private",0.844660194174757
+"",1933,12,19,5,43,6,0,"Hispanic","Wealthy","Private",0.718446601941748
+"",1933,2,20,5,43,5,0,"Hispanic","Poor","Private",0.718446601941748
+"",1933,12,4,6,55,0,0,"Hispanic","Wealthy","Private",1.957928802589
+"",1933,3,16,7,15,6,1,"Asian","Wealthy","Private",0.810679611650486
+"",1933,3,10,7,13,5,0,"Hispanic","Wealthy","Private",0.810679611650486
+"",1933,1,31,8,27,7,0,"Hispanic","Wealthy","Private",1.07281553398058
+"",1933,8,21,9,47,2,1,"Asian","Wealthy","Private",1.13673139158576
+"",1933,11,6,9,37,7,0,"Hispanic","Wealthy","Private",1.13673139158576
+"",1932,12,17,3,38,2,1,"Asian","Wealthy","Private",0.966478014801916
+"",1932,3,17,3,30,7,0,"Hispanic","Middle","Private",0.966478014801916
+"",1932,7,27,3,30,7,0,"Hispanic","Poor","Private",0.966478014801916
+"",1932,1,20,4,20,7,0,"Hispanic","Wealthy","Private",0.593237556232767
+"",1932,11,3,5,1,6,0,"Hispanic","Wealthy","Private",1.27993034392686
+"",1932,4,30,8,4,1,1,"Hispanic","Wealthy","Private",2.31301697866783
+"",1932,6,21,9,5,5,1,"Hispanic","Wealthy","Private",1.29364388332608
+"",1932,4,11,10,36,3,1,"Hispanic","Wealthy","Private",0.641996807429981
+"",1932,1,5,10,6,7,1,"Hispanic","Wealthy","Private",0.641996807429981
+"",1931,5,28,1,52,7,1,"Hispanic","Poor","Private",0.4032
+"",1931,5,4,3,38,7,0,"Asian","Wealthy","Private",2.33431578947368
+"",1931,4,1,5,18,2,0,"Asian","Poor","Private",0.882
+"",1931,2,18,5,24,6,1,"Asian","Wealthy","Private",0.882
+"",1931,3,26,5,43,6,1,"Hispanic","Wealthy","Private",0.882
+"",1931,11,10,6,35,5,1,"Hispanic","Wealthy","Private",1.14947368421053
+"",1931,2,9,7,14,6,1,"Asian","Wealthy","Private",0.921789473684211
+"",1931,9,8,8,41,7,1,"Hispanic","Wealthy","Private",1.03073684210526
+"",1931,11,9,9,5,6,0,"Hispanic","Wealthy","Private",1.06484210526316
+"",1931,3,27,10,36,6,0,"Native American","Poor","Private",0.663157894736842
+"",1931,8,6,10,16,7,1,"Black","Wealthy","Private",0.663157894736842
+"",1931,12,24,10,44,7,1,"Hispanic","Wealthy","Private",0.663157894736842
+"",1930,1,6,2,32,5,1,"Hispanic","Wealthy","Private",2.14006366530241
+"",1930,7,21,3,38,1,1,"Hispanic","Wealthy","Private",0.78331059572533
+"",1930,2,10,5,1,4,0,"Asian","Wealthy","Private",0.8793769895407
+"",1930,3,3,7,13,1,1,"Hispanic","Wealthy","Private",0.5025011368804
+"",1930,1,6,10,36,7,1,"Black","Middle","Private",0.876913748673639
+"",1929,11,26,5,43,6,0,"Hispanic","Wealthy","Private",2.00890518596124
+"",1929,4,12,6,35,6,1,"Asian","Wealthy","Private",1.42168674698795
+"",1929,6,20,7,14,6,1,"Hispanic","Wealthy","Private",0.281590128630464
+"",1929,12,7,7,14,5,0,"Asian","Wealthy","Private",0.281590128630464
+"",1929,12,17,9,5,6,1,"Hispanic","Wealthy","Private",1.42683778592631
+"",1929,12,17,9,5,6,1,"Caucasian","Wealthy","Private",1.42683778592631
+"",1928,10,16,4,46,1,0,"Hispanic","Wealthy","Private",0.380065789473684
+"",1928,12,7,6,35,6,0,"Asian","Wealthy","Private",0.757142857142857
+"",1928,4,3,6,17,1,0,"Hispanic","Wealthy","Private",0.757142857142857
+"",1928,1,5,7,14,7,1,"Hispanic","Wealthy","Private",0.441666666666667
+"",1927,2,25,3,30,7,1,"Asian","Wealthy","Private",0.728882833787466
+"",1927,9,23,4,46,1,0,"Asian","Wealthy","Private",0.505790190735695
+"",1927,7,5,4,33,2,1,"Hispanic","Wealthy","Private",0.505790190735695
+"",1927,2,17,5,18,1,1,"Caucasian","Middle","Private",0.837874659400545
+"",1927,3,18,5,24,6,0,"Asian","Wealthy","Private",0.837874659400545
+"",1927,12,1,7,13,6,0,"Native American","Wealthy","Private",0.548851693265862
+"",1926,3,29,1,39,7,1,"Hispanic","Wealthy","Private",0.800427565392354
+"",1926,2,1,2,32,5,0,"Hispanic","Wealthy","Private",2.28501006036217
+"",1926,7,9,3,8,7,1,"Native American","Poor","Private",0.497107645875252
+"",1926,5,21,3,38,1,0,"Asian","Wealthy","Private",0.497107645875252
+"",1926,3,12,3,30,7,1,"Hispanic","Wealthy","Private",0.497107645875252
+"",1926,1,13,5,1,5,0,"Asian","Wealthy","Private",0.636597361949475
+"",1926,5,20,6,42,4,1,"Hispanic","Wealthy","Private",1.91260060362173
+"",1926,12,4,7,14,7,0,"Hispanic","Wealthy","Private",0.572937625754527
+"",1926,8,21,8,25,1,1,"Hispanic","Wealthy","Private",1.81510491520552
+"",1926,11,15,8,16,7,1,"Hispanic","Wealthy","Private",1.81510491520552
+"",1926,12,13,9,2,7,0,"Asian","Wealthy","Private",0.707746478873239
+"",1925,9,29,3,30,7,1,"Native American","Middle","Private",0.720496894409938
+"",1925,12,29,3,38,2,0,"Asian","Wealthy","Private",0.720496894409938
+"",1925,1,6,5,43,5,1,"Hispanic","Wealthy","Private",0.543478260869565
+"",1925,4,6,6,35,6,0,"Asian","Wealthy","Private",0.9849157054126

@@ -1,22 +1,52 @@
 ---
-title: "Imputation"
+title: "Multiple Imputation"
 output: html_document
 ---
 
+```{r echo = FALSE, results = 'hide'}
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE, tidy = TRUE,
+  eval = FALSE)
+```
+
 ## Required Packages and Datasets
 
-In this lesson we will use the `Amelia` package and a subset of Beatrice Magistro's [dataset](), with data from the `European Social Survey`. 
+In this lesson we will use the `Amelia` package and a subset of Beatrice Magistro's [dataset](https://www.dropbox.com/s/521gqn9neemmsd3/ess_sub.csv?dl=0), with data from the `European Social Survey`.
 
-```{r}
-install.packages("Amelia")
+```{r, message = FALSE}
+# install.packages("Amelia")
 library(Amelia)
+library(ggplot2)
+library(dplyr)
 ess_sub <- read.csv("data/ess_sub.csv")
 ```
 
-## Introduction
-Often the datasets we use to test our theories and hypotheses have some, and sometimes numerous, missing values (`NA`s). What do we do?
+Each row in the dataset is an indivdual's response to the survey and it has the following variables:
 
-One option would be to drop the rows that have a missing value for one of our covariates and/or the variable of interest. However, despite not having a value for a particular variable or set of variables, those row may contain information about the other variables. Moreover, dropping those observation may result in biased and inefficient estimates.
+variable       description
+-------------- -------------------------------------------------------------------
+`stfdem`       Satisfaction with democracy: {1-10 scale} (ordinal)
+`year`         Year: {2002, 2003, ..., 2012} (time variable)
+`cntry`        Country: {DE, GB, ..., NL} (cross section variable)
+`crisis`       Crisis: {post, pre} (ordinal)
+`age_gr`       Age group: {18-34, 35-64, +65} (ordinal)
+`edulvla`      Education level: {low, medium, high} (ordinal)
+`gndr`         Gender: {Men, Women} (categorical)
+`peripherial`  Peripherial countries: {core, peri} (categorical)
+-------------- -------------------------------------------------------------------
+
+## Introduction
+Often the datasets we use to test our theories and hypotheses have some, and sometimes numerous, missing values (`NA`). What do we do?
+
+One option would be to drop the rows that have a missing value for one of our covariates and/or the variable of interest. For example, when we estimate a linear model, `R` automatically gets rid of the rows with missing values for the variables in the model ("listwise deletion"). In this case 7,344 observations. 
+
+```{r}
+model <- lm(stfdem ~ crisis + age_gr + edulvla + gndr + peripherial,
+            data = ess_sub)
+summary(model)
+```
+
+
+However, despite not having a value for a particular variable or set of variables, thoses row may provide information about the other variables. Moreover, dropping those observation may result in biased and inefficient estimates.
 
 The other option is to **impute** ("fill in") the missing values. In this lesson we will see one method and `R package` to do so: `Amelia`. This method assumes that the data: 
 
@@ -27,34 +57,116 @@ Then the `Amelia` uses a bootstrap-EM algorithm (EMB) to estimate/impute the mis
 
 ## Exploring missing values
 
-
+The `summary()` function provides you with information about the number of missing values per variable. This dataset has missing values for the outcome variable (`stfdem`) and the covariates `edulvla` and `gndr`.
 
 ```{r}
 summary(ess_sub)
+```
 
-amelia_output <- amelia(ess_sub, m = 5, ts = "year" , cs = "cntry",
+The `Amelia` package has a function that helps visualizing the missing data in a dataset: `missmap()`. Warning: takes few minutes to run, depending on the size of the dataset.
+
+```{r}
+missmap(ess_sub)
+```
+
+## Imputation
+
+The `amelia()` function takes the following parameters:
+
+  - `x`: the dataset (e.g. ess_sub)
+  - `m`: number of imputed datasets to create (e.g. 5, see Fox, p.564)
+  - `logs`: a vector with variables that are `log` transformations
+  - `logstc`: a vector with variables that are `logistic` transformations
+  - `noms`: a vector with variables that are nominal (e.g. `gnder`, `peripherial`)
+  - `ords`: a vector with variables that are ordinal (e.g. `stfdem`)
+  - `ts`: name of the variable indicating time (for time series data) (e.g. `year`)
+  - `cs`: name of the cross section variable (for cross section data) (e.g. `cntry`)
+  - `idvars`: name of a variablde indicating ID, so `Amelia` can ignore it
+
+The `amelia()` function will create `m` (so 5) new datasets with imputed values for the all missing values in`ess_sub`. 
+
+```{r}
+m <- 5
+amelia_output <- amelia(ess_sub, m = m, ts = "year" , cs = "cntry",
                       ords = c("stfdem", "crisis", "age_gr","edulvla"),
-                      noms = c("gndr", "pigs"))
+                      noms = c("gndr", "peripherial"))
+```
 
-# Combining all imputed dataset into 1
+The imputed datasets are in the `imputations` list within the `amelia_output`. You can combine them into one dataset using the following loop:
 
+```{r}
 ess_all <- NULL
-
 for (i in 1:length(amelia_output$imputations)) {
   imp <- as.data.frame(amelia_output$imputations[i])
   colnames(imp) <- colnames(ess_sub)
   imp$imp <- paste0("imp", i)
   ess_all <- rbind(ess_all, imp)
 }
+```
 
+You can also access a matrix indicating the original missing values in the `amelia_output`. This will be useful to compare differences between actual and imputed data and to make judgements about the quality/plausibility of the imputed data.
+
+```{r}
+missMatrix <- amelia_output$missMatrix
+```
+
+## Diagnostics
+
+For the variables with missing values (e.g. `stfdem`, `edulvla`), explore differences across imputed datasets.
+```{r}
 ggplot(ess_all %>%
          group_by(imp,stfdem)%>%
          summarize(n = n()), aes(y = n, x = factor(stfdem))) +
   geom_bar(stat = "identity") +
-  geom_text(aes(label = n), vjust = 0, ) +
-  facet_wrap(~ imp)
-
-ggplot(ess_all, aes(x = factor(edulvla))) +
-  geom_bar() +
+  geom_text(aes(label = n), vjust = 0.5, y = 1000, hjust = 0,position = ,
+            angle = 90, color = "white") +
   facet_wrap(~ imp)
 ```
+
+```{r}
+ggplot(ess_all %>%
+         group_by(imp,edulvla)%>%
+         summarize(n = n()), aes(y = n, x = factor(edulvla))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n), vjust = 0.5, y = 20000, hjust = 0.5,position = ,
+            color = "white") +
+  facet_wrap(~ imp)
+```
+
+Check Jeff Arnold's lesson on [Multiple Imputation](https://uw-pols503.github.io/pols_503_sp16/missing_data_imputation.html#models) to see other ways of evaluating the plausibility of the imputated data. 
+
+## Combining imputated datasets in your analysis
+
+See Fox p.656 for details about how to combine the coefficients from different imputated datasets.
+
+The `Amelia` package has a function to do so: `mi.meld()`. The function takes 2 paramters:
+
+  - `q`: a dataset/matrix with *k* rows (*k* = number of imputated datasets) and *v* columns (*v* = number of covariates in the model). This dataset contains the coefficients for all covariates across imputated datasets.
+  - `se`: a dataset/matrix with *k* rows (*k* = number of imputated datasets) and *v* columns (*v* = number of covariates in the model). This dataset contains the standard errors for all covariates across imputated datasets. 
+  
+Calculate `q` and `se`
+
+```{r}
+q <- NULL
+se <- NULL
+form <- formula(stfdem ~ + crisis + age_gr + edulvla + gndr + peripherial)
+for (i in 1:m) {
+  model <- lm(form, data = amelia_output$imputations[[i]])
+  q <- rbind(q, coef(model))
+  se <- rbind(se, coef(summary(model))[,2])
+}
+q
+se
+```
+
+
+```{r, message = FALSE}
+cb_model <- mi.meld(q = q, se = se)
+cb_model_df <- data.frame(varname = colnames(cb_model[[1]]),
+                          coef = as.numeric(cb_model[[1]]),
+                          se = as.numeric(cb_model[[2]]),
+                          coef.lwr = as.numeric(cb_model[[1]] - (2 * as.numeric(cb_model[[2]]))),
+                          coef.upr = as.numeric(cb_model[[1]] + (2 * as.numeric(cb_model[[2]]))))
+cb_model_df
+```
+
