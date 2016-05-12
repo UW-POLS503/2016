@@ -26,14 +26,14 @@ library("pcse")
 
 
 # Data
- 
+
 This example data was the data from Garrett (1989) *Partisan Politics in the Global Economy*.
-The analyses are similar (but not the same) as those run in King, Wittenberg and Tomz (2000), Bailey and Katz, and Beck and Katz (2011). 
+The analyses are similar (but not the same) as those run in King, Wittenberg and Tomz (2000), Bailey and Katz, and Beck and Katz (2011).
 The replication data is from Beck and Katz (2011).
 
 
 ```{r}
-data_path <- "http://pols503.github.io/pols_503_sp15/data/garrett1998.csv"
+data_path <- "data/garrett1998.csv"
 garrett1998 <- read.csv(data_path, stringsAsFactors = FALSE)
 ```
 
@@ -127,7 +127,7 @@ pcse(mod_ldv, groupN = garrett1998$country, groupT = garrett1998$year)
 
 # Panel Models using **plm**
 
-The functions in **plm** need to know which variables correspond to id and time in the data frame. 
+The functions in **plm** need to know which variables correspond to id and time in the data frame.
 So use the function `pdata.frame` to create a data frame friendly with the **plm** functions.
 ```{r}
 pgarrett <- pdata.frame(garrett1998, index = c("countryname", "year"))
@@ -141,7 +141,7 @@ mod_within <- plm(gdp ~ corp * leftlab + demand + oild + trade + year,
                   data = pgarrett, model = "within")
 summary(mod_within)
 ```
-Recover the fixed effects 
+Recover the fixed effects
 ```{r}
 fixef(mod_within)
 ```
@@ -159,7 +159,3 @@ Compare the random effects model with the fixed effects model using a Hausman te
 phtest(mod_within, mod_re)
 ```
 If we can reject the null, then we should use the fixed effects estimator.
-
-
-
-

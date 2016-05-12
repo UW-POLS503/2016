@@ -259,12 +259,14 @@ Readings
 
 ### <time datetime="2016-05-10">Tuesday, May 10</time>
 
-- [slides](sldies/regression-diagnostics.pdf)
+- [Heteroskedasticity slides](slides/regression-diagnostics.pdf)
 - [Heteroskedasticity example code](files/heteroskedasticity-example.R)
 
 
 ### <time datetime="2016-05-12">Thursday, May 12</time>
 
+- [Cross validation slides](slides/cross-validation.pdf)
+- [Cross validation example code](files/cross-validation.R)
 
 
 ### <time datetime="2016-05-13">Friday, May 13</time>

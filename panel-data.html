@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Jeffrey B. Arnold" />
+
+<meta name="date" content="2015-06-01" />
+
+<title>Panel Data</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 3</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Panel Data</h1>
+<h4 class="author"><em>Jeffrey B. Arnold</em></h4>
+<h4 class="date"><em>06/01/2015</em></h4>
+
+</div>
+
+
+<p>This worked example introduces estimation in panel data in R using example on partisan governments and economics measures for a panel of OECD states.</p>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<p>This tutor</p>
+<pre class="r"><code>library(&quot;lmtest&quot;)
+library(&quot;car&quot;)
+library(&quot;dplyr&quot;)
+library(&quot;ggplot2&quot;)</code></pre>
+<p>The panel data specific packages used are <strong>plm</strong> and <strong>pcse</strong>:</p>
+<pre class="r"><code>library(&quot;plm&quot;)
+library(&quot;pcse&quot;)</code></pre>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>This example data was the data from Garrett (1989) <em>Partisan Politics in the Global Economy</em>. The analyses are similar (but not the same) as those run in King, Wittenberg and Tomz (2000), Bailey and Katz, and Beck and Katz (2011). The replication data is from Beck and Katz (2011).</p>
+<pre class="r"><code>data_path &lt;- &quot;data/garrett1998.csv&quot;
+garrett1998 &lt;- read.csv(data_path, stringsAsFactors = FALSE)</code></pre>
+<p>The data consist of 350 observations for 0 countries for 25 years (1966 – 1990 with the following variables</p>
+<dl>
+<dt>country</dt>
+<dd><p>A country identifier (number)</p>
+</dd>
+<dt>year</dt>
+<dd><p>Year</p>
+</dd>
+<dt>unem</dt>
+<dd><p>unemployment</p>
+</dd>
+<dt>inf</dt>
+<dd><p>inflation</p>
+</dd>
+<dt>gdp</dt>
+<dd><p>Growth in GDP</p>
+</dd>
+<dt>leftlab</dt>
+<dd><p>Political power of left parties in the government. Index from 0–5.</p>
+</dd>
+<dt>corp</dt>
+<dd><p>A measure of corporatism or how encompassing the labor movement, e.g. encompassing unions. Index from 0–4.</p>
+</dd>
+<dt>capmob</dt>
+<dd><p>Capital mobility. Index from 0–4.</p>
+</dd>
+<dt>oild</dt>
+<dd><p>Oil dependency</p>
+</dd>
+<dt>demand</dt>
+<dd><p>OECD demand (growth rate in all OECD countries)</p>
+</dd>
+<dt>countryname</dt>
+<dd><p>The country name</p>
+</dd>
+</dl>
+<p>Effect of the left parties, corporatism and the interaction of the two.</p>
+<p>Garret’s theories involve the combination of left-leaning parties in government and encompassing trade unions.</p>
+<div id="models-estimated-with-lm" class="section level2">
+<h2>Models estimated with LM</h2>
+<p>Pooled time-series, cross-section</p>
+<pre class="r"><code>mod1 &lt;- lm(gdp ~ corp * leftlab + demand + oild + trade, data = garrett1998)</code></pre>
+<p>Controlling for country</p>
+<pre class="r"><code>mod2 &lt;- lm(gdp ~ corp * leftlab + demand + oild + trade + countryname,
+           data = garrett1998)</code></pre>
+<p>Controlling for country and year</p>
+<pre class="r"><code>mod3 &lt;- lm(gdp ~ corp * leftlab + demand + oild + trade + countryname + factor(year),
+           data = garrett1998)</code></pre>
+<p>Lagged dependent variable</p>
+<pre class="r"><code>mod_ldv &lt;- lm(gdp ~ gdpl + corp * leftlab + demand + oild + trade + year,
+              data = garrett1998)
+mod_ldv</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = gdp ~ gdpl + corp * leftlab + demand + oild + trade + 
+##     year, data = garrett1998)
+## 
+## Coefficients:
+##  (Intercept)          gdpl          corp       leftlab        demand  
+##    80.061094      0.293309     -0.403889     -0.617747      0.008225  
+##         oild         trade          year  corp:leftlab  
+##    -4.890031     -0.029882     -0.038558      0.176266</code></pre>
+<p>Estimating panel-corrected standard errors after a lagged dependent variable model.</p>
+<pre class="r"><code>pcse(mod_ldv, groupN = garrett1998$country, groupT = garrett1998$year)</code></pre>
+<pre><code>## $vcov
+##               X.Intercept.          gdpl          corp       leftlab
+## X.Intercept. 1836.07724472 -8.924833e-01 -8.923448e-01 -1.273943e+00
+## gdpl           -0.89248334  4.478574e-03  1.994741e-03  3.057399e-03
+## corp           -0.89234485  1.994741e-03  4.242712e-02  3.088963e-02
+## leftlab        -1.27394332  3.057399e-03  3.088963e-02  5.725434e-02
+## demand         -0.01518286 -6.371204e-06 -1.063662e-06  2.820008e-06
+## oild          -29.92733871  4.525943e-02  1.336451e-01  2.754657e-02
+## trade           0.08391008  4.116534e-05 -3.151312e-04 -7.239340e-05
+## year           -0.92611645  4.391191e-04  4.148240e-04  5.941080e-04
+## corp.leftlab    0.37348774 -6.823238e-04 -1.435762e-02 -1.581397e-02
+##                     demand          oild         trade          year
+## X.Intercept. -1.518286e-02 -2.992734e+01  8.391008e-02 -9.261165e-01
+## gdpl         -6.371204e-06  4.525943e-02  4.116534e-05  4.391191e-04
+## corp         -1.063662e-06  1.336451e-01 -3.151312e-04  4.148240e-04
+## leftlab       2.820008e-06  2.754657e-02 -7.239340e-05  5.941080e-04
+## demand        2.179216e-06  6.272688e-04 -6.702467e-06  7.665887e-06
+## oild          6.272688e-04  1.878762e+01 -5.358596e-03  1.493209e-02
+## trade        -6.702467e-06 -5.358596e-03  5.530314e-05 -4.329927e-05
+## year          7.665887e-06  1.493209e-02 -4.329927e-05  4.672369e-04
+## corp.leftlab  1.644199e-06 -2.245614e-02  1.168068e-04 -1.758201e-04
+##               corp.leftlab
+## X.Intercept.  3.734877e-01
+## gdpl         -6.823238e-04
+## corp         -1.435762e-02
+## leftlab      -1.581397e-02
+## demand        1.644199e-06
+## oild         -2.245614e-02
+## trade         1.168068e-04
+## year         -1.758201e-04
+## corp.leftlab  6.166286e-03
+## 
+## $pcse
+## X.Intercept.         gdpl         corp      leftlab       demand 
+## 42.849471930  0.066922150  0.205978457  0.239278794  0.001476217 
+##         oild        trade         year corp.leftlab 
+##  4.334469083  0.007436608  0.021615663  0.078525705 
+## 
+## $b
+##  (Intercept)         gdpl         corp      leftlab       demand 
+## 80.061094407  0.293309090 -0.403889158 -0.617746797  0.008224868 
+##         oild        trade         year corp:leftlab 
+## -4.890031278 -0.029882287 -0.038558261  0.176266133 
+## 
+## $tstats
+##  (Intercept)         gdpl         corp      leftlab       demand 
+##     1.868427     4.382840    -1.960832    -2.581703     5.571586 
+##         oild        trade         year corp:leftlab 
+##    -1.128173    -4.018268    -1.783811     2.244693 
+## 
+## $df
+## [1] 341
+## 
+## $pval
+##  (Intercept)         gdpl         corp      leftlab       demand 
+## 6.255993e-02 1.561865e-05 5.071226e-02 1.024822e-02 5.130916e-08 
+##         oild        trade         year corp:leftlab 
+## 2.600400e-01 7.217957e-05 7.534352e-02 2.542850e-02 
+## 
+## $pairwise
+## [1] FALSE
+## 
+## $nobs
+## [1] 350
+## 
+## $nmiss
+## [1] 0
+## 
+## $call
+## pcse(object = mod_ldv, groupN = garrett1998$country, groupT = garrett1998$year)
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;pcse&quot;</code></pre>
+</div>
+</div>
+<div id="panel-models-using-plm" class="section level1">
+<h1>Panel Models using <strong>plm</strong></h1>
+<p>The functions in <strong>plm</strong> need to know which variables correspond to id and time in the data frame. So use the function <code>pdata.frame</code> to create a data frame friendly with the <strong>plm</strong> functions.</p>
+<pre class="r"><code>pgarrett &lt;- pdata.frame(garrett1998, index = c(&quot;countryname&quot;, &quot;year&quot;))</code></pre>
+<p>Within (fixed-effects) model</p>
+<pre class="r"><code>mod_within &lt;- plm(gdp ~ corp * leftlab + demand + oild + trade + year,
+                  data = pgarrett, model = &quot;within&quot;)
+summary(mod_within)</code></pre>
+<pre><code>## Oneway (individual) effect Within Model
+## 
+## Call:
+## plm(formula = gdp ~ corp * leftlab + demand + oild + trade + 
+##     year, data = pgarrett, model = &quot;within&quot;)
+## 
+## Balanced Panel: n=14, T=25, N=350
+## 
+## Residuals :
+##    Min. 1st Qu.  Median 3rd Qu.    Max. 
+## -5.2100 -1.0200  0.0369  1.0000  4.6900 
+## 
+## Coefficients :
+##                Estimate Std. Error t-value  Pr(&gt;|t|)    
+## corp          0.5669585  0.5685383  0.9972 0.3194451    
+## leftlab      -0.6490591  0.3874089 -1.6754 0.0948802 .  
+## demand       -0.0080754  0.0021784 -3.7070 0.0002489 ***
+## oild         -8.4801198  6.2795243 -1.3504 0.1778728    
+## trade         0.0374468  0.0167635  2.2338 0.0262167 *  
+## year1967     -1.0224698  0.6636366 -1.5407 0.1244215    
+## year1968      0.6208874  0.6420478  0.9670 0.3342866    
+## year1969      2.0101661  0.6418841  3.1317 0.0019062 ** 
+## year1970      0.1680420  0.6725343  0.2499 0.8028603    
+## year1971     -1.5533423  0.6667365 -2.3298 0.0204686 *  
+## year1972      0.4941926  0.6511567  0.7589 0.4484692    
+## year1973      1.5523570  0.6517948  2.3817 0.0178457 *  
+## year1974     -4.1051472  0.8180272 -5.0184 8.857e-07 ***
+## year1975     -6.9624994  0.9505922 -7.3244 2.141e-12 ***
+## year1976      0.2075046  0.6640872  0.3125 0.7548993    
+## year1977     -2.8350941  0.6890417 -4.1145 4.992e-05 ***
+## year1978     -1.8088430  0.6766242 -2.6733 0.0079131 ** 
+## year1979     -1.3251267  0.6991356 -1.8954 0.0589845 .  
+## year1980     -4.1802011  0.8343638 -5.0100 9.218e-07 ***
+## year1981     -5.2619782  0.8083506 -6.5095 3.083e-10 ***
+## year1982     -6.6518768  0.9856099 -6.7490 7.465e-11 ***
+## year1983     -3.3253888  0.7473295 -4.4497 1.206e-05 ***
+## year1984     -1.1318565  0.7041248 -1.6075 0.1089835    
+## year1985     -1.8905450  0.7322675 -2.5818 0.0102944 *  
+## year1986     -2.9050938  0.7536212 -3.8548 0.0001412 ***
+## year1987     -2.4052672  0.6997451 -3.4373 0.0006688 ***
+## year1988     -0.9238201  0.6783068 -1.3620 0.1742153    
+## year1989     -2.0653889  0.7054172 -2.9279 0.0036687 ** 
+## year1990     -3.1559856  0.7564154 -4.1723 3.933e-05 ***
+## corp:leftlab  0.2758505  0.1437601  1.9188 0.0559365 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    1793.5
+## Residual Sum of Squares: 881.08
+## R-Squared:      0.50873
+## Adj. R-Squared: 0.44477
+## F-statistic: 10.5625 on 30 and 306 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Recover the fixed effects</p>
+<pre class="r"><code>fixef(mod_within)</code></pre>
+<pre><code>##     Austria     Belgium      Canada     Denmark     Finland      France 
+##   0.1183194   1.6125709   4.0759096   0.4528291   2.1303994   4.9929682 
+##     Germany       Italy       Japan Netherlands     Norway       Sweden 
+##   1.5925973   2.5675705   6.4440796   2.5177996   1.9605038  -0.1088838 
+##          UK          US 
+##   2.0211691   3.7676501</code></pre>
+<p>Random effects model</p>
+<pre class="r"><code>mod_re &lt;- plm(gdp ~ corp * leftlab + demand + oild + trade,
+                  data = pgarrett, model = &quot;random&quot;)
+summary(mod_re)</code></pre>
+<pre><code>## Oneway (individual) effect Random Effect Model 
+##    (Swamy-Arora&#39;s transformation)
+## 
+## Call:
+## plm(formula = gdp ~ corp * leftlab + demand + oild + trade, data = pgarrett, 
+##     model = &quot;random&quot;)
+## 
+## Balanced Panel: n=14, T=25, N=350
+## 
+## Effects:
+##                 var std.dev share
+## idiosyncratic 3.909   1.977 0.796
+## individual    1.002   1.001 0.204
+## theta:  0.6325  
+## 
+## Residuals :
+##    Min. 1st Qu.  Median 3rd Qu.    Max. 
+## -6.0000 -1.2300 -0.0656  1.0700  7.0200 
+## 
+## Coefficients :
+##                 Estimate  Std. Error t-value  Pr(&gt;|t|)    
+## (Intercept)    5.9851328   1.0971427  5.4552 9.384e-08 ***
+## corp          -0.5964127   0.4234573 -1.4084   0.15991    
+## leftlab       -0.9167707   0.4157503 -2.2051   0.02811 *  
+## demand         0.0086769   0.0010632  8.1608 6.392e-15 ***
+## oild         -10.8427610   5.4890701 -1.9753   0.04903 *  
+## trade         -0.0492558   0.0089545 -5.5007 7.410e-08 ***
+## corp:leftlab   0.3367056   0.1446656  2.3275   0.02052 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    1830.2
+## Residual Sum of Squares: 1339.4
+## R-Squared:      0.26817
+## Adj. R-Squared: 0.26281
+## F-statistic: 20.9485 on 6 and 343 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Compare the random effects model with the fixed effects model using a Hausman test</p>
+<pre class="r"><code>phtest(mod_within, mod_re)</code></pre>
+<pre><code>## 
+##  Hausman Test
+## 
+## data:  gdp ~ corp * leftlab + demand + oild + trade + year
+## chisq = 96.423, df = 6, p-value &lt; 2.2e-16
+## alternative hypothesis: one model is inconsistent</code></pre>
+<p>If we can reject the null, then we should use the fixed effects estimator.</p>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
