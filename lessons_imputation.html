@@ -333,12 +333,9 @@ div.tocify {
 
 <div id="required-packages-and-datasets" class="section level2">
 <h2>Required Packages and Datasets</h2>
-<p>In this lesson we will use the <code>Amelia</code> package and a subset of Beatrice Magistro’s <a href="https://www.dropbox.com/s/521gqn9neemmsd3/ess_sub.csv?dl=0">dataset</a>, with data from the <code>European Social Survey</code>. Notice that for the <code>Zelig</code> package, we need an older version (<code>Zelig4</code>). This is because the new version runs into some issues when estimating models using multiple imputated datasets.</p>
+<p>In this lesson we will use the <code>Amelia</code> package and a subset of Beatrice Magistro’s <a href="https://www.dropbox.com/s/521gqn9neemmsd3/ess_sub.csv?dl=0">dataset</a>, with data from the <code>European Social Survey</code>.</p>
 <pre class="r"><code># install.packages(&quot;Amelia&quot;)
 library(Amelia)
-library(devtools)
-install_github(&quot;IQSS/Zelig4&quot;)
-library(Zelig)
 library(ggplot2)
 library(dplyr)
 ess_sub &lt;- read.csv(&quot;data/ess_sub.csv&quot;)</code></pre>
@@ -466,7 +463,8 @@ summary(model)</code></pre>
 <li><code>idvars</code>: name of a variablde indicating ID, so <code>Amelia</code> can ignore it</li>
 </ul>
 <p>The <code>amelia()</code> function will create <code>m</code> (so 5) new datasets with imputed values for the all missing values in<code>ess_sub</code>.</p>
-<pre class="r"><code>amelia_output &lt;- amelia(ess_sub, m = 5, ts = &quot;year&quot; , cs = &quot;cntry&quot;,
+<pre class="r"><code>m &lt;- 5
+amelia_output &lt;- amelia(ess_sub, m = m, ts = &quot;year&quot; , cs = &quot;cntry&quot;,
                       ords = c(&quot;stfdem&quot;, &quot;crisis&quot;, &quot;age_gr&quot;,&quot;edulvla&quot;),
                       noms = c(&quot;gndr&quot;, &quot;peripherial&quot;))</code></pre>
 <pre><code>## -- Imputation 1 --
@@ -523,58 +521,62 @@ for (i in 1:length(amelia_output$imputations)) {
 <div id="combining-imputated-datasets-in-your-analysis" class="section level2">
 <h2>Combining imputated datasets in your analysis</h2>
 <p>See Fox p.656 for details about how to combine the coefficients from different imputated datasets.</p>
-<p>The <code>Zelig</code> package combines the coefficients for us and makes it very easy to estimate models using multiple imputated datasets.</p>
-<pre class="r"><code>model &lt;- zelig(stfdem ~ year + cntry + crisis + age_gr + edulvla + gndr + peripherial, data = amelia_output, model = &quot;ls&quot;)</code></pre>
-<pre><code>## 
-## 
-##  How to cite this model in Zelig:
-##   Kosuke Imai, Gary King, and Olivia Lau. 2016.
-##   &quot;ls: Least Squares Regression for Continuous Dependent Variables&quot;
-##   in Kosuke Imai, Gary King, and Olivia Lau, &quot;Zelig: Everyone&#39;s Statistical Software,&quot;
-##   http://gking.harvard.edu/zelig
-## </code></pre>
-<pre class="r"><code>summary(model)</code></pre>
-<pre><code>## 
-##   Model: ls
-##   Number of multiply imputed data sets: 5 
-## 
-## Combined results:
-## 
-## Call:
-## lm(formula = formula, weights = weights, model = F, data = data)
-## 
-## Coefficients:
-##                      Value  Std. Error      t-stat       p-value
-## (Intercept)   -1.466999390 5.906553046  -0.2483681  8.038502e-01
-## year           0.003650299 0.002936965   1.2428813  2.139147e-01
-## cntryCY        0.498796969 0.042967529  11.6086956  5.291810e-31
-## cntryCZ       -0.620850516 0.034777845 -17.8518974  2.895941e-65
-## cntryDE       -0.233892512 0.030027594  -7.7892524  9.525909e-15
-## cntryDK        1.787456460 0.033995450  52.5792845  0.000000e+00
-## cntryEE       -0.659662967 0.034898723 -18.9022094  4.586727e-70
-## cntryES        0.027109963 0.032523222   0.8335571  4.045624e-01
-## cntryFI        1.083276602 0.032905484  32.9208527 1.224717e-144
-## cntryFR       -0.735998903 0.032485936 -22.6559240 4.431678e-112
-## cntryGB       -0.364977447 0.031544476 -11.5702491  2.372440e-30
-## cntryGR       -0.541065277 0.033381724 -16.2084281  5.061924e-59
-## cntryHU       -1.364773019 0.035788500 -38.1344010 3.566958e-248
-## cntryIE       -0.195322354 0.031313180  -6.2377042  4.579955e-10
-## cntryIT       -0.662910576 0.046227537 -14.3401663  3.104940e-45
-## cntryNL        0.595158770 0.032445365  18.3434144  5.021610e-71
-## cntryPL       -0.802276312 0.034694880 -23.1237668 3.596563e-118
-## cntryPT       -1.293144195 0.032707798 -39.5362661 7.318642e-222
-## cntrySE        0.940723499 0.032742001  28.7313994 3.627887e-174
-## cntrySI       -1.221410283 0.038732963 -31.5341295 1.092874e-128
-## cntrySK       -0.847726436 0.034784395 -24.3708837 9.349588e-129
-## crisispre      0.158807538 0.020318088   7.8160670  6.799730e-15
-## age_gr18-34   -0.105059451 0.017675705  -5.9437207  1.327059e-08
-## age_gr35-64   -0.226648201 0.014617280 -15.5054978  4.913836e-44
-## edulvlalow    -0.539944779 0.014701513 -36.7271567 2.451043e-261
-## edulvlamedium -0.409882252 0.013391424 -30.6078174 4.855206e-204
-## gndrWomen     -0.178518244 0.010755750 -16.5974703  2.676627e-60
-## 
-## For combined results from datasets i to j, use summary(x, subset = i:j).
-## For separate results, use print(summary(x), subset = i:j).</code></pre>
+<p>The <code>Amelia</code> package has a function to do so: <code>mi.meld()</code>. The function takes 2 paramters:</p>
+<ul>
+<li><code>q</code>: a dataset/matrix with <em>k</em> rows (<em>k</em> = number of imputated datasets) and <em>v</em> columns (<em>v</em> = number of covariates in the model). This dataset contains the coefficients for all covariates across imputated datasets.</li>
+<li><code>se</code>: a dataset/matrix with <em>k</em> rows (<em>k</em> = number of imputated datasets) and <em>v</em> columns (<em>v</em> = number of covariates in the model). This dataset contains the standard errors for all covariates across imputated datasets.</li>
+</ul>
+<p>Calculate <code>q</code> and <code>se</code></p>
+<pre class="r"><code>q &lt;- NULL
+se &lt;- NULL
+form &lt;- formula(stfdem ~ + crisis + age_gr + edulvla + gndr + peripherial)
+for (i in 1:m) {
+  model &lt;- lm(form, data = amelia_output$imputations[[i]])
+  q &lt;- rbind(q, coef(model))
+  se &lt;- rbind(se, coef(summary(model))[,2])
+}
+q</code></pre>
+<pre><code>##      (Intercept) crisispre age_gr18-34 age_gr35-64 edulvlalow
+## [1,]    5.874327 0.2180225 -0.11535668  -0.2099701 -0.6956348
+## [2,]    5.867108 0.2221274 -0.11024628  -0.2062861 -0.6938102
+## [3,]    5.867050 0.2222165 -0.09941342  -0.2009758 -0.6930619
+## [4,]    5.868573 0.2184105 -0.10471958  -0.2029573 -0.6904310
+## [5,]    5.864418 0.2221892 -0.10514010  -0.1998890 -0.6960684
+##      edulvlamedium  gndrWomen peripherialperi
+## [1,]    -0.6297112 -0.2389228      -0.3270229
+## [2,]    -0.6276297 -0.2380649      -0.3295379
+## [3,]    -0.6298683 -0.2419523      -0.3363500
+## [4,]    -0.6307592 -0.2403058      -0.3271767
+## [5,]    -0.6299122 -0.2383574      -0.3305466</code></pre>
+<pre class="r"><code>se</code></pre>
+<pre><code>##      (Intercept)  crisispre age_gr18-34 age_gr35-64 edulvlalow
+## [1,]  0.01855185 0.01160933  0.01719708  0.01468296 0.01498298
+## [2,]  0.01855029 0.01161053  0.01719835  0.01468398 0.01498446
+## [3,]  0.01854366 0.01160459  0.01719172  0.01467780 0.01497655
+## [4,]  0.01854561 0.01160602  0.01719158  0.01467775 0.01498019
+## [5,]  0.01855177 0.01160988  0.01719767  0.01468360 0.01498452
+##      edulvlamedium  gndrWomen peripherialperi
+## [1,]    0.01372982 0.01118389      0.01293630
+## [2,]    0.01372948 0.01118494      0.01293854
+## [3,]    0.01372459 0.01117896      0.01292999
+## [4,]    0.01372468 0.01118066      0.01293270
+## [5,]    0.01372955 0.01118407      0.01293638</code></pre>
+<pre class="r"><code>cb_model &lt;- mi.meld(q = q, se = se)
+cb_model_df &lt;- data.frame(varname = colnames(cb_model[[1]]),
+                          coef = as.numeric(cb_model[[1]]),
+                          se = as.numeric(cb_model[[2]]),
+                          coef.lwr = as.numeric(cb_model[[1]] - (2 * as.numeric(cb_model[[2]]))),
+                          coef.upr = as.numeric(cb_model[[1]] + (2 * as.numeric(cb_model[[2]]))))
+cb_model_df</code></pre>
+<pre><code>##           varname       coef         se   coef.lwr    coef.upr
+## 1     (Intercept)  5.8682952 0.01898387  5.8303274  5.90626290
+## 2       crisispre  0.2205932 0.01184989  0.1968934  0.24429300
+## 3     age_gr18-34 -0.1069752 0.01842968 -0.1438346 -0.07011585
+## 4     age_gr35-64 -0.2040157 0.01536028 -0.2347362 -0.17329510
+## 5      edulvlalow -0.6938013 0.01518468 -0.7241706 -0.66343191
+## 6   edulvlamedium -0.6295761 0.01378656 -0.6571492 -0.60200299
+## 7       gndrWomen -0.2395207 0.01132061 -0.2621619 -0.21687945
+## 8 peripherialperi -0.3301268 0.01358620 -0.3572992 -0.30295442</code></pre>
 </div>
 
 <!-- some extra javascript for older browsers -->

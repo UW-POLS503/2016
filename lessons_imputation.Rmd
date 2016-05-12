@@ -10,14 +10,11 @@ knitr::opts_chunk$set(cache = FALSE, autodep = TRUE, tidy = TRUE,
 
 ## Required Packages and Datasets
 
-In this lesson we will use the `Amelia` package and a subset of Beatrice Magistro's [dataset](https://www.dropbox.com/s/521gqn9neemmsd3/ess_sub.csv?dl=0), with data from the `European Social Survey`. Notice that for the `Zelig` package, we need an older version (`Zelig4`). This is because the new version runs into some issues when estimating models using multiple imputated datasets.
+In this lesson we will use the `Amelia` package and a subset of Beatrice Magistro's [dataset](https://www.dropbox.com/s/521gqn9neemmsd3/ess_sub.csv?dl=0), with data from the `European Social Survey`.
 
 ```{r, message = FALSE}
 # install.packages("Amelia")
 library(Amelia)
-library(devtools)
-install_github("IQSS/Zelig4")
-library(Zelig)
 library(ggplot2)
 library(dplyr)
 ess_sub <- read.csv("data/ess_sub.csv")
@@ -89,7 +86,8 @@ The `amelia()` function takes the following parameters:
 The `amelia()` function will create `m` (so 5) new datasets with imputed values for the all missing values in`ess_sub`. 
 
 ```{r}
-amelia_output <- amelia(ess_sub, m = 5, ts = "year" , cs = "cntry",
+m <- 5
+amelia_output <- amelia(ess_sub, m = m, ts = "year" , cs = "cntry",
                       ords = c("stfdem", "crisis", "age_gr","edulvla"),
                       noms = c("gndr", "peripherial"))
 ```
@@ -141,18 +139,34 @@ Check Jeff Arnold's lesson on [Multiple Imputation](https://uw-pols503.github.io
 
 See Fox p.656 for details about how to combine the coefficients from different imputated datasets.
 
-The `Zelig` package combines the coefficients for us and makes it very easy to estimate models using multiple imputated datasets.
+The `Amelia` package has a function to do so: `mi.meld()`. The function takes 2 paramters:
 
-```{r, message = FALSE}
-model <- zelig(stfdem ~ year + cntry + crisis + age_gr + edulvla + gndr + peripherial, data = amelia_output, model = "ls")
-```
+  - `q`: a dataset/matrix with *k* rows (*k* = number of imputated datasets) and *v* columns (*v* = number of covariates in the model). This dataset contains the coefficients for all covariates across imputated datasets.
+  - `se`: a dataset/matrix with *k* rows (*k* = number of imputated datasets) and *v* columns (*v* = number of covariates in the model). This dataset contains the standard errors for all covariates across imputated datasets. 
+  
+Calculate `q` and `se`
 
 ```{r}
-summary(model)
+q <- NULL
+se <- NULL
+form <- formula(stfdem ~ + crisis + age_gr + edulvla + gndr + peripherial)
+for (i in 1:m) {
+  model <- lm(form, data = amelia_output$imputations[[i]])
+  q <- rbind(q, coef(model))
+  se <- rbind(se, coef(summary(model))[,2])
+}
+q
+se
 ```
 
 
-
-
-
+```{r, message = FALSE}
+cb_model <- mi.meld(q = q, se = se)
+cb_model_df <- data.frame(varname = colnames(cb_model[[1]]),
+                          coef = as.numeric(cb_model[[1]]),
+                          se = as.numeric(cb_model[[2]]),
+                          coef.lwr = as.numeric(cb_model[[1]] - (2 * as.numeric(cb_model[[2]]))),
+                          coef.upr = as.numeric(cb_model[[1]] + (2 * as.numeric(cb_model[[2]]))))
+cb_model_df
+```
 
