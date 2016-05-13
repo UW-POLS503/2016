@@ -14,7 +14,7 @@ n_folds <- 5
 fold <- sample((seq_len(n) %% n_folds) + 1)
 
 #' Formula for the model
-form <- prestige ~ education 
+form <- prestige ~ education
 
 # Vector to hold MSE of the folds
 mse_folds <- rep(NA, n_folds)
@@ -28,7 +28,8 @@ for (i in seq_len(n_folds)) {
   # estimate model on training data
   mod <- lm(form, data = training_data)
   # Get residuals for predictions
-  mse_folds[i] <- mean(residuals(mod, newdata = mod) ^ 2)
+  err <- predict(mod, newdata = test_data) - test_data[["prestige"]]
+  mse_folds[i] <- mean(err ^ 2)
 }
 cv_mse <- mean(mse_folds)
 
@@ -104,8 +105,6 @@ for (i in seq_along(models)) {
 model_cv <- bind_rows(model_cv)
 
 model_cv
-  
-
 
 
 #' Other functions:
