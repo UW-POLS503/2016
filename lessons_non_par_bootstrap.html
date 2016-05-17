@@ -11,7 +11,7 @@
 
 
 
-<title>LaTeX for Research</title>
+<title>Bootstrapped Standard Errors</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -283,7 +283,6 @@ div.tocify {
              <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
             <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
-            <li><a href="assignments_peer_review_2.html">Peer Review 2</a></li>
           </ul>
         </li>
         <!-- end assignments dropdown -->
@@ -328,52 +327,26 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">LaTeX for Research</h1>
+<h1 class="title">Bootstrapped Standard Errors</h1>
 
 </div>
 
 
-<p><a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a> is a document markup language (think something like HTML) that is widely used in academia.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Its primary advantages over Word (and word processors) are the separation of content and presentation and its formatting of mathematical equations. In addition to papers, it is often used for academic slides; many talk slides are prepared with <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">beamer</a>.</p>
-<div id="learning-latex" class="section level2">
-<h2>Learning LaTeX</h2>
-<p>Here are some links to get started learning LaTeX:</p>
-<ul>
-<li><a href="https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1">Overleaf Free &amp; Interactive Online Introduction to LaTeX</a></li>
-<li><a href="https://www.latex-tutorial.com/tutorials/">LaTeX Tutorial</a> has interactive lessons</li>
-<li><a href="https://www.sharelatex.com/learn/">ShareLaTeX Documentation</a></li>
-<li><a href="https://www.overleaf.com/latex/templates/">Overleaf Example Templates</a> has many different examples of LaTeX documents.</li>
-<li><a href="https://en.wikibooks.org/wiki/LaTeX">LaTeX Wikibook</a></li>
-<li><a href="https://tobi.oetiker.ch/lshort/lshort.pdf">Not So Short Introduction to LaTeX</a> is a classic, but not as as newby friendly as the others.</li>
-</ul>
+<div id="required-packages-and-datasets" class="section level2">
+<h2>Required Packages and Datasets</h2>
+<p>For this short lesson you need the following packages and also to load the <code>Prestige</code> dataset in the <code>uwpols501</code>.</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+library(&quot;devtools&quot;)
+# install_github(&#39;UW-POLS501/r-uwpols501&#39;) #If you still don&#39;t have it
+# installed
+library(uwpols501)
+data(Prestige)</code></pre>
 </div>
-<div id="writing-latex" class="section level2">
-<h2>Writing LaTeX</h2>
-<ul>
-<li>Use an online service such as <a href="https://www.overleaf.com/">Overleaf</a> or <a href="https://www.sharelatex.com/">ShareTeX</a>. These are great for collaboration, but become inflexible when you want to customize your workflow.</li>
-<li>Write it with a specialized editor such as <a href="http://www.xm1math.net/texmaker/">TeXmaker</a>, <a href="http://www.texstudio.org/">TeXStudio</a>, or <a href="http://pages.uoregon.edu/koch/texshop/">TeXshop</a>. These generally have built ways to insert text, and also live preview. I would stay away from editors such as <a href="https://www.lyx.org/">LyX</a> that are WYSWYG.</li>
-<li>Write it with an general purpose editor such as <a href="https://atom.io/">Atom</a> or <a href="https://www.sublimetext.com/">Sublime Text</a>.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Most editors have a plugin to make writing LaTeX easier. For Atom there is <a href="https://atom.io/packages/latextools">LaTeXTools</a>, and for Sublime Text, <a href="https://github.com/SublimeText/LaTeXTools">LaTeXTools</a></li>
-</ul>
-</div>
-<div id="latex-with-r" class="section level2">
-<h2>LaTeX with R</h2>
-<p>This is pretty easy. Rnw, also called Sweave, documents allow you to mix R chunks with LaTeX. This is similar to R markdown, but with LaTeX instead of markdown.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> <a href="http://yihui.name/knitr/">knitr</a>.</p>
-<p>Many packages, such as xtable](<a href="https://cran.r-project.org/package=xtable" class="uri">https://cran.r-project.org/package=xtable</a>), <a href="ttps://cran.r-project.org/package=stargazer">stargazer</a>, or <a href="ttps://cran.r-project.org/package=texreg">texreg</a> produce formatted output in LaTeX. When you use these programs, do not copy and paste the output. Instead, save it to a file, and use <code>\input{}</code> to include the contents in your document.</p>
-</div>
-<div id="useful-packages" class="section level2">
-<h2>Useful Packages</h2>
-<p>TODO</p>
-</div>
-<div id="my-workflow" class="section level2">
-<h2>My workflow</h2>
-<p>At the moment, I use emacs with <a href="http://www.gnu.org/software/auctex/">AucTeX</a> for writing pure LaTeX documents. However, I’ve started using Atom more and more as a general text editor. I use RStudio for writing Rnw files. For papers, I haven’t moved to using (R) markdown and pandoc yet, because I find the layout and reference support still too limiting; I end up writing enough LaTeX that I figure I might as well write the whole thing in LaTeX. I’ve been using Overleaf for coauthoring in a couple of cases. I often build my document using <a href="https://en.wikipedia.org/wiki/Make_(software)">Makefiles</a>. For smaller papers, I’ll use Rnw files with knitr, but for larger projects, I’ll separate the R code into scripts and include the output into</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>TeX is pronounced as “teck” because the X is a Greek chi. The pronunciation of of LaTeX is thus lah-teck or lay-teck. It is not pronounced like the rubber compund. See this <a href="http://tex.stackexchange.com/questions/17502/what-is-the-correct-pronunciation-of-tex-and-latex">StackExchange</a> question on the pronunciation of LaTeX.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>And of course <a href="http://www.vim.org/">Vim</a> or <a href="https://www.gnu.org/software/emacs/">Emacs</a>.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>And <a href="https://www.statistik.lmu.de/~leisch/Sweave/">Sweave</a> files preceded R markdown and knitr by many years.<a href="#fnref3">↩</a></p></li>
-</ol>
+<div id="non-parametric-bootstrap-redrawing-samples-from-the-sample" class="section level1">
+<h1>Non-Parametric Bootstrap: Redrawing samples from the sample</h1>
+<pre class="r"><code>library(tidyr)
+prestige_bo1 &lt;- bootstrap(Prestige, 2)</code></pre>
 </div>
 
 <!-- some extra javascript for older browsers -->

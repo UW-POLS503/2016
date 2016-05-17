@@ -1,0 +1,32 @@
+---
+title: "Bootstrapped Standard Errors"
+output: html_document
+---
+
+```{r echo = FALSE, results = 'hide'}
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE, tidy = TRUE,
+  eval = FALSE)
+```
+
+## Required Packages and Datasets
+
+For this short lesson you need the following packages and also to load the `Prestige` dataset in the `uwpols501`.
+
+```{r, message = FALSE}
+library(dplyr)
+library(ggplot2)
+library("devtools")
+#install_github("UW-POLS501/r-uwpols501") #If you still don't have it installed
+library(uwpols501)
+data(Prestige)
+```
+
+# Non-Parametric Bootstrap: Redrawing samples from the sample 
+
+```{r}
+library(tidyr)
+prestige_bo1 <- bootstrap(Prestige,2)
+```
+
+
+
