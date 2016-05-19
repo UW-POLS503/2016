@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Categorical Covariates</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 3</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
+            <li><a href="assignments_peer_review_2.html">Peer Review 2</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+            <li><a href="lessons_imputation.html">Multiple Imputation</a></li>
+            <li><a href="lessons_weights.html">Weights</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Categorical Covariates</h1>
+
+</div>
+
+
+<div id="required-packages-and-datasets" class="section level2">
+<h2>Required Packages and Datasets</h2>
+<p>In this lesson we will use a subset of Carolyn Dapper’s <a href="https://www.dropbox.com/s/b3h69zhsfyb9fkk/appeals_sub.csv?dl=0">dataset</a>, with data from the United States Courts of Appeals Data Base (Dr. Donald R. Songer’s project).</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+appeals_sub &lt;- read.csv(&quot;data/appeals_sub.csv&quot;)</code></pre>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this lesson we will go over how to use categorical covariates in a linear model, how to interpret their coefficients, and how to plot predicted values.</p>
+</div>
+<div id="categorical-covariates-in-a-linear-model" class="section level1">
+<h1>Categorical covariates in a linear model</h1>
+<p>Categorical variables are not different than other variables when specifying a linear model in <code>R</code>, we just need to add the variable with the variable in the <code>formula</code> parameter of the <code>lm()</code> function.</p>
+<pre class="r"><code>model1 &lt;- lm(formula = reversed_dum ~ income, data = appeals_sub)</code></pre>
+</div>
+<div id="interpreting-regression-coefficients" class="section level1">
+<h1>Interpreting regression coefficients</h1>
+<p>When including a categorical covariate in a linear model, <code>R</code> calculates a coefficient for each of the categories but one of them: the base or reference category.</p>
+<p>In model one we only included one covariate, <code>income</code>, which is a categorical variable with 3 categories: <code>Poor</code>, <code>Middle</code>, and <code>Wealthy</code>. When we ask for the <code>summary()</code> of <code>model1</code>, we get explicit coefficients for <code>Poor</code> and <code>Wealthy</code> but not for <code>Middle</code>.</p>
+<pre class="r"><code>summary(model1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = reversed_dum ~ income, data = appeals_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.3839 -0.3839 -0.3559  0.6161  0.6963 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    0.35593    0.06274   5.673 2.03e-08 ***
+## incomePoor    -0.05223    0.07521  -0.694    0.488    
+## incomeWealthy  0.02796    0.06612   0.423    0.672    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4819 on 725 degrees of freedom
+## Multiple R-squared:  0.004143,   Adjusted R-squared:  0.001396 
+## F-statistic: 1.508 on 2 and 725 DF,  p-value: 0.222</code></pre>
+<p>These two coefficients (<code>Poor</code> and <code>Wealthy</code>) indicate the effect that being poor and wealthy have on the outcome (<code>reversed_dum</code>) compared to the effect of having a <code>Middle</code> income. The <code>(Intercept)</code> coefficient indicates the effect of having a <code>Middle</code> income.</p>
+<pre class="r"><code>newdata = data.frame(income = c(&quot;Middle&quot;, &quot;Poor&quot;, &quot;Wealthy&quot;))
+pred1 &lt;- predict(model1, newdata = newdata)
+pred1b &lt;- data.frame(cat = c(&quot;Middle&quot;, &quot;Poor&quot;, &quot;Wealthy&quot;), effect = pred1)
+pred1b</code></pre>
+<pre><code>##       cat    effect
+## 1  Middle 0.3559322
+## 2    Poor 0.3037037
+## 3 Wealthy 0.3838951</code></pre>
+<p>When we have more than one categorical variable, the coefficient of the <code>(Intercept)</code> indicates the effect of having/belonging to all the reference categories. For example, if we estimate a new model (<code>model2</code>) with two categorical covariates, <code>income</code> and <code>ethnicity</code>, the <code>(Intercept)</code> coefficient is the effect of having a <code>Middle</code> income and being <code>Asian</code> (the two base categories).</p>
+<pre class="r"><code>model2 &lt;- lm(formula = reversed_dum ~ income + ethnicity, data = appeals_sub)
+summary(model2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = reversed_dum ~ income + ethnicity, data = appeals_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5548 -0.3618 -0.3604  0.6209  0.7737 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)               0.30527    0.07261   4.205 2.95e-05 ***
+## incomePoor               -0.06172    0.07792  -0.792   0.4286    
+## incomeWealthy             0.07378    0.07010   1.053   0.2929    
+## ethnicityBlack            0.11689    0.06048   1.933   0.0536 .  
+## ethnicityCaucasian        0.17577    0.10432   1.685   0.0924 .  
+## ethnicityHispanic        -0.01728    0.04483  -0.386   0.7000    
+## ethnicityNative American  0.04581    0.07365   0.622   0.5341    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4806 on 721 degrees of freedom
+## Multiple R-squared:  0.01513,    Adjusted R-squared:  0.006935 
+## F-statistic: 1.846 on 6 and 721 DF,  p-value: 0.08767</code></pre>
+</div>
+<div id="changing-the-referencebase-category" class="section level1">
+<h1>Changing the reference/base category</h1>
+<p>At some point we may be interested in changing the base category to facilitate the interpretations of the findings. This is very easy to do with the <code>relevel()</code> function. Imagine we want <code>Caucasian</code> to be the base reference of the <code>ethnicity</code> variable.</p>
+<pre class="r"><code>appeals_sub &lt;- mutate(appeals_sub, ethnicity = relevel(ethnicity, &quot;Caucasian&quot;))</code></pre>
+<p>Run the model again and look at the <code>summary()</code> to see the changes.</p>
+<pre class="r"><code>model2 &lt;- lm(formula = reversed_dum ~ income + ethnicity, data = appeals_sub)
+summary(model2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = reversed_dum ~ income + ethnicity, data = appeals_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5548 -0.3618 -0.3604  0.6209  0.7737 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)               0.48105    0.10566   4.553 6.22e-06 ***
+## incomePoor               -0.06172    0.07792  -0.792   0.4286    
+## incomeWealthy             0.07378    0.07010   1.053   0.2929    
+## ethnicityAsian           -0.17577    0.10432  -1.685   0.0924 .  
+## ethnicityBlack           -0.05888    0.10686  -0.551   0.5818    
+## ethnicityHispanic        -0.19306    0.10317  -1.871   0.0617 .  
+## ethnicityNative American -0.12996    0.11512  -1.129   0.2593    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4806 on 721 degrees of freedom
+## Multiple R-squared:  0.01513,    Adjusted R-squared:  0.006935 
+## F-statistic: 1.846 on 6 and 721 DF,  p-value: 0.08767</code></pre>
+</div>
+<div id="predicted-values-for-categorical-variables" class="section level1">
+<h1>Predicted values for categorical variables</h1>
+<p>To illustrate the effect of these two covariates, we can use predicted values. For <code>income</code>, we need to predict three different scenarios, one for each of the <code>income</code> categories, while keeping the other variable ethnicity constant. In this case it doesn’t matter which ethnic category we use as long as it’s constant across the three income scenarios. Let’s use “Hispanic”.</p>
+<pre class="r"><code>income_scenarios &lt;- data.frame(income = c(&quot;Poor&quot;, &quot;Middle&quot;, &quot;Wealthy&quot;),
+                               ethnicity = &quot;Hispanic&quot;)
+income_scenarios</code></pre>
+<pre><code>##    income ethnicity
+## 1    Poor  Hispanic
+## 2  Middle  Hispanic
+## 3 Wealthy  Hispanic</code></pre>
+<pre class="r"><code>income_pred &lt;- as.data.frame(predict(model2, newdata = income_scenarios, 
+                                     interval = &quot;confidence&quot;))
+income_pred$income &lt;- income_scenarios$income</code></pre>
+<p>Once we have the predicted values for these 3 scenarios, we can plot the results using <code>geom_pointrange()</code>.</p>
+<pre class="r"><code>ggplot(income_pred, aes(x = income, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ylab(&quot;Probability of the decision being reversed&quot;) +
+  xlab(&quot;Appellant&#39;s income level&quot;) +
+  ggtitle(&quot;Predicted values of model2 for different income levels&quot;)</code></pre>
+<p><img src="lessons_categorical_covariates_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="672" /></p>
+<p>We can do the same for the other categorical covariate and plot the predicted values when keeping <code>income</code> constant (e.g. <code>Middle</code>) and changing the <code>ethnicity</code> category.</p>
+<pre class="r"><code>ethnic_scenarios &lt;- data.frame(ethnicity = levels(appeals_sub$ethnicity),
+                               income = &quot;Middle&quot;)
+ethnic_scenarios</code></pre>
+<pre><code>##         ethnicity income
+## 1       Caucasian Middle
+## 2           Asian Middle
+## 3           Black Middle
+## 4        Hispanic Middle
+## 5 Native American Middle</code></pre>
+<pre class="r"><code>ethnic_pred &lt;- as.data.frame(predict(model2, newdata = ethnic_scenarios, 
+                                     interval = &quot;confidence&quot;))
+ethnic_pred$ethnicity &lt;- ethnic_scenarios$ethnicity</code></pre>
+<pre class="r"><code>ggplot(ethnic_pred, aes(x = ethnicity, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ylab(&quot;Probability of the decision being reversed&quot;) +
+  xlab(&quot;Appellant&#39;s ethnicity&quot;) +
+  ggtitle(&quot;Predicted values of model2 for different ethnicities&quot;)</code></pre>
+<p><img src="lessons_categorical_covariates_files/figure-html/unnamed-chunk-14-1.png" title="" alt="" width="672" /></p>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

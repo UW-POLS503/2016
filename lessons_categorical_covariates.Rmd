@@ -1,0 +1,123 @@
+---
+title: "Categorical Covariates"
+output: html_document
+---
+
+
+```{r echo = FALSE, results = 'hide'}
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE, tidy = TRUE,
+  eval = FALSE)
+```
+
+## Required Packages and Datasets
+
+In this lesson we will use a subset of Carolyn Dapper's [dataset](https://www.dropbox.com/s/b3h69zhsfyb9fkk/appeals_sub.csv?dl=0), with data from the United States Courts of Appeals Data Base (Dr. Donald R. Songer's project). 
+
+```{r, message = FALSE}
+library(dplyr)
+library(ggplot2)
+appeals_sub <- read.csv("data/appeals_sub.csv")
+```
+
+# Introduction
+
+In this lesson we will go over how to use categorical covariates in a linear model, how to interpret their coefficients, and how to plot predicted values. 
+
+# Categorical covariates in a linear model
+
+Categorical variables are not different than other variables when specifying a linear model in `R`, we just need to add the variable with the variable in the `formula` parameter of the `lm()` function.
+
+```{r}
+model1 <- lm(formula = reversed_dum ~ income, data = appeals_sub)
+```
+
+# Interpreting regression coefficients
+
+When including a categorical covariate in a linear model, `R` calculates a coefficient for each of the categories but one of them: the base or reference category. 
+
+In model one we only included one covariate, `income`, which is a categorical variable with 3 categories: `Poor`, `Middle`, and `Wealthy`. When we ask for the `summary()` of `model1`, we get explicit coefficients for `Poor` and `Wealthy` but not for `Middle`. 
+
+```{r}
+summary(model1)
+```
+
+These two coefficients (`Poor` and `Wealthy`) indicate the effect that being poor and wealthy have on the outcome (`reversed_dum`) compared to the effect of having a `Middle` income. The `(Intercept)` coefficient indicates the effect of having a `Middle` income.
+
+```{r}
+newdata = data.frame(income = c("Middle", "Poor", "Wealthy"))
+pred1 <- predict(model1, newdata = newdata)
+pred1b <- data.frame(cat = c("Middle", "Poor", "Wealthy"), effect = pred1)
+pred1b
+```
+
+When we have more than one categorical variable, the coefficient of the `(Intercept)` indicates the effect of having/belonging to all the reference categories. For example, if we estimate a new model (`model2`) with two categorical covariates, `income` and `ethnicity`, the `(Intercept)` coefficient is the effect of having a `Middle` income and being `Asian` (the two base categories). 
+
+```{r}
+model2 <- lm(formula = reversed_dum ~ income + ethnicity, data = appeals_sub)
+summary(model2)
+```
+
+# Changing the reference/base category
+
+At some point we may be interested in changing the base category to facilitate the interpretations of the findings. This is very easy to do with the `relevel()` function. Imagine we want `Caucasian` to be the base reference of the `ethnicity` variable. 
+
+```{r}
+appeals_sub <- mutate(appeals_sub, ethnicity = relevel(ethnicity, "Caucasian"))
+```
+
+Run the model again and look at the `summary()` to see the changes.
+
+```{r}
+model2 <- lm(formula = reversed_dum ~ income + ethnicity, data = appeals_sub)
+summary(model2)
+```
+
+# Predicted values for categorical variables
+
+To illustrate the effect of these two covariates, we can use predicted values. For `income`, we need to predict three different scenarios, one for each of the `income` categories, while keeping the other variable ethnicity constant. In this case it doesn't matter which ethnic category we use as long as it's constant across the three income scenarios. Let's use "Hispanic".
+
+```{r}
+income_scenarios <- data.frame(income = c("Poor", "Middle", "Wealthy"),
+                               ethnicity = "Hispanic")
+income_scenarios
+```
+
+```{r}
+income_pred <- as.data.frame(predict(model2, newdata = income_scenarios, 
+                                     interval = "confidence"))
+income_pred$income <- income_scenarios$income
+```
+
+Once we have the predicted values for these 3 scenarios, we can plot the results using `geom_pointrange()`.
+
+```{r}
+ggplot(income_pred, aes(x = income, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ylab("Probability of the decision being reversed") +
+  xlab("Appellant's income level") +
+  ggtitle("Predicted values of model2 for different income levels")
+```
+
+We can do the same for the other categorical covariate and plot the predicted values when keeping `income` constant (e.g. `Middle`) and changing the `ethnicity` category.
+
+```{r}
+ethnic_scenarios <- data.frame(ethnicity = levels(appeals_sub$ethnicity),
+                               income = "Middle")
+ethnic_scenarios
+```
+
+```{r}
+ethnic_pred <- as.data.frame(predict(model2, newdata = ethnic_scenarios, 
+                                     interval = "confidence"))
+ethnic_pred$ethnicity <- ethnic_scenarios$ethnicity
+```
+
+```{r}
+ggplot(ethnic_pred, aes(x = ethnicity, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ylab("Probability of the decision being reversed") +
+  xlab("Appellant's ethnicity") +
+  ggtitle("Predicted values of model2 for different ethnicities")
+```
