@@ -297,6 +297,7 @@ Readings
 
 ### <time datetime="2016-05-20">Friday, May 20</time>
 
+- [Interactions](lessons_categorical_covariates.html)
 
 ## Week 9
 
