@@ -9,9 +9,12 @@ date: "May 26, 2016"
 Nunn and Wantchekon Data,
 
 ```{r}
+library("dplyr")
+library("broom")
 library("plm")
 library("lmtest")
-library("multiwaycov")
+library("multiwayvcov")
+library("rio")
 nunn <- import("data/Nunn_Wantchekon_AER_2011.dta")
 ```
 

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Jeffrey Arnold" />
+
+<meta name="date" content="2016-05-26" />
+
+<title>Panel Data</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="pols503.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://UW-POLS503.github.io/pols_503_sp16">POLS/CS&amp;SS 503</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="https://uw-pols503.github.io/pols503-notes/">Notes</a></li>
+        <!-- start assignments dropdown -->
+        <li class="dropdown">
+          <a href="assignments" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW ASSIGNMENTS HERE -->
+            <li class="dropdown-header">Assignments</li>
+            <li><a href="https://github.com/UW-POLS503/Assignment_01">Assignment 1</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Project</li>
+            <li><a href="assignments_project_1.html">Project Assignment 1</a></li>
+            <li><a href="assignments_project_2.html">Project Assignment 2</a></li>
+            <li><a href="assignments_project_3.html">Project Assignment 3</a></li>
+            <li><a href="data_analysis_project_paper_guidelines.html">Final Project</a></li>
+             <li class="divider"></li>
+            <li class="dropdown-header">Peer Review</li>
+            <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
+            <li><a href="assignments_peer_review_2.html">Peer Review 2</a></li>
+          </ul>
+        </li>
+        <!-- end assignments dropdown -->
+        <!-- start lessons dropdown -->
+        <li class="dropdown">
+          <a href="lessons" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lessons <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW LESSONS HERE -->
+            <li><a href="lessons_install_R.html">Installing R</a></li>
+            <li><a href="lessons_git.html">Getting Started with Git and GitHub</a></li>
+            <li><a href="lessons_writing_functions.html">Writing Functions</a></li>
+            <li><a href="lessons_loops_conditionals.html">Loops and Conditional Execution</a></li>
+            <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
+            <li><a href="lessons_imputation.html">Multiple Imputation</a></li>
+            <li><a href="lessons_weights.html">Weights</a></li>
+            <li><a href="lessons_categorical_covariates.html">Categorical covariates</a></li>
+          </ul>
+        </li>
+        <!-- end lessons dropdown -->
+        <!-- start references dropdown -->
+        <li class="dropdown">
+          <a href="references" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">References <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- ADD NEW REFERENCE PAGES HERE -->
+            <li><a href="writing-advice.html">Writing Advice</a></li>
+            <li><a href="latex4research.html">LaTeX</a></li>
+            <li><a href="word4research.html">Word for Research</a></li>
+            <li><a href="Rmarkdown.html">R Markdown</a></li>
+            <li><a href="stata_to_R.html">Moving from Stata to R</a></li>
+            <li><a href="submitting-assign.html"> Submitting Assignments</a></li>
+          </ul>
+        </li>
+        <!-- end references dropdown -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/UW-POLS503/pols_503_sp16/issues">Report Bug</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Panel Data</h1>
+<h4 class="author"><em>Jeffrey Arnold</em></h4>
+<h4 class="date"><em>May 26, 2016</em></h4>
+
+</div>
+
+
+<div id="clustered-standard-errors" class="section level2">
+<h2>Clustered Standard Errors</h2>
+<p>Nunn and Wantchekon Data,</p>
+<pre class="r"><code>library(&quot;dplyr&quot;)
+library(&quot;broom&quot;)
+library(&quot;plm&quot;)
+library(&quot;lmtest&quot;)
+library(&quot;multiwayvcov&quot;)
+library(&quot;rio&quot;)
+nunn &lt;- import(&quot;data/Nunn_Wantchekon_AER_2011.dta&quot;)</code></pre>
+<p>OLS Model</p>
+<pre class="r"><code>f &lt;- trust_neighbors ~
+        ln_export_pop +
+        # controls
+        # individual level
+        age + age2 + male + urban_dum + education +
+        occupation + religion + living_conditions +
+        # district-level 
+        district_ethnic_frac + frac_ethnicity_in_district +
+        # country-level
+        isocode
+mod_nunn_ols &lt;-
+  lm(f, data = nunn)
+tidy(mod_nunn_ols) %&gt;%
+  filter(term == &quot;ln_export_pop&quot;)</code></pre>
+<pre><code>##            term   estimate  std.error statistic      p.value
+## 1 ln_export_pop -0.8295741 0.06364998 -13.03338 1.192828e-38</code></pre>
+<p>Standard errors clustered by district</p>
+<pre class="r"><code>coeftest(mod_nunn_ols, vcov. = function(x) cluster.vcov(x, ~ district)) %&gt;%
+  tidy() %&gt;%
+  filter(term == &quot;ln_export_pop&quot;)</code></pre>
+<pre><code>##            term   estimate std.error statistic      p.value
+## 1 ln_export_pop -0.8295741 0.1105116 -7.506668 6.354142e-14</code></pre>
+<p>Standard errors clustered by ethnicity,</p>
+<pre class="r"><code>coeftest(mod_nunn_ols, vcov. = function(x) cluster.vcov(x, ~ ethnicity)) %&gt;%
+  tidy() %&gt;%
+  filter(term == &quot;ln_export_pop&quot;)</code></pre>
+<pre><code>##            term   estimate std.error statistic      p.value
+## 1 ln_export_pop -0.8295741 0.2016958 -4.112996 3.923305e-05</code></pre>
+<p>An alternative way to calculate cluster robust standard errors is the clustered-bootstrap. Instead of resampling individual observations, we resample clusters. See Assignment 3</p>
+<pre class="r"><code>ethnicities &lt;- select(nunn, ethnicity) %&gt;% unique() 
+iter &lt;- 1024 
+bs_samples &lt;- list() 
+for (i in seq_len(iter)) { 
+  # Resample ethnic groups 
+  ethnic_sample &lt;- sample_frac(ethnicities, 1, replace = TRUE) 
+  # Merge with Nunn data to get a new dataset 
+  newdata &lt;- left_join(ethnic_sample, nunn, by = &quot;ethnicity&quot;) 
+  bs_samples[[i]] &lt;- tidy(lm(f, data = newdata)) 
+} 
+bs_samples &lt;- bind_rows(bs_samples) 
+bs_samples %&gt;% filter(term == &quot;ln_export_pop&quot;) %&gt;% 
+  ungroup() %&gt;%
+  summarize(conf.low = quantile(estimate, 0.025), 
+            conf.high = quantile(estimate, 0.975), 
+            se = sd(estimate))</code></pre>
+<pre><code>## Source: local data frame [1 x 3]
+## 
+##    conf.low  conf.high        se
+##       (dbl)      (dbl)     (dbl)
+## 1 -1.332344 -0.1219693 0.2941223</code></pre>
+</div>
+<div id="panel-data" class="section level2">
+<h2>Panel Data</h2>
+<p>Example from Michael Ross, “Is Democracy Good for the Poor?”</p>
+<ul>
+<li>Is there a relationship between democracy and, say, infant mortality? We could run a big cross-national regression, but would that be convincing?</li>
+<li>Perhaps democratic countries are different from non-democracies in ways that we can’t measure—they are richer, provide benefits more efficiently, developed longer ago, or posses some cultural trait that tends to make their health outcomes better.</li>
+<li>The idea in Ross’s paper is to look at countries over time to see if we can get a better estimate of the effect of democracy on infant mortality</li>
+<li>It turns out that under certain assumptions, we can allow for violations of zero conditional mean error if we have panel data (repeated observations over time)</li>
+</ul>
+<pre class="r"><code>library(&quot;rio&quot;)
+ross &lt;- import(&quot;data/ross-democracy.dta&quot;)</code></pre>
+<p>In <code>ross</code>, the unit of observation is country (<code>id</code>), year (<code>year</code>).</p>
+<p>The R package <a href="http://www.inside-r.org/packages/cran/plm">plm</a> contains many functions for panel data.</p>
+<pre class="r"><code>library(&quot;plm&quot;)</code></pre>
+<p>OLS ignoring fixed effects</p>
+<pre class="r"><code>mod_lm &lt;- lm(log(kidmort_unicef) ~ democracy + log(GDPcur), data = ross)
+summary(mod_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(kidmort_unicef) ~ democracy + log(GDPcur), data = ross)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.4590 -0.5476  0.0945  0.5013  2.2643 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  9.76405    0.34491   28.31   &lt;2e-16 ***
+## democracy   -0.95525    0.06978  -13.69   &lt;2e-16 ***
+## log(GDPcur) -0.22828    0.01548  -14.75   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7948 on 646 degrees of freedom
+##   (5773 observations deleted due to missingness)
+## Multiple R-squared:  0.5044, Adjusted R-squared:  0.5029 
+## F-statistic: 328.7 on 2 and 646 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>or using <code>plm</code>,</p>
+<pre class="r"><code>mod_pooled &lt;- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c(&quot;id&quot;, &quot;year&quot;),
+              data = ross,
+              model = &quot;pooling&quot;)</code></pre>
+<pre><code>## series _merge is constant and has been removed</code></pre>
+<pre class="r"><code>summary(mod_pooled)</code></pre>
+<pre><code>## Oneway (individual) effect Pooling Model
+## 
+## Call:
+## plm(formula = log(kidmort_unicef) ~ democracy + log(GDPcur), 
+##     data = ross, model = &quot;pooling&quot;, index = c(&quot;id&quot;, &quot;year&quot;))
+## 
+## Unbalanced Panel: n=166, T=1-7, N=649
+## 
+## Residuals :
+##    Min. 1st Qu.  Median 3rd Qu.    Max. 
+## -2.4600 -0.5480  0.0945  0.5010  2.2600 
+## 
+## Coefficients :
+##              Estimate Std. Error t-value  Pr(&gt;|t|)    
+## (Intercept)  9.764048   0.344910  28.309 &lt; 2.2e-16 ***
+## democracy   -0.955248   0.069779 -13.690 &lt; 2.2e-16 ***
+## log(GDPcur) -0.228280   0.015481 -14.746 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    823.38
+## Residual Sum of Squares: 408.07
+## R-Squared:      0.5044
+## Adj. R-Squared: 0.50206
+## F-statistic: 328.73 on 2 and 646 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Fixed effects model using the “within” (de-meaned) estimator,</p>
+<pre class="r"><code>mod_fe &lt;- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c(&quot;id&quot;, &quot;year&quot;),
+              data = ross,
+              model = &quot;within&quot;)</code></pre>
+<pre><code>## series _merge is constant and has been removed</code></pre>
+<pre class="r"><code>summary(mod_fe)</code></pre>
+<pre><code>## Oneway (individual) effect Within Model
+## 
+## Call:
+## plm(formula = log(kidmort_unicef) ~ democracy + log(GDPcur), 
+##     data = ross, model = &quot;within&quot;, index = c(&quot;id&quot;, &quot;year&quot;))
+## 
+## Unbalanced Panel: n=166, T=1-7, N=649
+## 
+## Residuals :
+##     Min.  1st Qu.   Median  3rd Qu.     Max. 
+## -0.70500 -0.11700  0.00628  0.12200  0.75700 
+## 
+## Coefficients :
+##              Estimate Std. Error  t-value  Pr(&gt;|t|)    
+## democracy   -0.143233   0.033500  -4.2756 2.299e-05 ***
+## log(GDPcur) -0.375203   0.011328 -33.1226 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    81.711
+## Residual Sum of Squares: 23.012
+## R-Squared:      0.71838
+## Adj. R-Squared: 0.53242
+## F-statistic: 613.481 on 2 and 481 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Fixed effects model using the least-squares dummy variable (LSDV) estimator,</p>
+<pre class="r"><code>mod_fe_lsdv &lt;- lm(log(kidmort_unicef) ~ democracy + log(GDPcur) + id,
+              data = ross)
+summary(mod_fe_lsdv)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(kidmort_unicef) ~ democracy + log(GDPcur) + 
+##     id, data = ross)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.70488 -0.11661  0.00628  0.12222  0.75745 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 13.76449    0.26597  51.751  &lt; 2e-16 ***
+## democracy   -0.14323    0.03350  -4.276 2.30e-05 ***
+## log(GDPcur) -0.37520    0.01133 -33.123  &lt; 2e-16 ***
+## idAGO        0.29972    0.16768   1.787 0.074489 .  
+## idALB       -1.93096    0.19014 -10.155  &lt; 2e-16 ***
+## idARE       -1.87629    0.17021 -11.024  &lt; 2e-16 ***
+## idARG       -0.58802    0.16075  -3.658 0.000282 ***
+## idARM       -1.45969    0.19015  -7.676 9.20e-14 ***
+## idAUS       -1.51025    0.16394  -9.212  &lt; 2e-16 ***
+## idAUT       -1.57413    0.16198  -9.718  &lt; 2e-16 ***
+## idAZE       -0.74134    0.18976  -3.907 0.000107 ***
+## idBDI       -0.80359    0.14710  -5.463 7.53e-08 ***
+## idBEL       -1.45105    0.16284  -8.911  &lt; 2e-16 ***
+## idBEN       -0.60805    0.14708  -4.134 4.20e-05 ***
+## idBFA       -0.43394    0.13726  -3.162 0.001669 ** 
+## idBGD        0.36327    0.14933   2.433 0.015354 *  
+## idBGR       -1.87071    0.16968 -11.025  &lt; 2e-16 ***
+## idBHR       -2.36871    0.16728 -14.160  &lt; 2e-16 ***
+## idBHS       -2.16000    0.17030 -12.683  &lt; 2e-16 ***
+## idBIH       -2.81045    0.24454 -11.493  &lt; 2e-16 ***
+## idBLR       -1.68806    0.19171  -8.805  &lt; 2e-16 ***
+## idBLZ       -2.27677    0.19358 -11.761  &lt; 2e-16 ***
+## idBOL       -0.50254    0.15554  -3.231 0.001318 ** 
+## idBRA        0.47071    0.14560   3.233 0.001309 ** 
+## idBRB       -2.68611    0.15897 -16.897  &lt; 2e-16 ***
+## idBRN       -3.14176    0.18963 -16.568  &lt; 2e-16 ***
+## idBTN       -1.39583    0.16881  -8.269 1.33e-15 ***
+## idBWA       -1.50061    0.14683 -10.220  &lt; 2e-16 ***
+## idCAF       -0.86421    0.14741  -5.863 8.47e-09 ***
+## idCAN       -1.25176    0.16574  -7.553 2.16e-13 ***
+## idCHE       -1.78091    0.16282 -10.938  &lt; 2e-16 ***
+## idCHL       -1.19469    0.15846  -7.539 2.37e-13 ***
+## idCHN        0.31609    0.14685   2.152 0.031864 *  
+## idCIV       -0.15998    0.13742  -1.164 0.244932    
+## idCMR       -0.30219    0.13730  -2.201 0.028218 *  
+## idCOG       -1.02032    0.15500  -6.583 1.21e-10 ***
+## idCOL       -0.64567    0.15993  -4.037 6.29e-05 ***
+## idCOM       -1.76528    0.15768 -11.196  &lt; 2e-16 ***
+## idCPV       -2.25096    0.19132 -11.765  &lt; 2e-16 ***
+## idCRI       -1.98452    0.15811 -12.552  &lt; 2e-16 ***
+## idCYP       -2.56222    0.24680 -10.382  &lt; 2e-16 ***
+## idCZE       -2.19942    0.19424 -11.323  &lt; 2e-16 ***
+## idDEU       -0.77917    0.18358  -4.244 2.63e-05 ***
+## idDJI       -1.16381    0.19015  -6.121 1.94e-09 ***
+## idDNK       -1.89376    0.16167 -11.714  &lt; 2e-16 ***
+## idDOM       -0.83551    0.15816  -5.283 1.93e-07 ***
+## idDZA       -0.10341    0.15748  -0.657 0.511719    
+## idECU       -0.77659    0.15695  -4.948 1.04e-06 ***
+## idEGY        0.16910    0.13948   1.212 0.225979    
+## idERI       -1.32232    0.24494  -5.398 1.06e-07 ***
+## idESP       -1.23692    0.16394  -7.545 2.28e-13 ***
+## idEST       -2.52895    0.19032 -13.288  &lt; 2e-16 ***
+## idETH        0.01159    0.16759   0.069 0.944875    
+## idFIN       -2.25573    0.16112 -14.000  &lt; 2e-16 ***
+## idFJI       -2.39516    0.15490 -15.462  &lt; 2e-16 ***
+## idFRA       -0.93858    0.16871  -5.563 4.40e-08 ***
+## idGAB       -0.82089    0.15495  -5.298 1.79e-07 ***
+## idGBR       -0.99303    0.16779  -5.918 6.19e-09 ***
+## idGEO       -1.57140    0.18969  -8.284 1.19e-15 ***
+## idGHA       -0.43224    0.13751  -3.143 0.001773 ** 
+## idGIN       -0.20806    0.18950  -1.098 0.272793    
+## idGMB       -1.28532    0.14897  -8.628  &lt; 2e-16 ***
+## idGNB       -1.06477    0.16915  -6.295 6.93e-10 ***
+## idGNQ       -1.43062    0.17017  -8.407 4.80e-16 ***
+## idGRC       -1.49643    0.15965  -9.373  &lt; 2e-16 ***
+## idGTM       -0.49309    0.15823  -3.116 0.001940 ** 
+## idGUY       -1.74421    0.15599 -11.182  &lt; 2e-16 ***
+## idHND       -1.19084    0.15555  -7.656 1.06e-13 ***
+## idHRV       -2.34691    0.24743  -9.485  &lt; 2e-16 ***
+## idHTI       -0.66113    0.15497  -4.266 2.39e-05 ***
+## idHUN       -1.73688    0.15724 -11.046  &lt; 2e-16 ***
+## idIDN        0.28404    0.14642   1.940 0.052974 .  
+## idIND        1.11405    0.14709   7.574 1.87e-13 ***
+## idIRL       -2.15107    0.15946 -13.489  &lt; 2e-16 ***
+## idIRN        0.28185    0.15322   1.839 0.066465 .  
+## idIRQ       -0.45400    0.14313  -3.172 0.001611 ** 
+## idISL       -3.45055    0.15811 -21.823  &lt; 2e-16 ***
+## idISR       -1.93961    0.15972 -12.144  &lt; 2e-16 ***
+## idITA       -0.87556    0.16758  -5.225 2.60e-07 ***
+## idJAM       -2.01583    0.15811 -12.749  &lt; 2e-16 ***
+## idJOR       -1.52897    0.15472  -9.882  &lt; 2e-16 ***
+## idJPN       -0.87803    0.17179  -5.111 4.63e-07 ***
+## idKAZ       -0.56038    0.19181  -2.922 0.003647 ** 
+## idKEN       -0.62442    0.13734  -4.547 6.90e-06 ***
+## idKGZ       -1.07441    0.19224  -5.589 3.84e-08 ***
+## idKHM       -1.00030    0.18942  -5.281 1.95e-07 ***
+## idKOR       -1.50939    0.16056  -9.401  &lt; 2e-16 ***
+## idKWT       -1.73330    0.15627 -11.092  &lt; 2e-16 ***
+## idLAO       -0.91414    0.18950  -4.824 1.89e-06 ***
+## idLBN       -1.77283    0.18979  -9.341  &lt; 2e-16 ***
+## idLBR       -0.60229    0.16737  -3.598 0.000353 ***
+## idLBY       -0.39755    0.19051  -2.087 0.037440 *  
+## idLKA       -1.59779    0.15674 -10.194  &lt; 2e-16 ***
+## idLSO       -1.42163    0.15578  -9.126  &lt; 2e-16 ***
+## idLTU       -2.44657    0.19065 -12.833  &lt; 2e-16 ***
+## idLUX       -2.66293    0.15820 -16.832  &lt; 2e-16 ***
+## idLVA       -2.07983    0.19052 -10.917  &lt; 2e-16 ***
+## idMAR       -0.26728    0.15645  -1.708 0.088213 .  
+## idMDA       -1.73769    0.18980  -9.155  &lt; 2e-16 ***
+## idMDG       -0.52272    0.13717  -3.811 0.000157 ***
+## idMDV       -1.89169    0.16965 -11.151  &lt; 2e-16 ***
+## idMEX        0.03179    0.14450   0.220 0.825959    
+## idMKD       -1.83352    0.19022  -9.639  &lt; 2e-16 ***
+## idMLI       -0.18946    0.14143  -1.340 0.180993    
+## idMLT       -2.94978    0.15861 -18.597  &lt; 2e-16 ***
+## idMNG       -1.39970    0.24724  -5.661 2.59e-08 ***
+## idMOZ       -0.14348    0.15474  -0.927 0.354292    
+## idMRT       -0.87608    0.14727  -5.949 5.21e-09 ***
+## idMUS       -2.13080    0.15854 -13.440  &lt; 2e-16 ***
+## idMWI       -0.46359    0.13767  -3.367 0.000820 ***
+## idMYS       -1.42262    0.15735  -9.041  &lt; 2e-16 ***
+## idNAM       -1.24571    0.19225  -6.480 2.28e-10 ***
+## idNER       -0.13818    0.13728  -1.007 0.314658    
+## idNGA        0.54947    0.13978   3.931 9.70e-05 ***
+## idNIC       -1.29524    0.15573  -8.317 9.34e-16 ***
+## idNLD       -1.68155    0.16392 -10.258  &lt; 2e-16 ***
+## idNOR       -2.03067    0.16128 -12.591  &lt; 2e-16 ***
+## idNPL       -0.48249    0.13718  -3.517 0.000478 ***
+## idNZL       -2.11473    0.15957 -13.252  &lt; 2e-16 ***
+## idOMN       -1.45828    0.15483  -9.418  &lt; 2e-16 ***
+## idPAK        0.22444    0.13974   1.606 0.108913    
+## idPAN       -1.69591    0.15556 -10.902  &lt; 2e-16 ***
+## idPER       -0.17974    0.15693  -1.145 0.252619    
+## idPHL       -0.46866    0.13966  -3.356 0.000854 ***
+## idPNG       -0.76393    0.17024  -4.487 9.03e-06 ***
+## idPOL       -1.34580    0.19556  -6.882 1.85e-11 ***
+## idPRT       -1.42357    0.15901  -8.952  &lt; 2e-16 ***
+## idPRY       -1.63831    0.15478 -10.585  &lt; 2e-16 ***
+## idQAT       -2.02817    0.16777 -12.089  &lt; 2e-16 ***
+## idROM       -1.15010    0.19401  -5.928 5.86e-09 ***
+## idRUS       -0.56400    0.19873  -2.838 0.004732 ** 
+## idRWA       -0.81370    0.13754  -5.916 6.27e-09 ***
+## idSAU       -0.22774    0.15929  -1.430 0.153446    
+## idSDN       -0.37745    0.13757  -2.744 0.006300 ** 
+## idSEN       -0.35543    0.14134  -2.515 0.012238 *  
+## idSGP       -2.55797    0.15648 -16.346  &lt; 2e-16 ***
+## idSLB       -2.77937    0.17338 -16.030  &lt; 2e-16 ***
+## idSLE       -0.29615    0.13772  -2.150 0.032022 *  
+## idSLV       -0.97711    0.15557  -6.281 7.54e-10 ***
+## idSOM       -0.71914    0.16738  -4.296 2.10e-05 ***
+## idSUR       -2.33771    0.16846 -13.877  &lt; 2e-16 ***
+## idSVK       -2.26083    0.19127 -11.820  &lt; 2e-16 ***
+## idSVN       -2.80025    0.24743 -11.318  &lt; 2e-16 ***
+## idSWE       -2.00927    0.16312 -12.318  &lt; 2e-16 ***
+## idSWZ       -1.38623    0.14759  -9.392  &lt; 2e-16 ***
+## idSYR       -1.08342    0.15546  -6.969 1.06e-11 ***
+## idTCD       -0.57830    0.14684  -3.938 9.42e-05 ***
+## idTGO       -0.92146    0.14703  -6.267 8.18e-10 ***
+## idTHA       -0.53458    0.15865  -3.370 0.000813 ***
+## idTJK       -0.71920    0.18950  -3.795 0.000166 ***
+## idTKM       -0.73211    0.18995  -3.854 0.000132 ***
+## idTTO       -1.93327    0.15810 -12.228  &lt; 2e-16 ***
+## idTUN       -0.87748    0.15537  -5.648 2.78e-08 ***
+## idTUR        0.45356    0.14784   3.068 0.002277 ** 
+## idTZA       -0.36919    0.18968  -1.946 0.052191 .  
+## idUGA       -0.42881    0.14688  -2.919 0.003672 ** 
+## idUKR       -1.20553    0.19359  -6.227 1.04e-09 ***
+## idURY       -1.58840    0.15694 -10.121  &lt; 2e-16 ***
+## idUSA       -0.18851    0.17592  -1.072 0.284451    
+## idUZB       -1.00789    0.24525  -4.110 4.66e-05 ***
+## idVEN       -0.83171    0.16056  -5.180 3.27e-07 ***
+## idVNM       -1.09243    0.16842  -6.486 2.19e-10 ***
+## idYEM       -0.52843    0.18965  -2.786 0.005542 ** 
+## idYUG       -1.91139    0.24542  -7.788 4.21e-14 ***
+## idZAF        0.01047    0.15229   0.069 0.945217    
+## idZAR        0.15894    0.14204   1.119 0.263718    
+## idZMB       -0.46610    0.13718  -3.398 0.000736 ***
+## idZWE       -0.76736    0.13737  -5.586 3.89e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2187 on 481 degrees of freedom
+##   (5773 observations deleted due to missingness)
+## Multiple R-squared:  0.9721, Adjusted R-squared:  0.9623 
+## F-statistic: 100.2 on 167 and 481 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Note that the coefficients on <code>democracy</code> are the same,</p>
+<pre class="r"><code>coef(mod_fe)[&#39;democracy&#39;]</code></pre>
+<pre><code>##  democracy 
+## -0.1432331</code></pre>
+<pre class="r"><code>coef(mod_fe_lsdv)[&#39;democracy&#39;]</code></pre>
+<pre><code>##  democracy 
+## -0.1432331</code></pre>
+<p>Two-way fixed effects model using the within estimator,</p>
+<pre class="r"><code>mod_fe2 &lt;- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c(&quot;id&quot;, &quot;year&quot;),
+              data = ross,
+              effect = &quot;twoway&quot;,
+              model = &quot;within&quot;)</code></pre>
+<pre><code>## series _merge is constant and has been removed</code></pre>
+<pre class="r"><code>summary(mod_fe2)</code></pre>
+<pre><code>## Twoways effects Within Model
+## 
+## Call:
+## plm(formula = log(kidmort_unicef) ~ democracy + log(GDPcur), 
+##     data = ross, effect = &quot;twoway&quot;, model = &quot;within&quot;, index = c(&quot;id&quot;, 
+##         &quot;year&quot;))
+## 
+## Unbalanced Panel: n=166, T=1-7, N=649
+## 
+## Residuals :
+##    Min. 1st Qu.  Median 3rd Qu.    Max. 
+## -0.6250 -0.0838  0.0000  0.0836  0.6570 
+## 
+## Coefficients :
+##              Estimate Std. Error  t-value Pr(&gt;|t|)    
+## democracy   -0.022272   0.029509  -0.7548   0.4508    
+## log(GDPcur) -0.239382   0.022343 -10.7138   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    19.279
+## Residual Sum of Squares: 15.519
+## R-Squared:      0.19504
+## Adj. R-Squared: 0.14245
+## F-statistic: 57.4248 on 2 and 474 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Random effects model,</p>
+<pre class="r"><code>mod_re &lt;- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c(&quot;id&quot;, &quot;year&quot;),
+              data = ross,
+              model = &quot;random&quot;)</code></pre>
+<pre><code>## series _merge is constant and has been removed</code></pre>
+<pre class="r"><code>summary(mod_re)</code></pre>
+<pre><code>## Oneway (individual) effect Random Effect Model 
+##    (Swamy-Arora&#39;s transformation)
+## 
+## Call:
+## plm(formula = log(kidmort_unicef) ~ democracy + log(GDPcur), 
+##     data = ross, model = &quot;random&quot;, index = c(&quot;id&quot;, &quot;year&quot;))
+## 
+## Unbalanced Panel: n=166, T=1-7, N=649
+## 
+## Effects:
+##                   var std.dev share
+## idiosyncratic 0.04784 0.21873 0.084
+## individual    0.52109 0.72186 0.916
+## theta  : 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.7100  0.8502  0.8502  0.8523  0.8772  0.8862 
+## 
+## Residuals :
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -0.7710 -0.1370  0.0254  0.0138  0.1740  0.7790 
+## 
+## Coefficients :
+##              Estimate Std. Error  t-value  Pr(&gt;|t|)    
+## (Intercept) 12.298990   0.255875  48.0665 &lt; 2.2e-16 ***
+## democracy   -0.194212   0.034184  -5.6814 2.021e-08 ***
+## log(GDPcur) -0.360262   0.011061 -32.5712 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Total Sum of Squares:    99.259
+## Residual Sum of Squares: 33.828
+## R-Squared:      0.66418
+## Adj. R-Squared: 0.66111
+## F-statistic: 624.753 on 2 and 646 DF, p-value: &lt; 2.22e-16</code></pre>
+</div>
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
