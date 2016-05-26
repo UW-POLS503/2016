@@ -299,7 +299,6 @@ div.tocify {
             <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
             <li><a href="lessons_imputation.html">Multiple Imputation</a></li>
             <li><a href="lessons_weights.html">Weights</a></li>
-            <li><a href="lessons_categorical_covariates.html">Categorical covariates</a></li>
           </ul>
         </li>
         <!-- end lessons dropdown -->
@@ -333,23 +332,90 @@ div.tocify {
 </div>
 
 
-<div id="research-project-paper-guidelines" class="section level1">
-<h1>Research Project Paper Guidelines</h1>
-<p>The research project paper must comply with the following guidelines. To help you meet these guidelines start with either this</p>
+<div id="peer-review-assignment" class="section level1">
+<h1>Peer Review Assignment</h1>
+<p><strong>Due: May 27</strong></p>
 <ul>
-<li>Word Document <a href="/files/example-manuscript.docx">.docx</a></li>
-<li>A <span class="math inline">\(\mathrm{\LaTeX}\)</span> template and R Markdown package for pdf (coming soon ….)</li>
+<li>Xingwei reviews Carolyn’s project</li>
+<li>Carolyn reviews Ellen’s project</li>
+<li>Ellen reviews Xingwei’s project</li>
+<li>Larry reviews Wesley’s project</li>
+<li>Wesley reviews Stephen’s project</li>
+<li>Stephen reviews Larry’s project</li>
+<li>Steve reviews Beatrice’s project</li>
+<li>Beatrice reviews Erika’s project</li>
+<li>Erika reviews Steve’s project</li>
 </ul>
-<p>The paper should be submitted as either a Microsoft Word (<em>.docx</em>) or PDF file.</p>
-<p>The paper must be 15 pages or less, including figures, tables, and references, but not including the title page and abstract. The paper must be formatted in 12 point standard serif font (e.g. Times New Roman), doubled spaced (including footnotes and references), with 1 inch margins. The paper should contain 2–5 figures or tables. The paper should present its content concisely and efficiently with no unnecessary material. In addition to the body text, footnotes and references must be double spaced. New paragraphs should be indicated by indenting the first line; do not add extra spaces between paragraphs. Pages must be numbered, except the title page.</p>
-<p>The paper must have a title page with an abstract of 150 words or less. The abstract should provide a concise summary of (1) research topic the paper addresses, (2) the research strategy employed for the analysis, (3) the results obtained from the analysis, and (4) the implications of the findings. The abstract should not contain formal citations to other work.</p>
-<p>Sections must not be numbered, instead they should be given short titles. The introduction should not be titled. Authors should only use one level of sections, but authors may use subsections where necessary. Authors should not include paragraph at the end of the introductory section laying out the organization of the paper.</p>
-<p>Tables and figures should be inserted into the text of the paper at appropriate locations. Although journal submissions generally discourage use of color, the author is strongly <em>encouraged</em> to use appropriate colors in figures. Follow the style guidelines in Political Analysis guidelines for Tables, Figures, and Numbers and Variables [<a href="http://www.oxfordjournals.org/our_journals/polana/for_authors/general.html">URL</a>] for presenting quantitative results, and the American Political Science Association’s Style Manual for Political Science (revised 2006) [<a href="http://www.apsanet.org/Portals/54/APSA%20Files/publications/APSAStyleManual2006.pdf">URL</a>] or the <a href="http://www.chicagomanualofstyle.org/search.epl">Chicago Manual of Style</a> (15th or 16th edition) for all else. These guidelines include text style, citations, appendices, notes, references, and figures/tables.</p>
-<p>References should be included at the back of the paper. Citations and references should follow the <a href="http://www.apsanet.org/Portals/54/APSA%20Files/publications/APSAStyleManual2006.pdf">APSA</a> style.</p>
-<p>The paper should be self contained and written for a general political science audience. While the main text of paper should be a concise summary of results, the author may submit supporting information, in lieu of appendices. This may include descriptions of the data, alternative specifications of statistical methods, and additional tables and figures that elaborate the paper’s primary point.</p>
-<p>All data and code necessary to reproduce the paper’s results <strong>must</strong> be provided.</p>
-<p>The use of asterisks or symbols to represent statistical significance is discouraged. Tables should include standard errors rather than <span class="math inline">\(z\)</span>-scores, <span class="math inline">\(t\)</span>-scores, or <span class="math inline">\(p\)</span>-values. Authors reporting that results are “statistically significant” should use the 0.05 level or lower. Results at the 0.10 significance level should not be referred to as “statistically significant”. However, the strength of evidence necessary to justify findings cannot be captured by any single criterion, such as the conventional .05 level of statistical significance. The instructor will evaluate the strength of findings on “a range of criteria beyond statistical significance, including substantive significance, theoretical aptness, the importance of the problem under study, and the feasibility of obtaining additional evidence. (APSR)”</p>
-<p>These guidelines are derived from those used for submissions by the <a href="http://www.apsanet.org/apsrsubmissions">American Political Science Review</a>, <a href="http://ajps.org/guidelines-for-manuscripts/">American Journal of Political Science</a>, <a href="http://www.journals.uchicago.edu/journals/jop/instruct">Journal of Politics</a>, and <a href="http://www.oxfordjournals.org/our_journals/polana/for_authors/general.html">Political Analysis</a></p>
+<p>Review the paper (<strong>models</strong> and <strong>results</strong> part) of the peer to which you have been assigned. You should access the author’s write-up, code, and data by going to his/her repository. The objective of this assignment is to give constructive feedback in order to help the author improve their paper.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> The following sections provide some general suggestions of things to look for. However, you are not a coauthor of the paper, nor should you be asking the author to write the paper you would have written. Take the question that the author is asking as given, and address whether they adequately answer it. You are also not acting as a gatekeeper for the discipline: you do not need to address whether the question and analysis is innovative, novel, or contributing to a literature.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>You are asked to check whether the analysis is replicable: Does the code run and produce the results reported in the paper? If you are having problems with the code, contact the author to resolve them by opening an issue in the author’s project repository; cc the instructors (<code>cc @jrnold @CasAndreu</code>).</p>
+<p>Your need to <strong>submit</strong> your peer review assignment as a new issue in the author’s project repository; cc the instructors and the author. Your peer review should follow this format:</p>
+<ul>
+<li>Start by summarizing the paper. What is the question? What are the data and methods used to address the question?</li>
+<li>Discuss general comments.</li>
+<li>Discuss specific comments (perhaps in a bullet list). These would include things like a confusing graph, or an unclear sentence on a specific page.</li>
+</ul>
+<div id="questions-to-consider" class="section level2">
+<h2>Questions to consider</h2>
+<p>These are some questions to guide your review, but should not be considered an exclusive list.</p>
+<div id="empirical-analysis" class="section level3">
+<h3>Empirical analysis:</h3>
+<ul>
+<li>What are the response and outcome variables?</li>
+<li>What do you think about the specification of the models the author uses? Would you transfrom any variable? Add an interaction?</li>
+<li>Do you think the author is controlling for all necessary controls? What others would you include?</li>
+<li>What do you think the author should do to have a more convincing argument?</li>
+</ul>
+</div>
+</div>
+<div id="replication" class="section level2">
+<h2>Replication</h2>
+<ul>
+<li>Did they cite the sources of the data? They should provide enough information so that you can find the original data that they used; verify that by trying to find the data.</li>
+<li>Was the code and data in the authors’ repository? Were you able to run the code?</li>
+<li>Did the code produce the results that were given in the paper?</li>
+<li>Was the code understandable and well-commented? Could you easily tell which parts of the code produced which tables, figures, and results?</li>
+</ul>
+</div>
+<div id="general-advice" class="section level2">
+<h2>General Advice</h2>
+<p>How to do peer review well (<a href="https://stat545-ubc.github.io/peer-review02_peer-evaluation-guidelines.html" class="uri">https://stat545-ubc.github.io/peer-review02_peer-evaluation-guidelines.html</a>)</p>
+<ul>
+<li>Give thoughtful, constructive and considerate comments.</li>
+<li>Be specific and concise.</li>
+<li>Try to learn something new and, if you succeed, point that out.</li>
+<li>If you can’t find anything to praise or that you found helpful, then at least offer some suggestions in a kind way.</li>
+</ul>
+</div>
+<div id="evaluations-of-peer-review" class="section level2">
+<h2>Evaluations of Peer Review</h2>
+<p>Peer reviews will be evaluated as “good” or “needs more”. Some reasons why a peer review will be given a grade of “needs more”:</p>
+<ul>
+<li>The review is so generic that it’s hard to determine which assignment you’re reviewing.</li>
+<li>The review is mean.</li>
+<li>The review neither expresses good points nor offers suggestions.</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>There are some good sources and suggestions on “doing” peer review. These are geared to reviewing manuscripts for publication, which has a different objectives than this assignment. However, these are useful to read for your professional development.</p>
+<ul>
+<li><em>The Political Methodologist</em>, Fall 2015, issue on Peer Review <a href="https://thepoliticalmethodologist.files.wordpress.com/2016/02/tpm_v23_n1.pdf">[URL]</a>, especially Brendan Nyhan, “A Checklist Manifesto for Peer Review” and Thomas Pepinsky, “What is Peer Review For? Why Referees are not the Disciplinary Police”.</li>
+<li>Miller, Beth, Jon Pevehouse, Ron Rogowski, Dustin Tingley, and Rick Wilson. 2013. “How To Be a Peer Reviewer: A Guide for Recent and Soon-to-be PhDs.” <em>PS: Political Science &amp; Politics</em> <a href="https://dx.doi.org/10.1017/S104909651200128X">[DOI]</a></li>
+<li>Chris Blattman <a href="http://chrisblattman.com/files/2009/07/PLSC508-Syllabus-Spring2010.pdf">Research Design &amp; Casual Inference Syllabus</a>, last two pages</li>
+<li>Tyler Cowen <a href="http://marginalrevolution.com/marginalrevolution/2006/10/how_to_be_a_goo.html">How to be a good referee</a></li>
+<li>William Thompson, <em>A Guide for the Young Economist</em>, 2nd ed. Ch 4 “Writing Referee Reports”.</li>
+</ul>
+<hr />
+<p>Derived in part from Jenny Bryan <a href="https://stat545-ubc.github.io/faq.html">Guidelines for peer review of assignments</a> <a href="http://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0 Create Commons License</a></p>
+<p>Several of these questions come from the syllabus of Chris Blattman for <a href="http://chrisblattman.com/files/2009/07/PLSC508-Syllabus-Spring2010.pdf">Research Design and Causal Inference</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This is different than reviewing an article, in which the objective is to determine whether the paper is publishable or not. This is an example of pre-publication comments when you offer advice to an author.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Though if you find it is, point it out.<a href="#fnref2">↩</a></p></li>
+</ol>
 </div>
 
 <!-- some extra javascript for older browsers -->

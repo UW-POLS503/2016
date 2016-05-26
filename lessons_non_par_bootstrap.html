@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Bootstrapped Standard Errors</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -283,7 +283,6 @@ div.tocify {
              <li class="divider"></li>
             <li class="dropdown-header">Peer Review</li>
             <li><a href="assignments_peer_review_1.html">Peer Review 1</a></li>
-            <li><a href="assignments_peer_review_2.html">Peer Review 2</a></li>
           </ul>
         </li>
         <!-- end assignments dropdown -->
@@ -299,7 +298,6 @@ div.tocify {
             <li><a href="lessons_functional_forms2.html">Functional Forms</a></li>
             <li><a href="lessons_imputation.html">Multiple Imputation</a></li>
             <li><a href="lessons_weights.html">Weights</a></li>
-            <li><a href="lessons_categorical_covariates.html">Categorical covariates</a></li>
           </ul>
         </li>
         <!-- end lessons dropdown -->
@@ -329,27 +327,26 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
+<h1 class="title">Bootstrapped Standard Errors</h1>
 
 </div>
 
 
-<div id="research-project-paper-guidelines" class="section level1">
-<h1>Research Project Paper Guidelines</h1>
-<p>The research project paper must comply with the following guidelines. To help you meet these guidelines start with either this</p>
-<ul>
-<li>Word Document <a href="/files/example-manuscript.docx">.docx</a></li>
-<li>A <span class="math inline">\(\mathrm{\LaTeX}\)</span> template and R Markdown package for pdf (coming soon ….)</li>
-</ul>
-<p>The paper should be submitted as either a Microsoft Word (<em>.docx</em>) or PDF file.</p>
-<p>The paper must be 15 pages or less, including figures, tables, and references, but not including the title page and abstract. The paper must be formatted in 12 point standard serif font (e.g. Times New Roman), doubled spaced (including footnotes and references), with 1 inch margins. The paper should contain 2–5 figures or tables. The paper should present its content concisely and efficiently with no unnecessary material. In addition to the body text, footnotes and references must be double spaced. New paragraphs should be indicated by indenting the first line; do not add extra spaces between paragraphs. Pages must be numbered, except the title page.</p>
-<p>The paper must have a title page with an abstract of 150 words or less. The abstract should provide a concise summary of (1) research topic the paper addresses, (2) the research strategy employed for the analysis, (3) the results obtained from the analysis, and (4) the implications of the findings. The abstract should not contain formal citations to other work.</p>
-<p>Sections must not be numbered, instead they should be given short titles. The introduction should not be titled. Authors should only use one level of sections, but authors may use subsections where necessary. Authors should not include paragraph at the end of the introductory section laying out the organization of the paper.</p>
-<p>Tables and figures should be inserted into the text of the paper at appropriate locations. Although journal submissions generally discourage use of color, the author is strongly <em>encouraged</em> to use appropriate colors in figures. Follow the style guidelines in Political Analysis guidelines for Tables, Figures, and Numbers and Variables [<a href="http://www.oxfordjournals.org/our_journals/polana/for_authors/general.html">URL</a>] for presenting quantitative results, and the American Political Science Association’s Style Manual for Political Science (revised 2006) [<a href="http://www.apsanet.org/Portals/54/APSA%20Files/publications/APSAStyleManual2006.pdf">URL</a>] or the <a href="http://www.chicagomanualofstyle.org/search.epl">Chicago Manual of Style</a> (15th or 16th edition) for all else. These guidelines include text style, citations, appendices, notes, references, and figures/tables.</p>
-<p>References should be included at the back of the paper. Citations and references should follow the <a href="http://www.apsanet.org/Portals/54/APSA%20Files/publications/APSAStyleManual2006.pdf">APSA</a> style.</p>
-<p>The paper should be self contained and written for a general political science audience. While the main text of paper should be a concise summary of results, the author may submit supporting information, in lieu of appendices. This may include descriptions of the data, alternative specifications of statistical methods, and additional tables and figures that elaborate the paper’s primary point.</p>
-<p>All data and code necessary to reproduce the paper’s results <strong>must</strong> be provided.</p>
-<p>The use of asterisks or symbols to represent statistical significance is discouraged. Tables should include standard errors rather than <span class="math inline">\(z\)</span>-scores, <span class="math inline">\(t\)</span>-scores, or <span class="math inline">\(p\)</span>-values. Authors reporting that results are “statistically significant” should use the 0.05 level or lower. Results at the 0.10 significance level should not be referred to as “statistically significant”. However, the strength of evidence necessary to justify findings cannot be captured by any single criterion, such as the conventional .05 level of statistical significance. The instructor will evaluate the strength of findings on “a range of criteria beyond statistical significance, including substantive significance, theoretical aptness, the importance of the problem under study, and the feasibility of obtaining additional evidence. (APSR)”</p>
-<p>These guidelines are derived from those used for submissions by the <a href="http://www.apsanet.org/apsrsubmissions">American Political Science Review</a>, <a href="http://ajps.org/guidelines-for-manuscripts/">American Journal of Political Science</a>, <a href="http://www.journals.uchicago.edu/journals/jop/instruct">Journal of Politics</a>, and <a href="http://www.oxfordjournals.org/our_journals/polana/for_authors/general.html">Political Analysis</a></p>
+<div id="required-packages-and-datasets" class="section level2">
+<h2>Required Packages and Datasets</h2>
+<p>For this short lesson you need the following packages and also to load the <code>Prestige</code> dataset in the <code>uwpols501</code>.</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+library(&quot;devtools&quot;)
+# install_github(&#39;UW-POLS501/r-uwpols501&#39;) #If you still don&#39;t have it
+# installed
+library(uwpols501)
+data(Prestige)</code></pre>
+</div>
+<div id="non-parametric-bootstrap-redrawing-samples-from-the-sample" class="section level1">
+<h1>Non-Parametric Bootstrap: Redrawing samples from the sample</h1>
+<pre class="r"><code>library(tidyr)
+prestige_bo1 &lt;- bootstrap(Prestige, 2)</code></pre>
 </div>
 
 <!-- some extra javascript for older browsers -->
