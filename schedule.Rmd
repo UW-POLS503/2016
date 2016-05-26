@@ -316,6 +316,8 @@ Readings
 
 ### <time datetime="2016-05-26">Thursday, May 26</time>
 
+- [panel examples](panel.html)
+
 ### <time datetime="2016-05-27">Friday, May 27</time>
 
 **Due** Peer review of Project analysis
