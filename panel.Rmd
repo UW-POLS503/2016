@@ -1,0 +1,150 @@
+---
+title: "Panel Data"
+author: "Jeffrey Arnold"
+date: "May 26, 2016"
+---
+
+## Clustered Standard Errors
+
+Nunn and Wantchekon Data,
+
+```{r}
+library("plm")
+library("lmtest")
+library("multiwaycov")
+nunn <- import("data/Nunn_Wantchekon_AER_2011.dta")
+```
+
+OLS Model
+```{r}
+f <- trust_neighbors ~
+        ln_export_pop +
+        # controls
+        # individual level
+        age + age2 + male + urban_dum + education +
+        occupation + religion + living_conditions +
+        # district-level 
+        district_ethnic_frac + frac_ethnicity_in_district +
+        # country-level
+        isocode
+mod_nunn_ols <-
+  lm(f, data = nunn)
+tidy(mod_nunn_ols) %>%
+  filter(term == "ln_export_pop")
+```
+
+Standard errors clustered by district
+```{r}
+coeftest(mod_nunn_ols, vcov. = function(x) cluster.vcov(x, ~ district)) %>%
+  tidy() %>%
+  filter(term == "ln_export_pop")
+```
+Standard errors clustered by ethnicity,
+```{r}
+coeftest(mod_nunn_ols, vcov. = function(x) cluster.vcov(x, ~ ethnicity)) %>%
+  tidy() %>%
+  filter(term == "ln_export_pop")
+```
+
+An alternative way to calculate cluster robust standard errors is the clustered-bootstrap.
+Instead of resampling individual observations, we resample clusters.
+See Assignment 3 
+```{r}
+ethnicities <- select(nunn, ethnicity) %>% unique() 
+iter <- 1024 
+bs_samples <- list() 
+for (i in seq_len(iter)) { 
+  # Resample ethnic groups 
+  ethnic_sample <- sample_frac(ethnicities, 1, replace = TRUE) 
+  # Merge with Nunn data to get a new dataset 
+  newdata <- left_join(ethnic_sample, nunn, by = "ethnicity") 
+  bs_samples[[i]] <- tidy(lm(f, data = newdata)) 
+} 
+bs_samples <- bind_rows(bs_samples) 
+bs_samples %>% filter(term == "ln_export_pop") %>% 
+  ungroup() %>%
+  summarize(conf.low = quantile(estimate, 0.025), 
+            conf.high = quantile(estimate, 0.975), 
+            se = sd(estimate))
+```
+
+
+
+
+
+## Panel Data
+
+Example from Michael Ross, "Is Democracy Good for the Poor?"
+
+- Is there a relationship between democracy and, say, infant mortality? We could run a big cross-national regression, but would that be convincing?
+- Perhaps democratic countries are different from non-democracies in ways that we can't measure---they are richer, provide benefits more efficiently, developed longer ago, or posses some cultural trait that tends to make their health outcomes better. 
+- The idea in Ross's paper is to look at  countries over time to see if we can get a better estimate of the effect of democracy on infant mortality
+- It turns out that under certain assumptions, we can allow for violations of zero conditional mean error if we have panel data (repeated observations over time)
+
+```{r message=FALSE}
+library("rio")
+ross <- import("data/ross-democracy.dta")
+```
+
+In `ross`, the unit of observation is country (`id`), year (`year`).
+
+The R package [plm](http://www.inside-r.org/packages/cran/plm) contains many functions for panel data.
+```{r message=FALSE}
+library("plm")
+```
+
+OLS ignoring fixed effects
+```{r}
+mod_lm <- lm(log(kidmort_unicef) ~ democracy + log(GDPcur), data = ross)
+summary(mod_lm)
+```
+or using `plm`,
+```{r}
+mod_pooled <- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c("id", "year"),
+              data = ross,
+              model = "pooling")
+summary(mod_pooled)
+```
+
+Fixed effects model using the "within" (de-meaned) estimator,
+```{r}
+mod_fe <- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c("id", "year"),
+              data = ross,
+              model = "within")
+summary(mod_fe)
+```
+
+Fixed effects model using the least-squares dummy variable (LSDV) estimator,
+```{r}
+mod_fe_lsdv <- lm(log(kidmort_unicef) ~ democracy + log(GDPcur) + id,
+              data = ross)
+summary(mod_fe_lsdv)
+```
+Note that the coefficients on `democracy` are the same,
+```{r}
+coef(mod_fe)['democracy']
+coef(mod_fe_lsdv)['democracy']
+```
+
+
+Two-way fixed effects model using the within estimator,
+```{r}
+mod_fe2 <- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c("id", "year"),
+              data = ross,
+              effect = "twoway",
+              model = "within")
+summary(mod_fe2)
+```
+
+Random effects model,
+```{r}
+mod_re <- plm(log(kidmort_unicef) ~ democracy + log(GDPcur),
+              index = c("id", "year"),
+              data = ross,
+              model = "random")
+summary(mod_re)
+```
+
