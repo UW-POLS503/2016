@@ -331,18 +331,22 @@ Topics
 
 Readings
 
+- Gelman, Andrew, and Cristian Pasarica and Rahul Dodhia. 2002. "[Let's Practice What We Preach: Turning Tables into Graphs](http://www.stat.columbia.edu/~gelman/research/published/dodhia.pdf)." *The American Statistician.*
+- Kastellec, Jonathan P. and Eduardo L. Leoni. 2007. "[Using Graphs Instead of Tables in Political Science](https://www.princeton.edu/~jkastell/graphs.pdf)." *American Journal of Political Science.*
+- Gary King, Michael Tomz, and Jason Wittenberg. 2000. "[Making the Most of Statistical Analyses: Improving Interpretation and Presentation](http://j.mp/mBsCxb)." *American Journal of Political Science*
+- Kelly McCaskey and Carlisle Rainey. 2016. [Substantive Importance and the Veil of Statistical Significance](https://github.com/carlislerainey/meaningful-inferences/blob/master/doc/meaningful.pdf?raw=true)."
 - Wooldrige, Ch 19: "Carrying Out an Empirical Project"
 - Schrodt, Philip A. 2014. "[Seven Deadly Sins of Contemporary Quantitative Political Analysis](https://dx.doi.org/10.1177/0022343313499597)." *Journal of Peace Research*
 
 ### <time datetime="2016-05-31">Tuesday, May 31</time>
 
-**Due** Draft of project final paper
 
 ### <time datetime="2016-06-02">Thursday, June 2</time>
 
+**Due** Draft of project final paper
+
 ### <time datetime="2016-06-03">Friday, June 3</time>
 
-**Due** Peer review of project final paper
 
 ## Finals Period
 
