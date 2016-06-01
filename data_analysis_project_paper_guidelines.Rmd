@@ -3,8 +3,8 @@
 The research project paper must comply with the following guidelines.
 To help you meet these guidelines start with either this
 
-- Word Document [.docx](/files/example-manuscript.docx)
-- A [$\mathrm{\LaTeX}$](/files/final_project_template.tex) template and R Markdown package for pdf (coming soon ....)
+- Word Document [.docx](/pols_503_sp16/files/example-manuscript.docx)
+- A [$\mathrm{\LaTeX}$](/pols_503_sp16/files/final_project_template.tex) template and R Markdown package for pdf (coming soon ....)
 
 The paper should be submitted as either a Microsoft Word (*.docx*) or PDF file.
 
