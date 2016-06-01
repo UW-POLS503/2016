@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -45,25 +45,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -84,6 +66,30 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -163,6 +169,12 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
     // establish options
     var options = {
       selectors: "h1,h2",
@@ -171,7 +183,7 @@ $(document).ready(function ()  {
       hashGenerator: function (text) {
         return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
-      ignoreSelector: "h1.title, .toc-ignore",
+      ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
     options.showAndHide = true;
@@ -330,6 +342,7 @@ div.tocify {
 
 
 
+
 </div>
 
 
@@ -337,8 +350,8 @@ div.tocify {
 <h1>Research Project Paper Guidelines</h1>
 <p>The research project paper must comply with the following guidelines. To help you meet these guidelines start with either this</p>
 <ul>
-<li>Word Document <a href="pols_503_sp16/files/example-manuscript.docx">.docx</a></li>
-<li>A <a href="pols_503_sp16/files/final_project_template.tex"><span class="math inline">\(\mathrm{\LaTeX}\)</span></a> template and R Markdown package for pdf (coming soon ….)</li>
+<li>Word Document <a href="files/example-manuscript.docx">.docx</a></li>
+<li>A <a href="files/final_project_template.tex"><span class="math inline">\(\mathrm{\LaTeX}\)</span></a> template and R Markdown package for pdf (coming soon ….)</li>
 </ul>
 <p>The paper should be submitted as either a Microsoft Word (<em>.docx</em>) or PDF file.</p>
 <p>The paper must be 15 pages or less, including figures, tables, and references, but not including the title page and abstract. The paper must be formatted in 12 point standard serif font (e.g. Times New Roman), doubled spaced (including footnotes and references), with 1 inch margins. The paper should contain 2–5 figures or tables. The paper should present its content concisely and efficiently with no unnecessary material. In addition to the body text, footnotes and references must be double spaced. New paragraphs should be indicated by indenting the first line; do not add extra spaces between paragraphs. Pages must be numbered, except the title page.</p>
